@@ -21,7 +21,7 @@ h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:400;margin:0;letter-sp
 .btn-ghost{border:1.5px solid rgba(245,241,234,.6);color:var(--ink)}
 nav{position:absolute;top:0;left:0;right:0;z-index:5}
 nav .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:22px;padding-bottom:22px}
-.brand{font-family:'Fraunces',serif;font-size:22px;color:var(--ink);text-decoration:none}
+.brand{font-family:'Fraunces',serif;font-size:22px;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:12px}
 .links{display:flex;flex-wrap:wrap;gap:22px;align-items:center;font-weight:600;font-size:15px}
 .links a{color:var(--ink);text-decoration:none}
 .hero{position:relative;min-height:92vh;display:flex;align-items:flex-end}
@@ -73,13 +73,13 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 .mbar a{flex:1;text-align:center;text-decoration:none;font-weight:700;font-size:15px;padding:12px 6px;border-radius:999px;color:var(--ink)}
 .mbar a.wa{background:var(--gold);color:var(--goldink)}
 @media(min-width:900px){.mbar{display:none}footer{padding-bottom:36px}}
-@media(max-width:640px){.links a:not(.btn){display:none}.hero{min-height:88vh}}
+@media(max-width:640px){.links{display:none}.hero{min-height:88vh}}
 </style>
 </head>
 <body>
 
 <nav aria-label="Main"><div class="wrap">
-<a class="brand" href="#">The Painting Pixie</a>
+<a class="brand" href="#"><img src="../img/logo.webp" alt="The Painting Pixie logo" width="64" height="64" style="width:64px;height:64px;border-radius:50%;display:block;box-shadow:0 1px 4px rgba(0,0,0,.15)"><span>The Painting Pixie</span></a>
 <div class="links">
 <a href="#">Parties</a><a href="#">Weddings &amp; events</a><a href="#">Glitter bar</a><a href="#">Gallery</a><a href="#prices">Prices</a>
 <a class="btn btn-gold" href="#" style="padding:11px 20px;font-size:15px">Check a date</a>
