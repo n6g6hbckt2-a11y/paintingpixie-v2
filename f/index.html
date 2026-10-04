@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Book a Face Painter in Sussex &amp; Surrey | The Painting Pixie</title>
+<meta name="description" content="Tell Kat about your party and see your price in three quick steps. 5-star face painter for parties, weddings and events across Sussex & Surrey.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#2A1A36;--soft:#5E4E6A;--plum:#4B2A6B;--plum2:#6B3F8E;--leaf:#2F7A5E;--leaf2:#E3F1EA;--blush:#FBF1F4;--card:#fff;--line:#EADDE6;--gold:#F2C46B}
+*{box-sizing:border-box}
+body{margin:0;background:var(--blush);color:var(--ink);font:17px/1.6 'Plus Jakarta Sans',system-ui,sans-serif}
+img{display:block;max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.08;margin:0;letter-spacing:-.01em}
+h2{font-size:clamp(30px,4vw,44px);margin-bottom:12px}
+.lede{color:var(--soft);font-size:19px;margin:0 0 34px;max-width:640px}
+section{padding:84px 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;border-radius:14px;padding:15px 24px;border:0;cursor:pointer;font:inherit;font-weight:700}
+.btn-plum{background:var(--plum);color:#fff}.btn-leaf{background:var(--leaf);color:#fff}.btn-ghost{background:transparent;color:var(--plum);border:1.5px solid var(--line)}
+nav{background:var(--blush)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:14px;padding-bottom:14px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);font-family:Fraunces,serif;font-weight:600;font-size:22px}
+.brand img{width:60px;height:60px;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.15)}
+.links{display:flex;align-items:center;gap:22px;font-weight:600;font-size:16px}
+.links a{text-decoration:none;color:var(--ink)}
+.links a.btn-plum{color:#fff}
+.hero{padding:40px 0 70px}
+.hero .wrap{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:'t b' 'm b';column-gap:44px;row-gap:0;align-items:start}
+.hero .txt{grid-area:t}.hero .book{grid-area:b}.hero .mosaic{grid-area:m}
+.hero h1{font-size:clamp(40px,5.2vw,62px);margin:16px 0 18px}
+.pill{display:inline-flex;gap:8px;align-items:center;background:#fff;border-radius:999px;padding:7px 14px;font-weight:600;font-size:15px}
+.pill b{color:#D9A02E;letter-spacing:2px}
+.mosaic{display:grid;grid-template-columns:1.3fr 1fr;grid-template-rows:180px 180px;gap:12px;margin-top:28px}
+.mosaic img{width:100%;height:100%;object-fit:cover;border-radius:20px}
+.mosaic img:first-child{grid-row:span 2}
+.book{background:var(--card);border-radius:28px;padding:28px;box-shadow:0 22px 60px -28px rgba(75,42,107,.45)}
+.prog{display:flex;gap:8px;margin-bottom:22px}
+.prog span{flex:1;height:6px;border-radius:6px;background:var(--line)}
+.prog span.on{background:var(--leaf)}
+.stepn{font-weight:700;font-size:14px;color:var(--leaf);text-transform:uppercase;letter-spacing:.07em}
+.book h2{font-size:28px;margin:4px 0 18px}
+.pane{display:none}.pane.on{display:block}
+.f{margin-bottom:15px}
+.f label{display:block;font-weight:600;font-size:15px;margin-bottom:7px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+select,input{width:100%;font:inherit;font-size:16px;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:14px;align-items:center;border:2px solid var(--line);border-radius:16px;padding:14px 16px;cursor:pointer;background:#fff;text-align:left;font:inherit;color:var(--ink);width:100%}
+.opt[aria-pressed=true]{border-color:var(--leaf);background:var(--leaf2)}
+.opt b{font-size:17px}
+.opt .p{margin-left:auto;font-family:Fraunces,serif;font-size:24px;font-weight:600;white-space:nowrap}
+.opt small{display:block;color:var(--soft);font-size:14px}
+.rec{font-size:12px;font-weight:700;background:var(--gold);border-radius:999px;padding:2px 8px;margin-left:6px}
+.nav2{display:flex;gap:10px;margin-top:20px}
+.nav2 .btn{flex:1}
+.sum{background:var(--leaf2);border-radius:16px;padding:16px 18px;margin-bottom:16px;font-size:16px}
+.sum b{font-family:Fraunces,serif;font-size:22px}
+.book small{display:block;color:var(--soft);font-size:13px;margin-top:10px;text-align:center}
+.promise{background:var(--plum);color:#fff;padding:30px 0}
+.promise .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.promise div{font-size:15px;color:#E6D9F0}
+.promise b{display:block;color:#fff;font-size:17px;margin-bottom:2px}
+.ph{border:1.5px dashed #D9A02E;border-radius:8px;padding:1px 7px;font-size:13px;color:#B07D16}
+.promise .ph{color:var(--gold);border-color:var(--gold)}
+.per{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pc{background:#fff;border-radius:22px;padding:26px}
+.pc .big{font-family:Fraunces,serif;font-size:42px;font-weight:600;color:var(--plum)}
+.pc .big small{font-family:'Plus Jakarta Sans';font-size:15px;color:var(--soft);font-weight:500}
+.pc p{margin:4px 0 0;color:var(--soft);font-size:15px}
+.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rev{background:#fff;border-radius:22px;padding:26px;margin:0}
+.rev b{color:#D9A02E;letter-spacing:2px}
+.rev blockquote{margin:10px 0 14px}
+.rev figcaption{font-weight:700;font-size:15px}
+.rev figcaption span{font-weight:500;color:var(--soft)}
+.faq details{background:#fff;border-radius:16px;padding:18px 22px;margin-bottom:10px}
+.faq summary{font-weight:700;cursor:pointer;font-size:18px}
+.faq p{margin:10px 0 0;color:var(--soft)}
+.linkgrid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.linkgrid h3{font-size:22px;margin-bottom:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips a{background:#fff;border-radius:999px;padding:9px 15px;text-decoration:none;font-weight:600;color:var(--ink)}
+footer{background:var(--ink);color:#D9CCE3;padding:44px 0 110px;font-size:15px}
+footer .cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+footer h4{color:#fff;margin:0 0 10px;font-size:16px}
+footer a{display:block;color:#D9CCE3;text-decoration:none;margin:4px 0}
+.mbar{display:none}
+@media(max-width:900px){
+.hero .wrap{grid-template-columns:1fr;grid-template-areas:'t' 'b' 'm';row-gap:24px}.hero .mosaic{margin-top:0}.promise .wrap,.per,.revs{grid-template-columns:1fr 1fr}
+.links a:not(.btn){display:none}
+.mbar{display:flex;position:fixed;left:12px;right:12px;bottom:12px;z-index:50;background:var(--ink);border-radius:18px;padding:6px;gap:6px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.mbar a{flex:1;text-align:center;color:#fff;text-decoration:none;font-weight:700;padding:12px 6px;border-radius:14px;font-size:15px}
+.mbar a.go{background:var(--leaf)}
+footer .cols{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){section{padding:60px 0}.promise .wrap,.per,.revs,.linkgrid,.g2{grid-template-columns:1fr}.links .btn{display:none}.book{padding:22px}.mosaic{grid-template-rows:130px 130px}}
+</style>
+</head>
+<body>
+
+<nav aria-label="Main"><div class="wrap">
+<a class="brand" href="#"><img src="../img/logo.webp" alt="The Painting Pixie logo" width="60" height="60"><span>The Painting Pixie</span></a>
+<div class="links"><a href="#prices">Prices</a><a href="#">Events</a><a href="#">Gallery</a><a href="#">Areas</a><a href="#">About</a><a href="#faq">FAQ</a><a class="btn btn-plum" href="#book" style="padding:11px 18px">Book Kat</a></div>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+<div class="txt">
+<span class="pill"><b>★★★★★</b> 5.0 on Google · 30+ reviews</span>
+<h1>Tell Kat about your party. See your price straight away.</h1>
+<p class="lede" style="margin-bottom:0">Face painting for kids' parties, weddings, festivals and hen dos across Sussex &amp; Surrey. It takes three quick steps and you're not committing to anything until you're happy.</p>
+</div>
+<div class="mosaic">
+<img src="../img/v2-hero.webp" alt="Kat painting a blue monster design on a laughing girl" style="object-position:62% 40%">
+<img src="../img/v2-tiger-boy.webp" alt="Boy with a tiger design" style="object-position:50% 30%">
+<img src="../img/pink-unicorn.webp" alt="Pink unicorn face paint design">
+</div>
+
+<div class="book" id="book">
+<div class="prog"><span class="on" id="p1"></span><span id="p2"></span><span id="p3"></span></div>
+
+<div class="pane on" id="s1">
+<div class="stepn">Step 1 of 3</div><h2>Your party</h2>
+<div class="f"><label for="occ">Occasion</label><select id="occ"><option value="party">Children's birthday party</option><option value="hen">Hen do / adult party</option><option value="wedding">Wedding</option><option value="event">Festival, fête or corporate event</option><option value="xmas">Christmas party or fair</option><option value="hallo">Halloween party</option></select></div>
+<div class="g2">
+<div class="f"><label for="date">Date</label><input type="date" id="date"></div>
+<div class="f"><label for="kids">Roughly how many children?</label><input type="number" id="kids" min="1" max="200" value="12" inputmode="numeric"></div>
+</div>
+<div class="f"><label for="town">Town or village</label><input id="town" placeholder="e.g. Horsham, Southwater, Crawley" autocomplete="address-level2"></div>
+<div class="nav2"><button class="btn btn-leaf" type="button" data-go="2">See my options</button></div>
+</div>
+
+<div class="pane" id="s2">
+<div class="stepn">Step 2 of 3</div><h2>Your options</h2>
+<div class="opts" id="opts"></div>
+<div class="nav2"><button class="btn btn-ghost" type="button" data-go="1">Back</button><button class="btn btn-leaf" type="button" data-go="3">Continue</button></div>
+</div>
+
+<div class="pane" id="s3">
+<div class="stepn">Step 3 of 3</div><h2>Send to Kat</h2>
+<div class="sum" id="sum"></div>
+<div class="f"><label for="name">Your first name</label><input id="name" autocomplete="given-name" placeholder="So Kat knows who's asking"></div>
+<a class="btn btn-leaf" id="wa" href="#" target="_blank" rel="noopener" style="width:100%">Send on WhatsApp</a>
+<div class="nav2"><button class="btn btn-ghost" type="button" data-go="2">Back</button><a class="btn btn-ghost" href="tel:+447852300125">Or call Kat</a></div>
+<small>Kat replies personally. A small deposit secures your date.</small>
+</div>
+</div>
+</div></header>
+
+<div class="promise"><div class="wrap">
+<div><b>Kat replies personally</b>No call centre and no agency.</div>
+<div><b>Small deposit</b>Secures your date. <span class="ph">[amount]</span></div>
+<div><b>Clear cancellation terms</b><span class="ph">[Kat to confirm]</span></div>
+<div><b>Insured &amp; DBS checked</b>Risk assessment on request.</div>
+</div></div>
+
+<section id="prices"><div class="wrap">
+<h2>What it works out at</h2>
+<p class="lede">Parents often ask what it costs per child. Here's the honest maths.</p>
+<div class="per">
+<div class="pc"><h3>Classic Party</h3><div class="big">£8.67 <small>per child, full party</small></div><p>£130 for up to 15 children · 2 hours</p></div>
+<div class="pc"><h3>Ultimate Sparkle</h3><div class="big">£6.40 <small>per child, full party</small></div><p>£160 for up to 25 children · 3 hours, glitter &amp; gems</p></div>
+<div class="pc"><h3>Hen &amp; adult</h3><div class="big">£150 <small>from</small></div><p>Glitter, gems and adult-style designs</p></div>
+</div>
+</div></section>
+
+<section style="background:#fff"><div class="wrap">
+<h2>Parents say it best</h2>
+<p class="lede">From real Google reviews.</p>
+<div class="revs">
+<figure class="rev" style="background:var(--blush)"><b>★★★★★</b><blockquote>"So amazing. Hired for our daughter's 4th and was phenomenal. Non stop and everyone was so complimentary!"</blockquote><figcaption>Daniel C <span>· 4th birthday</span></figcaption></figure>
+<figure class="rev" style="background:var(--blush)"><b>★★★★★</b><blockquote>"Friendly, patient, and brilliant with the children, making everyone feel comfortable and included."</blockquote><figcaption>Hina T <span>· Southwater</span></figcaption></figure>
+<figure class="rev" style="background:var(--blush)"><b>★★★★★</b><blockquote>"Everyone loved her! Arranging everything was very easy as well."</blockquote><figcaption>Mara S <span>· company party</span></figcaption></figure>
+</div>
+</div></section>
+
+<section id="faq" class="faq"><div class="wrap" style="max-width:860px">
+<h2>Before you book</h2>
+<p class="lede">The practical bits.</p>
+<details open><summary>What do I need to provide?</summary><p><span class="ph">[Kat to confirm: table, two chairs, space, light, indoor cover]</span></p></details>
+<details><summary>What ages is face painting for?</summary><p><span class="ph">[Kat to confirm: minimum age, cheek art for little ones]</span></p></details>
+<details><summary>Are the paints safe?</summary><p>Kat uses professional, skin-safe face paints and a hygienic kit. <span class="ph">[brands &amp; allergy advice]</span></p></details>
+<details><summary>What if I need to cancel?</summary><p><span class="ph">[Kat to confirm: deposit and cancellation terms]</span></p></details>
+<details><summary>Do you travel to me?</summary><p>Yes. Kat is based in Horsham and covers West Sussex and Surrey, and she's happy to travel further for larger bookings.</p></details>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap linkgrid">
+<div><h3>Find Kat near you</h3><div class="chips"><a href="../e/">Horsham</a><a href="#">Crawley</a><a href="#">Haywards Heath</a><a href="#">Worthing</a><a href="#">Brighton</a><a href="#">Guildford</a><a href="#">Reigate</a><a href="#">All areas</a></div></div>
+<div><h3>By occasion</h3><div class="chips"><a href="#">Children's parties</a><a href="#">Weddings</a><a href="#">Halloween</a><a href="#">Christmas</a><a href="#">Hen &amp; adult</a><a href="#">Glitter bar</a></div></div>
+</div></section>
+
+<footer><div class="wrap">
+<div class="cols">
+<div><h4>The Painting Pixie</h4>Horsham, West Sussex<br>07852 300125</div>
+<div><h4>Events</h4><a href="#">Children's parties</a><a href="#">Weddings</a><a href="#">Halloween</a><a href="#">Christmas</a></div>
+<div><h4>Areas</h4><a href="../e/">Horsham</a><a href="#">Crawley</a><a href="#">Guildford</a><a href="#">All areas</a></div>
+<div><h4>Company</h4><a href="#">About Kat</a><a href="#">Gallery</a><a href="#">Contact</a></div>
+</div>
+<p style="margin-top:28px">© 2026 The Painting Pixie Ltd · Company no. 14851167</p>
+</div></footer>
+
+<div class="mbar"><a class="go" href="#book">Book Kat</a><a href="tel:+447852300125">Call</a><a href="https://wa.me/447852300125" target="_blank" rel="noopener">WhatsApp</a></div>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)},choice=null;
+function options(){
+ var o=$('occ').value,k=Math.max(1,+$('kids').value||1),list=[];
+ if(o==='party'||o==='xmas'||o==='hallo'){
+  list.push({n:'Classic Party',p:130,d:'2 hours · up to 15 children · '+(k<=15?('about £'+(130/k).toFixed(2)+' per child'):'not enough for '+k+' children'),ok:k<=15});
+  list.push({n:'Ultimate Sparkle',p:160,d:'3 hours · up to 25 children · glitter & gems',ok:k<=25});
+  list.push({n:'Bigger party',p:0,d:'Over 25 children: Kat quotes extra time or a second artist',ok:true});
+ }else if(o==='hen'){list.push({n:'Hen & adult',p:150,d:'Glitter, gems & adult-style designs',ok:true})}
+ else{list.push({n:o==='wedding'?'Wedding':'Event',p:0,d:'Hourly or day rate, extra artists available',ok:true})}
+ var best=list.filter(function(x){return x.ok})[0];
+ if(!choice||!list.some(function(x){return x.n===choice.n}))choice=best;
+ $('opts').innerHTML='';
+ list.forEach(function(x){
+  var b=document.createElement('button');b.type='button';b.className='opt';b.setAttribute('aria-pressed',x.n===choice.n);
+  b.innerHTML='<span><b>'+x.n+'</b>'+(x===best&&list.length>1?'<span class="rec">Best fit</span>':'')+'<small>'+x.d+'</small></span><span class="p">'+(x.p?'£'+x.p:'Quote')+'</span>';
+  b.onclick=function(){choice=x;options()};$('opts').appendChild(b);
+ });
+}
+function summary(){
+ var d=$('date').value,t=$('town').value||'your town',k=$('kids').value,o=$('occ').options[$('occ').selectedIndex].text;
+ var ds=d?new Date(d).toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'}):'date to confirm';
+ $('sum').innerHTML='<b>'+choice.n+(choice.p?' · £'+choice.p:'')+'</b><br>'+o+' · '+k+' children<br>'+ds+' · '+t;
+ var msg='Hi Kat'+($('name').value?', it\'s '+$('name').value:'')+'! '+o+' in '+t+' on '+ds+', about '+k+' children. I\'m interested in '+choice.n+(choice.p?' (£'+choice.p+')':'')+'. Are you free?';
+ $('wa').href='https://wa.me/447852300125?text='+encodeURIComponent(msg);
+}
+function go(n){
+ if(n==2)options(); if(n==3)summary();
+ [1,2,3].forEach(function(i){$('s'+i).classList.toggle('on',i==n);$('p'+i).classList.toggle('on',i<=n)});
+}
+document.querySelectorAll('[data-go]').forEach(function(b){b.onclick=function(){go(+b.dataset.go)}});
+$('name').addEventListener('input',summary);
+})();
+</script>
+</body>
+</html>
