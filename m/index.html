@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Design M: Simple one-pager | The Painting Pixie</title>
+<meta name="description" content="Beautiful, fast and friendly face painting and glitter for children's parties, hen dos, weddings and events across Sussex & Surrey. 5.0 on Google. From £130.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--plum:#4A0F5C;--plum2:#2E0839;--pink:#FF4FA3;--lilac:#E9DBFF;--yellow:#FFD23F;--ink:#22142B;--card:#FFFFFF;--muted:#5B4B66}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{overflow-x:clip}
+body{margin:0;background:#fff;color:var(--ink);font:600 18px/1.6 Nunito,system-ui,sans-serif}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:Fredoka,system-ui,sans-serif;font-weight:600;line-height:1.1}
+.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-weight:800;font-size:18px;letter-spacing:.04em;text-transform:uppercase;border-radius:12px;padding:18px 34px;background:var(--pink);color:#fff;box-shadow:0 8px 0 #B8236C,0 18px 30px -10px rgba(255,79,163,.6);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(3px);box-shadow:0 5px 0 #B8236C,0 12px 24px -10px rgba(255,79,163,.6)}
+.btn.wa{background:#25D366;box-shadow:0 8px 0 #158A42,0 18px 30px -10px rgba(37,211,102,.5);text-transform:none;letter-spacing:0}
+/* header: centred logo, menu underneath, as FacepaintFX */
+header{text-align:center;padding:18px 0 0;background:#fff;position:relative;z-index:3}
+.logo{display:inline-flex;align-items:center;gap:14px;text-decoration:none}
+.logo img{width:84px;height:84px;border-radius:50%}
+.logo span{font-family:Fredoka;font-weight:700;font-size:36px;color:var(--plum)}
+.logo span em{font-style:normal;color:var(--pink)}
+nav ul{list-style:none;margin:14px 0 0;padding:0;display:flex;justify-content:center;flex-wrap:wrap}
+nav a{display:block;text-decoration:none;font-weight:700;font-size:15px;padding:12px 16px;border-top:3px solid transparent;color:var(--muted)}
+nav a:hover,nav a.on{color:var(--plum);border-color:var(--pink)}
+.rainbow{height:6px;background:linear-gradient(90deg,#FF4FA3,#FF8A2B,#FFD23F,#7BE36B,#2FD4FF,#9B5CFF)}
+/* hero: real photo (not blurred) with the message box over it */
+.hero{position:relative;min-height:620px;display:flex;align-items:center;padding:60px 0 70px;overflow:hidden;background:linear-gradient(120deg,#FF4FA3,#9B5CFF 55%,#4A0F5C)}
+.hero>img{position:absolute;top:0;right:0;width:62%;height:100%;object-fit:cover;object-position:15% 35%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%);mask-image:linear-gradient(90deg,transparent,#000 10%)}
+
+.box{position:relative;z-index:1;max-width:520px;margin:0 0 0 max(24px,calc((100vw - 1180px)/2 + 24px));text-align:center;background:rgba(255,255,255,.93);border-radius:28px;padding:40px 44px;box-shadow:0 30px 60px -20px rgba(0,0,0,.5);border:4px solid #fff;outline:3px dashed var(--pink);outline-offset:-14px}
+.box h1{font-size:clamp(32px,3.8vw,46px);margin:0 0 14px;color:var(--plum)}
+.box h1 em{font-style:normal;color:var(--pink)}
+.box p{margin:0 0 10px;color:var(--muted);font-size:19px}
+.box .stars{font-weight:800;color:var(--ink);margin:14px 0 24px}
+.box .stars b{color:#F5A400;letter-spacing:2px}
+.box .row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.box small{display:block;margin-top:16px;color:var(--muted);font-size:15px}
+/* face strip on plum, as FacepaintFX */
+.strip{background:var(--plum);padding:46px 0;position:relative}
+.strip::before,.strip::after{content:"";position:absolute;left:0;right:0;height:22px;background:radial-gradient(circle at 11px 0,transparent 11px,var(--plum) 11.5px) 0 0/22px 22px}
+.strip::before{top:-21px;transform:scaleY(-1)}
+.strip::after{bottom:-21px}
+.faces{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.faces figure{margin:0;position:relative;border-radius:18px;overflow:hidden;aspect-ratio:3/4;border:4px solid #fff;transition:transform .25s}
+.faces figure:nth-child(odd){transform:rotate(-2deg)}.faces figure:nth-child(even){transform:rotate(2deg)}
+.faces figure:hover{transform:scale(1.06) rotate(0);z-index:2}
+.faces img{width:100%;height:100%;object-fit:cover}
+.faces figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 8px 8px;color:#fff;font-weight:800;font-size:14px;text-align:center;background:linear-gradient(transparent,rgba(46,8,57,.85))}
+.strip p{text-align:center;color:var(--lilac);margin:30px 0 0}
+.strip p a{color:#fff;font-weight:800}
+/* message panel: "for busy people..." */
+.msg{padding:90px 0 70px;background:var(--lilac)}
+.panel{max-width:860px;margin:0 auto;text-align:center;background:#fff;border-radius:28px;padding:44px 40px;box-shadow:0 20px 50px -25px rgba(74,15,92,.5)}
+.kick{font-size:13px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--pink);margin:0 0 10px}
+.panel h2{font-size:clamp(28px,3.4vw,40px);margin:0 0 18px;color:var(--plum)}
+.panel p{color:var(--muted);margin:0 0 16px}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:30px 0}
+.fact{border-radius:18px;padding:18px 10px;color:#fff}
+.fact:nth-child(1){background:var(--pink)}.fact:nth-child(2){background:#9B5CFF}.fact:nth-child(3){background:#2FB8E8}.fact:nth-child(4){background:#3CC46A}
+.fact b{display:block;font-family:Fredoka;font-size:32px;line-height:1}
+.fact span{font-size:14px;font-weight:700}
+.tbc{border:2px dashed currentColor;border-radius:6px;padding:0 5px;font-size:.85em;opacity:.9}
+/* prices: an addition FacepaintFX doesn't have */
+.prices{padding:20px 0 0}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:860px;margin:26px auto 0;text-align:left}
+.p{background:#fff;border-radius:20px;padding:24px;border-top:8px solid var(--pink)}
+.p:nth-child(2){border-color:#9B5CFF}.p:nth-child(3){border-color:#2FB8E8}
+.p h3{margin:0;font-size:22px;color:var(--plum)}
+.p .amt{font-family:Fredoka;font-weight:700;font-size:44px;color:var(--ink);line-height:1.1;margin:6px 0}
+.p p{margin:0;font-size:15px;color:var(--muted)}
+/* reviews: 4 Google reviews in a row, as FacepaintFX */
+.reviews{padding:80px 0;background:linear-gradient(180deg,var(--lilac),#fff)}
+.reviews .top{text-align:center;margin-bottom:34px}
+.gbtn{display:inline-flex;align-items:center;gap:10px;background:#fff;border-radius:999px;padding:12px 24px;font-weight:800;text-decoration:none;box-shadow:0 8px 24px -10px rgba(0,0,0,.25)}
+.gbtn b{color:#F5A400;letter-spacing:2px}
+.rgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.r{margin:0;background:#fff;border-radius:22px;padding:28px 22px;text-align:center;box-shadow:0 14px 34px -18px rgba(74,15,92,.45);position:relative}
+.r::before{content:"\201C";display:block;font-family:Fredoka;font-size:80px;line-height:.6;height:40px;color:var(--pink)}
+.r:nth-child(2)::before{color:#9B5CFF}.r:nth-child(3)::before{color:#2FB8E8}.r:nth-child(4)::before{color:#3CC46A}
+.r blockquote{margin:0 0 16px;font-size:16px}
+.r figcaption{font-weight:800;color:var(--plum);text-transform:uppercase;font-size:14px;letter-spacing:.04em}
+.r figcaption span{display:block;color:var(--pink);font-size:12px}
+.cta{text-align:center;padding:30px 0 90px}
+.cta h2{font-size:clamp(30px,4vw,46px);margin:0 0 10px;color:var(--plum)}
+.cta p{color:var(--muted);margin:0 0 26px}
+.cta .row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.towns{margin-top:34px;font-size:15px;color:var(--muted)}
+.towns a{color:var(--plum);font-weight:800}
+footer{background:var(--plum2);color:var(--lilac);padding:40px 0 110px;font-size:15px}
+footer .cols{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center}
+footer a{text-decoration:none;display:block;margin:4px 0}
+footer .mid{text-align:center}
+footer .mid img{width:70px;height:70px;border-radius:50%;margin:0 auto 8px}
+footer .right{text-align:right}
+.mbar{display:none}
+@media(max-width:900px){
+.faces{grid-template-columns:repeat(3,1fr)}.rgrid{grid-template-columns:1fr 1fr}.facts{grid-template-columns:1fr 1fr}.pgrid{grid-template-columns:1fr}
+nav ul{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding:0 12px;scrollbar-width:none}nav a{white-space:nowrap}
+.mbar{display:flex;position:fixed;left:10px;right:10px;bottom:10px;z-index:50;background:#fff;border-radius:16px;padding:6px;gap:6px;box-shadow:0 10px 30px rgba(46,8,57,.35)}
+.mbar a{flex:1;text-align:center;text-decoration:none;font-weight:800;padding:12px 4px;border-radius:12px;font-size:16px;color:var(--plum)}
+.mbar a.go{background:var(--pink);color:#fff}.mbar a.wa{background:#25D366;color:#fff}
+footer .cols{grid-template-columns:1fr}footer .right,footer .mid{text-align:center}
+}
+@media(max-width:600px){
+.logo img{width:60px;height:60px}.logo span{font-size:26px}
+.hero{min-height:0;padding:0 0 40px;flex-direction:column}.hero>img{position:relative;width:100%;height:300px;-webkit-mask-image:none;mask-image:none}.box{margin:-60px 16px 0}.box{padding:32px 22px}.btn{padding:16px 22px;font-size:16px}
+.rgrid{grid-template-columns:1fr}.faces{gap:10px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+<a class="logo" href="#"><img src="../img/logo.webp" alt="The Painting Pixie logo" width="84" height="84"><span>The Painting <em>Pixie</em></span></a>
+<nav aria-label="Main"><ul>
+<li><a class="on" href="#">Home</a></li>
+<li><a href="#">Children's Parties</a></li>
+<li><a href="#">Hen &amp; Adult Glitter</a></li>
+<li><a href="#">Events</a></li>
+<li><a href="#">Halloween &amp; Christmas</a></li>
+<li><a href="#">Gallery</a></li>
+<li><a href="#reviews">Reviews</a></li>
+<li><a href="#">FAQs</a></li>
+<li><a href="#">About</a></li>
+<li><a href="#book">Contact</a></li>
+</ul></nav>
+</header>
+<div class="rainbow"></div>
+
+<section class="hero">
+<img src="../img/n-leopard-and-tiger-kids.webp" alt="Two smiling girls with leopard and tiger face paint at a Halloween party">
+<div class="box">
+<h1>Face Painting for Unforgettable <em>Sussex &amp; Surrey</em> Parties</h1>
+<p>Beautiful, fast and friendly face painting &amp; glitter for children's parties, hen dos, weddings, festivals and celebrations.</p>
+<p class="stars"><b>★★★★★</b> 5.0 on Google · fully insured · from £130</p>
+<div class="row"><a class="btn" href="#book">Check your date</a></div>
+<small>Kat replies herself, usually within <span class="tbc">[X hours]</span></small>
+</div>
+</section>
+
+<section class="strip" aria-label="Recent designs">
+<div class="wrap">
+<div class="faces">
+<figure><img src="../img/n-lilac-flower-eye.webp" alt="Lilac flower eye design with rose-gold glitter" style="object-position:30% 45%"><figcaption>Glitter flowers</figcaption></figure>
+<figure><img src="../img/n-unicorn-girl-party.webp" alt="Rainbow unicorn face" style="object-position:50% 25%"><figcaption>Unicorn</figcaption></figure>
+<figure><img src="../img/n-blue-monster-roar.webp" alt="Blue monster face" style="object-position:50% 30%"><figcaption>Monster</figcaption></figure>
+<figure><img src="../img/n-arm-art-flowers-pair.webp" alt="Flower arm art" style="object-position:50% 50%"><figcaption>Arm art</figcaption></figure>
+<figure><img src="../img/n-tiger-girl-closeup.webp" alt="Tiger face" style="object-position:50% 35%"><figcaption>Tiger</figcaption></figure>
+<figure><img src="../img/n-adult-skull.webp" alt="Halloween skull design" style="object-position:50% 40%"><figcaption>Halloween skull</figcaption></figure>
+</div>
+<p>From sweet to spooky, kids to grown-ups. <a href="#">See the full gallery →</a></p>
+</div>
+</section>
+
+<section class="msg">
+<div class="wrap">
+<div class="panel">
+<p class="kick">There's always a reason to celebrate</p>
+<h2>For busy parents who want a brilliant party, without the stress</h2>
+<p>Kat brings everything, sets up on your table and keeps the queue moving, so every child gets their turn and nobody spends the party waiting. Happy, glittery, scary faces looking into that mirror in minutes.</p>
+<div class="facts">
+<div class="fact"><b>5.0★</b><span>Google, 30+ reviews</span></div>
+<div class="fact"><b><span class="tbc">2–5</span></b><span>minutes a face</span></div>
+<div class="fact"><b><span class="tbc">~20</span></b><span>children in 2 hours</span></div>
+<div class="fact"><b>✓</b><span>Insured &amp; DBS checked</span></div>
+</div>
+<div class="prices" id="prices">
+<p class="kick">Prices, up front</p>
+<div class="pgrid">
+<div class="p"><h3>Classic Party</h3><div class="amt">£130</div><p>2 hours, up to 15 children</p></div>
+<div class="p"><h3>Ultimate Sparkle</h3><div class="amt">£160</div><p>3 hours, up to 25 children, glitter &amp; gems</p></div>
+<div class="p"><h3>Hen &amp; adults</h3><div class="amt">£150+</div><p>Glitter, gems and grown-up designs. Big events: quote</p></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="reviews" id="reviews">
+<div class="wrap">
+<div class="top"><a class="gbtn" href="#"><b>★★★★★</b> Google Reviews · 5.0</a></div>
+<div class="rgrid">
+<figure class="r"><blockquote>So amazing. Non stop and everyone was so complimentary of the amazing face paints!</blockquote><figcaption>Daniel C<span>4th birthday</span></figcaption></figure>
+<figure class="r"><blockquote>A great artist who took the time and care to make sure all the kids had the design they wanted.</blockquote><figcaption>Paul S<span>Horsham</span></figcaption></figure>
+<figure class="r"><blockquote>Friendly, patient, and brilliant with the children, making everyone feel comfortable and included.</blockquote><figcaption>Hina T<span>Southwater</span></figcaption></figure>
+<figure class="r"><blockquote>We booked Kat for a 2h session for our company summer party and everyone loved her!</blockquote><figcaption>Mara S<span>Company party</span></figcaption></figure>
+</div>
+</div>
+</section>
+
+<section class="cta" id="book">
+<div class="wrap">
+<h2>Ready to check your date?</h2>
+<p>The quickest way is WhatsApp. Tell Kat your date, town and roughly how many guests.</p>
+<div class="row">
+<a class="btn wa" href="https://wa.me/447852300125?text=Hi%20Kat!%20I'd%20like%20to%20check%20a%20date.%20Date%3A%20%20Town%3A%20%20Guests%3A%20" target="_blank" rel="noopener">WhatsApp Kat</a>
+<a class="btn" href="tel:+447852300125">Call 07852 300125</a>
+</div>
+<p class="towns">Painting across <a href="../e/">Horsham</a>, <a href="#">Crawley</a>, <a href="#">Haywards Heath</a>, <a href="#">Worthing</a>, <a href="#">Brighton</a>, <a href="#">Reigate</a>, <a href="#">Dorking</a>, <a href="#">Guildford</a> and nearby.</p>
+</div>
+</section>
+
+<footer>
+<div class="wrap cols">
+<div><a href="#book">Contact</a><a href="#reviews">Reviews</a><a href="#">Terms &amp; Conditions</a></div>
+<div class="mid"><img src="../img/logo.webp" alt="" width="70" height="70">The Painting Pixie, Horsham</div>
+<div class="right">07852 300125<br>© 2026 The Painting Pixie Ltd<br>Company no. 14851167</div>
+</div>
+</footer>
+<div class="mbar"><a class="go" href="#prices">Prices</a><a href="tel:+447852300125">Call</a><a class="wa" href="https://wa.me/447852300125" target="_blank" rel="noopener">WhatsApp</a></div>
+</body>
+</html>
