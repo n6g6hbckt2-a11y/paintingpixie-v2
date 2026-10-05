@@ -545,3 +545,6 @@ main.lg,footer,.trustband{position:relative;background:var(--bg)}
 .wa-float span{position:absolute;right:74px;white-space:nowrap;background:#fff;color:#14101C;font-weight:800;font-size:14px;padding:8px 12px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.25);opacity:0;transform:translateX(6px);transition:opacity .2s,transform .2s;pointer-events:none}
 .wa-float:hover span,.wa-float:focus-visible span{opacity:1;transform:none}
 @media(max-width:899px){.wa-float{width:58px;height:58px;right:12px;bottom:12px}.wa-float span{display:none}.mbar{right:82px}.mbar a.wa{display:none}}
+
+.phero.hero-right .wrap{display:flex;justify-content:flex-end}
+@media(max-width:600px){.phero.hero-right .wrap{display:block}.phero.hero-right{height:100svh}.phero.hero-right>img{object-position:22% 50%!important}.phero.hero-right .hcard>p:not(.crumb){display:none}}

@@ -286,5 +286,23 @@ def build():
     _orig_build2()
     add_wa_float()
 
+
+# ---------- Page-specific hero tweaks ----------
+HERO_CSS = r'''
+.phero.hero-right .wrap{display:flex;justify-content:flex-end}
+@media(max-width:600px){.phero.hero-right .wrap{display:block}.phero.hero-right{height:100svh}.phero.hero-right>img{object-position:22% 50%!important}.phero.hero-right .hcard>p:not(.crumb){display:none}}
+'''
+def hero_tweaks():
+    with open(f'{OUT}/site.css', 'a') as f: f.write(HERO_CSS)
+    p = f'{OUT}/glitter-bar.html'; s = open(p).read()
+    s = re.sub(r'<header class="phero"><img src="[^"]+"([^>]*?)style="object-position:[^"]*"',
+               r'<header class="phero hero-right"><img src="../img/n-lilac-flower-hero.webp"\1style="object-position:30% 50%"', s, count=1)
+    open(p, 'w').write(s)
+
+_orig_build3 = build
+def build():
+    _orig_build3()
+    hero_tweaks()
+
 if __name__ == '__main__':
     build()

@@ -153,7 +153,7 @@ HERO = {
  'childrens-face-painting.html': ('n-unicorn-girl-party.webp', '50% 25%', 'Occasions · Kids'),
  'contact.html': ('n-crown-girl-blue-sky.webp', '50% 25%', 'Book'),
  'gallery.html': ('n-blue-monster-roar.webp', '50% 30%', 'Gallery'),
- 'glitter-bar.html': ('n-arm-glitter-swirl.webp', '50% 40%', 'Occasions · Grown-ups'),
+ 'glitter-bar.html': ('n-lilac-flower-eye.webp', '38% 40%', 'Occasions · Grown-ups'),
  'halloween-face-painting.html': ('n-pumpkin-face.webp', '50% 30%', 'Occasions · Seasonal'),
  'services.html': ('v2-sisters.webp', '50% 35%', 'Occasions'),
  'face-painter-sussex.html': ('v2-hero.webp', '60% 35%', 'Areas · Sussex'),
