@@ -16,11 +16,12 @@ SERVICES = [
  ("Corporate & brand events", "../img/n-arm-art-flowers-pair.webp", "50% 50%", "Staff fun days, summer parties, launches and activations, with extra artists for big crowds.", "Bespoke quote", "corporate-events.html", "Corporate events"),
  ("Weddings", "../img/n-adult-glitter-flower-eye.webp", "45% 40%", "Keeps little guests happy through speeches and photos, and the grown-ups queue for glitter too.", "Bespoke quote", "contact.html", "Check my date"),
  ("Chunky glitter & jewel bar", "../img/n-lilac-flower-eye.webp", "35% 50%", "Bio-glitter, gems and sparkle for faces, hair and arms. Festival vibes for any event.", "Bespoke quote", "glitter-bar.html", "Glitter bar"),
+ ("Glitter tattoos", "unicorn-crown-face-paint-girl-glitter-tattoo-horsham.webp", "50% 40%", "Temporary glitter tattoos made with stencils and cosmetic glitter: quick, mess-free and they last well beyond the party. Great for queues and for anyone who would rather not have a painted face.", "Add-on or bespoke quote", "contact.html", "Ask about tattoos"),
  ("Animal print", "../img/n-tiger-girl-closeup.webp", "50% 35%", "Bold tigers, leopards and butterflies for kids and grown-ups.", "Included in packages", "animal-print-face-painting.html", "See the designs"),
  ("Body art", "rainbow-chest-paint-with-glitter-clouds.webp", "50% 40%", "Painted body art and flowing arm designs with glitter, for festivals, Pride, photoshoots and themed events.", "Bespoke quote", "body-art.html", "Body art"),
  ("Halloween & seasonal", "../img/n-pumpkin-face.webp", "50% 30%", "Pumpkins, skulls, devils and monsters, from sweet to spooky. Christmas fairs too.", "From £130", "halloween-face-painting.html", "Halloween"),
  ("Festivals, fêtes & community days", "../img/v2-hero.webp", "60% 35%", "Fast, queue-friendly designs for school fairs, village fêtes and festivals, as a stall or a set fee.", "Bespoke quote", "contact.html", "Get a quote"),
- ("Learn to face paint", "../img/kat-painting-poster.webp", "50% 40%", "Workshops for children and groups, plus one-to-one masterclasses for grown-ups who want to learn properly.", "Workshops £15 per child · masterclass £200", "workshops.html", "Workshops & lessons"),
+ ("Learn to face paint", "../img/kat-painting-poster.webp", "50% 40%", "Workshops for children and groups, plus one-to-one masterclasses covering painting skills and how to set up and grow a face painting business.", "Workshops £15 per child · masterclass £200", "workshops.html", "Workshops & lessons"),
 ]
 
 CSS = r'''<style>
@@ -140,13 +141,14 @@ def workshops():
 </div></section>
 <section class="band band-light"><div class="wrap">
 <p class="eyebrow">For grown-ups</p><h2>One-to-one and small-group lessons</h2>
-<p>Want to learn face painting properly, for your own children's parties, a school fair or to start painting professionally? Kat teaches in person, one-to-one or in a small group, at a pace that suits you.</p><div class="lprice"><div><b>£200</b><span>One-to-one masterclass with Kat</span></div><div><b>Ask for a price</b><span>Small groups of friends or colleagues</span></div></div>
+<p>Want to learn face painting properly, or start your own face painting business? Kat teaches in person, one-to-one or in a small group, at a pace that suits you. The one-to-one masterclass covers the painting and the business: how to set up, market yourself, win work and grow.</p><div class="lprice"><div><b>£200</b><span>One-to-one masterclass with Kat</span></div><div><b>Ask for a price</b><span>Small groups of friends or colleagues</span></div></div>
 <div class="fcards">
 <div class="fcard"><h3>The foundations</h3><p>Kit, brushes, loading paint, clean lines and the core strokes every design is built on.</p></div>
 <div class="fcard"><h3>Crowd-pleasing designs</h3><p>Butterflies, tigers, unicorns, superheroes and florals, step by step until you can paint them yourself.</p></div>
 <div class="fcard"><h3>Glitter, gems &amp; stencils</h3><p>Finishing touches that make designs sparkle, and how to use them safely.</p></div>
 <div class="fcard"><h3>Painting for a queue</h3><p>Working quickly and hygienically at parties and events, and keeping children happy in the chair.</p></div>
-</div>
+<div class="fcard"><h3>Turning it into a business</h3><p>Setting up, insurance and DBS, pricing, a website and social media, marketing yourself, finding venues and events, and keeping records for your tax return, all from Kat's own experience of building The Painting Pixie.</p></div>
+</div><p class="small-note">The business side is practical, first-hand guidance from Kat, not formal tax or legal advice.</p>
 <p style="margin-top:22px"><a class="btn btn-gold" href="{wa("Hi Kat! I'd like to ask about face painting lessons (one-to-one or small group).")}" target="_blank" rel="noopener">Book a one-to-one masterclass</a></p>
 </div></section>
 <section class="band band-panel k-enquire centred"><div class="wrap"><h2>Questions about workshops or lessons?</h2>
@@ -187,6 +189,7 @@ def corporate():
 <div class="fcard"><h3>Hotels, venues &amp; family days</h3><p>From hotel family events in London to garden parties at local venues.</p></div>
 <div class="fcard"><h3>Festivals &amp; fêtes</h3><p>Glitter and face painting that keeps a festival queue happy.</p></div>
 <div class="fcard"><h3>Weddings</h3><p>Entertains little guests and gets the grown-ups glittering too.</p></div>
+<div class="fcard"><h3>Glitter tattoos</h3><p>Quick, mess-free stencil tattoos that keep a long queue moving and last beyond the event.</p></div>
 </div></div></section>
 <section class="band band-dark"><div class="wrap">
 <p class="eyebrow">How it works</p><h2>From enquiry to event day</h2>
@@ -248,6 +251,7 @@ def body_art():
 <div class="fcard"><h3>Arm &amp; shoulder art</h3><p>Flowing florals and swirls, quick enough for a queue of guests.</p></div>
 <div class="fcard"><h3>Hen dos &amp; parties</h3><p>Matching designs for the whole group, from subtle to full sparkle.</p></div>
 <div class="fcard"><h3>Photoshoots &amp; brand events</h3><p>Designs built around your theme, outfits or brand colours.</p></div>
+<div class="fcard"><h3>Glitter tattoos</h3><p>Stencil tattoos in cosmetic glitter, a quick add-on that lasts beyond the day.</p></div>
 </div></div></section>
 <section class="band band-dark"><div class="wrap"><h2>Recent body art</h2><div class="gstrip">{gallery}</div></div></section>
 <section class="band band-light"><div class="wrap"><h2>What people say</h2><div class="testimonials"></div></div></section>
