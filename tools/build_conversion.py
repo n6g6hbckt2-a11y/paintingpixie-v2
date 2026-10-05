@@ -23,10 +23,10 @@ INCLUDED = ('<div class="incl"><b>Every booking includes</b><ul>'
             '<li>A design board for children to choose from</li></ul></div>')
 
 # word-for-word extracts from real reviews on the live site
-QUOTES = [  # only reviews confirmed as real
+QUOTES = [  # word-for-word from real reviews
+    ('At times there were people literally sprinting to get to her', 'Lisa K, wedding, Brighton'),
+    ('So patient with a big group of excited kids', 'Liam, Horsham'),
     ('Everyone was so complimentary of the amazing face paints!', 'Daniel C, 4th birthday'),
-    ('Took the time and care to make sure all the kids had the design they wanted', 'Paul S, Horsham'),
-    ('Friendly, patient, and brilliant with the children', 'Hina T, Southwater'),
 ]
 QUOTE_STRIP = '<div class="qstrip">' + ''.join(
     f'<figure><span aria-hidden="true">★★★★★</span><blockquote>“{q}”</blockquote><figcaption>{n}</figcaption></figure>' for q, n in QUOTES) + '</div>'
