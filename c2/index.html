@@ -146,6 +146,22 @@ nav .navbar{display:flex;align-items:center;justify-content:space-between;gap:16
 .mobmenu details a{display:block;padding:8px 12px 8px 22px;font-weight:600}
 .menu .mobmenu{max-height:75vh;overflow:auto;min-width:270px}
 
+
+/* grown-ups band */
+.grown{background:linear-gradient(135deg,#2A0F33 0%,#16142A 55%,#0D2B2A 100%);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:96px}
+.gcards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+.gcard{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;border-top:5px solid var(--c)}
+.gcard img{width:100%;height:260px;object-fit:cover}
+.gcard>div{padding:22px;display:flex;flex-direction:column;gap:10px;flex:1}
+.gcard h3{font-size:25px}
+.gcard p{margin:0;color:var(--muted);font-size:15.5px;flex:1}
+.gtag{align-self:flex-start;background:var(--c);color:#14101C;font-weight:800;font-size:13px;border-radius:999px;padding:4px 12px}
+.gcard .btn{align-self:flex-start;margin-top:6px}
+.glink{font-weight:700;font-size:14px;text-decoration:none}
+.gquote{margin:28px 0 0;font-family:'Fraunces',serif;font-size:22px;color:var(--ink)}
+.gquote span{display:block;font-family:'Manrope',sans-serif;font-size:14px;color:var(--muted);margin-top:6px}
+@media(max-width:860px){.gcards{grid-template-columns:1fr}.gcard img{height:220px}}
+
 /* hero */
 .hero{position:relative;min-height:92vh;display:flex;align-items:flex-end}
 .hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 35%}
@@ -306,7 +322,7 @@ footer .cols{grid-template-columns:1fr}
 <a class="ate" href="https://www.addtoevent.co.uk/suppliers/the-painting-pixie-ltd" target="_blank" rel="noopener" title="Top rated on Add to Event"><img src="../img/addtoevent-top-rated.webp" alt="Top rated on Add to Event, 5 stars" width="84" height="81"></a>
 </div>
 <h1><span class="kw">Face painters in Sussex, Surrey &amp; Brighton</span><span class="big">Face painting people stop and stare at.</span></h1>
-<p>Kids' parties, weddings, festivals and hen dos, painted by Kat. Fast, beautiful and skin-safe, with prices you can see up front.</p>
+<p>Kids' parties, hen dos, weddings, festivals and corporate events, painted by Kat. Fast, beautiful and skin-safe, with prices you can see up front.</p>
 <div class="ctas">
 <a class="btn btn-gold" href="https://paintingpixie.com/contact.html">Check my date</a>
 <a class="btn btn-wa" href="https://wa.me/447852300125?text=Hi%20Kat!%20I'd%20like%20to%20check%20a%20date%20for%20face%20painting.%20Date%3A%20%20Town%3A%20%20Guests%3A%20" target="_blank" rel="noopener">WhatsApp Kat</a>
@@ -361,6 +377,24 @@ footer .cols{grid-template-columns:1fr}
 </div>
 </div></section>
 
+
+<section class="grown" id="grown-ups"><div class="wrap">
+<p class="eyebrow">Not just for kids</p>
+<h2>Glitter for grown-ups, and events that wow.</h2>
+<p class="lede">Hen dos, milestone birthdays, weddings and company events. Kat brings statement glitter looks, gems and fast face painting for guests of every age.</p>
+<div class="gcards">
+<article class="gcard" style="--c:var(--pink)"><img src="../img/n-adult-leopard-eye.webp" alt="Woman with a gold leopard eye design" loading="lazy" style="object-position:50% 30%">
+<div><span class="gtag">From £150</span><h3>Hen parties &amp; adult celebrations</h3><p>Glitter, gems and grown-up designs at your house, venue or hotel. A brilliant icebreaker and great for photos.</p>
+<a class="btn btn-gold" href="https://paintingpixie.com/adult-face-painting.html">Hen &amp; adult parties</a><a class="glink" href="https://wa.me/447852300125?text=Hi%20Kat!%20I'd%20like%20a%20quote%20for%20a%20hen%20or%20adult%20party.%20Date%3A%20%20Venue%3A%20%20Guests%3A%20" target="_blank" rel="noopener">Get a quote on WhatsApp →</a></div></article>
+<article class="gcard" style="--c:var(--teal)"><img src="../img/n-arm-art-flowers-pair.webp" alt="Glitter and flower arm art at a corporate event" loading="lazy" style="object-position:50% 50%">
+<div><span class="gtag">Bespoke quote</span><h3>Corporate &amp; brand events</h3><p>Staff fun days, summer parties, product launches and brand activations, with branded designs and extra artists for big crowds.</p>
+<a class="btn btn-gold" href="https://paintingpixie.com/glitter-bar.html">Glitter &amp; jewel bar</a><a class="glink" href="https://wa.me/447852300125?text=Hi%20Kat!%20I'd%20like%20a%20quote%20for%20a%20corporate%20event.%20Date%3A%20%20Venue%3A%20%20Guests%3A%20" target="_blank" rel="noopener">Get a quote on WhatsApp →</a></div></article>
+<article class="gcard" style="--c:var(--violet)"><img src="../img/n-lilac-flower-eye.webp" alt="Lilac flower eye design with rose-gold glitter" loading="lazy" style="object-position:35% 50%">
+<div><span class="gtag">Bespoke quote</span><h3>Weddings &amp; festivals</h3><p>Keeps little guests happy during speeches and photos, and the grown-ups queue up for glitter too.</p>
+<a class="btn btn-gold" href="https://paintingpixie.com/contact.html">Check my date</a><a class="glink" href="https://wa.me/447852300125?text=Hi%20Kat!%20I'd%20like%20a%20quote%20for%20a%20wedding%20or%20festival.%20Date%3A%20%20Venue%3A%20%20Guests%3A%20" target="_blank" rel="noopener">Get a quote on WhatsApp →</a></div></article>
+</div>
+<p class="gquote">“We booked Kat for a 2h session for our company summer party and everyone loved her!” <span>Mara S, company summer party</span></p>
+</div></section>
 <section id="prices" style="padding-top:0"><div class="wrap">
 <p class="eyebrow">Prices</p>
 <h2>Simple packages, no surprises.</h2>
