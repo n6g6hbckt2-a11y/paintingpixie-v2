@@ -144,5 +144,60 @@ def build():
         patch(p)
     print('conversion changes applied')
 
+
+# ---------- Latest verified reviews from Add to Event (add new ones to the top of this list) ----------
+LATEST_REVIEWS = [
+    dict(name='Bethany S', occasion="Son's birthday party", date='25 Aug 2026', pages=('index.html', 'childrens-face-painting.html', 'contact.html'),
+         text="Absolutely amazing face painter! She came to my son’s birthday party and was brilliant with all the children. "
+              "The children absolutely loved choosing their designs and were so excited with the finished results. "
+              "She was professional, reliable and added such a lovely touch to the party. I would definitely recommend her "
+              "to anyone looking for a face painter for a children’s party. Thank you so much!"),
+    dict(name='Olivia W', occasion='Wedding', date='6 Jul 2026', pages=('index.html', 'contact.html'),
+         text="Brilliant. We used [Kat] for our wedding to entertain kids – she was so good, the kids absolutely loved it… Would definitely use again."),
+    dict(name='Louise R', occasion='“Kat is amazing, book her with confidence”', date='2 Jun 2026', pages=('index.html', 'contact.html'),
+         text="Kat was fantastic, great communication, great service and fair price… everyone commented that [it] was some of the best they have seen."),
+    dict(name='Hina T', occasion="Son's first birthday", date='30 Jan 2026', pages=('childrens-face-painting.html',),
+         text="She was friendly, patient, and brilliant with the children, making everyone feel comfortable and included. The face painting was beautiful, creative, and done with great care using safe products. All the kids loved it, and even the parents were impressed!"),
+]
+ATE = 'https://www.addtoevent.co.uk/suppliers/the-painting-pixie-ltd'
+LATEST_CSS = r'''
+.latest-wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px;margin:16px 0 0}
+.latest{margin:0;text-align:left;background:linear-gradient(135deg,rgba(255,79,163,.14),rgba(47,212,196,.10));border:1px solid rgba(226,190,122,.45);border-radius:18px;padding:26px 28px;position:relative}
+.latest .lbadge{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold)}
+.latest .lbadge img{width:44px;height:auto;border-radius:4px}
+.latest blockquote{margin:12px 0;font-family:'Fraunces',serif;font-size:18px;line-height:1.5;color:var(--ink)}
+.latest figcaption{font-size:14px;color:var(--muted)}.latest figcaption b{color:var(--ink)}
+.latest figcaption a{font-weight:700}
+.band-light .latest blockquote,.band-light .latest figcaption b{color:#1B1712}.band-light .latest figcaption{color:#6B5F57}
+'''
+
+def latest_html(page):
+    out = '<div class="latest-wrap">'
+    for r in [r for r in LATEST_REVIEWS if page in r['pages']]:
+        out += (f'<figure class="latest"><span class="lbadge"><img src="../img/addtoevent-top-rated.webp" alt="" width="44" height="42">'
+                f'Verified on Add to Event · ★★★★★</span>'
+                f'<blockquote>“{r["text"]}”</blockquote>'
+                f'<figcaption><b>{r["name"]}</b> · {r["occasion"]} · {r["date"]} · <a href="{ATE}" target="_blank" rel="noopener">Read on Add to Event →</a></figcaption></figure>')
+    return out + '</div>'
+
+def add_latest():
+    with open(f'{OUT}/site.css', 'a') as f: f.write(LATEST_CSS)
+    targets = {
+        'index.html': (r'(<div class="reviews">.*?</div>)(\s*<div class="rev-links">)', 'after-grid'),
+        'childrens-face-painting.html': (r'(<div class="testimonials">.*?</div>\s*</div>)', 'after-grid'),
+        'contact.html': (r'(<h2>What families say</h2>' + re.escape(QUOTE_STRIP) + ')', 'after-grid'),
+    }
+    for page, (pat, _) in targets.items():
+        p = f'{OUT}/{page}'; s = open(p).read()
+        if 'class="latest"' in s: continue
+        s2 = re.sub(pat, lambda m: m.group(1) + latest_html(page) + (m.group(2) if m.lastindex and m.lastindex > 1 else ''), s, count=1, flags=re.S)
+        if s2 == s: print('latest review not placed on', page)
+        open(p, 'w').write(s2)
+
+_orig_build = build
+def build():
+    _orig_build()
+    add_latest()
+
 if __name__ == '__main__':
     build()

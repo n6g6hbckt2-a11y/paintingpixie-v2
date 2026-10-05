@@ -524,3 +524,12 @@ main.lg,footer,.trustband{position:relative;background:var(--bg)}
 .wa-steps li{padding:2px 0}
 .lg select{appearance:auto}
 @media(max-width:800px){.qstrip{grid-template-columns:1fr}}
+
+.latest-wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px;margin:16px 0 0}
+.latest{margin:0;text-align:left;background:linear-gradient(135deg,rgba(255,79,163,.14),rgba(47,212,196,.10));border:1px solid rgba(226,190,122,.45);border-radius:18px;padding:26px 28px;position:relative}
+.latest .lbadge{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold)}
+.latest .lbadge img{width:44px;height:auto;border-radius:4px}
+.latest blockquote{margin:12px 0;font-family:'Fraunces',serif;font-size:18px;line-height:1.5;color:var(--ink)}
+.latest figcaption{font-size:14px;color:var(--muted)}.latest figcaption b{color:var(--ink)}
+.latest figcaption a{font-weight:700}
+.band-light .latest blockquote,.band-light .latest figcaption b{color:#1B1712}.band-light .latest figcaption{color:#6B5F57}
