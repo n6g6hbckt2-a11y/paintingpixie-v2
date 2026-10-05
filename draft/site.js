@@ -21,3 +21,11 @@ document.addEventListener('click', function(e) {
 document.addEventListener('submit', function(e) {
   gtag('event', 'booking_request', {'form_destination': e.target.action || '', 'page_location': location.href, 'transport_type': 'beacon'});
 });
+
+// GA4: count when someone starts filling in a booking form (form_start), alongside booking_request on submit
+document.addEventListener('focusin', function(e) {
+  var f = e.target.closest && e.target.closest('form');
+  if (!f || f.dataset.started) return;
+  f.dataset.started = '1';
+  gtag('event', 'form_start', {'page_path': location.pathname, 'form_destination': f.action || ''});
+});

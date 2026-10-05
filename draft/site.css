@@ -486,3 +486,25 @@ main.lg,footer,.trustband{position:relative;background:var(--bg)}
 .iphoto{transform:none}
 .postcard{border-width:4px;border-radius:12px}
 }
+
+/* ===== Conversion helpers ===== */
+.reassure{max-width:760px;margin:14px auto 0!important;padding:14px 18px;border-radius:12px;background:rgba(47,212,196,.12);border:1px solid rgba(47,212,196,.4);color:var(--ink)!important;font-size:15px!important;text-align:left}
+.reassure b{color:var(--ink)}
+.band-light .reassure{color:#1B1712!important;background:#E7F7F3;border-color:#9ADBCF}.band-light .reassure b{color:#1B1712}
+.qstrip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:980px;margin:28px auto 0;text-align:left}
+.qstrip figure{margin:0;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.qstrip span{color:var(--gold);letter-spacing:2px;font-size:13px}
+.qstrip blockquote{margin:6px 0 8px;font-family:'Fraunces',serif;font-size:18px;line-height:1.35;color:var(--ink)}
+.qstrip figcaption{font-size:13px;font-weight:700;color:var(--muted)}
+.band-light .qstrip figure{background:#fff;border-color:#E8DED3}.band-light .qstrip blockquote{color:#1B1712}.band-light .qstrip figcaption{color:#6B5F57}
+.incl{max-width:980px;margin:22px auto 0;padding:18px 22px;border-radius:14px;background:rgba(255,255,255,.07);border:1px dashed rgba(226,190,122,.6);text-align:left}
+.incl b{color:var(--gold);font-size:14px;letter-spacing:1.4px;text-transform:uppercase}
+.incl ul{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 22px}
+.incl li{color:var(--ink);font-size:15px}.incl li::before{content:"✓ ";color:var(--teal);font-weight:800}
+.band-light .incl{background:#fff}.band-light .incl li{color:#1B1712}
+.wa-steps{margin:18px 0 0;padding:16px 18px;border-radius:12px;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.4)}
+.wa-steps p{margin:0 0 8px!important;color:var(--ink)!important}
+.wa-steps ul{margin:0 0 12px;padding-left:4px;list-style:none;color:var(--ink)}
+.wa-steps li{padding:2px 0}
+.lg select{appearance:auto}
+@media(max-width:800px){.qstrip{grid-template-columns:1fr}}
