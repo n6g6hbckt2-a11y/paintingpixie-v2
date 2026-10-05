@@ -21,7 +21,7 @@ SERVICES = [
  ("Body art", "rainbow-chest-paint-with-glitter-clouds.webp", "50% 40%", "Painted body art and flowing arm designs with glitter, for festivals, Pride, photoshoots and themed events.", "Bespoke quote", "body-art.html", "Body art"),
  ("Halloween & seasonal", "../img/n-pumpkin-face.webp", "50% 30%", "Pumpkins, skulls, devils and monsters, from sweet to spooky. Christmas fairs too.", "From £130", "halloween-face-painting.html", "Halloween"),
  ("Festivals, fêtes & community days", "../img/v2-hero.webp", "60% 35%", "Fast, queue-friendly designs for school fairs, village fêtes and festivals, as a stall or a set fee.", "Bespoke quote", "contact.html", "Get a quote"),
- ("Learn to face paint", "../img/kat-painting-poster.webp", "50% 40%", "Workshops for children and groups, plus one-to-one masterclasses covering painting skills and how to set up and grow a face painting business.", "Workshops £15 per child · masterclass £200", "workshops.html", "Workshops & lessons"),
+ ("Learn to face paint", "../img/kat-painting-poster.webp", "50% 40%", "Workshops for children and groups, plus one-to-one masterclasses covering painting skills and how to set up and grow a face painting business.", "Workshops £15 per child · 3-hour masterclass £200", "workshops.html", "Workshops & lessons"),
 ]
 
 CSS = r'''<style>
@@ -51,7 +51,7 @@ CSS = r'''<style>
 .wscard h3{margin:14px 0 8px;font-family:'Fraunces',serif;font-weight:400;font-size:32px;color:#1B1712}
 .wscard ul{list-style:none;padding:0;margin:12px 0 18px;color:#3A322C}
 .wscard li{padding:4px 0}.wscard li b{color:#1B1712}
-.lprice{display:flex;flex-wrap:wrap;gap:14px;margin:18px 0 6px}.lprice div{background:#fff;border-radius:14px;padding:16px 22px;border-left:5px solid var(--pink);box-shadow:0 12px 26px -18px rgba(60,30,40,.35)}.lprice b{display:block;font-family:'Fraunces',serif;font-weight:400;font-size:30px;color:#1B1712}.lprice span{color:#4E463F;font-size:14.5px}
+.lprice{display:flex;flex-wrap:wrap;gap:14px;margin:18px 0 6px}.lprice div{background:#fff;border-radius:14px;padding:16px 22px;border-left:5px solid var(--pink);box-shadow:0 12px 26px -18px rgba(60,30,40,.35)}.lprice b{display:block;font-family:'Fraunces',serif;font-weight:400;font-size:30px;color:#1B1712}.lprice span{color:#4E463F;font-size:14.5px}.incl{background:#fff6fb;border:1px dashed var(--pink);border-radius:12px;padding:12px 16px;margin:14px 0 4px;font-size:15.5px}
 .teachnote{background:#fff;border-radius:14px;padding:16px 20px;border-left:5px solid var(--teal);box-shadow:0 12px 26px -18px rgba(60,30,40,.35);color:#3A322C!important}.teachnote b{color:#1B1712}
 .wsideas{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
 .wsideas div{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
@@ -142,7 +142,8 @@ def workshops():
 </div></section>
 <section class="band band-light"><div class="wrap">
 <p class="eyebrow">For grown-ups</p><h2>One-to-one and small-group lessons</h2>
-<p>Want to learn face painting properly, or start your own face painting business? Kat teaches in person, one-to-one or in a small group, at a pace that suits you. The one-to-one masterclass covers the painting and the business: how to set up, market yourself, win work and grow.</p><p class="teachnote"><b>Taught by a real teacher.</b> Alongside The Painting Pixie, Kat is a qualified teacher of GCSE and A level students, so lessons are clear, well structured and paced for you, with plenty of hands-on practice and feedback.</p><div class="lprice"><div><b>£200</b><span>One-to-one masterclass with Kat</span></div><div><b>Ask for a price</b><span>Small groups of friends or colleagues</span></div></div>
+<p>Want to learn face painting properly, or start your own face painting business? Kat teaches in person, one-to-one or in a small group, at a pace that suits you. The one-to-one masterclass covers the painting and the business: how to set up, market yourself, win work and grow.</p><p class="teachnote"><b>Taught by a real teacher.</b> Alongside The Painting Pixie, Kat is a qualified teacher of GCSE and A level students, so lessons are clear, well structured and paced for you, with plenty of hands-on practice and feedback.</p><div class="lprice"><div><b>£200</b><span>3-hour one-to-one masterclass with Kat</span></div><div><b>Ask for a price</b><span>Small groups of friends or colleagues</span></div></div>
+<p class="incl"><b>Included in the masterclass:</b> 3 hours one-to-one with Kat · a certificate of completion listing what you covered, to show your insurer · follow-up support by video call while you get started</p>
 <div class="fcards">
 <div class="fcard"><h3>The foundations</h3><p>Kit, brushes, loading paint, clean lines and the core strokes every design is built on.</p></div>
 <div class="fcard"><h3>Crowd-pleasing designs</h3><p>Butterflies, tigers, unicorns, superheroes and florals, step by step until you can paint them yourself.</p></div>
@@ -158,7 +159,7 @@ def workshops():
 {inner_layout.TRUST_BAND}
 </main>'''
     page_from('services.html', 'workshops.html', 'Face Painting Workshops | Learn to Face Paint | The Painting Pixie',
-              'Learn to face paint with Kat: children\'s workshops (next: Good Hotel London, Fri 30 Oct 2026, £15 per child), group workshops and £200 one-to-one masterclasses.',
+              'Learn to face paint with Kat: children\'s workshops (next: Good Hotel London, Fri 30 Oct 2026, £15 per child), group workshops and £200 three-hour one-to-one masterclasses.',
               'https://paintingpixie.com/workshops.html',
               '<script type="application/ld+json">' + json.dumps(event, ensure_ascii=False) + '</script>\n',
               hero('../img/n-pumpkin-face.webp', '50% 30%', 'Workshops', 'Face Painting Workshops',
