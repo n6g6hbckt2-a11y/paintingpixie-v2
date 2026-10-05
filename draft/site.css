@@ -548,3 +548,20 @@ main.lg,footer,.trustband{position:relative;background:var(--bg)}
 
 .phero.hero-right .wrap{display:flex;justify-content:flex-end}
 @media(max-width:600px){.phero.hero-right .wrap{display:block}.phero.hero-right{height:100svh}.phero.hero-right>img{object-position:22% 50%!important}.phero.hero-right .hcard>p:not(.crumb){display:none}}
+
+.trustedat{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 14px;margin-top:22px}
+.trustedat span{display:inline-flex;flex-direction:column;align-items:center;padding:10px 18px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.04)}
+.trustedat b{font-family:'Fraunces',serif;font-weight:400;font-size:19px;color:var(--ink)}
+.trustedat small{color:var(--muted);font-size:12.5px}
+.tlabel{display:block;text-align:center;font-size:12px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);margin-top:26px}
+.trust .trustedat{margin:0 0 14px;justify-content:flex-start}
+.trust .tlabel{text-align:left;margin:0 0 8px}
+.igband{padding:70px 0;background:var(--bg);border-top:1px solid var(--line)}
+.ighead{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px;margin-bottom:22px}
+.ighead h2{margin:0}
+.igbtn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;color:#fff;padding:13px 22px;border-radius:999px;background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF,#515BD4)}
+.iggrid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.iggrid a{position:relative;display:block;aspect-ratio:1;overflow:hidden;border-radius:10px}
+.iggrid img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.iggrid a:hover img{transform:scale(1.06)}
+@media(max-width:800px){.iggrid{grid-template-columns:repeat(3,1fr)}}

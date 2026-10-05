@@ -304,5 +304,75 @@ def build():
     _orig_build3()
     hero_tweaks()
 
+
+# ---------- "Trusted at" names and Instagram (edit these lists as Kat confirms more) ----------
+INSTAGRAM = ('thepaintingpixieltd', 'https://www.instagram.com/thepaintingpixieltd/')
+TRUSTED_AT = [
+    ('Eats & Beats Festival', 'New House Farm, Horsham'),
+    ('Guildford Festival of the Arts', 'North Street, Guildford'),
+    ('Good Hotel', 'London'),
+    ('Macs Farm', 'near Ditchling'),
+]
+IG_PHOTOS = ['n-lilac-flower-eye.webp', 'n-unicorn-girl-party.webp', 'n-adult-leopard-eye.webp',
+             'n-blue-monster-roar.webp', 'n-arm-glitter-swirl.webp', 'n-tiger-boy-party.webp']
+IG_SVG = ('<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/>'
+          '<circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.3" fill="currentColor"/></svg>')
+TRUST_IG_CSS = r'''
+.trustedat{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 14px;margin-top:22px}
+.trustedat span{display:inline-flex;flex-direction:column;align-items:center;padding:10px 18px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.04)}
+.trustedat b{font-family:'Fraunces',serif;font-weight:400;font-size:19px;color:var(--ink)}
+.trustedat small{color:var(--muted);font-size:12.5px}
+.tlabel{display:block;text-align:center;font-size:12px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);margin-top:26px}
+.trust .trustedat{margin:0 0 14px;justify-content:flex-start}
+.trust .tlabel{text-align:left;margin:0 0 8px}
+.igband{padding:70px 0;background:var(--bg);border-top:1px solid var(--line)}
+.ighead{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px;margin-bottom:22px}
+.ighead h2{margin:0}
+.igbtn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;color:#fff;padding:13px 22px;border-radius:999px;background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF,#515BD4)}
+.iggrid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.iggrid a{position:relative;display:block;aspect-ratio:1;overflow:hidden;border-radius:10px}
+.iggrid img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.iggrid a:hover img{transform:scale(1.06)}
+@media(max-width:800px){.iggrid{grid-template-columns:repeat(3,1fr)}}
+'''
+
+def trusted_html(label='Kat has painted at'):
+    return (f'<span class="tlabel">{label}</span><div class="trustedat">' +
+            ''.join(f'<span><b>{n.replace("&", "&amp;")}</b><small>{w}</small></span>' for n, w in TRUSTED_AT) + '</div>')
+
+def ig_band():
+    handle, url = INSTAGRAM
+    tiles = ''.join(f'<a href="{url}" target="_blank" rel="noopener" aria-label="See more on Instagram"><img src="../img/{p}" alt="Face painting by Kat" loading="lazy"></a>' for p in IG_PHOTOS)
+    return (f'<section class="igband"><div class="wrap"><div class="ighead"><div><p class="eyebrow">Fresh from the brush</p>'
+            f'<h2>See Kat’s latest work on Instagram</h2></div><a class="igbtn" href="{url}" target="_blank" rel="noopener">{IG_SVG} Follow @{handle}</a></div>'
+            f'<div class="iggrid">{tiles}</div></div></section>')
+
+def add_trust_ig():
+    with open(f'{OUT}/site.css', 'a') as f: f.write(TRUST_IG_CSS)
+    handle, url = INSTAGRAM
+    for p in glob.glob(OUT + '/*.html'):
+        s = open(p).read()
+        if 'http-equiv="refresh"' in s or 'class="trustedat"' in s: continue
+        page = os.path.basename(p)
+        # 1) trust band at the foot of inner pages
+        s = s.replace('</div></div></section>\n', '</div></div></section>\n', 0)
+        s = re.sub(r'(<section class="band trustband"><div class="wrap">.*?<div class="trustrow">.*?</div>)(</div></section>)',
+                   lambda m: m.group(1) + trusted_html() + m.group(2), s, count=1, flags=re.S)
+        # 2) homepage: under the trust bar at the top, and an Instagram band before the final call to action
+        if page == 'index.html':
+            s = s.replace('<section class="cta">', ig_band() + '<section class="cta">', 1)
+            s = re.sub(r'(<div class="trust"><div class="wrap">.*?</div></div>)', lambda m: m.group(1) + '<div class="wrap" style="padding-top:18px">' + trusted_html() + '</div>', s, count=1, flags=re.S)
+        # 3) gallery page: Instagram band before the final booking section
+        if page == 'gallery.html' and 'class="igband"' not in s:
+            s = s.replace('<section class="band trustband">', ig_band() + '<section class="band trustband">', 1)
+        # 4) footer: Instagram link everywhere
+        s = s.replace('<div><h4>Kat</h4>', f'<div><h4>Kat</h4><a href="{url}" target="_blank" rel="noopener">Instagram @{handle}</a>', 1)
+        open(p, 'w').write(s)
+
+_orig_build4 = build
+def build():
+    _orig_build4()
+    add_trust_ig()
+
 if __name__ == '__main__':
     build()

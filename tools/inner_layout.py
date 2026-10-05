@@ -103,7 +103,6 @@ TRUST_BAND = '''<section class="band trustband"><div class="wrap">
 <div><b>&#9733;&#9733;&#9733;&#9733;&#9733; 5.0</b><span>30+ reviews</span></div>
 <div><b>1,000+</b><span>faces painted</span></div>
 <div><b>Insured</b><span>&amp; DBS checked</span></div>
-<div><b>Guildford</b><span>Festival of the Arts</span></div>
 </div></div></section>'''
 
 INNER_CSS = '''
