@@ -260,5 +260,31 @@ def build():
     _orig_build()
     add_latest()
 
+
+# ---------- Floating WhatsApp button (laptops/desktops; phones use the bottom bar) ----------
+WA_ICON = ('<svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path fill="#fff" d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2 7L3 29l6.4-2c2 1.1 4.3 1.7 6.6 1.7 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.4c-2.1 0-4.1-.6-5.9-1.7l-.4-.2-3.8 1.2 1.2-3.7-.3-.4c-1.2-1.8-1.8-3.8-1.8-5.9C5 10 9.9 5.2 16 5.2S27 10 27 15.9s-4.9 10.5-11 10.5zm6-7.8c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.2-.2.3-.8 1.1-1 1.3-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.2 1.4 3.4c.2.2 2.4 3.6 5.8 5 .8.3 1.4.5 1.9.7.8.2 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>')
+WA_FLOAT_CSS = r'''
+.wa-float{position:fixed;right:22px;bottom:22px;z-index:60;width:62px;height:62px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 10px 28px rgba(0,0,0,.35);transition:transform .2s}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float span{position:absolute;right:74px;white-space:nowrap;background:#fff;color:#14101C;font-weight:800;font-size:14px;padding:8px 12px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.25);opacity:0;transform:translateX(6px);transition:opacity .2s,transform .2s;pointer-events:none}
+.wa-float:hover span,.wa-float:focus-visible span{opacity:1;transform:none}
+@media(max-width:899px){.wa-float{display:none}}
+'''
+def add_wa_float():
+    with open(f'{OUT}/site.css', 'a') as f: f.write(WA_FLOAT_CSS)
+    for p in glob.glob(OUT + '/*.html'):
+        s = open(p).read()
+        if 'http-equiv="refresh"' in s or 'class="wa-float"' in s: continue
+        m = re.search(r'<a class="wa" href="([^"]+)"', s)
+        href = m.group(1) if m else 'https://wa.me/447852300125'
+        btn = f'<a class="wa-float" href="{href}" target="_blank" rel="noopener" aria-label="Message Kat on WhatsApp">{WA_ICON}<span>Message Kat</span></a>'
+        s = s.replace('<script src="site.js"></script>', btn + '\n<script src="site.js"></script>', 1)
+        open(p, 'w').write(s)
+
+_orig_build2 = build
+def build():
+    _orig_build2()
+    add_wa_float()
+
 if __name__ == '__main__':
     build()
