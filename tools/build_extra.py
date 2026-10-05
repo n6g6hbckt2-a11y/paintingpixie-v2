@@ -21,7 +21,7 @@ SERVICES = [
  ("Body art", "rainbow-chest-paint-with-glitter-clouds.webp", "50% 40%", "Painted body art and flowing arm designs with glitter, for festivals, Pride, photoshoots and themed events.", "Bespoke quote", "body-art.html", "Body art"),
  ("Halloween & seasonal", "../img/n-pumpkin-face.webp", "50% 30%", "Pumpkins, skulls, devils and monsters, from sweet to spooky. Christmas fairs too.", "From £130", "halloween-face-painting.html", "Halloween"),
  ("Festivals, fêtes & community days", "../img/v2-hero.webp", "60% 35%", "Fast, queue-friendly designs for school fairs, village fêtes and festivals, as a stall or a set fee.", "Bespoke quote", "contact.html", "Get a quote"),
- ("Learn to face paint", "../img/kat-painting-poster.webp", "50% 40%", "Workshops for children and groups, plus one-to-one masterclasses covering painting skills and how to set up and grow a face painting business.", "Workshops £15 per child · 3-hour masterclass £200", "workshops.html", "Workshops & lessons"),
+ ("Learn to face paint", "../img/kat-painting-poster.webp", "50% 40%", "Workshops for children and groups, plus one-to-one masterclasses covering painting skills and how to set up and grow a face painting business.", "Workshops £15 per child · groups £150pp · masterclass £200", "workshops.html", "Workshops & lessons"),
 ]
 
 CSS = r'''<style>
@@ -142,7 +142,7 @@ def workshops():
 </div></section>
 <section class="band band-light"><div class="wrap">
 <p class="eyebrow">For grown-ups</p><h2>One-to-one and small-group lessons</h2>
-<p>Want to learn face painting properly, or start your own face painting business? Kat teaches in person, one-to-one or in a small group, at a pace that suits you. The one-to-one masterclass covers the painting and the business: how to set up, market yourself, win work and grow.</p><p class="teachnote"><b>Taught by a real teacher.</b> Alongside The Painting Pixie, Kat is a qualified teacher of GCSE and A level students, so lessons are clear, well structured and paced for you, with plenty of hands-on practice and feedback.</p><div class="lprice"><div><b>£200</b><span>3-hour one-to-one masterclass with Kat</span></div><div><b>Ask for a price</b><span>Small groups of friends or colleagues</span></div></div>
+<p>Want to learn face painting properly, or start your own face painting business? Kat teaches in person, one-to-one or in a small group, at a pace that suits you. The one-to-one masterclass covers the painting and the business: how to set up, market yourself, win work and grow.</p><p class="teachnote"><b>Taught by a real teacher.</b> Alongside The Painting Pixie, Kat is a qualified teacher of GCSE and A level students, so lessons are clear, well structured and paced for you, with plenty of hands-on practice and feedback.</p><div class="lprice"><div><b>£200</b><span>3-hour one-to-one masterclass with Kat</span></div><div><b>£150<small style="font-size:16px"> per person</small></b><span>Small-group lessons for friends or colleagues</span></div></div>
 <p class="incl"><b>Included in the masterclass:</b> 3 hours one-to-one with Kat · a certificate of completion listing what you covered, to show your insurer · follow-up support by video call while you get started</p>
 <div class="fcards">
 <div class="fcard"><h3>The foundations</h3><p>Kit, brushes, loading paint, clean lines and the core strokes every design is built on.</p></div>
@@ -159,7 +159,7 @@ def workshops():
 {inner_layout.TRUST_BAND}
 </main>'''
     page_from('services.html', 'workshops.html', 'Face Painting Workshops | Learn to Face Paint | The Painting Pixie',
-              'Learn to face paint with Kat: children\'s workshops (next: Good Hotel London, Fri 30 Oct 2026, £15 per child), group workshops and £200 three-hour one-to-one masterclasses.',
+              'Learn to face paint with Kat: children\'s workshops (next: Good Hotel London, Fri 30 Oct 2026, £15 per child), group workshops £200 three-hour one-to-one masterclasses and small-group lessons at £150 per person.',
               'https://paintingpixie.com/workshops.html',
               '<script type="application/ld+json">' + json.dumps(event, ensure_ascii=False) + '</script>\n',
               hero('../img/n-pumpkin-face.webp', '50% 30%', 'Workshops', 'Face Painting Workshops',
