@@ -114,7 +114,7 @@ def b_faq(d, town, tone='dark'):
 def b_enquire(page, town, title):
     return (f'<section class="band band-panel k-enquire centred"><div class="wrap"><h2>Book face painting in {esc(town)}</h2>'
             f'<p>Tell me your date, where in {esc(town)} and roughly how many guests. I usually reply the same day.</p>'
-            f'<a class="btn btn-gold" href="contact.html">Check availability</a><a class="btn btn-wa" href="{wa_link(town)}" target="_blank" rel="noopener">WhatsApp Kat</a>'
+            f'<a class="btn btn-gold" href="contact.html">Check my date</a><a class="btn btn-wa" href="{wa_link(town)}" target="_blank" rel="noopener">WhatsApp Kat</a>'
             f'{ENQUIRY(page, title)}</div></section>')
 
 # reuse the enquiry form from inner_layout
@@ -166,7 +166,7 @@ def hero(d, h1, sub, page):
     town = town_name(d)
     return (f'<header class="phero"><img src="{src}" alt="Face painting in {esc(town)}" style="object-position:{pos}" fetchpriority="high">'
             f'<div class="wrap"><div class="hcard"><p class="crumb"><a href="index.html">Home</a> · <a href="areas.html">Areas</a> · {esc(d["kicker"])}</p>'
-            f'<h1>{h1}</h1><p>{sub}</p><div class="ctas"><a class="btn btn-gold" href="contact.html">Check availability</a>'
+            f'<h1>{h1}</h1><p>{sub}</p><div class="ctas"><a class="btn btn-gold" href="contact.html">Check my date</a>'
             f'<a class="btn btn-wa" href="{wa_link(town)}" target="_blank" rel="noopener">WhatsApp Kat</a></div></div></div>'
             f'<a class="scrollcue" href="#content" aria-label="Scroll down">⌄</a></header>\n<div class="jewel-rule"></div>')
 
