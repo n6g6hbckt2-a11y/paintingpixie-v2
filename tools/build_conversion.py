@@ -159,6 +159,49 @@ LATEST_REVIEWS = [
     dict(name='Hina T', occasion="Son's first birthday", date='30 Jan 2026', pages=('childrens-face-painting.html',),
          text="She was friendly, patient, and brilliant with the children, making everyone feel comfortable and included. The face painting was beautiful, creative, and done with great care using safe products. All the kids loved it, and even the parents were impressed!"),
 ]
+
+# ---------- 2024 verified reviews from Add to Event ----------
+LATEST_REVIEWS += [
+    dict(name='Amy B', occasion='“Outstanding!”', date='21 Sep 2024', pages=('adult-face-painting.html', 'face-painter-haywards-heath.html'),
+         text="Kat was amazing at our party - painting a huge number of adult and children’s faces with vibrant colours and designs - often taking cues from outfits to create designs that colour matched. I couldn’t recommend her more highly. We were all so reluctant to wash them off at the end of the day!!"),
+    dict(name='Marion G', occasion='“Happy kids!”', date='14 Sep 2024', pages=('face-painter-brighton.html', 'face-painter-worthing.html'),
+         text="Kat delivered really well - she was on time and ready to set our kids in a happy birthday mood! Very efficient, very talented. All around brilliant."),
+    dict(name='Gill D', occasion='“Amazing!!!”', date='7 Sep 2024', pages=('childrens-face-painting.html', 'face-painter-horsham.html'),
+         text="Kat was absolutely fantastic. She managed to paint many of the children's faces quickly - her work / art work on the faces is top notch. I would highly recommend her and would definitely use her again Thank you Kat!"),
+    dict(name='James H', occasion='Summer fête', date='10 Aug 2024', pages=('face-painter-west-sussex-villages.html', 'face-painter-surrey-villages.html', 'face-painter-south-downs.html', 'services.html'),
+         text="After having to find a last minute face painter for our Summer Fete, Kat stepped up and proved to be exceptionally popular with our guests on the day! Both professional and organised, I would strongly recommend The Painting Pixie for any family orientated party/fair!"),
+    dict(name='Mara S', occasion='Company summer party', date='2 Aug 2024', pages=('adult-face-painting.html', 'glitter-bar.html', 'face-painter-surrey.html'),
+         text="We booked Kat for a 2h session for our company summer party and everyone loved her! The designs were all unique and really added to the happy, diverse vibe. Kat herself is super easy-going and professional. Arranging everything was very easy as well. Would 100% recommend!"),
+    dict(name='Lisa K', occasion='Wedding reception', date='13 Jul 2024', pages=('adult-face-painting.html', 'face-painter-brighton.html', 'face-painter-sussex.html'),
+         text="Friendly and professional. They were very helpful and went through what we would like at the wedding reception. There ended up being a long queue at times just because they were so popular with both the kids and adults. At times there were people literally sprinting to get to her, it was amazing. All of the designs turned out wonderful. Highly recommend. If I could give more than the 5 stars, I would :)"),
+    dict(name='Anne F', occasion='“Wonderful!”', date='12 Jul 2024', pages=('glitter-bar.html', 'face-painter-east-grinstead.html', 'face-painter-crawley.html'),
+         text="Kat was superb! Arrived on time, easy communication, lovely service, great with the kids, nice glitter & paint art. I would definitely recommend her!"),
+    dict(name='Julie T', occasion='“Total professional, great service”', date='6 Jul 2024', pages=('childrens-face-painting.html', 'face-painter-reigate.html', 'face-painter-lewes.html'),
+         text="Kat was great she arrived early and set up quickly. She is very calm and professional and happy to attempt anything the kids asked for, she is very fast which is great if you have a line of kids waiting! No hesitation in recommending and would happily book again. Also, of course, her skills are excellent, designs are beautiful!"),
+    dict(name='Stuart A', occasion='“Excellent service”', date='15 Jun 2024', pages=('face-painter-surrey-villages.html', 'face-painter-guildford.html'),
+         text="Kat arrived on time, was excellent both children and adults enjoyed some face painting and the tattoos. Thank you."),
+    dict(name='Sophia L', occasion='“Incredible skill”', date='6 May 2024', pages=('animal-print-face-painting.html', 'face-painter-dorking.html', 'face-painter-burgess-hill.html'),
+         text="Kat was absolutely fantastic! Her skill was incredible, as she was able to paint a variety of designs based on the children's requests and clothes. The kids had a blast. Additionally, she was extremely friendly and patient, giving each child and even adult individual attention. She added a special touch to the party, and our whole family was impressed with her work. Highly recommend!"),
+]
+
+# ---------- 2023-24 verified reviews from Add to Event ----------
+LATEST_REVIEWS += [
+    dict(name='Ninad D', occasion='“Superb service”', date='5 Apr 2024', pages=('face-painter-reigate.html',),
+         text="Kat was very professional and prompt. The kids loved [her] face paintings and tattoos. She was very good with the kids and very easy to communicate with. Overall very happy with her services."),
+    dict(name='Lynsey B', occasion='“Best activity ever, all kids enjoyed”', date='17 Feb 2024', pages=('face-painter-crawley.html', 'services.html', 'face-painter-horsham.html'),
+         text="If you are looking for an activity 30 kids will enjoy, try this!! The amount of different face painting [Kat] did was amazing. [She] even stayed a bit longer as when planning we didn’t think every child would want it, but we were wrong! I’ve never seen so many children wanting to do the same activity. Definitely booking again & several other parents there want to do the same!"),
+    dict(name='Sabii I', occasion="Son's birthday party", date='28 Jan 2024', pages=('face-painter-guildford.html', 'face-painter-east-grinstead.html'),
+         text="It was a great service at my son's birthday party. All the kids fluttered to the artist and came back with amazing art. Super talented and so worth the money!!"),
+    dict(name='Amaria A', occasion='“Fantastic face painting and service!”', date='13 Jan 2024', pages=('contact.html', 'about.html'),
+         text="Kat was amazing! From receiving the quote to coordinating timings for the event, her communication was stellar. She showed up on time at the day of the event while other vendors ran late… She was friendly and kind with all the guests and the girls loved their beautiful designs… She also left everything so clean and was very sweet."),
+    dict(name='Martin L', occasion="Son's 4th birthday", date='2 Dec 2023', pages=('animal-print-face-painting.html', 'face-painter-lewes.html', 'face-painter-west-sussex-villages.html'),
+         text="Kat provided a brilliant service for my sons 4th Birthday party. Her designs were amazing and all the children were very happy. Even my son, who doesn’t normally like his face being painted loved his dinosaur face. She was also very good value for money so would definitely recommend."),
+    dict(name='Kay M', occasion='Event with staff team', date='30 Nov 2023', pages=('glitter-bar.html', 'face-painter-surrey.html', 'face-painter-sussex.html', 'about.html'),
+         text="Kat provided an exceptional service.. She was a real highlight at our event.. Busy and popular from the get go.. Dealing with children brilliantly ..adults too..and most of our staff team!!! Professional .creative..and a bit of a genius!! Not only doing \"classic\" face paint options ..but free styling..in a hugely impressive way. Added lot of sparkle to our event!"),
+    dict(name='Ade S', occasion='“Fabulous service”', date='11 Nov 2023', pages=('face-painter-burgess-hill.html', 'face-painter-south-downs.html', 'face-painter-haywards-heath.html'),
+         text="Kat arrived early and had loads of cool designs for the kids. She was very patient with the kids. All the kids were very happy with the face paint. Some kids even went for seconds as they loved all the designs. I will definitely recommend her for your event. You won’t regret it."),
+]
+
 ATE = 'https://www.addtoevent.co.uk/suppliers/the-painting-pixie-ltd'
 LATEST_CSS = r'''
 .latest-wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px;margin:16px 0 0}
@@ -182,15 +225,33 @@ def latest_html(page):
 
 def add_latest():
     with open(f'{OUT}/site.css', 'a') as f: f.write(LATEST_CSS)
-    targets = {
-        'index.html': (r'(<div class="reviews">.*?</div>)(\s*<div class="rev-links">)', 'after-grid'),
-        'childrens-face-painting.html': (r'(<div class="testimonials">.*?</div>\s*</div>)', 'after-grid'),
-        'contact.html': (r'(<h2>What families say</h2>' + re.escape(QUOTE_STRIP) + ')', 'after-grid'),
+    special = {
+        'index.html': r'(<div class="reviews">.*?</div>)(\s*<div class="rev-links">)',
+        'contact.html': r'(<h2>What families say</h2>' + re.escape(QUOTE_STRIP) + ')',
     }
-    for page, (pat, _) in targets.items():
-        p = f'{OUT}/{page}'; s = open(p).read()
+    pages = sorted({pg for r in LATEST_REVIEWS for pg in r['pages']})
+    for page in pages:
+        p = f'{OUT}/{page}'
+        if not os.path.exists(p): print('no page', page); continue
+        s = open(p).read()
         if 'class="latest"' in s: continue
-        s2 = re.sub(pat, lambda m: m.group(1) + latest_html(page) + (m.group(2) if m.lastindex and m.lastindex > 1 else ''), s, count=1, flags=re.S)
+        block = latest_html(page)
+        if page in special:
+            s2 = re.sub(special[page], lambda m: m.group(1) + block + (m.group(2) if m.lastindex and m.lastindex > 1 else ''), s, count=1, flags=re.S)
+        elif '<div class="testimonials">' in s:
+            # after the page's existing review cards
+            i = s.index('<div class="testimonials">'); depth = 0; j = i
+            for t in re.finditer(r'<div\b|</div>', s[i:]):
+                depth += 1 if t.group(0) == '<div' else -1
+                if depth == 0: j = i + t.end(); break
+            s2 = s[:j] + block + s[j:]
+        else:
+            band = f'<section class="band band-light centred"><div class="wrap"><h2>Verified reviews</h2>{block}</div></section>'
+            s2 = re.sub(r'(<section class="band band-panel k-enquire)', band + r'\1', s, count=1)
+            if s2 == s:
+                s2 = re.sub(r'(<section class="band[^"]*k-enquire)', band + r'\1', s, count=1)
+            if s2 == s:
+                s2 = s.replace('<section class="band trustband">', band + '<section class="band trustband">', 1)
         if s2 == s: print('latest review not placed on', page)
         open(p, 'w').write(s2)
 
