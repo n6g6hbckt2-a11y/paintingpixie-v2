@@ -1,3 +1,3 @@
 #!/bin/sh
 # Rebuild the whole draft site: pages from the live repo, then the unique location pages.
-cd "$(dirname "$0")/.." && python3 tools/build_draft.py && python3 tools/build_locations.py && python3 tools/build_conversion.py && python3 tools/build_areas.py
+cd "$(dirname "$0")/.." && python3 tools/build_draft.py && python3 tools/build_locations.py && python3 tools/build_extra.py && python3 tools/build_conversion.py && python3 tools/build_areas.py
