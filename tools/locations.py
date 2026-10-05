@@ -205,7 +205,7 @@ PAGES = {
  sub="Glitter, face and body art for hen dos, weddings, festivals, Pride and corporate events across Brighton and Hove.",
  intro=[
   "Brighton is the place where nobody thinks a grown-up with a glittery face is unusual, and I love that. Some of my most creative bookings have been here, from rainbow designs at big celebrations to full glitter looks at hen dos.",
-  "In Brighton I focus on events: hen weekends, weddings, festival and Pride days, brand launches and bigger family celebrations where there's a real crowd to paint. For a small birthday party at home, I'm happy to recommend a lovely local painter. I've recently been out at Macs Farm near Ditchling too, just a short drive away.",
+  "In Brighton I focus on events: hen weekends, weddings, festival and Pride days, brand launches and bigger family celebrations where there's a real crowd to paint. Smaller birthday parties are welcome too, so just get in touch and I'll let you know if I can fit yours in. I've recently been out at Macs Farm near Ditchling too, just a short drive away.",
  ],
  quote="In Brighton, the grown-ups queue for glitter as fast as the kids queue for tigers.",
  tiles=[
@@ -224,7 +224,7 @@ PAGES = {
  hoods=["Hove", "Kemptown", "Hanover", "Preston Park", "Withdean", "Patcham", "Rottingdean", "Saltdean", "Portslade", "Moulsecoomb", "Woodingdean", "Ovingdean"],
  faqs=[
   ("Do you do hen parties in Brighton?", "Yes, lots. Glitter, gems and grown-up designs start from £150, and I can come to your house, Airbnb, venue or hotel."),
-  ("Do you do children's birthday parties in Brighton?", "In Brighton I mainly take events, weddings, hen dos and larger celebrations. For a small party at home, get in touch and I'll do my best to point you to a good local painter."),
+  ("Do you do children's birthday parties in Brighton?", "Yes, get in touch. In Brighton I mainly focus on events, weddings, hen dos and larger celebrations, but I'm happy to do parties when I can fit them in."),
   ("Can you paint at Pride or festival events?", "Yes. Rainbow designs, glitter and body art are a big part of what I do. Get in touch early for event dates."),
   ("Do you do corporate and brand events in Brighton?", "Yes. Staff days, launches and brand activations, with a glitter bar or glitter tattoos that look great in photos. Ask for a quote."),
  ],

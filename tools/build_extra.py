@@ -19,7 +19,8 @@ SERVICES = [
  ("Glitter tattoos", "unicorn-crown-face-paint-girl-glitter-tattoo-horsham.webp", "50% 40%", "Temporary glitter tattoos made with stencils and cosmetic glitter: quick, mess-free and they last well beyond the party. Great for queues and for anyone who would rather not have a painted face.", "Add-on or bespoke quote", "contact.html", "Ask about tattoos"),
  ("Animal print", "../img/n-tiger-girl-closeup.webp", "50% 35%", "Bold tigers, leopards and butterflies for kids and grown-ups.", "Included in packages", "animal-print-face-painting.html", "See the designs"),
  ("Body art", "rainbow-chest-paint-with-glitter-clouds.webp", "50% 40%", "Painted body art and flowing arm designs with glitter, for festivals, Pride, photoshoots and themed events.", "Bespoke quote", "body-art.html", "Body art"),
- ("Halloween & seasonal", "../img/n-pumpkin-face.webp", "50% 30%", "Pumpkins, skulls, devils and monsters, from sweet to spooky. Christmas fairs too.", "From £130", "halloween-face-painting.html", "Halloween"),
+ ("Halloween", "../img/n-pumpkin-face.webp", "50% 30%", "Pumpkins, skulls, devils and monsters, from sweet to spooky.", "From £130", "halloween-face-painting.html", "Halloween"),
+ ("Christmas", "blue-shooting-stars-face-paint-for-girls.webp", "50% 35%", "Reindeer, snowflakes, elves and glitter for Christmas parties, school fairs, grottos and office parties.", "From £130", "christmas-face-painting.html", "Christmas"),
  ("Festivals, fêtes & community days", "../img/v2-hero.webp", "60% 35%", "Fast, queue-friendly designs for school fairs, village fêtes and festivals, as a stall or a set fee.", "Bespoke quote", "contact.html", "Get a quote"),
  ("Learn to face paint", "../img/kat-painting-poster.webp", "50% 40%", "Workshops for children and groups, plus one-to-one masterclasses covering painting skills and how to set up and grow a face painting business.", "Workshops £15 per child · groups £150pp · masterclass £200", "workshops.html", "Workshops & lessons"),
 ]
@@ -142,7 +143,7 @@ def workshops():
 </div></section>
 <section class="band band-light"><div class="wrap">
 <p class="eyebrow">For grown-ups</p><h2>One-to-one and small-group lessons</h2>
-<p>Want to learn face painting properly, or start your own face painting business? Kat teaches in person, one-to-one or in a small group, at a pace that suits you. The one-to-one masterclass covers the painting and the business: how to set up, market yourself, win work and grow.</p><p class="teachnote"><b>Taught by a real teacher.</b> Alongside The Painting Pixie, Kat is a qualified teacher of GCSE and A level students, so lessons are clear, well structured and paced for you, with plenty of hands-on practice and feedback.</p><div class="lprice"><div><b>£200</b><span>3-hour one-to-one masterclass with Kat</span></div><div><b>£150<small style="font-size:16px"> per person</small></b><span>Small-group lessons for friends or colleagues</span></div></div>
+<p>Want to learn face painting properly, or start your own face painting business? Kat teaches in person, one-to-one or in a small group, at a pace that suits you. One-to-one masterclasses and group lessons both cover the painting and the business: everything you need to know to set up, build a website, market yourself, win work and keep your accounts in order.</p><p class="teachnote"><b>Taught by a real teacher.</b> Alongside The Painting Pixie, Kat is a qualified teacher of GCSE and A level students, so lessons are clear, well structured and paced for you, with plenty of hands-on practice and feedback.</p><div class="lprice"><div><b>£200</b><span>3-hour one-to-one masterclass with Kat</span></div><div><b>£150<small style="font-size:16px"> per person</small></b><span>Small-group lessons, including the full business module</span></div></div>
 <p class="incl"><b>Included in the masterclass:</b> 3 hours one-to-one with Kat · a certificate of completion listing what you covered, to show your insurer · follow-up support by video call while you get started</p>
 <div class="fcards">
 <div class="fcard"><h3>The foundations</h3><p>Kit, brushes, loading paint, clean lines and the core strokes every design is built on.</p></div>
@@ -271,8 +272,61 @@ def body_art():
                    'Rainbows, florals and glitter, painted on arms, shoulders and chests for festivals, Pride, hen dos and events.',
                    '<a class="btn btn-gold" href="contact.html">Check my date</a>'), main)
 
+def christmas():
+    service = {"@context": "https://schema.org", "@type": "Service", "serviceType": "Christmas face painting",
+               "name": "Christmas face painting and glitter in Sussex and Surrey",
+               "provider": {"@type": "LocalBusiness", "@id": "https://paintingpixie.com/#business", "name": "The Painting Pixie"},
+               "areaServed": ["Sussex", "Surrey"]}
+    faqs = [("When should I book Christmas face painting?", "As early as you can. December weekends are the busiest time of Kat's year after Halloween, and Saturdays usually go first. Send your date and Kat will let you know straight away if she's free."),
+            ("Do you paint at school and PTA Christmas fairs?", "Yes. Kat can run a face painting stall where families pay per face, or come for a set fee. Fast, queue-friendly Christmas designs keep the line moving."),
+            ("Can you come to an office or staff Christmas party?", "Yes. Glitter, gems and glitter tattoos are a hit with grown-ups, and a kids' corner works brilliantly at family Christmas events. Ask for a quote."),
+            ("Can you work alongside Santa's grotto?", "Yes. Face painting is a lovely way to keep children happy while they queue for Santa at garden centres, farms and community events."),
+            ("What Christmas designs do you paint?", "Reindeer, snowmen, elves, Christmas puddings, snowflake queens, candy canes, gingerbread, Christmas trees and lots of sparkly stars, plus the classic tigers and unicorns for anyone who wants them.")]
+    faq_schema = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faqs]}
+    faq_html = ''.join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q, a in faqs)
+    designs = [("Rudolph", "#C8102E"), ("Snowflake queen", "#4FB6FF"), ("Cheeky elf", "#2E9E5B"), ("Snowman", "#9FD3FF"), ("Christmas pudding", "#7A4A2A"),
+               ("Candy cane", "#E3324A"), ("Gingerbread", "#B5733C"), ("Christmas tree", "#1F7A45"), ("Golden star", "#E2BE7A"), ("Frosty glitter", "#A77BFF")]
+    chips = ''.join(f'<li style="--c:{c}">{n}</li>' for n, c in designs)
+    gallery = ''.join(f'<img src="{g}" alt="{a}" loading="lazy">' for g, a in [
+        ("blue-shooting-stars-face-paint-for-girls.webp", "Icy blue shooting stars with silver glitter"),
+        ("blue-snowflake-crown-face-paint-for-girls.webp", "Snow queen crown with gems"),
+        ("fire-and-ice-dragon-eye-face-paint.webp", "Fire and ice dragon eye design"),
+        ("../img/n-lilac-flower-eye.webp", "Frosty lilac flower with rose-gold glitter")])
+    main = f"""<main class="lg" id="content">
+<section class="band band-light"><div class="wrap">
+<p class="eyebrow">Christmas</p><h2>A sprinkle of Christmas magic</h2>
+<p>From Christmas birthday parties to school fairs, Santa's grottos and office parties, Kat brings the sparkle. Reindeer noses, snowflake queens, cheeky elves and lots of glitter, painted quickly so every child gets their favourite before the mince pies run out.</p>
+<div class="fcards">
+<div class="fcard"><h3>Christmas parties</h3><p>Birthday and Christmas parties at home or in a hall. Classic Party from £130, Ultimate Sparkle from £160.</p></div>
+<div class="fcard"><h3>School &amp; PTA fairs</h3><p>A face painting stall that raises money and keeps the queue moving. Per-face or a set fee.</p></div>
+<div class="fcard"><h3>Santa's grottos &amp; markets</h3><p>Garden centres, farms, Christmas markets and light trails, keeping families happy while they wait.</p></div>
+<div class="fcard"><h3>Office &amp; staff parties</h3><p>Glitter, gems and glitter tattoos for grown-ups, or a kids' corner for family events.</p></div>
+<div class="fcard"><h3>New Year's Eve</h3><p>Glitter and gems for party looks that sparkle at midnight.</p></div>
+</div></div></section>
+<section class="band band-dark"><div class="wrap"><h2>Christmas designs</h2>
+<p>A few favourites. Kat will paint whatever your little elves ask for.</p>
+<ul class="xmas-designs">{chips}</ul></div></section>
+<section class="band band-light"><div class="wrap"><h2>Frosty, sparkly looks</h2><div class="gstrip">{gallery}</div>
+<p class="small-note">Draft note: Kat's Christmas photos will go here once she has them.</p></div></section>
+<section class="band band-dark"><div class="wrap"><h2>Book early for December</h2>
+<p>December weekends fill up fast, especially the Saturdays before Christmas. Send Kat your date now, even if the details aren't fixed yet.</p></div></section>
+<section class="band band-light"><div class="wrap"><h2>Christmas questions</h2><div class="faqlist">{faq_html}</div></div></section>
+<section class="band band-panel k-enquire centred"><div class="wrap"><h2>Is Kat free on your Christmas date?</h2>
+<p>Tell Kat your date, town and roughly how many children or guests. She usually replies the same day.</p>
+<a class="btn btn-gold" href="contact.html">Check my date</a><a class="btn btn-wa" href="{wa("Hi Kat! I'd like to book Christmas face painting. Date: Town: Guests: ")}" target="_blank" rel="noopener">WhatsApp Kat</a></div></section>
+{inner_layout.TRUST_BAND}
+</main>"""
+    css = '<style>.xmas-designs{list-style:none;padding:0;margin:20px 0 0;display:flex;flex-wrap:wrap;gap:12px}.xmas-designs li{padding:12px 20px;border-radius:999px;background:var(--panel);border:1px solid var(--line);border-left:8px solid var(--c);font-weight:700}</style>\n'
+    page_from('services.html', 'christmas-face-painting.html', 'Christmas Face Painting in Sussex &amp; Surrey | Parties, Fairs &amp; Grottos | The Painting Pixie',
+              'Christmas face painting for parties, school fairs, Santa\'s grottos and office parties across Sussex and Surrey. Reindeer, elves, snowflakes and glitter. Book early for December.',
+              'https://paintingpixie.com/christmas-face-painting.html',
+              css + '<script type="application/ld+json">' + json.dumps(service, ensure_ascii=False) + '</script>\n<script type="application/ld+json">' + json.dumps(faq_schema, ensure_ascii=False) + '</script>\n',
+              hero('blue-shooting-stars-face-paint-for-girls.webp', '50% 30%', 'Occasions · Christmas', 'Christmas Face Painting',
+                   'Reindeer, snowflakes, elves and glitter for Christmas parties, school fairs, grottos and office parties across Sussex and Surrey.',
+                   '<a class="btn btn-gold" href="contact.html">Check my date</a>'), main)
+
 def build():
-    services(); workshops(); corporate(); body_art()
+    services(); workshops(); corporate(); body_art(); christmas()
     print('extra pages built: services, workshops, corporate-events, body-art')
 
 if __name__ == '__main__':
