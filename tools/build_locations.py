@@ -5,6 +5,7 @@ import re, os, json, html, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from locations import PAGES
 from postcards import postcard
+from recent import RECENT, PERIOD
 import inner_layout
 
 OUT = '/home/claude/paintingpixie-v2/draft'
@@ -133,6 +134,17 @@ def ENQUIRY(page, title):
 <button type="submit">Send my enquiry</button>
 </form>"""
 
+
+def b_recent(page, town, tone='dark'):
+    items = RECENT.get(page)
+    if not items: return ''
+    total = sum(n for _, n in items)
+    chips = ''.join(f'<li><b>{esc(p)}</b><span>{n} event{"s" if n > 1 else ""}</span></li>' for p, n in items)
+    lead = (f'{total} events across Sussex' if page == 'face-painter-sussex.html' else f'{total} events in Surrey and beyond' if page == 'face-painter-surrey.html'
+            else f'{total} event{"s" if total > 1 else ""} in and around {esc(town)}')
+    return band('recent', f'<p class="eyebrow">Recently painted</p><h2>Kat\'s been busy: {lead}</h2>'
+                f'<p class="lede-s">Where Kat has painted, {PERIOD}.</p><ul class="recent">{chips}</ul>', tone)
+
 # ---------- templates (each a different order and set of blocks) ----------
 def render(page, d, title):
     town = town_name(d)
@@ -151,6 +163,10 @@ def render(page, d, title):
         blocks = [b_intro_quote(d, 'dark'), b_villages(d, 'light'), pc('dark'), b_prices(), b_reviews(page, town, 'light'), b_hoods(d, town, 'dark'), b_faq(d, town, 'light')]
     elif t == 'county':
         blocks = [b_intro_quote(d, 'light'), b_towns(d, 'dark'), pc('light'), b_prices(), b_reviews(page, town, 'light'), b_faq(d, town, 'dark')]
+    rec = b_recent(page, town, 'dark')
+    if rec:
+        idx = next((i for i, b in enumerate(blocks) if 'loc-prices' in b), len(blocks))
+        blocks.insert(idx, rec)
     blocks.append(b_enquire(page, town, title))
     blocks.append(inner_layout.TRUST_BAND)
     return '\n'.join(b for b in blocks if b)
@@ -190,6 +206,11 @@ def build():
     print('location pages rebuilt:', len(PAGES))
 
 LOC_CSS = r'''
+.recent{list-style:none;padding:0;margin:22px 0 0;display:flex;flex-wrap:wrap;gap:12px}
+.recent li{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--acc);border-radius:12px;padding:12px 18px;min-width:150px}
+.recent b{font-size:17px}.recent span{color:var(--muted);font-size:14px}
+.band-light .recent li{background:#fff;border-color:#E8DED3;border-left-color:var(--acc)}.band-light .recent b{color:#1B1712}
+
 /* ===== Header: photo stays fixed, text slides up over it ===== */
 .phero{position:relative;height:100vh;height:100svh;min-height:560px;display:flex;align-items:flex-end;padding:0;overflow:visible}
 .phero>img{position:fixed;inset:0;width:100%;height:100vh;object-fit:cover;z-index:-1}
