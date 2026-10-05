@@ -331,3 +331,26 @@ for im in sorted(images):
     if os.path.exists(srcp): shutil.copy(srcp, f'{OUT}/{im}')
     else: print('missing image', im)
 print('built', len(built), 'pages;', len(images), 'images')
+
+# ---------- convert photos to WebP (smaller, faster pages) ----------
+from PIL import Image, ImageOps
+KEEP = {'favicon-16x16.png', 'favicon-32x32.png', 'apple-touch-icon.png', 'favicon.ico', 'addtoevent-top-rated.webp'}
+renamed = {}
+before = after = 0
+for im in sorted(images):
+    p = f'{OUT}/{im}'
+    if im in KEEP or not os.path.exists(p) or im.lower().endswith('.webp'): continue
+    if not re.search(r'\.(jpe?g|png)$', im, re.I): continue
+    new = re.sub(r'\.(jpe?g|png)$', '.webp', im, flags=re.I)
+    img = ImageOps.exif_transpose(Image.open(p))
+    img = img.convert('RGBA' if img.mode in ('RGBA', 'LA', 'P') else 'RGB')
+    img.thumbnail((1600, 1600), Image.LANCZOS)
+    img.save(f'{OUT}/{new}', 'WEBP', quality=80, method=6)
+    before += os.path.getsize(p); after += os.path.getsize(f'{OUT}/{new}')
+    os.remove(p); renamed[im] = new
+for f in glob.glob(OUT + '/*.html'):
+    t = open(f).read()
+    for old, new in renamed.items():
+        t = t.replace(f'src="{old}"', f'src="{new}"').replace(f"url('{old}')", f"url('{new}')").replace(f'url("{old}")', f'url("{new}")')
+    open(f, 'w').write(t)
+print(f'webp: {len(renamed)} photos, {before/1e6:.1f} MB -> {after/1e6:.1f} MB')
