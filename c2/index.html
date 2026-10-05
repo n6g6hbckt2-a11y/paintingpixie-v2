@@ -110,7 +110,7 @@ h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:400;margin:0;letter-sp
 
 /* nav */
 nav{position:absolute;left:0;right:0;z-index:5}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:18px;padding-bottom:18px}
+nav .navbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:18px;padding-bottom:18px}
 .brand{font-family:'Fraunces',serif;font-size:22px;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:12px}
 .brand img{width:64px;height:64px;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.15)}
 .links{display:flex;flex-wrap:wrap;gap:20px;align-items:center;font-weight:600;font-size:15px}
@@ -122,6 +122,29 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px
 .menu div{position:absolute;right:0;top:52px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px;display:grid;min-width:230px;box-shadow:0 20px 40px rgba(0,0,0,.5)}
 .menu a{color:var(--ink);text-decoration:none;padding:11px 12px;border-radius:8px;font-weight:600}
 .menu a:hover{background:var(--panel2)}
+
+
+/* mega menu (Luminosity-style dropdowns) */
+.mtrig{background:none;border:0;color:var(--ink);font:inherit;font-weight:700;font-size:13px;letter-spacing:1.4px;text-transform:uppercase;cursor:pointer;display:inline-flex;align-items:center;gap:7px;padding:8px 0;border-bottom:2px solid transparent}
+.mtrig svg{transition:transform .2s}
+.mtrig[aria-expanded="true"]{border-color:var(--gold);color:var(--gold)}
+.mtrig[aria-expanded="true"] svg{transform:rotate(180deg)}
+.links>a:not(.btn){font-size:13px;letter-spacing:1.4px;text-transform:uppercase;font-weight:700}
+.mega{position:absolute;left:0;right:0;top:100%;background:rgba(21,19,26,.97);backdrop-filter:blur(10px);border-top:1px solid var(--line);border-bottom:3px solid transparent;border-image:var(--jewel) 1;box-shadow:0 30px 60px rgba(0,0,0,.55);animation:drop .18s ease-out}
+@keyframes drop{from{opacity:0;transform:translateY(-6px)}}
+.mgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 40px;padding-top:30px;padding-bottom:34px}
+.mcol a{display:block;color:var(--muted);text-decoration:none;padding:6px 0;font-size:15px}
+.mcol a:hover{color:var(--ink)}
+.mh{margin:0 0 8px;font-weight:800;color:var(--ink);font-size:15px}
+.mcol:nth-child(1) .mh{color:var(--pink)}.mcol:nth-child(2) .mh{color:var(--teal)}.mcol:nth-child(3) .mh{color:var(--violet)}.mcol:nth-child(4) .mh{color:var(--gold)}
+.mobmenu details{border-bottom:1px solid var(--line)}
+.menu .mobmenu summary{list-style:none;cursor:pointer;padding:12px;font-weight:800;display:flex;justify-content:space-between;border:0;border-radius:0}
+.mobmenu summary::-webkit-details-marker{display:none}
+.mobmenu summary::after{content:"+";color:var(--gold)}
+.mobmenu details[open] summary::after{content:"–"}
+.mobmenu .mh{padding:8px 12px 2px;font-size:12px;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold)}
+.mobmenu details a{display:block;padding:8px 12px 8px 22px;font-weight:600}
+.menu .mobmenu{max-height:75vh;overflow:auto;min-width:270px}
 
 /* hero */
 .hero{position:relative;min-height:92vh;display:flex;align-items:flex-end}
@@ -263,31 +286,17 @@ footer .cols{grid-template-columns:1fr}
 
 <a class="season" href="https://paintingpixie.com/halloween-face-painting.html">🎃 Now booking Halloween parties. See the spooky designs →</a>
 
-<nav aria-label="Main"><div class="wrap">
+<nav aria-label="Main" id="mainnav"><div class="wrap navbar">
 <a class="brand" href="https://paintingpixie.com/"><img src="../img/logo.webp" alt="The Painting Pixie logo" width="64" height="64"><span>The Painting Pixie</span></a>
 <div class="links">
-<a href="https://paintingpixie.com/childrens-face-painting.html">Kids' parties</a>
-<a href="https://paintingpixie.com/adult-face-painting.html">Adults &amp; hens</a>
-<a href="https://paintingpixie.com/glitter-bar.html">Glitter bar</a>
-<a href="https://paintingpixie.com/halloween-face-painting.html">Halloween</a>
-<a href="https://paintingpixie.com/gallery.html">Gallery</a>
-<a href="https://paintingpixie.com/areas.html">Areas</a>
-<a href="https://paintingpixie.com/about.html">About</a>
+<button class="mtrig" type="button" aria-expanded="false" aria-controls="m-occasions">Occasions<svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></button><button class="mtrig" type="button" aria-expanded="false" aria-controls="m-areas">Areas<svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></button><button class="mtrig" type="button" aria-expanded="false" aria-controls="m-about">About<svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></button>
+<a href="#prices">Prices</a>
 <a class="btn btn-gold" href="https://paintingpixie.com/contact.html" style="padding:11px 20px;font-size:15px">Check a date</a>
 </div>
-<details class="menu"><summary>Menu</summary><div>
-<a href="https://paintingpixie.com/childrens-face-painting.html">Kids' parties</a>
-<a href="https://paintingpixie.com/adult-face-painting.html">Adults &amp; hen parties</a>
-<a href="https://paintingpixie.com/animal-print-face-painting.html">Animal print</a>
-<a href="https://paintingpixie.com/glitter-bar.html">Glitter bar</a>
-<a href="https://paintingpixie.com/halloween-face-painting.html">Halloween</a>
-<a href="https://paintingpixie.com/gallery.html">Gallery</a>
-<a href="https://paintingpixie.com/areas.html">Areas</a>
-<a href="https://paintingpixie.com/about.html">About Kat</a>
-<a href="#prices">Prices</a>
-<a href="https://paintingpixie.com/contact.html">Check a date</a>
-</div></details>
-</div></nav>
+<details class="menu"><summary>Menu</summary><div class="mobmenu"><details><summary>Occasions</summary><p class="mh">For kids</p><a href="https://paintingpixie.com/childrens-face-painting.html">Children's parties</a><a href="https://paintingpixie.com/animal-print-face-painting.html">Animal print</a><a href="https://paintingpixie.com/halloween-face-painting.html">Halloween</a><p class="mh">For grown-ups</p><a href="https://paintingpixie.com/adult-face-painting.html">Hen &amp; adult parties</a><a href="https://paintingpixie.com/glitter-bar.html">Glitter &amp; jewel bar</a><p class="mh">Events</p><a href="https://paintingpixie.com/contact.html">Weddings &amp; family days</a><a href="https://paintingpixie.com/contact.html">Festivals &amp; fêtes</a><a href="https://paintingpixie.com/contact.html">Corporate &amp; brand events</a><p class="mh">Everything</p><a href="https://paintingpixie.com/services.html">All services</a><a href="#prices">Prices</a><a href="https://paintingpixie.com/gallery.html">Gallery</a></details><details><summary>Areas</summary><p class="mh">West Sussex</p><a href="https://paintingpixie.com/face-painter-horsham.html">Horsham</a><a href="https://paintingpixie.com/face-painter-crawley.html">Crawley</a><a href="https://paintingpixie.com/face-painter-haywards-heath.html">Haywards Heath</a><a href="https://paintingpixie.com/face-painter-burgess-hill.html">Burgess Hill</a><a href="https://paintingpixie.com/face-painter-east-grinstead.html">East Grinstead</a><a href="https://paintingpixie.com/face-painter-worthing.html">Worthing</a><a href="https://paintingpixie.com/face-painter-west-sussex-villages.html">West Sussex villages</a><p class="mh">Brighton &amp; East Sussex</p><a href="https://paintingpixie.com/face-painter-brighton.html">Brighton</a><a href="https://paintingpixie.com/face-painter-lewes.html">Lewes</a><a href="https://paintingpixie.com/face-painter-south-downs.html">South Downs</a><p class="mh">Surrey</p><a href="https://paintingpixie.com/face-painter-guildford.html">Guildford</a><a href="https://paintingpixie.com/face-painter-reigate.html">Reigate</a><a href="https://paintingpixie.com/face-painter-dorking.html">Dorking</a><a href="https://paintingpixie.com/face-painter-surrey-villages.html">Surrey villages</a><p class="mh">By county</p><a href="https://paintingpixie.com/face-painter-sussex.html">All of Sussex</a><a href="https://paintingpixie.com/face-painter-surrey.html">All of Surrey</a><a href="https://paintingpixie.com/areas.html">Every area we cover</a></details><details><summary>About</summary><p class="mh">Kat</p><a href="https://paintingpixie.com/about.html">About Kat</a><a href="https://paintingpixie.com/gallery.html">Gallery</a><a href="#reviews">Reviews</a><p class="mh">Good to know</p><a href="#faq">FAQs</a><a href="#prices">Prices</a><a href="https://paintingpixie.com/contact.html">Book &amp; contact</a></details><a class="btn btn-gold" href="https://paintingpixie.com/contact.html" style="margin-top:10px">Check a date</a></div></details>
+</div>
+<div class="mega" id="m-occasions" hidden><div class="wrap mgrid"><div class="mcol"><p class="mh">For kids</p><a href="https://paintingpixie.com/childrens-face-painting.html">Children's parties</a><a href="https://paintingpixie.com/animal-print-face-painting.html">Animal print</a><a href="https://paintingpixie.com/halloween-face-painting.html">Halloween</a></div><div class="mcol"><p class="mh">For grown-ups</p><a href="https://paintingpixie.com/adult-face-painting.html">Hen &amp; adult parties</a><a href="https://paintingpixie.com/glitter-bar.html">Glitter &amp; jewel bar</a></div><div class="mcol"><p class="mh">Events</p><a href="https://paintingpixie.com/contact.html">Weddings &amp; family days</a><a href="https://paintingpixie.com/contact.html">Festivals &amp; fêtes</a><a href="https://paintingpixie.com/contact.html">Corporate &amp; brand events</a></div><div class="mcol"><p class="mh">Everything</p><a href="https://paintingpixie.com/services.html">All services</a><a href="#prices">Prices</a><a href="https://paintingpixie.com/gallery.html">Gallery</a></div></div></div><div class="mega" id="m-areas" hidden><div class="wrap mgrid"><div class="mcol"><p class="mh">West Sussex</p><a href="https://paintingpixie.com/face-painter-horsham.html">Horsham</a><a href="https://paintingpixie.com/face-painter-crawley.html">Crawley</a><a href="https://paintingpixie.com/face-painter-haywards-heath.html">Haywards Heath</a><a href="https://paintingpixie.com/face-painter-burgess-hill.html">Burgess Hill</a><a href="https://paintingpixie.com/face-painter-east-grinstead.html">East Grinstead</a><a href="https://paintingpixie.com/face-painter-worthing.html">Worthing</a><a href="https://paintingpixie.com/face-painter-west-sussex-villages.html">West Sussex villages</a></div><div class="mcol"><p class="mh">Brighton &amp; East Sussex</p><a href="https://paintingpixie.com/face-painter-brighton.html">Brighton</a><a href="https://paintingpixie.com/face-painter-lewes.html">Lewes</a><a href="https://paintingpixie.com/face-painter-south-downs.html">South Downs</a></div><div class="mcol"><p class="mh">Surrey</p><a href="https://paintingpixie.com/face-painter-guildford.html">Guildford</a><a href="https://paintingpixie.com/face-painter-reigate.html">Reigate</a><a href="https://paintingpixie.com/face-painter-dorking.html">Dorking</a><a href="https://paintingpixie.com/face-painter-surrey-villages.html">Surrey villages</a></div><div class="mcol"><p class="mh">By county</p><a href="https://paintingpixie.com/face-painter-sussex.html">All of Sussex</a><a href="https://paintingpixie.com/face-painter-surrey.html">All of Surrey</a><a href="https://paintingpixie.com/areas.html">Every area we cover</a></div></div></div><div class="mega" id="m-about" hidden><div class="wrap mgrid"><div class="mcol"><p class="mh">Kat</p><a href="https://paintingpixie.com/about.html">About Kat</a><a href="https://paintingpixie.com/gallery.html">Gallery</a><a href="#reviews">Reviews</a></div><div class="mcol"><p class="mh">Good to know</p><a href="#faq">FAQs</a><a href="#prices">Prices</a><a href="https://paintingpixie.com/contact.html">Book &amp; contact</a></div></div></div>
+</nav>
 
 <header class="hero">
 <img src="../img/v2-hero.webp" alt="Kat painting a blue monster design on a laughing girl at a Sussex festival" fetchpriority="high">
@@ -446,5 +455,15 @@ footer .cols{grid-template-columns:1fr}
 <div class="mbar" role="navigation" aria-label="Quick contact">
 <a class="pr" href="#prices">Prices</a><a href="tel:+447852300125">Call</a><a class="wa" href="https://wa.me/447852300125?text=Hi%20Kat!%20I'd%20like%20to%20check%20a%20date%20for%20face%20painting." target="_blank" rel="noopener">WhatsApp</a>
 </div>
+<script>
+(function(){
+  var trigs=[].slice.call(document.querySelectorAll('.mtrig'));
+  function closeAll(except){trigs.forEach(function(t){if(t!==except){t.setAttribute('aria-expanded','false');document.getElementById(t.getAttribute('aria-controls')).hidden=true;}});}
+  trigs.forEach(function(t){t.addEventListener('click',function(e){e.stopPropagation();var open=t.getAttribute('aria-expanded')==='true';closeAll(t);t.setAttribute('aria-expanded',String(!open));document.getElementById(t.getAttribute('aria-controls')).hidden=open;});});
+  document.addEventListener('click',function(e){if(!e.target.closest('.mega'))closeAll();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll();});
+  document.querySelectorAll('.mega a').forEach(function(a){a.addEventListener('click',function(){closeAll();});});
+})();
+</script>
 </body>
 </html>
