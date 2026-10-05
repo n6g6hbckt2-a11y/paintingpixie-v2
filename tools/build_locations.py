@@ -94,7 +94,12 @@ def b_hoods(d, town, tone='light'):
     head = 'More villages I cover' if town.startswith('the villages') or ',' in town else f'All over {esc(town)} and nearby'
     return band('hoods', f'<h2>{head}</h2><div class="hoods">{items}</div>', tone)
 
-def b_prices(tone='jewel'):
+def b_prices(tone='jewel', events=False):
+    if events:
+        cards = [("Hen dos & birthdays", "Glitter, gems & grown-up designs", "From £150"), ("Weddings", "Kids' corner or glitter for all the guests", "Bespoke quote"),
+                 ("Festivals & Pride", "Glitter bar, body art & fast designs for a queue", "Bespoke quote"), ("Corporate & brand events", "Staff days, launches & activations", "Bespoke quote")]
+        inner = ''.join(f'<div class="pcard"><h3>{a}</h3><p>{b}</p><div class="pp">{c}</div></div>' for a, b, c in cards)
+        return band('prices', f'<h2>Events in Brighton &amp; Hove</h2><div class="pcards">{inner}</div><p class="small-note">In Brighton Kat takes events, hen dos, weddings and larger celebrations. Tell her your date, venue and guest numbers for a quote.</p>', tone, 'centred')
     cards = [("Classic Party", "Up to 15 children, 2 hours", "From £130"), ("Ultimate Sparkle", "Up to 25 children, 3 hours, glitter & gems", "From £160"),
              ("Hens & grown-ups", "Glitter, gems & adult designs", "From £150"), ("Big events", "Weddings, festivals & corporate", "Bespoke quote")]
     inner = ''.join(f'<div class="pcard"><h3>{a}</h3><p>{b}</p><div class="pp">{c}</div></div>' for a, b, c in cards)
@@ -154,7 +159,7 @@ def render(page, d, title):
     if t == 'letter':
         blocks = [b_letter(d), pc('dark'), b_venue_map(d, 'dark'), b_gallery(d, 'light'), b_events(d, 'dark'), b_prices(), b_reviews(page, town, 'light'), b_hoods(d, town, 'dark'), b_faq(d, town, 'light')]
     elif t == 'guide':
-        blocks = [b_intro_quote(d, 'light'), b_tiles(d, town, 'dark'), pc('light'), b_venue_chips(d, town, 'light'), b_reviews(page, town, 'dark'), b_prices(), b_hoods(d, town, 'light'), b_faq(d, town, 'dark')]
+        blocks = [b_intro_quote(d, 'light'), b_tiles(d, town, 'dark'), pc('light'), b_venue_chips(d, town, 'light'), b_reviews(page, town, 'dark'), b_prices(events=d.get('events_only', False)), b_hoods(d, town, 'light'), b_faq(d, town, 'dark')]
     elif t == 'seasons':
         blocks = [b_intro_split(d, 'light'), pc('dark'), b_seasons(d, town, 'dark'), b_venue_cards(d, town, 'light'), b_prices(), b_reviews(page, town, 'dark'), b_hoods(d, town, 'light'), b_faq(d, town, 'dark')]
     elif t == 'story':
@@ -195,10 +200,13 @@ def build():
         h1 = re.search(r'<header class="phero">.*?<h1>(.*?)</h1>', s, re.S).group(1)
         sub = re.search(r'<header class="phero">.*?</h1>\s*<p>(.*?)</p>', s, re.S)
         sub = sub.group(1) if sub else ''
+        if d.get('sub'): sub = d['sub']
         # head: replace any FAQPage schema with the new questions
         head, body = s.split('</head>', 1)
         head = re.sub(r'<script type="application/ld\+json">\s*\{[^<]*?"@type"\s*:\s*"FAQPage".*?</script>\s*', '', head, flags=re.S)
         head = head.rstrip() + '\n' + faq_schema(d) + '\n'
+        if d.get('title'): head = re.sub(r'<title>.*?</title>', '<title>' + d['title'] + '</title>', head, count=1, flags=re.S); title = d['title']
+        if d.get('desc'): head = re.sub(r'(<meta name="description" content=")[^"]*', lambda m: m.group(1) + d['desc'], head, count=1)
         # body: swap hero and main
         body = re.sub(r'<header class="phero">.*?</header>\s*<div class="jewel-rule"></div>', lambda m: hero(d, h1, sub, page), body, count=1, flags=re.S)
         body = re.sub(r'<main class="lg">.*?</main>', lambda m: f'<main class="lg loc tpl-{d["tpl"]}" id="content" style="--acc:{d["acc"]}">\n{render(page, d, title)}\n</main>', body, count=1, flags=re.S)

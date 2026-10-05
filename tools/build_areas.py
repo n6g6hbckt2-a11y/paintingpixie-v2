@@ -39,11 +39,12 @@ WIDER = [  # specialist events only (weddings, festivals, corporate): places Kat
  ("Sevenoaks", 51.2720, 0.1900), ("Tunbridge Wells", 51.1320, 0.2630), ("Uckfield", 50.9690, 0.0960), ("Eastbourne", 50.7680, 0.2900),
  ("Hastings", 50.8540, 0.5730), ("Maidstone", 51.2720, 0.5220), ("Portsmouth", 50.8050, -1.0870), ("Southampton", 50.9090, -1.4040),
 ]
+EVENTS_ONLY = {"Brighton & Hove"}
 COUNTY_PAGE = {"West Sussex": "face-painter-sussex.html", "East Sussex": "face-painter-sussex.html", "Surrey": "face-painter-surrey.html"}
 NOTES = {  # one line per town for the pop-up
  "Horsham": "Home! No travel charge in town.", "Crawley": "Where Kat teaches and knows so many families.",
  "Haywards Heath": "One of Kat's most regular areas.", "Burgess Hill": "Just down the road from Macs Farm.",
- "East Grinstead": "A town Kat fell for.", "Worthing": "Parties by the sea.", "Brighton & Hove": "Glitter for grown-ups and kids.",
+ "East Grinstead": "A town Kat fell for.", "Worthing": "Parties by the sea.", "Brighton & Hove": "Events here: hens, weddings, Pride, festivals and corporate days.",
  "Lewes": "Bonfire town.", "Guildford": "Painted at the Festival of the Arts.", "Dorking": "Hills and vineyards.",
  "Reigate & Redhill": "Busy all year round.", "Midhurst": "Worth the drive.", "Petworth": "Painted here twice this summer.",
 }
@@ -63,7 +64,7 @@ def build():
     for n, a, b, c, u, g in TOWNS: groups.setdefault(c, []).append((n, u))
     lists = ''.join(
         f'<div class="acol"><h3><a href="{COUNTY_PAGE[c]}">{c}</a></h3><ul>' +
-        ''.join(f'<li><a href="{u}">Face painter in {n}</a></li>' for n, u in items) + '</ul></div>'
+        ''.join(f'<li><a href="{u}">Face painter in {n}{" (events)" if n in EVENTS_ONLY else ""}</a></li>' for n, u in items) + '</ul></div>'
         for c, items in groups.items())
     main = f'''<main class="lg loc" id="content" style="--acc:#FF4FA3">
 <section class="band band-light"><div class="wrap">
