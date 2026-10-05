@@ -17,10 +17,10 @@ SERVICES = [
  ("Weddings", "../img/n-adult-glitter-flower-eye.webp", "45% 40%", "Keeps little guests happy through speeches and photos, and the grown-ups queue for glitter too.", "Bespoke quote", "contact.html", "Check my date"),
  ("Chunky glitter & jewel bar", "../img/n-lilac-flower-eye.webp", "35% 50%", "Bio-glitter, gems and sparkle for faces, hair and arms. Festival vibes for any event.", "Bespoke quote", "glitter-bar.html", "Glitter bar"),
  ("Animal print", "../img/n-tiger-girl-closeup.webp", "50% 35%", "Bold tigers, leopards and butterflies for kids and grown-ups.", "Included in packages", "animal-print-face-painting.html", "See the designs"),
- ("Body art", "rainbow-chest-paint-with-glitter-clouds.webp", "50% 40%", "Painted body art and flowing arm designs with glitter, for festivals, Pride, photoshoots and themed events.", "Bespoke quote", "contact.html", "Ask about body art"),
+ ("Body art", "rainbow-chest-paint-with-glitter-clouds.webp", "50% 40%", "Painted body art and flowing arm designs with glitter, for festivals, Pride, photoshoots and themed events.", "Bespoke quote", "body-art.html", "Body art"),
  ("Halloween & seasonal", "../img/n-pumpkin-face.webp", "50% 30%", "Pumpkins, skulls, devils and monsters, from sweet to spooky. Christmas fairs too.", "From £130", "halloween-face-painting.html", "Halloween"),
  ("Festivals, fêtes & community days", "../img/v2-hero.webp", "60% 35%", "Fast, queue-friendly designs for school fairs, village fêtes and festivals, as a stall or a set fee.", "Bespoke quote", "contact.html", "Get a quote"),
- ("Learn to face paint", "../img/kat-painting-poster.webp", "50% 40%", "Workshops for children and groups: design and paint faces, arms and hands with stencils and glitter.", "From £15 per child", "workshops.html", "Workshops"),
+ ("Learn to face paint", "../img/kat-painting-poster.webp", "50% 40%", "Workshops for children and groups, plus one-to-one masterclasses for grown-ups who want to learn properly.", "Workshops £15 per child · masterclass £200", "workshops.html", "Workshops & lessons"),
 ]
 
 CSS = r'''<style>
@@ -50,6 +50,7 @@ CSS = r'''<style>
 .wscard h3{margin:14px 0 8px;font-family:'Fraunces',serif;font-weight:400;font-size:32px;color:#1B1712}
 .wscard ul{list-style:none;padding:0;margin:12px 0 18px;color:#3A322C}
 .wscard li{padding:4px 0}.wscard li b{color:#1B1712}
+.lprice{display:flex;flex-wrap:wrap;gap:14px;margin:18px 0 6px}.lprice div{background:#fff;border-radius:14px;padding:16px 22px;border-left:5px solid var(--pink);box-shadow:0 12px 26px -18px rgba(60,30,40,.35)}.lprice b{display:block;font-family:'Fraunces',serif;font-weight:400;font-size:30px;color:#1B1712}.lprice span{color:#4E463F;font-size:14.5px}
 .wsideas{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
 .wsideas div{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
 .wsideas b{display:block;font-family:'Fraunces',serif;font-weight:400;font-size:22px;color:var(--ink)}
@@ -137,13 +138,24 @@ def workshops():
 <div><b>Hen dos &amp; team days</b><span>A glittery, sociable activity for grown-ups that is great for photos.</span></div></div>
 <p style="margin-top:22px"><a class="btn btn-wa" href="{wa("Hi Kat! I'd like to ask about a face painting workshop for my group.")}" target="_blank" rel="noopener">Ask Kat about a workshop</a></p>
 </div></section>
-<section class="band band-panel k-enquire centred"><div class="wrap"><h2>Questions about workshops?</h2>
+<section class="band band-light"><div class="wrap">
+<p class="eyebrow">For grown-ups</p><h2>One-to-one and small-group lessons</h2>
+<p>Want to learn face painting properly, for your own children's parties, a school fair or to start painting professionally? Kat teaches in person, one-to-one or in a small group, at a pace that suits you.</p><div class="lprice"><div><b>£200</b><span>One-to-one masterclass with Kat</span></div><div><b>Ask for a price</b><span>Small groups of friends or colleagues</span></div></div>
+<div class="fcards">
+<div class="fcard"><h3>The foundations</h3><p>Kit, brushes, loading paint, clean lines and the core strokes every design is built on.</p></div>
+<div class="fcard"><h3>Crowd-pleasing designs</h3><p>Butterflies, tigers, unicorns, superheroes and florals, step by step until you can paint them yourself.</p></div>
+<div class="fcard"><h3>Glitter, gems &amp; stencils</h3><p>Finishing touches that make designs sparkle, and how to use them safely.</p></div>
+<div class="fcard"><h3>Painting for a queue</h3><p>Working quickly and hygienically at parties and events, and keeping children happy in the chair.</p></div>
+</div>
+<p style="margin-top:22px"><a class="btn btn-gold" href="{wa("Hi Kat! I'd like to ask about face painting lessons (one-to-one or small group).")}" target="_blank" rel="noopener">Book a one-to-one masterclass</a></p>
+</div></section>
+<section class="band band-panel k-enquire centred"><div class="wrap"><h2>Questions about workshops or lessons?</h2>
 <p>Message Kat and she'll get back to you, usually the same day.</p>
 <a class="btn btn-gold" href="contact.html">Check my date</a></div></section>
 {inner_layout.TRUST_BAND}
 </main>'''
     page_from('services.html', 'workshops.html', 'Face Painting Workshops | Learn to Face Paint | The Painting Pixie',
-              'Learn to face paint with Kat. Next: Half-Term Halloween Workshop at Good Hotel London, Fri 30 Oct 2026, £15 per child. Group workshops on request.',
+              'Learn to face paint with Kat: children\'s workshops (next: Good Hotel London, Fri 30 Oct 2026, £15 per child), group workshops and £200 one-to-one masterclasses.',
               'https://paintingpixie.com/workshops.html',
               '<script type="application/ld+json">' + json.dumps(event, ensure_ascii=False) + '</script>\n',
               hero('../img/n-pumpkin-face.webp', '50% 30%', 'Workshops', 'Face Painting Workshops',
@@ -208,9 +220,54 @@ def corporate():
                    'Statement face painting and glitter for staff parties, launches, festivals and weddings, with extra artists for big crowds.',
                    '<a class="btn btn-gold" href="contact.html">Get a quote</a>'), main)
 
+
+def body_art():
+    service = {"@context": "https://schema.org", "@type": "Service", "serviceType": "Body art and body painting",
+               "name": "Body art and glitter body painting in Sussex, Surrey and London",
+               "provider": {"@type": "LocalBusiness", "@id": "https://paintingpixie.com/#business", "name": "The Painting Pixie"},
+               "areaServed": ["Sussex", "Surrey", "London"]}
+    faqs = [("Is the body paint safe for skin?", "Yes. Kat uses professional, cosmetic-grade paints made for skin, and bio-glitter. If you have sensitive skin, a small patch test is a good idea."),
+            ("How long does body art last?", "It lasts for the whole event, as long as it isn't rubbed or soaked. Lisa K's guests danced for hours at a wedding and their designs stayed perfect."),
+            ("How do you remove it?", "The paints wash off with warm soapy water. Glitter and gems lift off gently."),
+            ("Can you match a theme or brand colours?", "Yes. Tell Kat your theme, outfits or brand colours and she'll design around them.")]
+    faq_schema = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faqs]}
+    gallery = ''.join(f'<img src="{g}" alt="{a}" loading="lazy">' for g, a in [
+        ("../img/n-festival-rainbow-body-art.webp", "Rainbow body art with clouds and stars at a festival"),
+        ("../img/v2-adult-tiger.webp", "Tiger eye design with glitter at a summer festival"),
+        ("../img/n-arm-glitter-swirl.webp", "Rainbow glitter swirl arm art"),
+        ("../img/n-arm-art-flowers-pair.webp", "Floral arm art on two guests"),
+        ("../img/n-adult-pink-glitter-event.webp", "Pink glitter face art at an event"),
+        ("../img/n-lilac-flower-eye.webp", "Lilac flower design with rose-gold glitter")])
+    faq_html = ''.join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q, a in faqs)
+    main = f"""<main class="lg" id="content">
+<section class="band band-light"><div class="wrap">
+<p class="eyebrow">Body art</p><h2>Wearable art for festivals, Pride and events</h2>
+<p>Body art takes face painting further: rainbows across the chest, flowing designs down the arm, florals over the shoulder, finished with chunky bio-glitter and gems. It's a show-stopper at festivals, Pride, hen dos, themed parties and brand events, and it looks amazing in photos.</p>
+<div class="fcards">
+<div class="fcard"><h3>Festivals &amp; Pride</h3><p>Rainbows, stars and glitter clouds that make a festival outfit.</p></div>
+<div class="fcard"><h3>Arm &amp; shoulder art</h3><p>Flowing florals and swirls, quick enough for a queue of guests.</p></div>
+<div class="fcard"><h3>Hen dos &amp; parties</h3><p>Matching designs for the whole group, from subtle to full sparkle.</p></div>
+<div class="fcard"><h3>Photoshoots &amp; brand events</h3><p>Designs built around your theme, outfits or brand colours.</p></div>
+</div></div></section>
+<section class="band band-dark"><div class="wrap"><h2>Recent body art</h2><div class="gstrip">{gallery}</div></div></section>
+<section class="band band-light"><div class="wrap"><h2>What people say</h2><div class="testimonials"></div></div></section>
+<section class="band band-dark"><div class="wrap"><h2>Good to know</h2><div class="faqlist">{faq_html}</div></div></section>
+<section class="band band-panel k-enquire centred"><div class="wrap"><h2>Book body art for your event</h2>
+<p>Tell Kat your date, venue and roughly how many people would like body art, and she'll send a quote.</p>
+<a class="btn btn-gold" href="contact.html">Check my date</a><a class="btn btn-wa" href="{wa("Hi Kat! I'd like to ask about body art for an event. Date: Venue: People: ")}" target="_blank" rel="noopener">WhatsApp Kat</a></div></section>
+{inner_layout.TRUST_BAND}
+</main>"""
+    page_from('services.html', 'body-art.html', 'Body Art &amp; Body Painting | Festivals, Pride &amp; Events | The Painting Pixie',
+              'Glitter body art, arm art and body painting for festivals, Pride, hen dos, photoshoots and brand events across Sussex, Surrey and London. 5.0 rated.',
+              'https://paintingpixie.com/body-art.html',
+              '<script type="application/ld+json">' + json.dumps(service, ensure_ascii=False) + '</script>\n<script type="application/ld+json">' + json.dumps(faq_schema, ensure_ascii=False) + '</script>\n',
+              hero('../img/n-festival-rainbow-body-art.webp', '50% 40%', 'Occasions · Grown-ups', 'Body Art &amp; Body Painting',
+                   'Rainbows, florals and glitter, painted on arms, shoulders and chests for festivals, Pride, hen dos and events.',
+                   '<a class="btn btn-gold" href="contact.html">Check my date</a>'), main)
+
 def build():
-    services(); workshops(); corporate()
-    print('extra pages built: services, workshops, corporate-events')
+    services(); workshops(); corporate(); body_art()
+    print('extra pages built: services, workshops, corporate-events, body-art')
 
 if __name__ == '__main__':
     build()
