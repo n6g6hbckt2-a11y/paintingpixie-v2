@@ -36,6 +36,215 @@ gtag('config', 'G-JMFEXJJZ1H');
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Service",
+ "serviceType": "Face painting",
+ "name": "Face painting across Sussex and Surrey",
+ "provider": {
+  "@type": "LocalBusiness",
+  "@id": "https://paintingpixie.com/#business",
+  "name": "The Painting Pixie",
+  "url": "https://paintingpixie.com/"
+ },
+ "areaServed": [
+  {
+   "@type": "City",
+   "name": "Horsham",
+   "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "West Sussex"
+   }
+  },
+  {
+   "@type": "City",
+   "name": "Southwater",
+   "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "West Sussex"
+   }
+  },
+  {
+   "@type": "City",
+   "name": "Crawley",
+   "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "West Sussex"
+   }
+  },
+  {
+   "@type": "City",
+   "name": "Haywards Heath",
+   "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "West Sussex"
+   }
+  },
+  {
+   "@type": "City",
+   "name": "Cuckfield",
+   "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "West Sussex"
+   }
+  },
+  {
+   "@type": "City",
+   "name": "Burgess Hill",
+   "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "West Sussex"
+   }
+  },
+  {
+   "@type": "City",
+   "name": "East Grinstead",
+   "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "West Sussex"
+   }
+  },
+  {
+   "@type": "City",
+   "name": "Billingshurst",
+   "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "West Sussex"
+   }
+  },
+  {
+   "@type": "City",
+   "name": "Henfield",
+   "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "West Sussex"
+   }
+  },
+  {
+   "@type": "City",
+   "name": "Steyning",
+   "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "West Sussex"
+   }
+  },
+  {
+   "@type": "City",
+   "name": "Storrington",
+   "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "West Sussex"
+   }
+  },
+  {
+   "@type": "City",
+   "name": "Pulborough",
+   "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "West Sussex"
+   }
+  },
+  {
+   "@type": "City",
+   "name": "Midhurst",
+   "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "West Sussex"
+   }
+  },
+  {
+   "@type": "City",
+   "name": "Petworth",
+   "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "West Sussex"
+   }
+  },
+  {
+   "@type": "City",
+   "name": "Worthing",
+   "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "West Sussex"
+   }
+  },
+  {
+   "@type": "City",
+   "name": "Brighton and Hove",
+   "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "East Sussex"
+   }
+  },
+  {
+   "@type": "City",
+   "name": "Lewes",
+   "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "East Sussex"
+   }
+  },
+  {
+   "@type": "City",
+   "name": "Guildford",
+   "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "Surrey"
+   }
+  },
+  {
+   "@type": "City",
+   "name": "Godalming",
+   "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "Surrey"
+   }
+  },
+  {
+   "@type": "City",
+   "name": "Cranleigh",
+   "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "Surrey"
+   }
+  },
+  {
+   "@type": "City",
+   "name": "Dorking",
+   "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "Surrey"
+   }
+  },
+  {
+   "@type": "City",
+   "name": "Leatherhead",
+   "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "Surrey"
+   }
+  },
+  {
+   "@type": "City",
+   "name": "Horley",
+   "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "Surrey"
+   }
+  },
+  {
+   "@type": "City",
+   "name": "Reigate and Redhill",
+   "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "Surrey"
+   }
+  }
+ ]
+}
+</script>
 </head>
 <body>
 <nav aria-label="Main" id="mainnav"><div class="wrap navbar">
@@ -53,191 +262,25 @@ gtag('config', 'G-JMFEXJJZ1H');
 <p>Professional face painting for adults and children at parties, weddings and events across Sussex and Surrey.</p>
 </div></div></header>
 <div class="jewel-rule"></div>
-<main class="lg">
-
-
-
-
-<section class="band band-light k-text centred "><div class="wrap">
-<h2 style="text-align:center;">Find Your Local Page</h2>
-<p style="text-align:center; max-width:700px; margin:auto;">
-The Painting Pixie proudly brings high-quality face painting, festival glitter, and party entertainment to events across Sussex and Surrey.
-We regularly service Horsham, Crawley, Haywards Heath, Burgess Hill, Dorking, Reigate, Chichester, Arundel, Worthing, Brighton, Lewes, Tunbridge Wells, 
-Croydon, Epsom, Farnham, East Grinstead, Redhill, Guildford, and the surrounding local areas.
-Click your area below for local details, or get in touch if you don't see your town listed —
-I'm happy to travel across Sussex and Surrey and have in the past been fortunate enough to work in Portsmouth, Southampton, Eastbourne, Hastings, Maidstone and Sevenoaks
-</p>
-
-<div class="packages-grid" style="margin-top:30px;">
-
-<div class="package-card">
-<div>
-<h3 class="package-name">📍 Horsham</h3>
-<p>Parties, weddings & events across Horsham and West Sussex.</p>
-</div>
-<a href="face-painter-horsham.html" class="btn btn-ghost">View Horsham Page</a>
-</div>
-
-<div class="package-card">
-<div>
-<h3 class="package-name">📍 Guildford</h3>
-<p>Parties, weddings & events across Guildford and Surrey.</p>
-</div>
-<a href="face-painter-guildford.html" class="btn btn-ghost">View Guildford Page</a>
-</div>
-
-<div class="package-card">
-<div>
-<h3 class="package-name">📍 Brighton & Hove</h3>
-<p>Parties, weddings & events across Brighton & Hove and Sussex.</p>
-</div>
-<a href="face-painter-brighton.html" class="btn btn-ghost">View Brighton & Hove Page</a>
-</div>
-
-<div class="package-card">
-<div>
-<h3 class="package-name">📍 Haywards Heath</h3>
-<p>Parties, weddings & events across Haywards Heath and Sussex.</p>
-</div>
-<a href="face-painter-haywards-heath.html" class="btn btn-ghost">View Haywards Heath Page</a>
-</div>
-
-<div class="package-card">
-<div>
-<h3 class="package-name">📍 Reigate</h3>
-<p>Parties, weddings & events across Reigate and Surrey.</p>
-</div>
-<a href="face-painter-reigate.html" class="btn btn-ghost">View Reigate Page</a>
-</div>
-  
-<div class="package-card">
-<div>
-<h3 class="package-name">📍 Dorking</h3>
-<p>Parties, weddings & events across Dorking and Surrey.</p>
-</div>
-<a href="face-painter-dorking.html" class="btn btn-ghost">View Dorking Page</a>
-</div>
-
-<div class="package-card">
-<div>
-<h3 class="package-name">📍 Worthing</h3>
-<p>Parties, weddings & events across Worthing and the surrounding area.</p>
-</div>
-<a href="face-painter-worthing.html" class="btn btn-ghost">View Worthing Page</a>
-</div>
-
-<div class="package-card">
-<div>
-<h3 class="package-name">📍 Burgess Hill</h3>
-<p>Parties, weddings & events across Burgess Hill and the surrounding area.</p>
-</div>
-<a href="face-painter-burgess-hill.html" class="btn btn-ghost">View Burgess Hill Page</a>
-</div>
-
-<div class="package-card">
-<div>
-<h3 class="package-name">📍 Crawley</h3>
-<p>Parties, weddings & events across Crawley and West Sussex.</p>
-</div>
-<a href="face-painter-crawley.html" class="btn btn-ghost">View Crawley Page</a>
-</div>
-
-<div class="package-card">
-<div>
-<h3 class="package-name">📍 Lewes</h3>
-<p>Parties, weddings & events across Lewes and East Sussex.</p>
-</div>
-<a href="face-painter-lewes.html" class="btn btn-ghost">View Lewes Page</a>
-</div>
-
-<div class="package-card">
-<div>
-<h3 class="package-name">📍 East Grinstead</h3>
-<p>Parties, weddings & events across East Grinstead and West Sussex.</p>
-</div>
-<a href="face-painter-east-grinstead.html" class="btn btn-ghost">View East Grinstead Page</a>
-</div>
-
-<div class="package-card">
-<div>
-<h3 class="package-name">📍 Midhurst & Petworth</h3>
-<p>Parties, weddings & events across Midhurst, Petworth and the South Downs.</p>
-</div>
-<a href="face-painter-south-downs.html" class="btn btn-ghost">View Midhurst & Petworth Page</a>
-</div>
-
-<div class="package-card">
-<div>
-<h3 class="package-name">📍 Cranleigh, Leatherhead & Horley</h3>
-<p>Parties, weddings & events across Cranleigh, Leatherhead, Horley and the surrounding Surrey villages.</p>
-</div>
-<a href="face-painter-surrey-villages.html" class="btn btn-ghost">View Cranleigh, Leatherhead & Horley Page</a>
-</div>
-
-<div class="package-card">
-<div>
-<h3 class="package-name">📍 Billingshurst, Henfield & Steyning</h3>
-<p>Parties, weddings & events across Billingshurst, Henfield, Steyning, Storrington and Pulborough.</p>
-</div>
-<a href="face-painter-west-sussex-villages.html" class="btn btn-ghost">View Billingshurst, Henfield & Steyning Page</a>
-</div>
-
-<div class="package-card">
-<div>
-<h3 class="package-name">📍 Sussex (All Areas)</h3>
-<p>A county-wide overview covering Horsham, Brighton, Haywards Heath, Worthing, Burgess Hill and beyond.</p>
-</div>
-<a href="face-painter-sussex.html" class="btn btn-ghost">View Sussex Page</a>
-</div>
-
-<div class="package-card">
-<div>
-<h3 class="package-name">📍 Surrey (All Areas)</h3>
-<p>A county-wide overview covering Guildford, Reigate, Dorking and beyond.</p>
-</div>
-<a href="face-painter-surrey.html" class="btn btn-ghost">View Surrey Page</a>
-</div>
-
-<div class="package-card">
-<div>
-<h3 class="package-name">📍 More Areas</h3>
-<p>Also covering Chichester and surrounding villages.</p>
-</div>
-<a href="contact.html" class="btn btn-ghost">Check Your Area</a>
-</div>
-
-</div>
+<main class="lg loc" id="content" style="--acc:#FF4FA3">
+<section class="band band-light"><div class="wrap">
+<p class="eyebrow">Find your local page</p>
+<h2>Where Kat paints</h2>
+<p>The Painting Pixie brings face painting, festival glitter and party fun to events across Sussex and Surrey, from home in Horsham.
+Tap a pin to see Kat's local page, or scroll down for the full list. Gold pins are places Kat has painted recently.</p>
+<div id="areamap" class="areamap" role="region" aria-label="Map of the towns The Painting Pixie covers"></div>
+<div class="legend"><span><i class="pin home"></i> Home: Horsham</span><span><i class="pin"></i> Regular area, with a local page</span><span><i class="pin recent"></i> Painted here recently</span><span><i class="pin wide"></i> Wider area: specialist events</span></div>
+<p class="small-note">The shaded zone is Kat's regular area for parties and local events. Further afield, inside the dashed line, Kat travels for higher-value specialist events: weddings, festivals, corporate days and brand activations. <a href="contact.html">Ask about your event</a>.</p>
 </div></section>
-
-<section class="band band-panel k-enquire centred contact-box"><div class="wrap">
-<h2>Don't See Your Town?</h2>
-<p>I travel across Sussex and Surrey — get in touch to check availability for your area.</p>
-<a class="btn btn-gold" href="contact.html">Check my date</a>
-<a class="btn btn-wa" href="https://wa.me/447852300125?text=Hi%20I'd%20like%20to%20check%20availability%20in%20my%20area">💬 WhatsApp Me</a>
-
-<div class="qstrip"><figure><span aria-hidden="true">★★★★★</span><blockquote>“At times there were people literally sprinting to get to her”</blockquote><figcaption>Lisa K, wedding, Brighton</figcaption></figure><figure><span aria-hidden="true">★★★★★</span><blockquote>“So patient with a big group of excited kids”</blockquote><figcaption>Liam, Horsham</figcaption></figure><figure><span aria-hidden="true">★★★★★</span><blockquote>“Everyone was so complimentary of the amazing face paints!”</blockquote><figcaption>Daniel C, 4th birthday</figcaption></figure></div><form class="qform" action="https://formspree.io/f/mjgdnged" method="POST">
-<p class="draft-note">Draft site: this form is live and sends a real enquiry to Kat.</p>
-<input type="hidden" name="_subject" value="Website enquiry: Areas We Cover: Sussex &amp; Surrey">
-<input type="hidden" name="page" value="areas.html">
-<input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-<div class="row2"><label>Name<input type="text" name="name" autocomplete="name" required></label><label>Phone<input type="tel" name="phone" autocomplete="tel" required></label></div>
-<div class="row2"><label>Email<input type="email" name="email" autocomplete="email" required></label><label>Event date<input type="date" name="event-date" required></label></div>
-<label>Town or venue<input type="text" name="location" placeholder="e.g. Horsham" required></label>
-<label>How many children?<select name="children" required><option value="">Choose one</option><option>Under 10</option><option>10–15</option><option>16–25</option><option>25+</option><option>Adults / hen party</option></select></label>
-<label>Tell Kat about your party<textarea name="message" rows="4" placeholder="e.g. 6th birthday, 18 children, Horsham, 2–4pm, unicorn theme"></textarea></label>
-<button type="submit">Check my date →</button>
-<p class="small-note">Prefer WhatsApp? <a href="https://wa.me/447852300125" target="_blank" rel="noopener">Message Kat on 07852 300125</a></p>
-</form><p class="reassure"><span aria-hidden="true">🔒</span> <b>No obligation, and no payment to enquire.</b> Kat checks her diary and replies with availability and the best option for your party, usually the same day.</p></div></section>
-
-<section class="band trustband"><div class="wrap">
-<p class="eyebrow">Trusted across Sussex &amp; Surrey</p>
-<div class="trustrow">
-<a class="ate" href="https://www.addtoevent.co.uk/suppliers/the-painting-pixie-ltd" target="_blank" rel="noopener" title="Top rated on Add to Event"><img src="../img/addtoevent-top-rated.webp" alt="Top rated on Add to Event, 5 stars" width="84" height="81" loading="lazy"></a>
-<div><b>&#9733;&#9733;&#9733;&#9733;&#9733; 5.0</b><span>30+ reviews</span></div>
-<div><b>1,000+</b><span>faces painted</span></div>
-<div><b>Insured</b><span>&amp; DBS checked</span></div>
-<div><b>Guildford</b><span>Festival of the Arts</span></div>
-</div></div></section>
+<section class="band band-dark"><div class="wrap">
+<h2>Every area, by county</h2>
+<div class="acols"><div class="acol"><h3><a href="face-painter-sussex.html">West Sussex</a></h3><ul><li><a href="face-painter-horsham.html">Face painter in Horsham</a></li><li><a href="face-painter-west-sussex-villages.html">Face painter in Southwater</a></li><li><a href="face-painter-crawley.html">Face painter in Crawley</a></li><li><a href="face-painter-haywards-heath.html">Face painter in Haywards Heath</a></li><li><a href="face-painter-haywards-heath.html">Face painter in Cuckfield</a></li><li><a href="face-painter-burgess-hill.html">Face painter in Burgess Hill</a></li><li><a href="face-painter-east-grinstead.html">Face painter in East Grinstead</a></li><li><a href="face-painter-west-sussex-villages.html">Face painter in Billingshurst</a></li><li><a href="face-painter-west-sussex-villages.html">Face painter in Henfield</a></li><li><a href="face-painter-west-sussex-villages.html">Face painter in Steyning</a></li><li><a href="face-painter-west-sussex-villages.html">Face painter in Storrington</a></li><li><a href="face-painter-west-sussex-villages.html">Face painter in Pulborough</a></li><li><a href="face-painter-south-downs.html">Face painter in Midhurst</a></li><li><a href="face-painter-south-downs.html">Face painter in Petworth</a></li><li><a href="face-painter-worthing.html">Face painter in Worthing</a></li></ul></div><div class="acol"><h3><a href="face-painter-sussex.html">East Sussex</a></h3><ul><li><a href="face-painter-brighton.html">Face painter in Brighton & Hove</a></li><li><a href="face-painter-lewes.html">Face painter in Lewes</a></li></ul></div><div class="acol"><h3><a href="face-painter-surrey.html">Surrey</a></h3><ul><li><a href="face-painter-guildford.html">Face painter in Guildford</a></li><li><a href="face-painter-guildford.html">Face painter in Godalming</a></li><li><a href="face-painter-surrey-villages.html">Face painter in Cranleigh</a></li><li><a href="face-painter-dorking.html">Face painter in Dorking</a></li><li><a href="face-painter-surrey-villages.html">Face painter in Leatherhead</a></li><li><a href="face-painter-surrey-villages.html">Face painter in Horley</a></li><li><a href="face-painter-reigate.html">Face painter in Reigate & Redhill</a></li></ul></div></div>
+<h3 class="wide-h">Further afield: weddings, festivals &amp; corporate events</h3>
+<p class="wide-list">Chichester, Arundel, Bognor Regis, Farnham, Woking, Epsom, Croydon, London, Sevenoaks, Tunbridge Wells, Uckfield, Eastbourne, Hastings, Maidstone, Portsmouth, Southampton. <a href="contact.html">Ask about your event →</a></p>
+</div></section>
+<section class="band band-panel k-enquire centred"><div class="wrap"><h2>Is Kat free on your date?</h2>
+<p>Tell Kat your date, town and roughly how many guests. She usually replies the same day.</p>
+<a class="btn btn-gold" href="contact.html">Check my date</a></div></section>
 </main>
 <footer><div class="wrap">
 <div class="cols">
@@ -256,6 +299,61 @@ I'm happy to travel across Sussex and Surrey and have in the past been fortunate
 
 <div class="mbar" role="navigation" aria-label="Quick contact"><a class="pr" href="index.html#prices">Prices</a><a href="tel:+447852300125">Call</a><a class="wa" href="https://wa.me/447852300125?text=Hi%20I'd%20like%20to%20check%20availability%20in%20my%20area" target="_blank" rel="noopener">WhatsApp</a></div>
 <a class="wa-float" href="https://wa.me/447852300125?text=Hi%20I'd%20like%20to%20check%20availability%20in%20my%20area" target="_blank" rel="noopener" aria-label="Message Kat on WhatsApp"><svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path fill="#fff" d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2 7L3 29l6.4-2c2 1.1 4.3 1.7 6.6 1.7 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.4c-2.1 0-4.1-.6-5.9-1.7l-.4-.2-3.8 1.2 1.2-3.7-.3-.4c-1.2-1.8-1.8-3.8-1.8-5.9C5 10 9.9 5.2 16 5.2S27 10 27 15.9s-4.9 10.5-11 10.5zm6-7.8c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.2-.2.3-.8 1.1-1 1.3-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.2 1.4 3.4c.2.2 2.4 3.6 5.8 5 .8.3 1.4.5 1.9.7.8.2 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg><span>Message Kat</span></a>
+<style>
+.areamap{height:560px;border-radius:16px;margin-top:24px;border:6px solid #fff;box-shadow:0 30px 60px -30px rgba(60,30,40,.45);background:#1B1A22;z-index:0}
+.areamap .leaflet-popup-content-wrapper{background:#1F1C25;color:#F5F1EA;border-radius:12px}
+.areamap .leaflet-popup-tip{background:#1F1C25}
+.areamap .leaflet-popup-content{margin:12px 16px;font:600 14px/1.45 Manrope,system-ui,sans-serif}
+.areamap .leaflet-popup-content b{display:block;font-family:Fraunces,serif;font-weight:400;font-size:20px;color:#F5F1EA}
+.areamap .leaflet-popup-content a{color:#E2BE7A;font-weight:800}
+.pin{width:18px;height:18px;border-radius:50%;background:#FF4FA3;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.4)}
+.pin.recent{background:#E2BE7A;width:22px;height:22px}
+.pin.home{background:#2FD4C4;width:24px;height:24px}
+.pin.wide{background:transparent;border:3px solid #7A5BB0;width:14px;height:14px;box-shadow:none}
+.legend{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:16px;font-size:14px;font-weight:700;color:#4E463F}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend .pin{display:inline-block}
+.wide-h{margin:34px 0 6px;font-family:Fraunces,serif;font-weight:400;font-size:24px}
+.wide-list{color:var(--muted)}
+.acols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:20px}
+.acol h3{margin:0 0 10px;font-family:Fraunces,serif;font-weight:400;font-size:26px}
+.acol h3 a{color:var(--ink);text-decoration:none}
+.acol ul{list-style:none;margin:0;padding:0}
+.acol li{padding:7px 0;border-bottom:1px solid var(--line)}
+.acol li a{color:var(--muted);text-decoration:none;font-weight:600}
+.acol li a:hover{color:var(--gold)}
+@media(max-width:800px){.acols{grid-template-columns:1fr}.areamap{height:440px}}
+</style>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+(function(){
+  if (!window.L) return;
+  var pins = [{"n": "Horsham", "lat": 51.0629, "lon": -0.3259, "c": "West Sussex", "u": "face-painter-horsham.html", "note": "Home! No travel charge in town.", "r": false}, {"n": "Southwater", "lat": 51.0226, "lon": -0.3521, "c": "West Sussex", "u": "face-painter-west-sussex-villages.html", "note": "Parties and events in Southwater.", "r": false}, {"n": "Crawley", "lat": 51.1092, "lon": -0.1872, "c": "West Sussex", "u": "face-painter-crawley.html", "note": "Where Kat teaches and knows so many families.", "r": true}, {"n": "Haywards Heath", "lat": 50.9977, "lon": -0.105, "c": "West Sussex", "u": "face-painter-haywards-heath.html", "note": "One of Kat's most regular areas.", "r": true}, {"n": "Cuckfield", "lat": 51.006, "lon": -0.144, "c": "West Sussex", "u": "face-painter-haywards-heath.html", "note": "Parties and events in Cuckfield.", "r": false}, {"n": "Burgess Hill", "lat": 50.9581, "lon": -0.1335, "c": "West Sussex", "u": "face-painter-burgess-hill.html", "note": "Just down the road from Macs Farm.", "r": false}, {"n": "East Grinstead", "lat": 51.1232, "lon": -0.0073, "c": "West Sussex", "u": "face-painter-east-grinstead.html", "note": "A town Kat fell for.", "r": false}, {"n": "Billingshurst", "lat": 51.0226, "lon": -0.4526, "c": "West Sussex", "u": "face-painter-west-sussex-villages.html", "note": "Parties and events in Billingshurst.", "r": false}, {"n": "Henfield", "lat": 50.929, "lon": -0.2716, "c": "West Sussex", "u": "face-painter-west-sussex-villages.html", "note": "Parties and events in Henfield.", "r": true}, {"n": "Steyning", "lat": 50.887, "lon": -0.327, "c": "West Sussex", "u": "face-painter-west-sussex-villages.html", "note": "Parties and events in Steyning.", "r": false}, {"n": "Storrington", "lat": 50.916, "lon": -0.452, "c": "West Sussex", "u": "face-painter-west-sussex-villages.html", "note": "Parties and events in Storrington.", "r": false}, {"n": "Pulborough", "lat": 50.958, "lon": -0.508, "c": "West Sussex", "u": "face-painter-west-sussex-villages.html", "note": "Parties and events in Pulborough.", "r": false}, {"n": "Midhurst", "lat": 50.986, "lon": -0.738, "c": "West Sussex", "u": "face-painter-south-downs.html", "note": "Worth the drive.", "r": false}, {"n": "Petworth", "lat": 50.987, "lon": -0.61, "c": "West Sussex", "u": "face-painter-south-downs.html", "note": "Painted here twice this summer.", "r": true}, {"n": "Worthing", "lat": 50.8179, "lon": -0.3729, "c": "West Sussex", "u": "face-painter-worthing.html", "note": "Parties by the sea.", "r": true}, {"n": "Brighton & Hove", "lat": 50.8225, "lon": -0.1372, "c": "East Sussex", "u": "face-painter-brighton.html", "note": "Glitter for grown-ups and kids.", "r": true}, {"n": "Lewes", "lat": 50.8739, "lon": 0.0088, "c": "East Sussex", "u": "face-painter-lewes.html", "note": "Bonfire town.", "r": true}, {"n": "Guildford", "lat": 51.2362, "lon": -0.5704, "c": "Surrey", "u": "face-painter-guildford.html", "note": "Painted at the Festival of the Arts.", "r": true}, {"n": "Godalming", "lat": 51.1857, "lon": -0.6148, "c": "Surrey", "u": "face-painter-guildford.html", "note": "Parties and events in Godalming.", "r": false}, {"n": "Cranleigh", "lat": 51.141, "lon": -0.488, "c": "Surrey", "u": "face-painter-surrey-villages.html", "note": "Parties and events in Cranleigh.", "r": false}, {"n": "Dorking", "lat": 51.232, "lon": -0.331, "c": "Surrey", "u": "face-painter-dorking.html", "note": "Hills and vineyards.", "r": false}, {"n": "Leatherhead", "lat": 51.296, "lon": -0.333, "c": "Surrey", "u": "face-painter-surrey-villages.html", "note": "Parties and events in Leatherhead.", "r": false}, {"n": "Horley", "lat": 51.174, "lon": -0.172, "c": "Surrey", "u": "face-painter-surrey-villages.html", "note": "Parties and events in Horley.", "r": false}, {"n": "Reigate & Redhill", "lat": 51.237, "lon": -0.206, "c": "Surrey", "u": "face-painter-reigate.html", "note": "Busy all year round.", "r": false}];
+  var WIDER_PINS = [["Chichester", 50.8365, -0.7792], ["Arundel", 50.855, -0.555], ["Bognor Regis", 50.783, -0.676], ["Farnham", 51.215, -0.799], ["Woking", 51.319, -0.558], ["Epsom", 51.333, -0.267], ["Croydon", 51.372, -0.1], ["London", 51.507, -0.128], ["Sevenoaks", 51.272, 0.19], ["Tunbridge Wells", 51.132, 0.263], ["Uckfield", 50.969, 0.096], ["Eastbourne", 50.768, 0.29], ["Hastings", 50.854, 0.573], ["Maidstone", 51.272, 0.522], ["Portsmouth", 50.805, -1.087], ["Southampton", 50.909, -1.404]];
+  var map = L.map('areamap', {scrollWheelZoom:false}).setView([51.03,-0.33], 9);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    maxZoom: 14, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+  }).addTo(map);
+  var home = [51.0629,-0.3259];
+  L.circle(home, {radius: 36000, color:'#FF4FA3', weight:1.5, fillColor:'#FF4FA3', fillOpacity:.08}).addTo(map);
+  L.circle(home, {radius: 80000, color:'#7A5BB0', weight:1.5, dashArray:'6 8', fill:false}).addTo(map);
+  var wider = WIDER_PINS;
+  wider.forEach(function(p){
+    var icon = L.divIcon({className:'', html:'<div class="pin wide"></div>', iconSize:[16,16], iconAnchor:[8,8]});
+    L.marker([p[1],p[2]], {icon:icon, title:p[0], alt:p[0]}).addTo(map)
+      .bindPopup('<b>'+p[0]+'</b>Further afield: Kat travels here for weddings, festivals, corporate and brand events.<br><a href="contact.html">Ask about your event &rarr;</a>');
+  });
+  var bounds = [];
+  pins.forEach(function(p){
+    var cls = 'pin' + (p.n === 'Horsham' ? ' home' : (p.r ? ' recent' : ''));
+    var icon = L.divIcon({className:'', html:'<div class="'+cls+'"></div>', iconSize:[24,24], iconAnchor:[12,12]});
+    L.marker([p.lat,p.lon], {icon:icon, title:p.n, alt:p.n}).addTo(map)
+      .bindPopup('<b>'+p.n+'</b>'+p.note+(p.r?'<br>&#9733; Painted here recently':'')+'<br><a href="'+p.u+'">See the '+p.n+' page &rarr;</a>');
+    bounds.push([p.lat,p.lon]);
+  });
+  map.fitBounds(bounds, {padding:[40,40]});
+})();
+</script>
 <script src="site.js"></script>
 </body>
 </html>
