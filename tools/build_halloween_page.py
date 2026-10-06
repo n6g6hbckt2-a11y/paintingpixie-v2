@@ -117,10 +117,10 @@ h2{font-size:clamp(32px,4.4vw,52px)}
 .dates span.hot{background:var(--orange);color:#1A0B10;border-color:transparent}
 /* strip */
 .strip-wrap{padding:8px 0 4px;background:rgba(12,5,22,.55);backdrop-filter:none}
-.strip{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(250px,1fr);gap:12px;overflow-x:auto;padding:16px 16px 10px;scroll-snap-type:x mandatory;scrollbar-width:none}
+.strip{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(280px,1fr);gap:12px;overflow-x:auto;padding:16px 16px 10px;scroll-snap-type:x mandatory;scrollbar-width:none}
 .strip::-webkit-scrollbar{display:none}
 .strip a{position:relative;display:block;scroll-snap-align:start;border-radius:16px;overflow:hidden;text-decoration:none;color:#fff}
-.strip img{width:100%;aspect-ratio:3/4;object-fit:cover;transition:transform .4s}
+.strip img{width:100%;aspect-ratio:4/5;object-fit:cover;transition:transform .4s}
 .strip a:hover img{transform:scale(1.04)}
 .strip .cap{position:absolute;left:0;right:0;bottom:0;padding:40px 14px 12px;background:linear-gradient(180deg,transparent,rgba(12,5,22,.9));display:flex;justify-content:space-between;align-items:flex-end;gap:8px}
 .strip .cap b{font:400 21px/1.1 var(--disp)}
@@ -145,7 +145,7 @@ h2{font-size:clamp(32px,4.4vw,52px)}
 .levels{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:34px}
 .level{background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
 .level .pics{display:grid;grid-template-columns:1fr 1fr;gap:3px}
-.level .pics img{aspect-ratio:3/4;object-fit:cover;width:100%}
+.level .pics img{aspect-ratio:4/5;object-fit:cover;width:100%}
 .level .txt{padding:20px 22px 24px}
 .level h3{font-size:30px}
 .level small{display:block;font:800 12px var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--c);margin:4px 0 10px}
@@ -207,7 +207,7 @@ footer .ate img{width:70px}
  .hero{min-height:auto;padding:110px 0 40px}
  .hero .lede{font-size:17px}
  .ctas .btn{flex:1 1 auto}
- .strip{grid-auto-columns:72%}
+ .strip{grid-auto-columns:80%}
  .band{padding:60px 0}
  .intro,.levels,.reviews,.gt{grid-template-columns:1fr}
  .intro{gap:26px}
@@ -222,7 +222,7 @@ WA_SVG = '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6
 def body():
     strip = ''.join(
         f'<a href="{wa("Hi Kat! I love the " + c + " design. Are you free for a Halloween party? Date: Town: ")}" target="_blank" rel="noopener" data-design="{esc(c)}">'
-        f'<img src="halloween-{f}.webp" alt="{esc(a)}" width="800" height="1067" loading="{"eager" if i < 4 else "lazy"}">'
+        f'<img src="halloween-{f}.webp" alt="{esc(a)}" width="880" height="1100" loading="{"eager" if i < 4 else "lazy"}">'
         f'<span class="cap"><b>{esc(c)}</b><i>Book this look</i></span></a>' for i, (f, c, a) in enumerate(STRIP))
     levels = ''.join(
         f'<article class="level" style="--c:{col}"><div class="pics"><img src="halloween-{a}.webp" alt="" loading="lazy"><img src="halloween-{b}.webp" alt="" loading="lazy"></div>'
