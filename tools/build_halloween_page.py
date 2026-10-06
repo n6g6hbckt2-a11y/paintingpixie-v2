@@ -211,7 +211,7 @@ footer .ate img{width:70px}
 @media(max-width:760px){
  body{font-size:16px}
  .brand span{display:none}.brand img{width:54px;height:54px}
- .hero{min-height:auto;padding:110px 0 40px}
+ .hero{min-height:auto;padding:max(96px, calc(19vh - 22px)) 0 40px}
  .hero .lede{font-size:17px}
  .ctas .btn{flex:1 1 auto}
  .strip{grid-auto-columns:86%}
