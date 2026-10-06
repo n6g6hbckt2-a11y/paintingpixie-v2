@@ -59,8 +59,9 @@ def halloween(w=1600, h=1000, portrait=False):
     for _ in range(170):
         body += f'<circle cx="{rng.uniform(0, W):.0f}" cy="{rng.uniform(0, H * .75):.0f}" r="{rng.uniform(.6, 1.9):.1f}" fill="#FFF3D6" opacity="{rng.uniform(.3, .9):.2f}"/>'
     mx, my, mr = (sx(1290), 200, 120) if not portrait else (w * .72, 230, 110)
-    body += f'<circle cx="{mx:.0f}" cy="{my}" r="{mr * 1.9:.0f}" fill="url(#moonglow)"/><circle cx="{mx:.0f}" cy="{my}" r="{mr}" fill="#FFE9B0"/>'
-    body += f'<circle cx="{mx - mr * .33:.0f}" cy="{my - mr * .25:.0f}" r="{mr * .18:.0f}" fill="#F2D28A" opacity=".6"/><circle cx="{mx + mr * .3:.0f}" cy="{my + mr * .3:.0f}" r="{mr * .12:.0f}" fill="#F2D28A" opacity=".55"/>'
+    mo = .42 if portrait else 1
+    body += f'<g opacity="{mo}"><circle cx="{mx:.0f}" cy="{my}" r="{mr * 1.9:.0f}" fill="url(#moonglow)"/><circle cx="{mx:.0f}" cy="{my}" r="{mr}" fill="#FFE9B0"/>'
+    body += f'<circle cx="{mx - mr * .33:.0f}" cy="{my - mr * .25:.0f}" r="{mr * .18:.0f}" fill="#F2D28A" opacity=".6"/><circle cx="{mx + mr * .3:.0f}" cy="{my + mr * .3:.0f}" r="{mr * .12:.0f}" fill="#F2D28A" opacity=".55"/></g>'
     bats = [(1190, 260, 1.4, -10), (1350, 120, 1.0, 12), (1420, 300, .8, -6), (980, 120, .9, 8), (300, 140, 1.2, -14), (520, 80, .7, 10), (160, 330, .8, 6), (760, 220, .6, -8), (1530, 420, 1.1, 14)]
     for x, y, sc, r in bats:
         body += bat(sx(x), y * (1.25 if portrait else 1), sc, r)
@@ -81,3 +82,37 @@ if __name__ == '__main__':
     for d in ['/home/claude/paintingpixie-v2/img/bg/', '/home/claude/paintingpixie-v2/hw/']:
         open(d + 'halloween-night.svg', 'w').write(land); open(d + 'halloween-night-tall.svg', 'w').write(port)
     print('ok')
+
+
+def webs_tile(w=1400, h=1600):
+    """Repeating strip of stars and cobwebs that scrolls down the page behind the content."""
+    rng = random.Random(77)
+    o = ''
+    for _ in range(140):
+        o += f'<circle cx="{rng.uniform(0, w):.0f}" cy="{rng.uniform(0, h):.0f}" r="{rng.uniform(.6, 2):.1f}" fill="#FFF3D6" opacity="{rng.uniform(.25, .8):.2f}"/>'
+    for _ in range(10):
+        x, y, s = rng.uniform(0, w), rng.uniform(0, h), rng.uniform(5, 11)
+        o += (f'<path d="M{x:.0f},{y - s:.0f} Q{x:.0f},{y:.0f} {x + s:.0f},{y:.0f} Q{x:.0f},{y:.0f} {x:.0f},{y + s:.0f} '
+              f'Q{x:.0f},{y:.0f} {x - s:.0f},{y:.0f} Q{x:.0f},{y:.0f} {x:.0f},{y - s:.0f}Z" fill="#FFE9B0" opacity=".8"/>')
+    # cobwebs hanging off the left and right edges, at different heights
+    o += web(0, 260, 230, -math.pi / 2, math.pi / 2)
+    o += web(w, 1050, 260, math.pi / 2, 3 * math.pi / 2)
+    o += web(0, 1420, 150, -math.pi / 2, math.pi / 2)
+    o += web(w, 120, 120, math.pi / 2, 3 * math.pi / 2)
+    # a spider dropping from each big web
+    for x, y0, y1 in [(150, 300, 470), (w - 170, 1100, 1260)]:
+        o += f'<line x1="{x}" y1="{y0}" x2="{x}" y2="{y1}" stroke="#D9CCE8" stroke-width="1.2" opacity=".6"/>'
+        for k in range(4):
+            for sgn in (-1, 1):
+                o += f'<path d="M{x},{y1} q{sgn * 10},{-6 + k * 4} {sgn * 16},{-2 + k * 5}" stroke="#0B0612" stroke-width="2.4" fill="none"/>'
+        o += f'<ellipse cx="{x}" cy="{y1 + 2}" rx="7" ry="9" fill="#0B0612"/><circle cx="{x}" cy="{y1 - 7}" r="5" fill="#0B0612"/>'
+    for x, y, s, r in [(380, 760, .8, -10), (1000, 420, .7, 12), (640, 1350, .9, -6), (1180, 1500, .6, 8)]:
+        o += bat(x, y, s, r)
+    return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}">{o}</svg>'
+
+
+if __name__ == '__main__':
+    t = webs_tile()
+    for d in ['/home/claude/paintingpixie-v2/img/bg/', '/home/claude/paintingpixie-v2/hw/']:
+        open(d + 'halloween-webs.svg', 'w').write(t)
+    print('webs tile ok')

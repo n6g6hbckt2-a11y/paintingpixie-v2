@@ -84,6 +84,9 @@ CSS = r'''
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--night);color:var(--ink);font:17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
 body::before{content:"";position:fixed;inset:0;z-index:-1;background:url("halloween-night.svg") center/cover no-repeat;pointer-events:none}
+body{position:relative}
+.webs{position:absolute;left:0;top:0;width:100%;height:100%;z-index:-1;background:url("halloween-webs.svg") center top/1400px auto repeat-y;pointer-events:none}
+@media(max-width:760px){.webs{background-size:900px auto}}
 @media(max-aspect-ratio:3/4){body::before{background-image:url("halloween-night-tall.svg")}}
 img{max-width:100%;display:block}
 a{color:var(--gold)}
@@ -118,7 +121,7 @@ h2{font-size:clamp(32px,4.4vw,52px)}
 .dates span{padding:8px 13px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid var(--line);font:700 14px var(--body)}
 .dates span.hot{background:var(--orange);color:#1A0B10;border-color:transparent}
 /* strip */
-.strip-wrap{padding:8px 0 4px;background:rgba(12,5,22,.55);backdrop-filter:none}
+.strip-wrap{padding:8px 0 4px;background:rgba(12,5,22,.35);backdrop-filter:none}
 .strip{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(340px,1fr);gap:12px;overflow-x:auto;padding:16px 16px 10px;scroll-snap-type:x mandatory;scrollbar-width:none}
 .strip::-webkit-scrollbar{display:none}
 .strip a{position:relative;display:block;scroll-snap-align:start;border-radius:16px;overflow:hidden;text-decoration:none;color:#fff}
@@ -133,7 +136,7 @@ h2{font-size:clamp(32px,4.4vw,52px)}
 .trust span b{color:var(--gold)}
 /* sections */
 .band{padding:84px 0}
-.panel{background:rgba(20,9,34,.78);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.panel{background:rgba(20,9,34,.42);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .intro{display:grid;grid-template-columns:5fr 7fr;gap:52px;align-items:center}
 .intro img{border-radius:20px;aspect-ratio:4/5;object-fit:cover;box-shadow:0 30px 60px -20px rgba(0,0,0,.7)}
 .intro p{color:#E3D5F1}
@@ -241,7 +244,8 @@ def body():
     faqs = ''.join(f'<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q, a in FAQS)
     book = wa("Hi Kat! I'd like to book Halloween face painting. Date: Town: Guests: ")
     gt_link = wa("Hi Kat! I'd like to ask about Halloween glitter tattoos. Date: Town: ")
-    return f'''<header class="top"><div class="wrap"><a class="brand" href="{SITE}"><img src="logo-lg.webp" alt="The Painting Pixie"><span>The Painting Pixie</span></a>
+    return f'''<div class="webs" aria-hidden="true"></div>
+<header class="top"><div class="wrap"><a class="brand" href="{SITE}"><img src="logo-lg.webp" alt="The Painting Pixie"><span>The Painting Pixie</span></a>
 <nav class="links" aria-label="Main"><a href="{SITE}">Home</a><a href="{SITE}services.html">Services</a><a href="{SITE}gallery.html">Gallery</a><a href="{SITE}areas.html">Areas</a><a class="btn btn-orange" href="{SITE}contact.html">Check my date</a></nav></div></header>
 
 <section class="hero"><div class="wrap">
