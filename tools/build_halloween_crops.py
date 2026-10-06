@@ -9,7 +9,8 @@ C = [  # name, source, face centre x, y (fractions), crop width as fraction of p
  ('princess', 'img/g/skeleton-crown-1600.webp', .47, .40, .68),
  ('devil-girl', 'img/g/red-devil-1600.webp', .50, .38, .72),
  ('half-skull', UP + 'C127-half-skull-boy.jpeg', .55, .48, .44),
- ('pumpkin-sisters', 'img/g/pumpkin-sisters-1600.webp', .50, .45, 1.0),
+ ('pumpkin-big-sister', 'img/g/pumpkin-sisters-1600.webp', .31, .27, .58),
+ ('pumpkin-little-sister', 'img/g/pumpkin-sisters-1600.webp', .63, .52, .56),
  ('adult-skull', 'img/g/adult-skull-1600.webp', .50, .50, .95),
  ('monster', 'img/g/blue-monster-roar-1600.webp', .50, .42, .86),
 ]

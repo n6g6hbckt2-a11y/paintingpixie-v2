@@ -20,11 +20,12 @@ STRIP = [  # file, caption, alt
     ('adult-skull', 'Grown-up skull', 'Blue and white skull face paint on an adult'),
     ('half-skull', 'Half skull', 'Half skull face paint on a boy'),
     ('monster', 'Roaring monster', 'Blue monster face paint on a roaring child'),
-    ('pumpkin-sisters', 'Pumpkin sisters', 'Two sisters with matching pumpkin face paint'),
+    ('pumpkin-big-sister', 'Pumpkin queen', 'Pumpkin face paint on a girl at a Halloween event'),
+    ('pumpkin-little-sister', 'Little pumpkin', 'Pumpkin face paint on a little girl'),
 ]
 
 LEVELS = [
-    ('Cute', 'For little ones', 'Smiley pumpkins, friendly monsters, sparkly bats and princess crowns. Bright, happy and not scary at all.', 'pumpkin-sisters', 'princess', '#FFB347'),
+    ('Cute', 'For little ones', 'Smiley pumpkins, friendly monsters, sparkly bats and princess crowns. Bright, happy and not scary at all.', 'pumpkin-little-sister', 'princess', '#FFB347'),
     ('Spooky', 'For brave kids', 'Skulls, little devils and monster faces. Spooky enough to impress their friends, still fun to look at.', 'skull-boy', 'devil-girl', '#B57BFF'),
     ('Properly scary', 'For teens & grown-ups', 'Full-face skulls, werewolves and dramatic creatures for Halloween parties and fancy dress.', 'werewolf', 'adult-skull', '#FF5A4F'),
 ]
