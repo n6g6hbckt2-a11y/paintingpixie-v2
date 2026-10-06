@@ -1,0 +1,96 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Design ideas: header backgrounds | The Painting Pixie</title><meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1B1712;--muted:#5A5049;--bg:#F6F1EA;--gold:#E2BE7A}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Manrope,system-ui,sans-serif}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+header.top{padding:40px 0 10px}header.top img{width:84px;height:84px;border-radius:50%}
+h1{font:400 clamp(34px,5vw,56px)/1.05 Fraunces,serif;margin:14px 0 10px}
+.lede{max-width:760px;color:var(--muted);font-size:18px}
+.jump{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 10px}.jump a{padding:9px 14px;border-radius:999px;background:#fff;border:1.5px solid #E2D6C8;color:var(--ink);text-decoration:none;font-weight:700;font-size:14px}
+.opt{padding:46px 0;border-top:1px solid #E2D6C8}
+.ohead{display:flex;gap:18px;align-items:center;margin-bottom:18px}
+.letter{flex:0 0 58px;height:58px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font:600 28px Fraunces,serif}
+.ohead h2{margin:0;font:400 32px/1.1 Fraunces,serif}.ohead p{margin:4px 0 0;color:var(--muted)}
+.previews{display:grid;grid-template-columns:3fr 1fr;gap:18px;align-items:start}
+.desk,.phone,.band{background-size:cover;background-position:center;border-radius:16px;overflow:hidden;position:relative;box-shadow:0 26px 50px -30px rgba(30,10,30,.6)}
+.desk{aspect-ratio:16/9}
+.desk>img{position:absolute;right:0;top:0;width:60%;height:100%;object-fit:cover;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%);mask-image:linear-gradient(90deg,transparent,#000 6%)}
+.card{position:absolute;background:rgba(14,12,18,.8);color:#fff;border-radius:14px;display:flex;flex-direction:column;gap:6px}
+.desk .card{left:5%;bottom:9%;width:40%;padding:22px 24px}
+.card small{color:var(--gold);font-weight:800;letter-spacing:.12em;font-size:10px}
+.card b{font:400 clamp(18px,2.4vw,30px)/1.1 Fraunces,serif}.card span{font-size:13px;opacity:.85}
+.card i{font-style:normal;display:inline-block;width:max-content;padding:8px 14px;border-radius:999px;background:var(--gold);color:#1B1712;font-weight:800;font-size:12px;margin-top:4px}
+.card i.wa{background:#25D366;color:#fff;margin-top:-34px;margin-left:120px}
+.phone{aspect-ratio:9/19;border:6px solid #1B1712;border-radius:28px}
+.phone>img{position:absolute;left:0;top:0;width:100%;height:54%;object-fit:cover;-webkit-mask-image:linear-gradient(180deg,#000 80%,transparent);mask-image:linear-gradient(180deg,#000 80%,transparent)}
+.phone .card{left:7%;right:7%;bottom:6%;padding:14px}.phone .card b{font-size:17px}.phone .card span{font-size:11px}.phone .card i{font-size:11px;width:100%;text-align:center}
+.band{margin-top:18px;padding:34px 30px;color:#fff;display:flex;flex-direction:column}
+.band b{font:400 24px Fraunces,serif;text-shadow:0 2px 12px rgba(0,0,0,.6)}.band span{text-shadow:0 2px 10px rgba(0,0,0,.7)}
+.foot{padding:40px 0 70px;color:var(--muted)}
+@media(max-width:800px){.previews{grid-template-columns:1fr}.phone{max-width:240px;margin:0 auto}.desk .card{width:52%;padding:12px}.card i.wa{display:none}.card span{display:none}}
+</style></head><body>
+<header class="top"><div class="wrap"><img src="../img/logo-lg.webp" alt="The Painting Pixie">
+<h1>Design ideas: colourful backgrounds</h1>
+<p class="lede">Kat would like colour behind the page headers instead of plain black. Here are eight ideas, each shown on a laptop header, a phone, and as a section background. Pick a favourite (or two to mix), and it can go across the whole site.</p>
+<nav class="jump"><a href="#lightning">A · Electric lightning</a><a href="#swirls-dark">B · Colour swirls</a><a href="#swirls-bright">C · Bright sunset swirls</a><a href="#fireworks">D · Fireworks</a><a href="#galaxy">E · Glitter galaxy</a><a href="#rainbow">F · Rainbow waves</a><a href="#splash">G · Paint splashes</a><a href="#pixie-dust">H · Pixie dust</a></nav></div></header>
+<main class="wrap"><section class="opt" id="lightning">
+<div class="ohead"><span class="letter">A</span><div><h2>Electric lightning</h2><p>Black night sky with neon lightning bolts in violet, pink, blue and gold. Bold and dramatic.</p></div></div>
+<div class="previews">
+<div class="desk" style="background-image:url(../img/bg/lightning.svg)"><img src="../img/g/unicorn-party-1600.webp" alt=""><div class="card"><small>HOME · OCCASIONS</small><b>Children’s Party Face Painting</b><span>Magical, skin-safe face painting for birthday parties across Sussex and Surrey.</span><i>Check my date</i><i class="wa">WhatsApp Kat</i></div></div>
+<div class="phone" style="background-image:url(../img/bg/lightning.svg)"><img src="../img/g/unicorn-party-1600.webp" alt=""><div class="card"><b>Children’s Party Face Painting</b><span>Skin-safe face painting for parties.</span><i>Check my date</i></div></div>
+</div>
+<div class="band" style="background-image:url(../img/bg/lightning.svg)"><b>Also works as a section background</b><span>For example behind reviews, prices or the booking form.</span></div>
+</section><section class="opt" id="swirls-dark">
+<div class="ohead"><span class="letter">B</span><div><h2>Colour swirls</h2><p>Deep plum with big swirls of pink, purple, teal and gold, like brush strokes on a palette.</p></div></div>
+<div class="previews">
+<div class="desk" style="background-image:url(../img/bg/swirls-dark.svg)"><img src="../img/g/blue-monster-roar-1600.webp" alt=""><div class="card"><small>HOME · OCCASIONS</small><b>Children’s Party Face Painting</b><span>Magical, skin-safe face painting for birthday parties across Sussex and Surrey.</span><i>Check my date</i><i class="wa">WhatsApp Kat</i></div></div>
+<div class="phone" style="background-image:url(../img/bg/swirls-dark.svg)"><img src="../img/g/blue-monster-roar-1600.webp" alt=""><div class="card"><b>Children’s Party Face Painting</b><span>Skin-safe face painting for parties.</span><i>Check my date</i></div></div>
+</div>
+<div class="band" style="background-image:url(../img/bg/swirls-dark.svg)"><b>Also works as a section background</b><span>For example behind reviews, prices or the booking form.</span></div>
+</section><section class="opt" id="swirls-bright">
+<div class="ohead"><span class="letter">C</span><div><h2>Bright sunset swirls</h2><p>No black at all: purple through pink to orange, with yellow, teal and white swirls.</p></div></div>
+<div class="previews">
+<div class="desk" style="background-image:url(../img/bg/swirls-bright.svg)"><img src="../img/g/rainbow-laughing-1600.webp" alt=""><div class="card"><small>HOME · OCCASIONS</small><b>Children’s Party Face Painting</b><span>Magical, skin-safe face painting for birthday parties across Sussex and Surrey.</span><i>Check my date</i><i class="wa">WhatsApp Kat</i></div></div>
+<div class="phone" style="background-image:url(../img/bg/swirls-bright.svg)"><img src="../img/g/rainbow-laughing-1600.webp" alt=""><div class="card"><b>Children’s Party Face Painting</b><span>Skin-safe face painting for parties.</span><i>Check my date</i></div></div>
+</div>
+<div class="band" style="background-image:url(../img/bg/swirls-bright.svg)"><b>Also works as a section background</b><span>For example behind reviews, prices or the booking form.</span></div>
+</section><section class="opt" id="fireworks">
+<div class="ohead"><span class="letter">D</span><div><h2>Fireworks</h2><p>Midnight-blue sky with fireworks bursting in gold, pink, blue and green.</p></div></div>
+<div class="previews">
+<div class="desk" style="background-image:url(../img/bg/fireworks.svg)"><img src="../img/g/tiger-girl-closeup-1600.webp" alt=""><div class="card"><small>HOME · OCCASIONS</small><b>Children’s Party Face Painting</b><span>Magical, skin-safe face painting for birthday parties across Sussex and Surrey.</span><i>Check my date</i><i class="wa">WhatsApp Kat</i></div></div>
+<div class="phone" style="background-image:url(../img/bg/fireworks.svg)"><img src="../img/g/tiger-girl-closeup-1600.webp" alt=""><div class="card"><b>Children’s Party Face Painting</b><span>Skin-safe face painting for parties.</span><i>Check my date</i></div></div>
+</div>
+<div class="band" style="background-image:url(../img/bg/fireworks.svg)"><b>Also works as a section background</b><span>For example behind reviews, prices or the booking form.</span></div>
+</section><section class="opt" id="galaxy">
+<div class="ohead"><span class="letter">E</span><div><h2>Glitter galaxy</h2><p>Purple and pink nebula clouds scattered with coloured glitter and sparkles.</p></div></div>
+<div class="previews">
+<div class="desk" style="background-image:url(../img/bg/galaxy.svg)"><img src="../img/g/adult-lilac-flower-1600.webp" alt=""><div class="card"><small>HOME · OCCASIONS</small><b>Children’s Party Face Painting</b><span>Magical, skin-safe face painting for birthday parties across Sussex and Surrey.</span><i>Check my date</i><i class="wa">WhatsApp Kat</i></div></div>
+<div class="phone" style="background-image:url(../img/bg/galaxy.svg)"><img src="../img/g/adult-lilac-flower-1600.webp" alt=""><div class="card"><b>Children’s Party Face Painting</b><span>Skin-safe face painting for parties.</span><i>Check my date</i></div></div>
+</div>
+<div class="band" style="background-image:url(../img/bg/galaxy.svg)"><b>Also works as a section background</b><span>For example behind reviews, prices or the booking form.</span></div>
+</section><section class="opt" id="rainbow">
+<div class="ohead"><span class="letter">F</span><div><h2>Rainbow waves</h2><p>Flowing rainbow ribbons across a dark background, like a painted rainbow.</p></div></div>
+<div class="previews">
+<div class="desk" style="background-image:url(../img/bg/rainbow.svg)"><img src="../img/g/rainbow-sisters-1600.webp" alt=""><div class="card"><small>HOME · OCCASIONS</small><b>Children’s Party Face Painting</b><span>Magical, skin-safe face painting for birthday parties across Sussex and Surrey.</span><i>Check my date</i><i class="wa">WhatsApp Kat</i></div></div>
+<div class="phone" style="background-image:url(../img/bg/rainbow.svg)"><img src="../img/g/rainbow-sisters-1600.webp" alt=""><div class="card"><b>Children’s Party Face Painting</b><span>Skin-safe face painting for parties.</span><i>Check my date</i></div></div>
+</div>
+<div class="band" style="background-image:url(../img/bg/rainbow.svg)"><b>Also works as a section background</b><span>For example behind reviews, prices or the booking form.</span></div>
+</section><section class="opt" id="splash">
+<div class="ohead"><span class="letter">G</span><div><h2>Paint splashes</h2><p>Big colourful paint splats, the face painter’s palette.</p></div></div>
+<div class="previews">
+<div class="desk" style="background-image:url(../img/bg/splash.svg)"><img src="../img/g/leopard-claws-1600.webp" alt=""><div class="card"><small>HOME · OCCASIONS</small><b>Children’s Party Face Painting</b><span>Magical, skin-safe face painting for birthday parties across Sussex and Surrey.</span><i>Check my date</i><i class="wa">WhatsApp Kat</i></div></div>
+<div class="phone" style="background-image:url(../img/bg/splash.svg)"><img src="../img/g/leopard-claws-1600.webp" alt=""><div class="card"><b>Children’s Party Face Painting</b><span>Skin-safe face painting for parties.</span><i>Check my date</i></div></div>
+</div>
+<div class="band" style="background-image:url(../img/bg/splash.svg)"><b>Also works as a section background</b><span>For example behind reviews, prices or the booking form.</span></div>
+</section><section class="opt" id="pixie-dust">
+<div class="ohead"><span class="letter">H</span><div><h2>Pixie dust</h2><p>Purple-to-pink with a trail of golden fairy dust. A nod to the Pixie name.</p></div></div>
+<div class="previews">
+<div class="desk" style="background-image:url(../img/bg/pixie-dust.svg)"><img src="../img/g/fairy-festival-1600.webp" alt=""><div class="card"><small>HOME · OCCASIONS</small><b>Children’s Party Face Painting</b><span>Magical, skin-safe face painting for birthday parties across Sussex and Surrey.</span><i>Check my date</i><i class="wa">WhatsApp Kat</i></div></div>
+<div class="phone" style="background-image:url(../img/bg/pixie-dust.svg)"><img src="../img/g/fairy-festival-1600.webp" alt=""><div class="card"><b>Children’s Party Face Painting</b><span>Skin-safe face painting for parties.</span><i>Check my date</i></div></div>
+</div>
+<div class="band" style="background-image:url(../img/bg/pixie-dust.svg)"><b>Also works as a section background</b><span>For example behind reviews, prices or the booking form.</span></div>
+</section></main>
+<p class="foot wrap">Draft page for choosing a design. It isn’t linked from the site menus and is hidden from Google. <a href="index.html">Back to the draft site</a></p>
+</body></html>
