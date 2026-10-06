@@ -84,30 +84,58 @@ if __name__ == '__main__':
     print('ok')
 
 
-def webs_tile(w=1400, h=1600):
-    """Repeating strip of stars and cobwebs that scrolls down the page behind the content."""
+def web_full(cx, cy, R, spokes=10, rings=6, jitter=0.0, curve=.86, rot=0.0, seed=1, anchors=True):
+    """A complete spider web: spokes all the way round, rings joined up, optional wobble and anchor threads."""
+    rng = random.Random(seed)
+    angs = [rot + 2 * math.pi * k / spokes + rng.uniform(-jitter, jitter) * .35 for k in range(spokes)]
+    lens = [R * (1 + rng.uniform(-jitter, jitter)) for _ in angs]
+    col = '#E4D8F0'
+    o = ''
+    for a, L in zip(angs, lens):
+        o += f'<line x1="{cx:.0f}" y1="{cy:.0f}" x2="{cx + math.cos(a) * L:.0f}" y2="{cy + math.sin(a) * L:.0f}" stroke="{col}" stroke-width="1.7" opacity=".6"/>'
+    for ring in range(1, rings + 1):
+        f = ring / (rings + .4)
+        pts = [(cx + math.cos(a) * L * f, cy + math.sin(a) * L * f) for a, L in zip(angs, lens)]
+        pts.append(pts[0])
+        d = f'M{pts[0][0]:.0f},{pts[0][1]:.0f}'
+        for (x0, y0), (x1, y1) in zip(pts, pts[1:]):
+            mx, my = (x0 + x1) / 2, (y0 + y1) / 2
+            qx, qy = cx + (mx - cx) * curve, cy + (my - cy) * curve
+            d += f' Q{qx:.0f},{qy:.0f} {x1:.0f},{y1:.0f}'
+        o += f'<path d="{d}" stroke="{col}" stroke-width="1.4" fill="none" opacity=".55"/>'
+    o += f'<circle cx="{cx:.0f}" cy="{cy:.0f}" r="{R * .05:.0f}" fill="none" stroke="{col}" stroke-width="1.2" opacity=".6"/>'
+    if anchors:  # long threads holding the web in place
+        for a in rng.sample(angs, 3):
+            o += f'<line x1="{cx + math.cos(a) * R:.0f}" y1="{cy + math.sin(a) * R:.0f}" x2="{cx + math.cos(a) * R * 1.6:.0f}" y2="{cy + math.sin(a) * R * 1.6:.0f}" stroke="{col}" stroke-width="1.1" opacity=".4"/>'
+    return o
+
+def spider_on(x, y0, y1):
+    o = f'<line x1="{x:.0f}" y1="{y0:.0f}" x2="{x:.0f}" y2="{y1:.0f}" stroke="#E4D8F0" stroke-width="1.2" opacity=".6"/>'
+    for k in range(4):
+        for sgn in (-1, 1):
+            o += f'<path d="M{x:.0f},{y1:.0f} q{sgn * 10},{-6 + k * 4} {sgn * 16},{-2 + k * 5}" stroke="#0B0612" stroke-width="2.4" fill="none"/>'
+    return o + f'<ellipse cx="{x:.0f}" cy="{y1 + 2:.0f}" rx="7" ry="9" fill="#0B0612"/><circle cx="{x:.0f}" cy="{y1 - 7:.0f}" r="5" fill="#0B0612"/>'
+
+def webs_tile(w=1600, h=2000):
+    """Repeating strip of stars and whole cobwebs that scrolls down the page behind the content."""
     rng = random.Random(77)
     o = ''
-    for _ in range(140):
+    for _ in range(170):
         o += f'<circle cx="{rng.uniform(0, w):.0f}" cy="{rng.uniform(0, h):.0f}" r="{rng.uniform(.6, 2):.1f}" fill="#FFF3D6" opacity="{rng.uniform(.25, .8):.2f}"/>'
-    for _ in range(10):
-        x, y, s = rng.uniform(0, w), rng.uniform(0, h), rng.uniform(5, 11)
-        o += (f'<path d="M{x:.0f},{y - s:.0f} Q{x:.0f},{y:.0f} {x + s:.0f},{y:.0f} Q{x:.0f},{y:.0f} {x:.0f},{y + s:.0f} '
-              f'Q{x:.0f},{y:.0f} {x - s:.0f},{y:.0f} Q{x:.0f},{y:.0f} {x:.0f},{y - s:.0f}Z" fill="#FFE9B0" opacity=".8"/>')
-    # cobwebs hanging off the left and right edges, at different heights
-    o += web(0, 260, 230, -math.pi / 2, math.pi / 2)
-    o += web(w, 1050, 260, math.pi / 2, 3 * math.pi / 2)
-    o += web(0, 1420, 150, -math.pi / 2, math.pi / 2)
-    o += web(w, 120, 120, math.pi / 2, 3 * math.pi / 2)
-    # a spider dropping from each big web
-    for x, y0, y1 in [(150, 300, 470), (w - 170, 1100, 1260)]:
-        o += f'<line x1="{x}" y1="{y0}" x2="{x}" y2="{y1}" stroke="#D9CCE8" stroke-width="1.2" opacity=".6"/>'
-        for k in range(4):
-            for sgn in (-1, 1):
-                o += f'<path d="M{x},{y1} q{sgn * 10},{-6 + k * 4} {sgn * 16},{-2 + k * 5}" stroke="#0B0612" stroke-width="2.4" fill="none"/>'
-        o += f'<ellipse cx="{x}" cy="{y1 + 2}" rx="7" ry="9" fill="#0B0612"/><circle cx="{x}" cy="{y1 - 7}" r="5" fill="#0B0612"/>'
-    for x, y, s, r in [(380, 760, .8, -10), (1000, 420, .7, 12), (640, 1350, .9, -6), (1180, 1500, .6, 8)]:
-        o += bat(x, y, s, r)
+    for _ in range(12):
+        x, y, sz = rng.uniform(0, w), rng.uniform(0, h), rng.uniform(5, 11)
+        o += (f'<path d="M{x:.0f},{y - sz:.0f} Q{x:.0f},{y:.0f} {x + sz:.0f},{y:.0f} Q{x:.0f},{y:.0f} {x:.0f},{y + sz:.0f} '
+              f'Q{x:.0f},{y:.0f} {x - sz:.0f},{y:.0f} Q{x:.0f},{y:.0f} {x:.0f},{y - sz:.0f}Z" fill="#FFE9B0" opacity=".8"/>')
+    # whole webs of different shapes and sizes, alternating sides, kept inside the visible width
+    o += web_full(290, 260, 170, spokes=12, rings=7, seed=1)                              # classic round web
+    o += web_full(1330, 620, 135, spokes=6, rings=5, curve=1.0, rot=.3, seed=2)           # straight-sided hexagon web
+    o += web_full(250, 1050, 150, spokes=9, rings=6, jitter=.28, curve=.8, seed=3)        # wobbly, irregular web
+    o += web_full(1300, 1420, 185, spokes=14, rings=8, curve=.9, rot=.2, seed=4)          # big dense web
+    o += web_full(560, 1760, 95, spokes=8, rings=4, jitter=.18, curve=.95, seed=5)        # small web
+    o += web_full(1040, 180, 80, spokes=7, rings=4, jitter=.3, curve=.85, seed=6)         # tiny torn web
+    o += spider_on(290, 260, 520) + spider_on(1300, 1420, 1660) + spider_on(250, 1050, 1180)
+    for x, y, sc, r in [(700, 760, .8, -10), (980, 420, .7, 12), (820, 1300, .9, -6), (1180, 1900, .6, 8), (420, 1500, .7, 4)]:
+        o += bat(x, y, sc, r)
     return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}">{o}</svg>'
 
 
