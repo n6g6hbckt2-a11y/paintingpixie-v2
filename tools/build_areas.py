@@ -2,7 +2,7 @@
 """Areas page: interactive map + crawlable town list + service-area schema (matches the 20 Google Business Profile areas)."""
 import re, json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from recent import RECENT, PERIOD
+from recent import RECENT, PERIOD, COMING_UP
 
 OUT = '/home/claude/paintingpixie-v2/draft'
 
@@ -120,6 +120,7 @@ Tap a pin to see Kat's local page, or scroll down for the full list. Gold pins a
 <div id="areamap" class="areamap" role="region" aria-label="Map of the towns The Painting Pixie covers">{static_map(recent)}</div>
 <div class="legend"><span><i class="pin home"></i> Home: Horsham</span><span><i class="pin"></i> Regular area (within about 40 minutes), with a local page</span><span><i class="pin recent"></i> Painted here recently</span><span><i class="pin wide"></i> Wider area: specialist events</span></div>
 <p class="recentareas"><b>Recently painted ({PERIOD}):</b> {recent_text()}.</p>
+<p class="recentareas"><b>Coming up:</b> {'; '.join(f"{p.replace(', ', ' (', 1)}{')' if ', ' in p else ''}, {d}" for p, d in COMING_UP)}.</p>
 <p class="small-note">The shaded zone is Kat's regular area: parties and local events within about 40 minutes of Horsham. Further afield, inside the dashed line, Kat travels for higher-value specialist events: weddings, festivals, corporate days and brand activations. <a href="contact.html">Ask about your event</a>.</p>
 </div></section>
 <section class="band band-dark"><div class="wrap">
@@ -205,7 +206,7 @@ Tap a pin to see Kat's local page, or scroll down for the full list. Gold pins a
   wider.forEach(function(p){{
     var icon = L.divIcon({{className:'', html:'<div class="pin wide'+(p[3]?' wrecent':'')+'"></div>', iconSize:[16,16], iconAnchor:[8,8]}});
     L.marker([p[1],p[2]], {{icon:icon, title:p[0], alt:p[0]}}).addTo(map)
-      .bindPopup('<b>'+p[0]+'</b>Further afield: Kat travels here for weddings, festivals, corporate and brand events.'+(p[3]?'<br>&#9733; Painted here recently: Baker Street and the Good Hotel':'')+'<br><a href="contact.html">Ask about your event &rarr;</a>');
+      .bindPopup('<b>'+p[0]+'</b>Further afield: Kat travels here for weddings, festivals, corporate and brand events.'+(p[3]?'<br>&#9733; Painted here recently: Baker Street<br>Coming up: Good Hotel workshop, 30 October':'')+'<br><a href="contact.html">Ask about your event &rarr;</a>');
   }});
   var bounds = [];
   pins.forEach(function(p){{
