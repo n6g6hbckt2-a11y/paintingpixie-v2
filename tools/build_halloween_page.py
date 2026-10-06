@@ -137,7 +137,7 @@ h2{font-size:clamp(32px,4.4vw,52px)}
 .intro p{color:#E3D5F1}
 .sig{font:italic 400 26px var(--disp);color:var(--gold);margin-top:6px}
 .gt{display:grid;grid-template-columns:7fr 5fr;gap:52px;align-items:center}
-.gt img{border-radius:20px;aspect-ratio:4/5;object-fit:cover;object-position:35% 50%;box-shadow:0 30px 60px -20px rgba(0,0,0,.7)}
+.gt img{border-radius:20px;aspect-ratio:4/5;object-fit:cover;object-position:72% 50%;box-shadow:0 30px 60px -20px rgba(0,0,0,.7)}
 .gt p{color:#E3D5F1}
 .ticks{list-style:none;padding:0;margin:14px 0;display:grid;gap:8px}
 .ticks li{padding-left:28px;position:relative;color:#EADDF7}
@@ -150,7 +150,9 @@ h2{font-size:clamp(32px,4.4vw,52px)}
 .level h3{font-size:30px}
 .level small{display:block;font:800 12px var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--c);margin:4px 0 10px}
 .level p{margin:0;color:var(--muted);font-size:16px}
-.ideas{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:30px}
+.ideas{display:grid;grid-template-rows:repeat(2,auto);grid-auto-flow:column;grid-auto-columns:minmax(250px,280px);gap:12px;margin-top:30px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;scrollbar-width:thin;scrollbar-color:var(--orange) transparent}
+.idea{scroll-snap-align:start}
+.swipe{margin:10px 0 0;color:var(--muted);font-size:14.5px}
 .idea{padding:16px 18px;border-radius:14px;background:rgba(255,255,255,.05);border:1px solid var(--line)}
 .idea b{display:block;font:400 21px var(--disp);color:#fff;margin-bottom:4px}
 .idea span{font-size:14.5px;color:var(--muted)}
@@ -200,7 +202,7 @@ footer .ate{display:inline-block;margin-bottom:12px}
 footer .ate img{width:70px}
 .wa-float{position:fixed;right:18px;bottom:18px;z-index:20;width:60px;height:60px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.45)}
 .wa-float svg{width:32px;height:32px;fill:#fff}
-@media(max-width:980px){.packs{grid-template-columns:1fr 1fr}.ideas{grid-template-columns:repeat(3,1fr)}.events{grid-template-columns:1fr 1fr}.links a:not(.btn){display:none}}
+@media(max-width:980px){.packs{grid-template-columns:1fr 1fr}.events{grid-template-columns:1fr 1fr}.links a:not(.btn){display:none}}
 @media(max-width:760px){
  body{font-size:16px}
  .brand span{display:none}.brand img{width:54px;height:54px}
@@ -211,7 +213,7 @@ footer .ate img{width:70px}
  .band{padding:60px 0}
  .intro,.levels,.reviews,.gt{grid-template-columns:1fr}
  .intro{gap:26px}
- .ideas{grid-template-columns:1fr 1fr}.events,.packs{grid-template-columns:1fr}
+ .ideas{grid-auto-columns:72%}.events,.packs{grid-template-columns:1fr}
  .workshop{grid-template-columns:1fr;text-align:left}.workshop .when{text-align:left}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
@@ -275,7 +277,8 @@ def body():
 <section class="band"><div class="wrap">
 <p class="eyebrow">Halloween face paint ideas</p><h2>Twelve favourites to choose from</h2>
 <p class="lede">Not sure what to go for? These are the designs I paint most at Halloween. Your guests can pick on the day, or ask for something special when you book.</p>
-<div class="ideas">{ideas}</div>
+<div class="ideas" tabindex="0" aria-label="Halloween face paint ideas, scroll sideways for more">{ideas}</div>
+<p class="swipe">Swipe or scroll sideways for more ideas →</p>
 <p class="ideas-note">Want a costume match, a favourite character or a design from Pinterest? <a href="{wa("Hi Kat! Could you paint this Halloween design? ")}" target="_blank" rel="noopener">Send Kat a picture on WhatsApp</a>.</p>
 </div></section>
 
