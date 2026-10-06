@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Design ideas page: colourful header backgrounds for Kat to choose from (instead of plain black).
 Backgrounds are generated as lightweight SVG files in img/bg/. Page: draft/design-ideas.html (not indexed)."""
-import math, os, random
+import json, math, os, random, re
 
 V2 = '/home/claude/paintingpixie-v2'
 BG = V2 + '/img/bg'
@@ -222,16 +222,78 @@ h1{{font:400 clamp(34px,5vw,56px)/1.05 Fraunces,serif;margin:14px 0 10px}}
 <header class="top"><div class="wrap"><img src="../img/logo-lg.webp" alt="The Painting Pixie">
 <h1>Design ideas: colourful backgrounds</h1>
 <p class="lede">Kat would like colour behind the page headers instead of plain black. Here are eight ideas, each shown on a laptop header, a phone, and as a section background. Pick a favourite (or two to mix), and it can go across the whole site.</p>
+<p class="lede"><a href="design-ideas-homepage.html"><b>See them on the real homepage →</b></a> Every section that’s currently black shows a different idea, with a chooser to try one everywhere.</p>
 <nav class="jump">{nav}</nav></div></header>
 <main class="wrap">{"".join(secs)}</main>
 <p class="foot wrap">Draft page for choosing a design. It isn’t linked from the site menus and is hidden from Google. <a href="index.html">Back to the draft site</a></p>
 </body></html>'''
+
+def homepage_demo():
+    s = open(V2 + '/draft/index.html').read()
+    s = s.replace('<meta name="robots" content="index, follow">', '')
+    s = s.replace('</head>', '<meta name="robots" content="noindex,nofollow">\n</head>', 1)
+    s = re.sub(r'<title>.*?</title>', '<title>Design ideas: homepage backgrounds | The Painting Pixie</title>', s, count=1, flags=re.S)
+    opts = [(sl, chr(65 + i), n) for i, (sl, n, _, _) in enumerate(OPTIONS)]
+    btns = '<button type="button" data-o="mix" class="on">Mix: a different idea in each section</button><button type="button" data-o="none">Current (plain black)</button>' + ''.join(
+        f'<button type="button" data-o="{sl}"><b>{l}</b> {n}</button>' for sl, l, n in opts)
+    panel = f'''<div id="dpanel" role="region" aria-label="Background chooser"><div class="dp-h"><b>Background ideas</b><button type="button" id="dpmin" aria-label="Hide or show the chooser">–</button></div>
+<p>Kat’s colourful backgrounds on every section that’s currently black. Pick one to see it everywhere.</p><div class="dp-b">{btns}</div></div>'''
+    css = '''<style>
+#dpanel{position:fixed;right:16px;bottom:96px;z-index:9999;width:300px;max-height:70vh;overflow:auto;background:#fff;color:#1B1712;border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.45);padding:14px 14px 12px;font:14px/1.4 Manrope,system-ui,sans-serif}
+#dpanel p{margin:6px 0 10px;color:#5A5049;font-size:13px}
+.dp-h{display:flex;justify-content:space-between;align-items:center}.dp-h b{font:400 20px Fraunces,serif}
+#dpmin{border:0;background:#F1EAE1;border-radius:8px;width:30px;height:30px;font-size:18px;cursor:pointer}
+.dp-b{display:flex;flex-direction:column;gap:6px}
+.dp-b button{text-align:left;border:1.5px solid #E2D6C8;background:#fff;border-radius:10px;padding:9px 12px;font:600 14px Manrope,system-ui,sans-serif;cursor:pointer;color:#1B1712}
+.dp-b button b{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#1B1712;color:#fff;font-size:12px;margin-right:6px}
+.dp-b button.on{border-color:#FF4FA3;background:#FFF0F7}
+#dpanel.min p,#dpanel.min .dp-b{display:none}#dpanel.min{width:auto}
+.bgx{background-size:cover!important;background-position:center!important;position:relative}
+.bgtag{position:absolute;top:12px;left:12px;z-index:5;background:#fff;color:#1B1712;font:800 12px Manrope,system-ui,sans-serif;padding:6px 10px;border-radius:999px;box-shadow:0 6px 16px rgba(0,0,0,.35)}
+@media(max-width:600px){#dpanel{left:12px;right:12px;width:auto;bottom:90px;max-height:46vh}}
+</style>'''
+    names = {sl: (l, n) for sl, l, n in opts}
+    js = '''<script>
+(function(){
+  var OPTS=%s, NAMES=%s;
+  function lum(c){var m=c.match(/[0-9.]+/g);if(!m||(m[3]!==undefined&&+m[3]<.5))return null;return (0.299*m[0]+0.587*m[1]+0.114*m[2]);}
+  var bodyL=lum(getComputedStyle(document.body).backgroundColor);
+  var cands=[].slice.call(document.querySelectorAll('body > div, body > section, main > *, body > footer, .trust, .strip'));
+  var dark=cands.filter(function(e){
+    if(e.id==='dpanel'||e.closest('#dpanel')||e.matches('header.hero, nav, .wa-float, .mbar, .jewel-rule, script, style')||e.offsetHeight<120)return false;
+    var cs=getComputedStyle(e), L=lum(cs.backgroundColor), T=lum(cs.color);
+    if(L!==null)return L<70;
+    return T!==null&&T>170;
+  });
+  // keep only outermost dark blocks
+  dark=dark.filter(function(e){return !dark.some(function(o){return o!==e&&o.contains(e)})});
+  dark.forEach(function(e){e.dataset.bg0=e.style.backgroundImage||'';});
+  function apply(o){
+    document.querySelectorAll('.bgtag').forEach(function(t){t.remove()});
+    dark.forEach(function(e,i){
+      var sl=o==='mix'?OPTS[i%%OPTS.length]:o;
+      if(o==='none'){e.style.backgroundImage=e.dataset.bg0;e.classList.remove('bgx');return}
+      e.classList.add('bgx');e.style.backgroundImage='linear-gradient(rgba(14,11,20,.38),rgba(14,11,20,.38)),url(../img/bg/'+sl+'.svg)';
+      if(getComputedStyle(e).position==='static')e.style.position='relative';
+      var t=document.createElement('span');t.className='bgtag';t.textContent=NAMES[sl][0]+' · '+NAMES[sl][1];e.appendChild(t);
+    });
+    document.querySelectorAll('.dp-b button').forEach(function(b){b.classList.toggle('on',b.dataset.o===o)});
+  }
+  document.querySelectorAll('.dp-b button').forEach(function(b){b.addEventListener('click',function(){apply(b.dataset.o)})});
+  document.getElementById('dpmin').addEventListener('click',function(){document.getElementById('dpanel').classList.toggle('min')});
+  var h=location.hash.slice(1); apply(OPTS.indexOf(h)>-1?h:'mix');
+})();
+</script>''' % (json.dumps([sl for sl, _, _ in opts]), json.dumps(names))
+    s = s.replace('</head>', css + '\n</head>', 1)
+    s = s.replace('</body>', panel + js + '\n</body>', 1)
+    open(V2 + '/draft/design-ideas-homepage.html', 'w').write(s)
 
 def build():
     os.makedirs(BG, exist_ok=True)
     for slug, _, _, fn in OPTIONS:
         open(f'{BG}/{slug}.svg', 'w').write(fn())
     open(V2 + '/draft/design-ideas.html', 'w').write(page())
+    homepage_demo()
     print('design ideas built:', len(OPTIONS), 'options')
 
 if __name__ == '__main__':
