@@ -20,7 +20,6 @@ STRIP = [  # file, caption, alt
     ('adult-skull', 'Grown-up skull', 'Blue and white skull face paint on an adult'),
     ('half-skull', 'Half skull', 'Half skull face paint on a boy'),
     ('monster', 'Roaring monster', 'Blue monster face paint on a roaring child'),
-    ('devil-boy', 'Little devil', 'Red devil face paint on a boy'),
     ('pumpkin-sisters', 'Pumpkin sisters', 'Two sisters with matching pumpkin face paint'),
 ]
 
