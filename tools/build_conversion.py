@@ -374,5 +374,29 @@ def build():
     _orig_build4()
     add_trust_ig()
 
+
+# ---------- Split hero: on wider screens the photo sits on the right, so the text card doesn't cover the face ----------
+SPLIT_CSS = r'''
+.phero>img.hbg{display:none}
+@media(min-width:901px){
+.phero:not(.hero-right)>img:not(.hbg){left:40%;width:60%;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14%);mask-image:linear-gradient(90deg,transparent 0,#000 14%)}
+.phero:not(.hero-right)>img.hbg{display:block;position:fixed;inset:-40px;width:calc(100% + 80px);height:calc(100vh + 80px);object-fit:cover;filter:blur(38px) brightness(.5) saturate(1.25);z-index:-2}
+.phero:not(.hero-right)::after{background:linear-gradient(180deg,rgba(21,19,26,.5) 0,rgba(21,19,26,0) 18%,rgba(21,19,26,0) 70%,rgba(21,19,26,.55) 100%)}
+.phero:not(.hero-right) .hcard{max-width:min(560px,38vw)}
+}
+'''
+def split_heroes():
+    with open(f'{OUT}/site.css', 'a') as f: f.write(SPLIT_CSS)
+    for p in glob.glob(f'{OUT}/*.html'):
+        s = open(p).read()
+        if 'class="hbg"' in s: continue
+        n = re.sub(r'(<header class="phero"><img src="([^"]+)"[^>]*>)', r'\1<img class="hbg" src="\2" alt="" aria-hidden="true">', s, count=1)
+        if n != s: open(p, 'w').write(n)
+
+_orig_build5 = build
+def build():
+    _orig_build5()
+    split_heroes()
+
 if __name__ == '__main__':
     build()
