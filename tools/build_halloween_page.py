@@ -250,7 +250,7 @@ def body():
 
 <section class="strip-wrap" aria-label="Halloween face painting by Kat"><div class="strip">{strip}</div>
 <p class="strip-note">Swipe for more, tap a look to book it, or <a href="{SITE}gallery.html">see the full gallery</a></p>
-<div class="wrap trust"><span><b>★★★★★ 5.0</b> on Add to Event</span><span>Insured &amp; DBS checked</span><span>Professional skin-safe paints</span><span>Calm with nervous little ones</span></div></section>
+<div class="wrap trust"><span><b>Calm and patient</b> with nervous little ones</span><span><b>★★★★★ 5.0</b> on Add to Event</span><span>Insured &amp; DBS checked</span><span>Professional skin-safe paints</span></div></section>
 
 <section class="band panel"><div class="wrap intro">
 <img src="halloween-kat-at-work.webp" alt="Kat from The Painting Pixie face painting a child" loading="lazy">
