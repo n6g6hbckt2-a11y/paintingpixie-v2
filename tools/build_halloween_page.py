@@ -232,7 +232,7 @@ def body():
         f'<img src="halloween-{f}-wide.webp" alt="{esc(a)}" width="1000" height="1000" loading="{"eager" if i < 4 else "lazy"}">'
         f'<span class="cap"><b>{esc(c)}</b><i>Book this look</i></span></a>' for i, (f, c, a) in enumerate(STRIP))
     levels = ''.join(
-        f'<article class="level" style="--c:{col}"><div class="pics"><img src="halloween-{a}.webp" alt="" loading="lazy"><img src="halloween-{b}.webp" alt="" loading="lazy"></div>'
+        f'<article class="level" style="--c:{col}"><div class="pics"><img src="halloween-{a}-card.webp" alt="" loading="lazy"><img src="halloween-{b}-card.webp" alt="" loading="lazy"></div>'
         f'<div class="txt"><h3>{esc(n)}</h3><small>{esc(who)}</small><p>{esc(d)}</p></div></article>' for n, who, d, a, b, col in LEVELS)
     ideas = ''.join(f'<div class="idea"><b>{esc(n)}</b><span>{esc(d)}</span></div>' for n, d in IDEAS)
     events = ''.join(f'<div class="event"><b>{esc(n)}</b><span>{esc(d)}</span></div>' for n, d in EVENTS)
