@@ -2,7 +2,7 @@
 """Areas page: interactive map + crawlable town list + service-area schema (matches the 20 Google Business Profile areas)."""
 import re, json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from recent import RECENT
+from recent import RECENT, PERIOD
 
 OUT = '/home/claude/paintingpixie-v2/draft'
 
@@ -49,11 +49,56 @@ NOTES = {  # one line per town for the pop-up
  "Reigate & Redhill": "Busy all year round.", "Midhurst": "Worth the drive.", "Petworth": "Painted here twice this summer.",
 }
 
+def recent_text():
+    seen = []
+    for items in RECENT.values():
+        for p, n in items:
+            q = p.replace(', near ', ' near ').replace(', ', ' (', 1) + (')' if ', ' in p.replace(', near ', '') else '')
+            if q not in seen: seen.append(q)
+    return ', '.join(seen[:-1]) + ' and ' + seen[-1]
+
 def recent_places():
     names = set()
     for items in RECENT.values():
-        for p, n in items: names.add(p.split(',')[0].strip())
+        for p, n in items: names.update(x.strip() for x in p.split(','))
     return names
+
+def static_map(recent):
+    """Drawn map shown straight away (and kept if the live map can't load): pins at real positions, linked to town pages."""
+    import math
+    W, H = 1000, 640
+    lat0, lat1, lon0, lon1 = 51.42, 50.70, -0.98, 0.30
+    kx = math.cos(math.radians(51.05))
+    sc = min(W / ((lon1 - lon0) * kx), H / (lat0 - lat1))
+    ox = (W - (lon1 - lon0) * kx * sc) / 2; oy = (H - (lat0 - lat1) * sc) / 2
+    xy = lambda la, lo: (ox + (lo - lon0) * kx * sc, oy + (lat0 - la) * sc)
+    hx, hy = xy(51.0629, -0.3259)
+    km = sc / 111.0
+    font = 'font-family="Manrope,system-ui,sans-serif"'
+    coast = [(50.80, -2.5), (50.79, -1.2), (50.78, -0.80), (50.80, -0.55), (50.81, -0.37), (50.83, -0.13), (50.79, 0.10), (50.76, 0.30), (50.80, 0.6), (50.82, 1.8)]
+    pts = [xy(a, b) for a, b in coast]
+    d = f'M{pts[0][0]:.0f},{pts[0][1]:.0f} ' + ' '.join(f'L{x:.0f},{y:.0f}' for x, y in pts[1:]) + f' L{pts[-1][0]:.0f},{H + 50} L{pts[0][0]:.0f},{H + 50}Z'
+    o = [f'<svg viewBox="0 0 {W} {H}" class="smap" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Map of the towns The Painting Pixie covers">',
+         f'<rect x="-200" y="-200" width="{W + 400}" height="{H + 400}" fill="#231F30"/>',
+         f'<path d="{d}" fill="#173149"/>',
+         f'<text x="{xy(50.745, -0.62)[0]:.0f}" y="{xy(50.745, -0.62)[1]:.0f}" fill="#5D87AA" font-size="16" font-style="italic" {font}>English Channel</text>',
+         f'<circle cx="{hx:.0f}" cy="{hy:.0f}" r="{80 * km:.0f}" fill="none" stroke="#9C83D1" stroke-width="2" stroke-dasharray="7 9"/>',
+         f'<circle cx="{hx:.0f}" cy="{hy:.0f}" r="{36 * km:.0f}" fill="#FF4FA3" fill-opacity=".12" stroke="#FF4FA3" stroke-width="2"/>']
+    for n, a, b in WIDER:
+        if not (lat1 < a < lat0 and lon0 < b < lon1): continue
+        x, y = xy(a, b)
+        o.append(f'<a href="contact.html"><circle cx="{x:.0f}" cy="{y:.0f}" r="6" fill="{"#E2BE7A" if n in recent else "#231F30"}" stroke="#9C83D1" stroke-width="2.4"><title>{n}: weddings, festivals and corporate events</title></circle>'
+                 f'<text x="{x + 10:.0f}" y="{y + 5:.0f}" fill="#B7A9D6" font-size="14" {font}>{n}</text></a>')
+    left = {'Billingshurst', 'Cuckfield', 'Midhurst', 'Guildford', 'Dorking', 'Henfield', 'Storrington', 'Godalming', 'Leatherhead'}
+    for n, a, b, c, u, g in TOWNS:
+        x, y = xy(a, b)
+        col = '#2FD4C4' if n == 'Horsham' else ('#E2BE7A' if (n.split(' ')[0] in recent or n in recent) else '#FF4FA3')
+        r = 11 if n == 'Horsham' else 8
+        tx, anchor = (x - 13, 'end') if n in left else (x + 13, 'start')
+        o.append(f'<a href="{u}"><circle cx="{x:.0f}" cy="{y:.0f}" r="{r}" fill="{col}" stroke="#fff" stroke-width="2.4"><title>Face painter in {n}</title></circle>'
+                 f'<text x="{tx:.0f}" y="{y + 5:.0f}" text-anchor="{anchor}" fill="#F5F1EA" font-size="15" font-weight="700" {font} paint-order="stroke" stroke="#231F30" stroke-width="4">{n}</text></a>')
+    o.append('</svg>')
+    return ''.join(o)
 
 def build():
     p = f'{OUT}/areas.html'
@@ -72,8 +117,9 @@ def build():
 <h2>Where Kat paints</h2>
 <p>The Painting Pixie brings face painting, festival glitter and party fun to events across Sussex and Surrey, from home in Horsham.
 Tap a pin to see Kat's local page, or scroll down for the full list. Gold pins are places Kat has painted recently.</p>
-<div id="areamap" class="areamap" role="region" aria-label="Map of the towns The Painting Pixie covers"></div>
+<div id="areamap" class="areamap" role="region" aria-label="Map of the towns The Painting Pixie covers">{static_map(recent)}</div>
 <div class="legend"><span><i class="pin home"></i> Home: Horsham</span><span><i class="pin"></i> Regular area (within about 40 minutes), with a local page</span><span><i class="pin recent"></i> Painted here recently</span><span><i class="pin wide"></i> Wider area: specialist events</span></div>
+<p class="recentareas"><b>Recently painted ({PERIOD}):</b> {recent_text()}.</p>
 <p class="small-note">The shaded zone is Kat's regular area: parties and local events within about 40 minutes of Horsham. Further afield, inside the dashed line, Kat travels for higher-value specialist events: weddings, festivals, corporate days and brand activations. <a href="contact.html">Ask about your event</a>.</p>
 </div></section>
 <section class="band band-dark"><div class="wrap">
@@ -94,9 +140,13 @@ Tap a pin to see Kat's local page, or scroll down for the full list. Gold pins a
               "areaServed": [{"@type": "City", "name": n.replace(' & ', ' and ') if '&' in n else n,
                               "containedInPlace": {"@type": "AdministrativeArea", "name": c}} for n, a, b, c, u, g in TOWNS]}
     head, body = s.split('</head>', 1)
-    head += ('<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">\n'
+    head += ('<link rel="stylesheet" href="../vendor/leaflet/leaflet.css">\n'
              '<script type="application/ld+json">\n' + json.dumps(schema, ensure_ascii=False, indent=1) + '\n</script>\n')
     css = '''<style>
+.smap{display:block;width:100%;height:100%}
+@media(max-width:800px){.areamap:has(.smap){height:auto;aspect-ratio:1000/640}}
+.smap a:hover circle{stroke:#E2BE7A;stroke-width:3}
+.areamap:has(.smap){background:#231F30}
 .areamap{height:560px;border-radius:16px;margin-top:24px;border:6px solid #fff;box-shadow:0 30px 60px -30px rgba(60,30,40,.45);background:#1B1A22;z-index:0}
 .areamap .leaflet-popup-content-wrapper{background:#1F1C25;color:#F5F1EA;border-radius:12px}
 .areamap .leaflet-popup-tip{background:#1F1C25}
@@ -106,10 +156,12 @@ Tap a pin to see Kat's local page, or scroll down for the full list. Gold pins a
 .pin{width:18px;height:18px;border-radius:50%;background:#FF4FA3;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.4)}
 .pin.recent{background:#E2BE7A;width:22px;height:22px}
 .pin.home{background:#2FD4C4;width:24px;height:24px}
+.pin.wide.wrecent{background:#E2BE7A}
 .pin.wide{background:transparent;border:3px solid #7A5BB0;width:14px;height:14px;box-shadow:none}
 .legend{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:16px;font-size:14px;font-weight:700;color:#4E463F}
 .legend span{display:inline-flex;align-items:center;gap:8px}
 .legend .pin{display:inline-block}
+.recentareas{margin:14px 0 4px;color:#4E463F;font-size:15px}.recentareas b{color:#1B1712}
 .wide-h{margin:34px 0 6px;font-family:Fraunces,serif;font-weight:400;font-size:24px}
 .wide-list{color:var(--muted)}
 .acols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:20px}
@@ -121,24 +173,39 @@ Tap a pin to see Kat's local page, or scroll down for the full list. Gold pins a
 .acol li a:hover{color:var(--gold)}
 @media(max-width:800px){.acols{grid-template-columns:1fr}.areamap{height:440px}}
 </style>'''
-    js = f'''<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    js = f'''<script src="../vendor/leaflet/leaflet.js"></script>
 <script>
 (function(){{
-  if (!window.L) return;
+  if (!window.L) return;   // the drawn map stays if the live map can't load
+  var box = document.getElementById('areamap'), drawn = box.innerHTML;
   var pins = {json.dumps(pins, ensure_ascii=False)};
-  var WIDER_PINS = {json.dumps(WIDER)};
+  var WIDER_PINS = {json.dumps([[n, a, b, n in recent] for n, a, b in WIDER])};
+  box.innerHTML = '';
   var map = L.map('areamap', {{scrollWheelZoom:false}}).setView([51.03,-0.33], 9);
-  L.tileLayer('https://{{s}}.basemaps.cartocdn.com/rastertiles/voyager/{{z}}/{{x}}/{{y}}{{r}}.png', {{
-    maxZoom: 14, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-  }}).addTo(map);
+  var ok = 0, bad = 0, triedOSM = false;
+  function tiles(url, attr) {{
+    var t = L.tileLayer(url, {{maxZoom: 14, attribution: attr}});
+    t.on('tileload', function(){{ ok++; }});
+    t.on('tileerror', function(){{ bad++; }});
+    return t.addTo(map);
+  }}
+  var layer = tiles('https://{{s}}.basemaps.cartocdn.com/rastertiles/voyager/{{z}}/{{x}}/{{y}}{{r}}.png',
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>');
+  setTimeout(function check(){{
+    if (ok > 0) return;
+    if (!triedOSM) {{ triedOSM = true; map.removeLayer(layer); ok = 0;
+      layer = tiles('https://tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png', '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors');
+      setTimeout(check, 4000); return; }}
+    map.remove(); box.className = 'areamap'; box.innerHTML = drawn;   // no map tiles reachable: show the drawn map
+  }}, 4000);
   var home = [51.0629,-0.3259];
   L.circle(home, {{radius: 36000, color:'#FF4FA3', weight:1.5, fillColor:'#FF4FA3', fillOpacity:.08}}).addTo(map);
   L.circle(home, {{radius: 80000, color:'#7A5BB0', weight:1.5, dashArray:'6 8', fill:false}}).addTo(map);
   var wider = WIDER_PINS;
   wider.forEach(function(p){{
-    var icon = L.divIcon({{className:'', html:'<div class="pin wide"></div>', iconSize:[16,16], iconAnchor:[8,8]}});
+    var icon = L.divIcon({{className:'', html:'<div class="pin wide'+(p[3]?' wrecent':'')+'"></div>', iconSize:[16,16], iconAnchor:[8,8]}});
     L.marker([p[1],p[2]], {{icon:icon, title:p[0], alt:p[0]}}).addTo(map)
-      .bindPopup('<b>'+p[0]+'</b>Further afield: Kat travels here for weddings, festivals, corporate and brand events.<br><a href="contact.html">Ask about your event &rarr;</a>');
+      .bindPopup('<b>'+p[0]+'</b>Further afield: Kat travels here for weddings, festivals, corporate and brand events.'+(p[3]?'<br>&#9733; Painted here recently: Baker Street and the Good Hotel':'')+'<br><a href="contact.html">Ask about your event &rarr;</a>');
   }});
   var bounds = [];
   pins.forEach(function(p){{
