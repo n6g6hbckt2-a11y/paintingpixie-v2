@@ -7,6 +7,7 @@ V2 = '/home/claude/paintingpixie-v2'
 LIVE = '/home/claude/Painting-Pixie/halloween-face-painting.html'
 OUT = V2 + '/hw/halloween-face-painting.html'
 SITE = 'https://paintingpixie.com/'
+GLITTER_TATTOOS = False  # waiting for Kat to confirm; set True to show the glitter tattoo section and mentions
 WA = 'https://wa.me/447852300125?text='
 wa = lambda t: WA + t.replace(' ', '%20').replace("'", '%27').replace('’', '%27').replace('&', 'and')
 esc = lambda t: html.escape(t, quote=True)
@@ -324,7 +325,22 @@ def body():
 </div></footer>
 <a class="wa-float" href="{book}" target="_blank" rel="noopener" aria-label="WhatsApp Kat">{WA_SVG}</a>'''
 
+def no_tattoos(page):
+    page = re.sub(r'<section class="band panel"><div class="wrap gt">.*?</section>\s*', '', page, count=1, flags=re.S)
+    page = page.replace('<section class="band"><div class="wrap">\n<p class="eyebrow">Halloween face paint ideas</p>', '<section class="band panel"><div class="wrap">\n<p class="eyebrow">Halloween face paint ideas</p>')
+    page = page.replace('<section class="band panel"><div class="wrap">\n<p class="eyebrow">Halloween events</p>', '<section class="band"><div class="wrap">\n<p class="eyebrow">Halloween events</p>')
+    page = page.replace('<section class="band" id="prices">', '<section class="band panel" id="prices">')
+    page = page.replace('<section class="band panel"><div class="wrap">\n<p class="eyebrow">Reviews</p>', '<section class="band"><div class="wrap">\n<p class="eyebrow">Reviews</p>')
+    page = page.replace(', plus sparkly Halloween glitter tattoos.', '.')
+    page = re.sub(r'<p class="packnote">Add glitter tattoos[^<]*</p>\s*', '', page)
+    page = page.replace('Glitter tattoos for fast queues', 'Quick designs to keep queues moving')
+    page = page.replace(', and glitter tattoos are a great extra for big crowds', '')
+    page = page.replace('Halloween face painting and glitter tattoos for parties', 'Halloween face painting for parties')
+    return page
+
 def build():
+    if not GLITTER_TATTOOS:
+        FAQS[:] = [f for f in FAQS if 'glitter tattoos?' not in f[0]]
     live = open(LIVE).read()
     ga = live[live.index('<!-- Google tag'):live.index('<meta charset')]
     biz = re.search(r'<script type="application/ld\+json">\s*\{\s*"@context": "https://schema.org",\s*"@type": "LocalBusiness".*?</script>', live, re.S).group(0)
@@ -362,7 +378,9 @@ def build():
 <script>
 document.querySelectorAll('.strip a').forEach(function(a){a.addEventListener('click',function(){if(window.gtag)gtag('event','whatsapp_click',{button_position:'halloween_book_look',design:a.dataset.design})})});
 </script>'''
-    open(OUT, 'w').write(head + body() + '\n</body>\n</html>\n')
+    page = head + body() + '\n</body>\n</html>\n'
+    if not GLITTER_TATTOOS: page = no_tattoos(page)
+    open(OUT, 'w').write(page)
     print('written', OUT)
 
 if __name__ == '__main__':
