@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Face-centred crops of the Halloween photos for the new Halloween page (hw/). 4:5 frames."""
+"""Face-centred crops of the Halloween photos for the new Halloween page (hw/): 4:5 for the cards, wide 1:1 for the photo line."""
 from PIL import Image, ImageOps
 UP = '/mnt/user-data/uploads/Painting Pixie Photos/Recommended for website/4 Halloween/'
 C = [  # name, source, face centre x, y (fractions), crop width as fraction of photo width
@@ -19,4 +19,7 @@ for k, p, cx, cy, f in C:
     if ch > H: ch = H; cw = ch * 4 / 5
     x0 = min(max(cx * W - cw / 2, 0), W - cw); y0 = min(max(cy * H - ch * .45, 0), H - ch)
     im.crop((round(x0), round(y0), round(x0 + cw), round(y0 + ch))).resize((880, 1100), Image.LANCZOS).save(f'hw/halloween-{k}.webp', 'WEBP', quality=82, method=6)
+    # wide square version for the photo line: a little more around the face
+    sw = min(f * 1.12 * W, W, H); x0 = min(max(cx * W - sw / 2, 0), W - sw); y0 = min(max(cy * H - sw * .45, 0), H - sw)
+    im.crop((round(x0), round(y0), round(x0 + sw), round(y0 + sw))).resize((1000, 1000), Image.LANCZOS).save(f'hw/halloween-{k}-wide.webp', 'WEBP', quality=82, method=6)
 print('crops done')
