@@ -7,7 +7,7 @@ V2 = '/home/claude/paintingpixie-v2'
 LIVE = '/home/claude/Painting-Pixie/halloween-face-painting.html'
 OUT = V2 + '/hw/halloween-face-painting.html'
 SITE = 'https://paintingpixie.com/'
-GLITTER_TATTOOS = False  # waiting for Kat to confirm; set True to show the glitter tattoo section and mentions
+GLITTER_TATTOOS = True  # Kat confirmed 6 Oct 2026; set False to hide the glitter tattoo section and mentions
 WA = 'https://wa.me/447852300125?text='
 wa = lambda t: WA + t.replace(' ', '%20').replace("'", '%27').replace('’', '%27').replace('&', 'and')
 esc = lambda t: html.escape(t, quote=True)
