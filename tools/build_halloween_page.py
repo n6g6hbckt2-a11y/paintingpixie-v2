@@ -122,10 +122,10 @@ h2{font-size:clamp(32px,4.4vw,52px)}
 .dates span.hot{background:var(--orange);color:#1A0B10;border-color:transparent}
 /* strip */
 .strip-wrap{padding:8px 0 4px;background:rgba(12,5,22,.35);backdrop-filter:none}
-.strip{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(340px,1fr);gap:12px;overflow-x:auto;padding:16px 16px 10px;scroll-snap-type:x mandatory;scrollbar-width:none}
+.strip{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(290px,1fr);gap:12px;overflow-x:auto;padding:16px 16px 10px;scroll-snap-type:x mandatory;scrollbar-width:none}
 .strip::-webkit-scrollbar{display:none}
 .strip a{position:relative;display:block;scroll-snap-align:start;border-radius:16px;overflow:hidden;text-decoration:none;color:#fff}
-.strip img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;transition:transform .4s}
+.strip img{width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;object-position:50% 40%;transition:transform .4s}
 .strip a:hover img{transform:scale(1.04)}
 .strip .cap{position:absolute;left:0;right:0;bottom:0;padding:40px 14px 12px;background:linear-gradient(180deg,transparent,rgba(12,5,22,.9));display:flex;justify-content:space-between;align-items:flex-end;gap:8px}
 .strip .cap b{font:400 21px/1.1 var(--disp)}
@@ -214,7 +214,8 @@ footer .ate img{width:70px}
  .hero{min-height:auto;padding:max(96px, calc(19vh - 22px)) 0 40px}
  .hero .lede{font-size:17px}
  .ctas .btn{flex:1 1 auto}
- .strip{grid-auto-columns:68%}
+ .strip{grid-auto-columns:70%}
+ .strip img{max-height:62vh}
  .band{padding:60px 0}
  .intro,.levels,.reviews,.gt{grid-template-columns:1fr}
  .intro{gap:26px}
@@ -229,7 +230,7 @@ WA_SVG = '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6
 def body():
     strip = ''.join(
         f'<a href="{wa("Hi Kat! I love the " + c + " design. Are you free for a Halloween party? Date: Town: ")}" target="_blank" rel="noopener" data-design="{esc(c)}">'
-        f'<img src="halloween-{f}-wide.webp" alt="{esc(a)}" width="1000" height="1000" loading="{"eager" if i < 4 else "lazy"}">'
+        f'<img src="halloween-{f}.webp" alt="{esc(a)}" width="880" height="1100" loading="{"eager" if i < 4 else "lazy"}">'
         f'<span class="cap"><b>{esc(c)}</b><i>Book this look</i></span></a>' for i, (f, c, a) in enumerate(STRIP))
     levels = ''.join(
         f'<article class="level" style="--c:{col}"><div class="pics"><img src="halloween-{a}-card.webp" alt="" loading="lazy"><img src="halloween-{b}-card.webp" alt="" loading="lazy"></div>'
