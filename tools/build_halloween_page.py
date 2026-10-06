@@ -345,7 +345,7 @@ def build():
 <meta property="og:site_name" content="The Painting Pixie">
 <meta property="og:description" content="{desc}">
 <meta property="og:type" content="website">
-<meta property="og:image" content="{SITE}halloween-pumpkin.webp">
+<meta property="og:image" content="{SITE}halloween-pumpkin-wide.webp">
 <meta property="og:url" content="{SITE}halloween-face-painting.html">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
