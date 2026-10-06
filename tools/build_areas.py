@@ -188,22 +188,15 @@ Tap a pin to see Kat's local page, or scroll down for the full list. Gold pins a
   var map = L.map('livemap', {{scrollWheelZoom:false}}).setView([51.03,-0.33], 9);
   var shown = false;
   function show(){{ if (shown) return; shown = true; box.classList.add('is-live'); var sv = box.querySelector('.smap'); if (sv) sv.remove(); map.invalidateSize(); map.fitBounds(bounds, {{padding:[40,40]}}); }}
-  var ok = 0, bad = 0, triedOSM = false;
+  var ok = 0, bad = 0;
   function tiles(url, attr) {{
     var t = L.tileLayer(url, {{maxZoom: 14, attribution: attr}});
     t.on('tileload', function(){{ ok++; if (ok >= 3) show(); }});
     t.on('tileerror', function(){{ bad++; }});
     return t.addTo(map);
   }}
-  var layer = tiles('https://{{s}}.basemaps.cartocdn.com/rastertiles/voyager/{{z}}/{{x}}/{{y}}{{r}}.png',
-    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>');
-  setTimeout(function check(){{
-    if (ok > 0) return;
-    if (!triedOSM) {{ triedOSM = true; map.removeLayer(layer); ok = 0;
-      layer = tiles('https://tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png', '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors');
-      setTimeout(check, 4000); return; }}
-    map.remove(); live.remove();   // no map pictures reachable: keep the drawn map
-  }}, 4000);
+  var layer = tiles('https://tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png', '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors');
+  setTimeout(function(){{ if (ok === 0) {{ map.remove(); live.remove(); }} }}, 8000);   // no map pictures reachable: keep the drawn map
   var home = [51.0629,-0.3259];
   L.circle(home, {{radius: 36000, color:'#FF4FA3', weight:1.5, fillColor:'#FF4FA3', fillOpacity:.08}}).addTo(map);
   L.circle(home, {{radius: 80000, color:'#7A5BB0', weight:1.5, dashArray:'6 8', fill:false}}).addTo(map);
