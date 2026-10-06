@@ -1,11 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en-GB">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JMFEXJJZ1H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  // Owner opt-out: open any page once with ?notrack on each phone/computer/browser to stop it being counted (?track undoes it)
+  try {
+    if (/[?&]notrack(=|&|$)/.test(location.search)) localStorage.setItem('pp_notrack', '1');
+    if (/[?&]track(=|&|$)/.test(location.search)) localStorage.removeItem('pp_notrack');
+    if (localStorage.getItem('pp_notrack') === '1') window['ga-disable-G-JMFEXJJZ1H'] = true;
+  } catch (e) {}
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JMFEXJJZ1H');
+
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a[href*="wa.me"]');
+    if (link) {
+      var inPage = [].slice.call(document.querySelectorAll('a[href*="wa.me"]')).filter(function(a) { return getComputedStyle(a).position !== 'fixed'; });
+      var pos = getComputedStyle(link).position === 'fixed' ? 'floating' : (inPage.indexOf(link) === 0 ? 'top' : 'lower');
+      gtag('event', 'whatsapp_click', {
+        'link_url': link.href,
+        'page_location': window.location.href,
+        'page_path': window.location.pathname,
+        'button_position': pos,
+        'transport_type': 'beacon'
+      });
+    }
+  });
+
+  document.addEventListener('click', function(e) {
+    var tel = e.target.closest('a[href^="tel:"]');
+    if (tel) {
+      gtag('event', 'phone_click', {
+        'link_url': tel.href,
+        'page_location': window.location.href
+      });
+    }
+  });
+
+  document.addEventListener('submit', function(e) {
+    gtag('event', 'booking_request', {
+      'form_destination': e.target.action || '',
+      'page_location': window.location.href,
+      'transport_type': 'beacon'
+    });
+  });
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Halloween Face Painting in Sussex &amp; Surrey | The Painting Pixie</title>
 <meta name="description" content="Halloween face painting and glitter tattoos for parties, school discos and events across Sussex and Surrey. Cute, spooky or properly scary. Insured and DBS checked.">
-<link rel="canonical" href="https://paintingpixie.com/halloween-face-painting.html">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="halloween-face-painting.html">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:title" content="Halloween Face Painting in Sussex &amp; Surrey">
@@ -106,11 +155,11 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--night);color:var(--ink);font:17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
-body::before{content:"";position:fixed;inset:0;z-index:-1;background:url("halloween-night.svg") center/cover no-repeat;pointer-events:none}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:url("../hw/halloween-night.svg") center/cover no-repeat;pointer-events:none}
 body{position:relative}
-.webs{position:fixed;inset:0;z-index:-1;background:url("halloween-webs-fixed.svg") center/cover no-repeat;pointer-events:none}
-@media(max-aspect-ratio:3/4){.webs{background-image:url("halloween-webs-fixed-tall.svg")}}
-@media(max-aspect-ratio:3/4){body::before{background-image:url("halloween-night-tall.svg")}}
+.webs{position:fixed;inset:0;z-index:-1;background:url("../hw/halloween-webs-fixed.svg") center/cover no-repeat;pointer-events:none}
+@media(max-aspect-ratio:3/4){.webs{background-image:url("../hw/halloween-webs-fixed-tall.svg")}}
+@media(max-aspect-ratio:3/4){body::before{background-image:url("../hw/halloween-night-tall.svg")}}
 img{max-width:100%;display:block}
 a{color:var(--gold)}
 .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
@@ -247,136 +296,91 @@ footer .ate img{width:70px}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
-<!-- DRAFT ONLY: remove this robots line when the page goes live -->
-<meta name="robots" content="noindex, nofollow">
-<script>
-if (/(^|\.)paintingpixie\.com$/.test(location.hostname)) {
-  var s = document.createElement('script'); s.async = true;
-  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-JMFEXJJZ1H';
-  document.head.appendChild(s);
-}
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-JMFEXJJZ1H');
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css">
 </head>
 <body>
-<nav aria-label="Main" id="mainnav"><div class="wrap navbar">
-<a class="brand" href="index.html"><img src="../img/logo-lg.webp" alt="The Painting Pixie logo" width="104" height="104"><span>The Painting Pixie</span></a>
-<div class="links">
-<button class="mtrig" type="button" aria-expanded="false" aria-controls="m-occasions">Occasions<svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></button><button class="mtrig" type="button" aria-expanded="false" aria-controls="m-areas">Areas<svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></button><button class="mtrig" type="button" aria-expanded="false" aria-controls="m-about">About<svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></button>
-<a href="index.html#prices">Prices</a>
-<a class="btn btn-gold" href="contact.html" style="padding:11px 20px;font-size:15px">Check my date</a>
-</div>
-<details class="menu"><summary>Menu</summary><div class="mobmenu"><details><summary>Occasions</summary><p class="mh">For kids</p><a href="childrens-face-painting.html">Children's parties</a><a href="animal-print-face-painting.html">Animal print</a><a href="halloween-face-painting.html">Halloween</a><a href="christmas-face-painting.html">Christmas</a><p class="mh">For grown-ups</p><a href="adult-face-painting.html">Hen &amp; adult parties</a><a href="glitter-bar.html">Glitter &amp; jewel bar</a><a href="body-art.html">Body art</a><a href="workshops.html">Learn to face paint</a><p class="mh">Events</p><a href="contact.html">Weddings &amp; family days</a><a href="contact.html">Festivals &amp; fêtes</a><a href="corporate-events.html">Corporate &amp; brand events</a><p class="mh">Everything</p><a href="services.html">All services</a><a href="index.html#prices">Prices</a><a href="gallery.html">Gallery</a></details><details><summary>Areas</summary><p class="mh">West Sussex</p><a href="face-painter-horsham.html">Horsham</a><a href="face-painter-crawley.html">Crawley</a><a href="face-painter-haywards-heath.html">Haywards Heath</a><a href="face-painter-burgess-hill.html">Burgess Hill</a><a href="face-painter-east-grinstead.html">East Grinstead</a><a href="face-painter-worthing.html">Worthing</a><a href="face-painter-west-sussex-villages.html">West Sussex villages</a><p class="mh">Brighton &amp; East Sussex</p><a href="face-painter-brighton.html">Brighton (events)</a><a href="face-painter-lewes.html">Lewes</a><a href="face-painter-south-downs.html">South Downs</a><p class="mh">Surrey</p><a href="face-painter-guildford.html">Guildford</a><a href="face-painter-reigate.html">Reigate</a><a href="face-painter-dorking.html">Dorking</a><a href="face-painter-surrey-villages.html">Surrey villages</a><p class="mh">By county</p><a href="face-painter-sussex.html">All of Sussex</a><a href="face-painter-surrey.html">All of Surrey</a><a href="areas.html">Every area we cover</a></details><details><summary>About</summary><p class="mh">Kat</p><a href="about.html">About Kat</a><a href="gallery.html">Gallery</a><a href="index.html#reviews">Reviews</a><p class="mh">Good to know</p><a href="index.html#faq">FAQs</a><a href="index.html#prices">Prices</a><a href="contact.html">Book &amp; contact</a></details><a class="btn btn-gold" href="contact.html" style="margin-top:10px">Check my date</a></div></details>
-</div>
-<div class="mega" id="m-occasions" hidden><div class="wrap mgrid"><div class="mcol"><p class="mh">For kids</p><a href="childrens-face-painting.html">Children's parties</a><a href="animal-print-face-painting.html">Animal print</a><a href="halloween-face-painting.html">Halloween</a><a href="christmas-face-painting.html">Christmas</a></div><div class="mcol"><p class="mh">For grown-ups</p><a href="adult-face-painting.html">Hen &amp; adult parties</a><a href="glitter-bar.html">Glitter &amp; jewel bar</a><a href="body-art.html">Body art</a><a href="workshops.html">Learn to face paint</a></div><div class="mcol"><p class="mh">Events</p><a href="contact.html">Weddings &amp; family days</a><a href="contact.html">Festivals &amp; fêtes</a><a href="corporate-events.html">Corporate &amp; brand events</a></div><div class="mcol"><p class="mh">Everything</p><a href="services.html">All services</a><a href="index.html#prices">Prices</a><a href="gallery.html">Gallery</a></div></div></div><div class="mega" id="m-areas" hidden><div class="wrap mgrid"><div class="mcol"><p class="mh">West Sussex</p><a href="face-painter-horsham.html">Horsham</a><a href="face-painter-crawley.html">Crawley</a><a href="face-painter-haywards-heath.html">Haywards Heath</a><a href="face-painter-burgess-hill.html">Burgess Hill</a><a href="face-painter-east-grinstead.html">East Grinstead</a><a href="face-painter-worthing.html">Worthing</a><a href="face-painter-west-sussex-villages.html">West Sussex villages</a></div><div class="mcol"><p class="mh">Brighton &amp; East Sussex</p><a href="face-painter-brighton.html">Brighton (events)</a><a href="face-painter-lewes.html">Lewes</a><a href="face-painter-south-downs.html">South Downs</a></div><div class="mcol"><p class="mh">Surrey</p><a href="face-painter-guildford.html">Guildford</a><a href="face-painter-reigate.html">Reigate</a><a href="face-painter-dorking.html">Dorking</a><a href="face-painter-surrey-villages.html">Surrey villages</a></div><div class="mcol"><p class="mh">By county</p><a href="face-painter-sussex.html">All of Sussex</a><a href="face-painter-surrey.html">All of Surrey</a><a href="areas.html">Every area we cover</a></div></div></div><div class="mega" id="m-about" hidden><div class="wrap mgrid"><div class="mcol"><p class="mh">Kat</p><a href="about.html">About Kat</a><a href="gallery.html">Gallery</a><a href="index.html#reviews">Reviews</a></div><div class="mcol"><p class="mh">Good to know</p><a href="index.html#faq">FAQs</a><a href="index.html#prices">Prices</a><a href="contact.html">Book &amp; contact</a></div></div></div>
-</nav>
+<div class="webs" aria-hidden="true"></div>
+<header class="top"><div class="wrap"><a class="brand" href="index.html"><img src="../hw/logo-lg.webp" alt="The Painting Pixie"><span>The Painting Pixie</span></a>
+<nav class="links" aria-label="Main"><a href="index.html">Home</a><a href="services.html">Services</a><a href="gallery.html">Gallery</a><a href="areas.html">Areas</a><a class="btn btn-orange" href="contact.html">Check my date</a></nav></div></header>
 
-<main class="lg">
-</div></header>
-
-<section class="band band-light k-text centred hero"><div class="wrap"><div class="wrap">
+<section class="hero"><div class="wrap">
 <p class="eyebrow">Halloween 2026 · Sussex &amp; Surrey</p>
 <h1>Halloween face painting that’s <em>cute, spooky</em> or properly scary</h1>
 <p class="lede">Parties, school discos and Halloween events across Sussex and Surrey, painted by Kat. Every guest picks their own fright level, from smiley pumpkins to full-face skulls, plus sparkly Halloween glitter tattoos.</p>
 <div class="ctas"><a class="btn btn-orange" href="contact.html">Check my date</a><a class="btn btn-wa" href="https://wa.me/447852300125?text=Hi%20Kat!%20I%27d%20like%20to%20book%20Halloween%20face%20painting.%20Date:%20Town:%20Guests:%20" target="_blank" rel="noopener">WhatsApp Kat</a></div>
 <div class="dates"><b>Halloween is on a Saturday this year, and dates are already being booked:</b><span>Sat 24 Oct</span><span>Sun 25 Oct</span><span>Fri 30 Oct</span><span class="hot">Sat 31 Oct</span><span>Sun 1 Nov</span></div>
-</div></div></section>
+</div></section>
 
-<section class="band band-dark k-text centred strip-wrap"><div class="wrap"><div class="strip"><a href="https://wa.me/447852300125?text=Hi%20Kat!%20I%20love%20the%20Jack-o%27-lantern%20design.%20Are%20you%20free%20for%20a%20Halloween%20party?%20Date:%20Town:%20" target="_blank" rel="noopener" data-design="Jack-o’-lantern"><img src="halloween-pumpkin-zoom.webp" alt="Jack-o-lantern pumpkin face paint on a girl" width="619" height="1100" loading="eager"><span class="cap"><b>Jack-o’-lantern</b><i>Book this look</i></span></a><a href="https://wa.me/447852300125?text=Hi%20Kat!%20I%20love%20the%20Monster%20skull%20design.%20Are%20you%20free%20for%20a%20Halloween%20party?%20Date:%20Town:%20" target="_blank" rel="noopener" data-design="Monster skull"><img src="halloween-skull-boy-zoom.webp" alt="Monster skull face paint on a boy" width="619" height="1100" loading="eager"><span class="cap"><b>Monster skull</b><i>Book this look</i></span></a><a href="https://wa.me/447852300125?text=Hi%20Kat!%20I%20love%20the%20Red%20devil%20design.%20Are%20you%20free%20for%20a%20Halloween%20party?%20Date:%20Town:%20" target="_blank" rel="noopener" data-design="Red devil"><img src="halloween-devil-girl-zoom.webp" alt="Red devil face paint with horns on a girl" width="619" height="1100" loading="eager"><span class="cap"><b>Red devil</b><i>Book this look</i></span></a><a href="https://wa.me/447852300125?text=Hi%20Kat!%20I%20love%20the%20Werewolf%20design.%20Are%20you%20free%20for%20a%20Halloween%20party?%20Date:%20Town:%20" target="_blank" rel="noopener" data-design="Werewolf"><img src="halloween-werewolf-zoom.webp" alt="Werewolf face paint on a grown-up at a Halloween party" width="619" height="1100" loading="eager"><span class="cap"><b>Werewolf</b><i>Book this look</i></span></a><a href="https://wa.me/447852300125?text=Hi%20Kat!%20I%20love%20the%20Pink%20princess%20crown%20design.%20Are%20you%20free%20for%20a%20Halloween%20party?%20Date:%20Town:%20" target="_blank" rel="noopener" data-design="Pink princess crown"><img src="halloween-princess-zoom.webp" alt="Pink princess crown face paint with a skeleton costume" width="619" height="1100" loading="lazy"><span class="cap"><b>Pink princess crown</b><i>Book this look</i></span></a><a href="https://wa.me/447852300125?text=Hi%20Kat!%20I%20love%20the%20Grown-up%20skull%20design.%20Are%20you%20free%20for%20a%20Halloween%20party?%20Date:%20Town:%20" target="_blank" rel="noopener" data-design="Grown-up skull"><img src="halloween-adult-skull-zoom.webp" alt="Blue and white skull face paint on an adult" width="619" height="1100" loading="lazy"><span class="cap"><b>Grown-up skull</b><i>Book this look</i></span></a><a href="https://wa.me/447852300125?text=Hi%20Kat!%20I%20love%20the%20Half%20skull%20design.%20Are%20you%20free%20for%20a%20Halloween%20party?%20Date:%20Town:%20" target="_blank" rel="noopener" data-design="Half skull"><img src="halloween-half-skull-zoom.webp" alt="Half skull face paint on a boy" width="619" height="1100" loading="lazy"><span class="cap"><b>Half skull</b><i>Book this look</i></span></a><a href="https://wa.me/447852300125?text=Hi%20Kat!%20I%20love%20the%20Roaring%20monster%20design.%20Are%20you%20free%20for%20a%20Halloween%20party?%20Date:%20Town:%20" target="_blank" rel="noopener" data-design="Roaring monster"><img src="halloween-monster-zoom.webp" alt="Blue monster face paint on a roaring child" width="619" height="1100" loading="lazy"><span class="cap"><b>Roaring monster</b><i>Book this look</i></span></a><a href="https://wa.me/447852300125?text=Hi%20Kat!%20I%20love%20the%20Pumpkin%20queen%20design.%20Are%20you%20free%20for%20a%20Halloween%20party?%20Date:%20Town:%20" target="_blank" rel="noopener" data-design="Pumpkin queen"><img src="halloween-pumpkin-big-sister-zoom.webp" alt="Pumpkin face paint on a girl at a Halloween event" width="619" height="1100" loading="lazy"><span class="cap"><b>Pumpkin queen</b><i>Book this look</i></span></a><a href="https://wa.me/447852300125?text=Hi%20Kat!%20I%20love%20the%20Little%20pumpkin%20design.%20Are%20you%20free%20for%20a%20Halloween%20party?%20Date:%20Town:%20" target="_blank" rel="noopener" data-design="Little pumpkin"><img src="halloween-pumpkin-little-sister-zoom.webp" alt="Pumpkin face paint on a little girl" width="619" height="1100" loading="lazy"><span class="cap"><b>Little pumpkin</b><i>Book this look</i></span></a></div>
+<section class="strip-wrap" aria-label="Halloween face painting by Kat"><div class="strip"><a href="https://wa.me/447852300125?text=Hi%20Kat!%20I%20love%20the%20Jack-o%27-lantern%20design.%20Are%20you%20free%20for%20a%20Halloween%20party?%20Date:%20Town:%20" target="_blank" rel="noopener" data-design="Jack-o’-lantern"><img src="../hw/halloween-pumpkin-zoom.webp" alt="Jack-o-lantern pumpkin face paint on a girl" width="619" height="1100" loading="eager"><span class="cap"><b>Jack-o’-lantern</b><i>Book this look</i></span></a><a href="https://wa.me/447852300125?text=Hi%20Kat!%20I%20love%20the%20Monster%20skull%20design.%20Are%20you%20free%20for%20a%20Halloween%20party?%20Date:%20Town:%20" target="_blank" rel="noopener" data-design="Monster skull"><img src="../hw/halloween-skull-boy-zoom.webp" alt="Monster skull face paint on a boy" width="619" height="1100" loading="eager"><span class="cap"><b>Monster skull</b><i>Book this look</i></span></a><a href="https://wa.me/447852300125?text=Hi%20Kat!%20I%20love%20the%20Red%20devil%20design.%20Are%20you%20free%20for%20a%20Halloween%20party?%20Date:%20Town:%20" target="_blank" rel="noopener" data-design="Red devil"><img src="../hw/halloween-devil-girl-zoom.webp" alt="Red devil face paint with horns on a girl" width="619" height="1100" loading="eager"><span class="cap"><b>Red devil</b><i>Book this look</i></span></a><a href="https://wa.me/447852300125?text=Hi%20Kat!%20I%20love%20the%20Werewolf%20design.%20Are%20you%20free%20for%20a%20Halloween%20party?%20Date:%20Town:%20" target="_blank" rel="noopener" data-design="Werewolf"><img src="../hw/halloween-werewolf-zoom.webp" alt="Werewolf face paint on a grown-up at a Halloween party" width="619" height="1100" loading="eager"><span class="cap"><b>Werewolf</b><i>Book this look</i></span></a><a href="https://wa.me/447852300125?text=Hi%20Kat!%20I%20love%20the%20Pink%20princess%20crown%20design.%20Are%20you%20free%20for%20a%20Halloween%20party?%20Date:%20Town:%20" target="_blank" rel="noopener" data-design="Pink princess crown"><img src="../hw/halloween-princess-zoom.webp" alt="Pink princess crown face paint with a skeleton costume" width="619" height="1100" loading="lazy"><span class="cap"><b>Pink princess crown</b><i>Book this look</i></span></a><a href="https://wa.me/447852300125?text=Hi%20Kat!%20I%20love%20the%20Grown-up%20skull%20design.%20Are%20you%20free%20for%20a%20Halloween%20party?%20Date:%20Town:%20" target="_blank" rel="noopener" data-design="Grown-up skull"><img src="../hw/halloween-adult-skull-zoom.webp" alt="Blue and white skull face paint on an adult" width="619" height="1100" loading="lazy"><span class="cap"><b>Grown-up skull</b><i>Book this look</i></span></a><a href="https://wa.me/447852300125?text=Hi%20Kat!%20I%20love%20the%20Half%20skull%20design.%20Are%20you%20free%20for%20a%20Halloween%20party?%20Date:%20Town:%20" target="_blank" rel="noopener" data-design="Half skull"><img src="../hw/halloween-half-skull-zoom.webp" alt="Half skull face paint on a boy" width="619" height="1100" loading="lazy"><span class="cap"><b>Half skull</b><i>Book this look</i></span></a><a href="https://wa.me/447852300125?text=Hi%20Kat!%20I%20love%20the%20Roaring%20monster%20design.%20Are%20you%20free%20for%20a%20Halloween%20party?%20Date:%20Town:%20" target="_blank" rel="noopener" data-design="Roaring monster"><img src="../hw/halloween-monster-zoom.webp" alt="Blue monster face paint on a roaring child" width="619" height="1100" loading="lazy"><span class="cap"><b>Roaring monster</b><i>Book this look</i></span></a><a href="https://wa.me/447852300125?text=Hi%20Kat!%20I%20love%20the%20Pumpkin%20queen%20design.%20Are%20you%20free%20for%20a%20Halloween%20party?%20Date:%20Town:%20" target="_blank" rel="noopener" data-design="Pumpkin queen"><img src="../hw/halloween-pumpkin-big-sister-zoom.webp" alt="Pumpkin face paint on a girl at a Halloween event" width="619" height="1100" loading="lazy"><span class="cap"><b>Pumpkin queen</b><i>Book this look</i></span></a><a href="https://wa.me/447852300125?text=Hi%20Kat!%20I%20love%20the%20Little%20pumpkin%20design.%20Are%20you%20free%20for%20a%20Halloween%20party?%20Date:%20Town:%20" target="_blank" rel="noopener" data-design="Little pumpkin"><img src="../hw/halloween-pumpkin-little-sister-zoom.webp" alt="Pumpkin face paint on a little girl" width="619" height="1100" loading="lazy"><span class="cap"><b>Little pumpkin</b><i>Book this look</i></span></a></div>
 <p class="strip-note">Swipe for more, tap a look to book it, or <a href="gallery.html">see the full gallery</a></p>
-<div class="wrap trust"><span><b>Calm and patient</b> with nervous little ones</span><span><b>★★★★★ 5.0</b> on Add to Event</span><span>Insured &amp; DBS checked</span><span>Professional skin-safe paints</span></div></div></section>
+<div class="wrap trust"><span><b>Calm and patient</b> with nervous little ones</span><span><b>★★★★★ 5.0</b> on Add to Event</span><span>Insured &amp; DBS checked</span><span>Professional skin-safe paints</span></div></section>
 
-<section class="band band-light k-text centred band panel"><div class="wrap"><div class="wrap intro">
-<img src="halloween-kat-at-work.webp" alt="Kat from The Painting Pixie face painting a child" loading="lazy">
+<section class="band panel"><div class="wrap intro">
+<img src="../hw/halloween-kat-at-work.webp" alt="Kat from The Painting Pixie face painting a child" loading="lazy">
 <div><p class="eyebrow">Hello, I’m Kat</p><h2>The one night everyone wants to be transformed</h2>
 <p>Halloween is one of my favourite times of year to paint. I’m a professional face painter based in Horsham, and every October I paint parties, school discos and Halloween events across Sussex and Surrey.</p>
 <p>I match the designs to your guests: cute and friendly for little ones, properly spooky for older kids and grown-ups. Everyone gets the look they want, and nobody ends up in tears.</p>
-<p class="sig">Kat x</p></div></div></div></section>
+<p class="sig">Kat x</p></div></div></section>
 
-<section class="band band-dark k-text centred band"><div class="wrap"><div class="wrap">
+<section class="band"><div class="wrap">
 <p class="eyebrow">Pick your fright level</p><h2>Cute, spooky or properly scary</h2>
 <p class="lede">Most Halloween parties have a mix of ages, so I bring all three. Children choose their own design on the day.</p>
-<div class="levels"><article class="level" style="--c:#FFB347"><div class="pics"><img src="halloween-pumpkin-little-sister-card.webp" alt="" loading="lazy"><img src="halloween-princess-card.webp" alt="" loading="lazy"></div><div class="txt"><h3>Cute</h3><small>For little ones</small><p>Smiley pumpkins, friendly monsters, sparkly bats and princess crowns. Bright, happy and not scary at all.</p></div></article><article class="level" style="--c:#B57BFF"><div class="pics"><img src="halloween-skull-boy-card.webp" alt="" loading="lazy"><img src="halloween-devil-girl-card.webp" alt="" loading="lazy"></div><div class="txt"><h3>Spooky</h3><small>For brave kids</small><p>Skulls, little devils and monster faces. Spooky enough to impress their friends, still fun to look at.</p></div></article><article class="level" style="--c:#FF5A4F"><div class="pics"><img src="halloween-werewolf-card.webp" alt="" loading="lazy"><img src="halloween-adult-skull-card.webp" alt="" loading="lazy"></div><div class="txt"><h3>Properly scary</h3><small>For teens &amp; grown-ups</small><p>Full-face skulls, werewolves and dramatic creatures for Halloween parties and fancy dress.</p></div></article></div></div></div></section>
+<div class="levels"><article class="level" style="--c:#FFB347"><div class="pics"><img src="../hw/halloween-pumpkin-little-sister-card.webp" alt="" loading="lazy"><img src="../hw/halloween-princess-card.webp" alt="" loading="lazy"></div><div class="txt"><h3>Cute</h3><small>For little ones</small><p>Smiley pumpkins, friendly monsters, sparkly bats and princess crowns. Bright, happy and not scary at all.</p></div></article><article class="level" style="--c:#B57BFF"><div class="pics"><img src="../hw/halloween-skull-boy-card.webp" alt="" loading="lazy"><img src="../hw/halloween-devil-girl-card.webp" alt="" loading="lazy"></div><div class="txt"><h3>Spooky</h3><small>For brave kids</small><p>Skulls, little devils and monster faces. Spooky enough to impress their friends, still fun to look at.</p></div></article><article class="level" style="--c:#FF5A4F"><div class="pics"><img src="../hw/halloween-werewolf-card.webp" alt="" loading="lazy"><img src="../hw/halloween-adult-skull-card.webp" alt="" loading="lazy"></div><div class="txt"><h3>Properly scary</h3><small>For teens &amp; grown-ups</small><p>Full-face skulls, werewolves and dramatic creatures for Halloween parties and fancy dress.</p></div></article></div></div></section>
 
-<section class="band band-light k-text centred band panel"><div class="wrap"><div class="wrap gt">
+<section class="band panel"><div class="wrap gt">
 <div><p class="eyebrow">Halloween glitter tattoos</p><h2>Sparkly bats, pumpkins and skulls</h2>
 <p>Glitter tattoos are a brilliant Halloween extra. I use stencils and cosmetic glitter to make bats, pumpkins, spiders, skulls, witches’ hats and stars on arms and hands.</p>
 <ul class="ticks"><li>Quick to do, so great for long queues at school discos and events</li><li>Perfect for toddlers, or anyone who’d rather not have a painted face</li><li>No mess, and they usually last for several days after the party</li></ul>
 <p>Add them to any party package, or book a glitter tattoo stall for your event.</p>
 <div class="ctas" style="margin-top:20px"><a class="btn btn-orange" href="https://wa.me/447852300125?text=Hi%20Kat!%20I%27d%20like%20to%20ask%20about%20Halloween%20glitter%20tattoos.%20Date:%20Town:%20" target="_blank" rel="noopener">Ask about glitter tattoos</a></div></div>
-<img src="halloween-glitter-tattoo.webp" alt="Kat applying a glitter tattoo with a stencil" loading="lazy"></div></div></section>
+<img src="../hw/halloween-glitter-tattoo.webp" alt="Kat applying a glitter tattoo with a stencil" loading="lazy"></div></section>
 
-<section class="band band-dark k-text centred band"><div class="wrap"><div class="wrap">
+<section class="band"><div class="wrap">
 <p class="eyebrow">Halloween face paint ideas</p><h2>Twelve favourites to choose from</h2>
 <p class="lede">Not sure what to go for? These are the designs I paint most at Halloween. Your guests can pick on the day, or ask for something special when you book.</p>
 <div class="ideas" tabindex="0" aria-label="Halloween face paint ideas, scroll sideways for more"><div class="idea"><b>Jack-o’-lantern</b><span>Orange stripes, glowing eyes and a toothy grin.</span></div><div class="idea"><b>Black cat</b><span>Whiskers, a little pink nose and glitter ears.</span></div><div class="idea"><b>Skeleton</b><span>Classic black and white, full face or half.</span></div><div class="idea"><b>Sugar skull</b><span>Colourful flowers and gems, beautiful rather than scary.</span></div><div class="idea"><b>Witch</b><span>Green face, warts optional, plus a starry hat line.</span></div><div class="idea"><b>Vampire</b><span>Pale skin, dark eyes and a drop of blood.</span></div><div class="idea"><b>Spider and web</b><span>A web across one eye with a dangling spider.</span></div><div class="idea"><b>Bats</b><span>A swarm of bats flying across the forehead.</span></div><div class="idea"><b>Little devil</b><span>Red face, horns and pointy eyebrows.</span></div><div class="idea"><b>Zombie</b><span>Grey skin, stitches and a scar or two.</span></div><div class="idea"><b>Werewolf</b><span>Fur, fangs and wild eyebrows for the full transformation.</span></div><div class="idea"><b>Pumpkin princess</b><span>An orange and gold crown with sparkle.</span></div></div>
 <p class="swipe">Swipe or scroll sideways for more ideas →</p>
 <p class="ideas-note">Want a costume match, a favourite character or a design from Pinterest? <a href="https://wa.me/447852300125?text=Hi%20Kat!%20Could%20you%20paint%20this%20Halloween%20design?%20" target="_blank" rel="noopener">Send Kat a picture on WhatsApp</a>.</p>
-</div></div></section>
+</div></section>
 
-<section class="band band-light k-text centred band panel"><div class="wrap"><div class="wrap">
+<section class="band panel"><div class="wrap">
 <p class="eyebrow">Halloween events</p><h2>Where I paint at Halloween</h2>
-<div class="events"><div class="event"><b>Halloween birthday parties</b><span>At home, in village halls or at soft play.</span></div><div class="event"><b>School &amp; PTA Halloween discos</b><span>Fast, queue-friendly designs to get through a crowd.</span></div><div class="event"><b>Pumpkin patches &amp; farm days</b><span>Family-friendly painting for busy public days.</span></div><div class="event"><b>Pubs, restaurants &amp; venues</b><span>Halloween family events and themed nights.</span></div><div class="event"><b>Grown-up Halloween parties</b><span>Full-face skulls, werewolves and dramatic looks.</span></div><div class="event"><b>Office Halloween events</b><span>Office parties and family fun days.</span></div></div></div></div></section>
+<div class="events"><div class="event"><b>Halloween birthday parties</b><span>At home, in village halls or at soft play.</span></div><div class="event"><b>School &amp; PTA Halloween discos</b><span>Fast, queue-friendly designs to get through a crowd.</span></div><div class="event"><b>Pumpkin patches &amp; farm days</b><span>Family-friendly painting for busy public days.</span></div><div class="event"><b>Pubs, restaurants &amp; venues</b><span>Halloween family events and themed nights.</span></div><div class="event"><b>Grown-up Halloween parties</b><span>Full-face skulls, werewolves and dramatic looks.</span></div><div class="event"><b>Office Halloween events</b><span>Office parties and family fun days.</span></div></div></div></section>
 
-<section class="band band-dark k-text centred band"><div class="wrap"><div class="wrap">
+<section class="band" id="prices"><div class="wrap">
 <p class="eyebrow">Prices</p><h2>Halloween packages</h2>
 <p class="lede">Simple prices, confirmed for your date when you enquire. A small deposit secures your booking.</p>
 <div class="packs"><article class="pack"><h3>Classic Party</h3><div class="price">From £130</div><ul><li>2 hours of face painting</li><li>Fast, fun Halloween designs</li><li>Cute to spooky, guests choose</li></ul><a class="btn btn-ghost" href="https://wa.me/447852300125?text=Hi%20Kat!%20I%20am%20interested%20in%20a%20Classic%20Party%20for%20Halloween.%20Date:%20Town:%20" target="_blank" rel="noopener">Check my date</a></article><article class="pack hi"><h3>Ultimate Sparkle</h3><div class="price">From £160</div><ul><li>3 hours of face painting</li><li>Bio-glitter and face gems</li><li>More detailed designs</li></ul><a class="btn btn-orange" href="https://wa.me/447852300125?text=Hi%20Kat!%20I%20am%20interested%20in%20a%20Ultimate%20Sparkle%20for%20Halloween.%20Date:%20Town:%20" target="_blank" rel="noopener">Check my date</a></article><article class="pack"><h3>Grown-up Halloween party</h3><div class="price">From £150</div><ul><li>Full-face skulls and creatures</li><li>Glitter and gems</li><li>At your house or venue</li></ul><a class="btn btn-ghost" href="https://wa.me/447852300125?text=Hi%20Kat!%20I%20am%20interested%20in%20a%20grown-up%20Halloween%20party%20for%20Halloween.%20Date:%20Town:%20" target="_blank" rel="noopener">Check my date</a></article><article class="pack"><h3>School discos &amp; big events</h3><div class="price">Bespoke quote</div><ul><li>Hourly or per-face options</li><li>Extra artists for big crowds</li><li>Glitter tattoos for fast queues</li></ul><a class="btn btn-ghost" href="https://wa.me/447852300125?text=Hi%20Kat!%20I%20am%20interested%20in%20a%20school%20disco%20or%20event%20for%20Halloween.%20Date:%20Town:%20" target="_blank" rel="noopener">Check my date</a></article></div>
 <p class="packnote">Add glitter tattoos for a quick, mess-free extra that lasts beyond the party.</p>
-</div></div></section>
+</div></section>
 
-<section class="band band-light k-text centred band panel"><div class="wrap"><div class="wrap">
+<section class="band panel"><div class="wrap">
 <p class="eyebrow">Reviews</p><h2>What people say about Kat</h2>
 <div class="reviews"><figure class="review"><span class="s" aria-label="5 stars">★★★★★</span><blockquote>&quot;Booked Kat for my daughter&#x27;s 6th birthday and she was brilliant. So patient with a big group of excited kids, and the designs were beautiful. Would book again in a heartbeat!&quot;</blockquote><figcaption><b>Liam</b><small>Birthday party, Horsham</small></figcaption></figure><figure class="review"><span class="s" aria-label="5 stars">★★★★★</span><blockquote>&quot;So amazing. Hired for our daughter&#x27;s 4th and was phenomenal. Non stop and everyone was so complimentary of the amazing face paints!&quot;</blockquote><figcaption><b>Daniel C</b><small>4th birthday party</small></figcaption></figure><figure class="review"><span class="s" aria-label="5 stars">★★★★★</span><blockquote>&quot;There ended up being a long queue at times just because they were so popular with both the kids and adults. All of the designs turned out wonderful.&quot;</blockquote><figcaption><b>Lisa K</b><small>Wedding reception, Brighton</small></figcaption></figure></div>
-<div class="rating"><img src="addtoevent-top-rated.webp" alt="Top rated on Add to Event" width="74" height="71" loading="lazy"><span><b>5.0</b> from 30+ reviews on <a href="https://www.addtoevent.co.uk/suppliers/the-painting-pixie-ltd" target="_blank" rel="noopener">Add to Event</a></span></div>
-</div></div></section>
+<div class="rating"><img src="../hw/addtoevent-top-rated.webp" alt="Top rated on Add to Event" width="74" height="71" loading="lazy"><span><b>5.0</b> from 30+ reviews on <a href="https://www.addtoevent.co.uk/suppliers/the-painting-pixie-ltd" target="_blank" rel="noopener">Add to Event</a></span></div>
+</div></section>
 
-<section class="band band-dark k-text centred band"><div class="wrap"><div class="wrap">
+<section class="band" style="padding-top:0"><div class="wrap">
 <div class="workshop"><div class="when">30<small>OCTOBER</small></div>
 <div><h3>Half-term Halloween workshop, London</h3><p>Children learn to decorate arms, hands and faces with paints, stencils and glitter. Friday 30 October, 10:30am to 12:30pm at the Good Hotel, London E16 1FA. £15 per child.</p></div>
 <a class="btn btn-orange" href="https://www.tickettailor.com/events/goodhotellondon/2442707" target="_blank" rel="noopener">Get tickets</a></div>
-</div></div></section>
+</div></section>
 
-<section class="band band-light k-text centred band panel"><div class="wrap"><div class="wrap">
+<section class="band panel"><div class="wrap">
 <p class="eyebrow">Good to know</p><h2>Halloween questions</h2>
-<div class="faqs"><details><summary>Can you do Halloween designs that aren&#x27;t too scary for young children?</summary><p>Yes. Most of my Halloween bookings include a mix of ages, so I always have friendly options like pumpkins, cute monsters, black cats and sparkly bats alongside the spookier designs. Children choose their own look, so nobody ends up with something they don&#x27;t want.</p></details><details><summary>Do you face paint adults for Halloween parties?</summary><p>Absolutely. Adult Halloween parties are some of my favourite bookings. Think full-face skulls, werewolves, devils and dramatic creature looks. Grown-up parties start from £150.</p></details><details><summary>How long is a party booking?</summary><p>The Classic Party package is 2 hours of face painting, and the Ultimate Sparkle package is 3 hours with glitter and gems. For school discos and larger events, get in touch for a quote.</p></details><details><summary>How far in advance should I book for Halloween?</summary><p>As early as you can. Halloween 2026 is on a Saturday, so Halloween weekend (Saturday 31 October) is the busiest of the season, and October half-term dates fill up quickly too.</p></details><details><summary>Do you do Halloween glitter tattoos?</summary><p>Yes. Glitter tattoos of bats, pumpkins, spiders, skulls and stars are quick to do, great for big queues and perfect for little ones who don&#x27;t want a painted face. They can be added to any party package or booked as a stall for your event.</p></details><details><summary>Do you paint at school Halloween discos?</summary><p>Yes. I keep designs quick so the queue keeps moving, and glitter tattoos are a great extra for big crowds. I can charge per face or a set fee, whichever suits your school or PTA.</p></details><details><summary>Which areas do you cover?</summary><p>I&#x27;m based in Horsham and regularly cover Crawley, Guildford, Reigate, Haywards Heath, Dorking, Worthing, Burgess Hill, Brighton, East Grinstead and the villages in between.</p></details></div></div></div></section>
+<div class="faqs"><details><summary>Can you do Halloween designs that aren&#x27;t too scary for young children?</summary><p>Yes. Most of my Halloween bookings include a mix of ages, so I always have friendly options like pumpkins, cute monsters, black cats and sparkly bats alongside the spookier designs. Children choose their own look, so nobody ends up with something they don&#x27;t want.</p></details><details><summary>Do you face paint adults for Halloween parties?</summary><p>Absolutely. Adult Halloween parties are some of my favourite bookings. Think full-face skulls, werewolves, devils and dramatic creature looks. Grown-up parties start from £150.</p></details><details><summary>How long is a party booking?</summary><p>The Classic Party package is 2 hours of face painting, and the Ultimate Sparkle package is 3 hours with glitter and gems. For school discos and larger events, get in touch for a quote.</p></details><details><summary>How far in advance should I book for Halloween?</summary><p>As early as you can. Halloween 2026 is on a Saturday, so Halloween weekend (Saturday 31 October) is the busiest of the season, and October half-term dates fill up quickly too.</p></details><details><summary>Do you do Halloween glitter tattoos?</summary><p>Yes. Glitter tattoos of bats, pumpkins, spiders, skulls and stars are quick to do, great for big queues and perfect for little ones who don&#x27;t want a painted face. They can be added to any party package or booked as a stall for your event.</p></details><details><summary>Do you paint at school Halloween discos?</summary><p>Yes. I keep designs quick so the queue keeps moving, and glitter tattoos are a great extra for big crowds. I can charge per face or a set fee, whichever suits your school or PTA.</p></details><details><summary>Which areas do you cover?</summary><p>I&#x27;m based in Horsham and regularly cover Crawley, Guildford, Reigate, Haywards Heath, Dorking, Worthing, Burgess Hill, Brighton, East Grinstead and the villages in between.</p></details></div></div></section>
 
-<section class="band band-dark k-text centred final"><div class="wrap"><div class="wrap">
+<section class="final"><div class="wrap">
 <h2>Halloween weekend goes first</h2>
 <p class="lede">Send your date and town and Kat will check her diary, usually the same day. No obligation, and no payment to enquire.</p>
 <div class="ctas"><a class="btn btn-orange" href="contact.html">Check my date</a><a class="btn btn-wa" href="https://wa.me/447852300125?text=Hi%20Kat!%20I%27d%20like%20to%20book%20Halloween%20face%20painting.%20Date:%20Town:%20Guests:%20" target="_blank" rel="noopener">WhatsApp Kat</a></div>
 <p class="phone">Or call or WhatsApp Kat on <b>07852 300125</b></p>
-</div></div></section>
+</div></section>
 
-<section class="band trustband"><div class="wrap">
-<p class="eyebrow">Trusted across Sussex &amp; Surrey</p>
-<div class="trustrow">
-<a class="ate" href="https://www.addtoevent.co.uk/suppliers/the-painting-pixie-ltd" target="_blank" rel="noopener" title="Top rated on Add to Event"><img src="../img/addtoevent-top-rated.webp" alt="Top rated on Add to Event, 5 stars" width="84" height="81" loading="lazy"></a>
-<div><b>&#9733;&#9733;&#9733;&#9733;&#9733; 5.0</b><span>30+ reviews</span></div>
-<div><b>1,000+</b><span>faces painted</span></div>
-<div><b>Insured</b><span>&amp; DBS checked</span></div>
-</div><span class="tlabel">Kat has painted at</span><div class="trustedat"><span><b>Eats &amp; Beats Festival</b><small>New House Farm, Horsham</small></span><span><b>Guildford Festival of the Arts</b><small>North Street, Guildford</small></span><span><b>Good Hotel</b><small>London</small></span><span><b>Macs Farm</b><small>near Ditchling</small></span></div></div></section>
-</main>
 <footer><div class="wrap">
-<div class="cols">
-<div><h4>The Painting Pixie</h4>Face painting by Kat, based in Horsham, West Sussex.<br><a href="tel:+447852300125" style="display:inline">07852 300125</a>
-<p style="margin:16px 0 0"><a class="ate" href="https://www.addtoevent.co.uk/suppliers/the-painting-pixie-ltd" target="_blank" rel="noopener" title="Top rated on Add to Event" style="display:inline-block"><img src="../img/addtoevent-top-rated.webp" alt="Top rated on Add to Event, 5 stars" width="84" height="81" loading="lazy"></a></p></div>
-<div><h4>Occasions</h4><a href="childrens-face-painting.html">Children's parties</a><a href="adult-face-painting.html">Adults &amp; hen parties</a><a href="animal-print-face-painting.html">Animal print</a><a href="halloween-face-painting.html">Halloween</a><a href="christmas-face-painting.html">Christmas</a><a href="glitter-bar.html">Glitter bar</a><a href="services.html">All services</a></div>
-<div><h4>Areas</h4><a href="face-painter-horsham.html">Horsham</a><a href="face-painter-crawley.html">Crawley</a><a href="face-painter-brighton.html">Brighton</a><a href="face-painter-guildford.html">Guildford</a><a href="areas.html">All areas</a></div>
-<div><h4>Kat</h4><a href="https://www.instagram.com/thepaintingpixieltd/" target="_blank" rel="noopener">Instagram @thepaintingpixieltd</a><a href="about.html">About</a><a href="gallery.html">Gallery</a><a href="contact.html">Book &amp; contact</a></div>
-</div>
-<p class="legal">© 2026 The Painting Pixie. The Painting Pixie is a trading name of The Painting Pixie Ltd. Registered in England and Wales, company number 14851167.</p>
+<div class="flinks"><a href="index.html">Home</a><a href="childrens-face-painting.html">Children’s parties</a><a href="adult-face-painting.html">Adult &amp; hen parties</a><a href="gallery.html">Gallery</a><a href="areas.html">Areas</a><a href="contact.html">Book</a></div>
+<a class="ate" href="https://www.addtoevent.co.uk/suppliers/the-painting-pixie-ltd" target="_blank" rel="noopener"><img src="../hw/addtoevent-top-rated.webp" alt="Top rated on Add to Event" loading="lazy"></a>
+<p>© 2026 The Painting Pixie. Serving Horsham, Guildford, Brighton, Crawley and across Sussex and Surrey.<br>The Painting Pixie is a trading name of The Painting Pixie Ltd. Registered in England and Wales, company number 14851167.</p>
 </div></footer>
-
 <a class="wa-float" href="https://wa.me/447852300125?text=Hi%20Kat!%20I%27d%20like%20to%20book%20Halloween%20face%20painting.%20Date:%20Town:%20Guests:%20" target="_blank" rel="noopener" aria-label="WhatsApp Kat"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.5.7 4.8 1.9 6.8L3 29l6.8-2.1c1.9 1 4 1.6 6.2 1.6 7 0 12.7-5.6 12.7-12.6S23 3 16 3zm0 23.2c-2 0-3.9-.6-5.5-1.6l-.4-.2-4 1.2 1.3-3.9-.3-.4a10.4 10.4 0 0 1-1.6-5.6C5.5 9.9 10.2 5.3 16 5.3s10.5 4.6 10.5 10.3S21.8 26.2 16 26.2zm5.8-7.7c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.2 1.4 3.4c.2.2 2.4 3.6 5.8 5 .8.4 1.4.6 1.9.7.8.3 1.6.2 2.2.1.7-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg></a>
-
-<div class="mbar" role="navigation" aria-label="Quick contact"><a class="pr" href="index.html#prices">Prices</a><a href="tel:+447852300125">Call</a><a class="wa" href="https://wa.me/447852300125" target="_blank" rel="noopener">WhatsApp</a></div>
-<script src="site.js"></script>
 </body>
 </html>
