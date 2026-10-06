@@ -245,7 +245,7 @@ def body():
 <h1>Halloween face painting that’s <em>cute, spooky</em> or properly scary</h1>
 <p class="lede">Parties, school discos and Halloween events across Sussex and Surrey, painted by Kat. Every guest picks their own fright level, from smiley pumpkins to full-face skulls, plus sparkly Halloween glitter tattoos.</p>
 <div class="ctas"><a class="btn btn-orange" href="{SITE}contact.html">Check my date</a><a class="btn btn-wa" href="{book}" target="_blank" rel="noopener">WhatsApp Kat</a></div>
-<div class="dates"><b>Halloween is on a Saturday this year. Busiest dates:</b><span>Sat 24 Oct</span><span>Sun 25 Oct</span><span>Fri 30 Oct</span><span class="hot">Sat 31 Oct</span><span>Sun 1 Nov</span></div>
+<div class="dates"><b>Halloween is on a Saturday this year, and dates are already being booked:</b><span>Sat 24 Oct</span><span>Sun 25 Oct</span><span>Fri 30 Oct</span><span class="hot">Sat 31 Oct</span><span>Sun 1 Nov</span></div>
 </div></section>
 
 <section class="strip-wrap" aria-label="Halloween face painting by Kat"><div class="strip">{strip}</div>
