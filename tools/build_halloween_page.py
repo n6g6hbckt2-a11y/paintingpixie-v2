@@ -85,8 +85,8 @@ html{scroll-behavior:smooth}
 body{margin:0;background:var(--night);color:var(--ink);font:17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
 body::before{content:"";position:fixed;inset:0;z-index:-1;background:url("halloween-night.svg") center/cover no-repeat;pointer-events:none}
 body{position:relative}
-.webs{position:absolute;left:0;top:0;width:100%;height:100%;z-index:-1;background:url("halloween-webs.svg") center top/1600px auto repeat-y;pointer-events:none}
-@media(max-width:760px){.webs{background-size:1000px auto}}
+.webs{position:fixed;inset:0;z-index:-1;background:url("halloween-webs-fixed.svg") center/cover no-repeat;pointer-events:none}
+@media(max-aspect-ratio:3/4){.webs{background-image:url("halloween-webs-fixed-tall.svg")}}
 @media(max-aspect-ratio:3/4){body::before{background-image:url("halloween-night-tall.svg")}}
 img{max-width:100%;display:block}
 a{color:var(--gold)}

@@ -140,8 +140,29 @@ def webs_tile(w=1600, h=2000):
     return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}">{o}</svg>'
 
 
+def webs_screen(w=1600, h=1000, portrait=False):
+    """Whole cobwebs for one screen, fixed in place like the moon (no repeating)."""
+    o = ''
+    if not portrait:
+        o += web_full(150, 520, 150, spokes=12, rings=7, seed=1)
+        o += web_full(1440, 700, 120, spokes=6, rings=5, curve=1.0, rot=.3, seed=2)
+        o += web_full(760, 110, 70, spokes=8, rings=4, jitter=.3, curve=.85, seed=6)
+        o += web_full(1010, 520, 60, spokes=7, rings=4, jitter=.25, curve=.9, seed=5)
+        o += spider_on(150, 520, 720) + spider_on(1440, 700, 830)
+    else:
+        o += web_full(110, 760, 120, spokes=12, rings=7, seed=1)
+        o += web_full(800, 1180, 110, spokes=6, rings=5, curve=1.0, rot=.3, seed=2)
+        o += web_full(760, 330, 70, spokes=8, rings=4, jitter=.3, curve=.85, seed=6)
+        o += spider_on(110, 760, 960)
+    return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" preserveAspectRatio="xMidYMid slice">{o}</svg>'
+
+
 if __name__ == '__main__':
     t = webs_tile()
     for d in ['/home/claude/paintingpixie-v2/img/bg/', '/home/claude/paintingpixie-v2/hw/']:
         open(d + 'halloween-webs.svg', 'w').write(t)
     print('webs tile ok')
+    for d in ['/home/claude/paintingpixie-v2/img/bg/', '/home/claude/paintingpixie-v2/hw/']:
+        open(d + 'halloween-webs-fixed.svg', 'w').write(webs_screen())
+        open(d + 'halloween-webs-fixed-tall.svg', 'w').write(webs_screen(900, 1600, True))
+    print('fixed webs ok')
