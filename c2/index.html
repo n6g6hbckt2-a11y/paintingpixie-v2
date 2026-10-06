@@ -61,8 +61,8 @@ document.addEventListener('click', function(e) {
   "areaServed": ["Sussex", "West Sussex", "Surrey", "Brighton", "Horsham", "Crawley", "Haywards Heath", "Worthing", "Burgess Hill", "East Grinstead", "Lewes", "Guildford", "Reigate", "Dorking"],
   "sameAs": ["https://www.addtoevent.co.uk/suppliers/the-painting-pixie-ltd"],
   "makesOffer": [
-    {"@type": "Offer", "name": "Classic Party face painting", "description": "2 hours of face painting, up to 15 children", "price": "130", "priceCurrency": "GBP"},
-    {"@type": "Offer", "name": "Ultimate Sparkle face painting", "description": "3 hours of face painting with bio-glitter and face gems, up to 25 children", "price": "160", "priceCurrency": "GBP"},
+    {"@type": "Offer", "name": "Classic Party face painting", "description": "2 hours of face painting", "price": "130", "priceCurrency": "GBP"},
+    {"@type": "Offer", "name": "Ultimate Sparkle face painting", "description": "3 hours of face painting with bio-glitter and face gems", "price": "160", "priceCurrency": "GBP"},
     {"@type": "Offer", "name": "Hen and adult party face painting", "price": "150", "priceCurrency": "GBP"}
   ]
 }
@@ -73,7 +73,7 @@ document.addEventListener('click', function(e) {
   "@type": "FAQPage",
   "mainEntity": [
     {"@type": "Question", "name": "Where do you travel to?", "acceptedAnswer": {"@type": "Answer", "text": "Kat is based in Horsham and paints across West Sussex, East Sussex, Brighton and Surrey, including Crawley, Haywards Heath, Worthing, Guildford, Reigate and Dorking. Bigger events further afield are welcome too."}},
-    {"@type": "Question", "name": "How many children can you paint?", "acceptedAnswer": {"@type": "Answer", "text": "The Classic Party covers up to 15 children in 2 hours and the Ultimate Sparkle covers up to 25 children in 3 hours. For bigger groups and events, Kat will suggest the right length of booking or bring an extra artist."}},
+    {"@type": "Question", "name": "How long should I book Kat for?", "acceptedAnswer": {"@type": "Answer", "text": "The Classic Party is 2 hours of face painting and the Ultimate Sparkle is 3 hours. Tell Kat roughly how many guests you are expecting and she will suggest the right length of booking, or bring an extra artist for big events."}},
     {"@type": "Question", "name": "Are the paints safe for children's skin?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Kat uses professional, cosmetic-grade face paints made for skin, and bio-glitter. If a child has sensitive skin, a small patch test on the arm is a good idea."}},
     {"@type": "Question", "name": "Do you paint adults and hen parties?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Hen parties and adult celebrations start from £150, with glitter, gems and grown-up designs. Kat also runs a chunky glitter and jewel bar for festivals and weddings."}},
     {"@type": "Question", "name": "How far ahead should I book?", "acceptedAnswer": {"@type": "Answer", "text": "Weekend dates often book several weeks in advance, and Halloween and Christmas go first. A small deposit secures your date."}},
@@ -402,8 +402,8 @@ footer .cols{grid-template-columns:1fr}
 <p class="eyebrow">Prices</p>
 <h2>Simple packages, no surprises.</h2>
 <div class="prices">
-<div class="price"><h3>Classic Party</h3><div><span style="color:var(--muted)">From</span> <span class="amt">£130</span></div><ul><li>2 hours of face painting</li><li>Up to 15 children</li><li>Fast, fun party designs</li></ul><a class="btn btn-ghost" href="https://wa.me/447852300125?text=Hi%20Kat!%20I'm%20interested%20in%20the%20Classic%20Party%20(%C2%A3130).%20Date%3A%20%20Town%3A%20" target="_blank" rel="noopener">Check my date</a></div>
-<div class="price hi"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h3>Ultimate Sparkle</h3><span class="tag">Most popular</span></div><div><span style="color:var(--muted)">From</span> <span class="amt">£160</span></div><ul><li>3 hours of face painting</li><li>Up to 25 children</li><li>Bio-glitter, face gems &amp; detailed designs</li></ul><a class="btn btn-gold" href="https://wa.me/447852300125?text=Hi%20Kat!%20I'm%20interested%20in%20Ultimate%20Sparkle%20(%C2%A3160).%20Date%3A%20%20Town%3A%20" target="_blank" rel="noopener">Check my date</a></div>
+<div class="price"><h3>Classic Party</h3><div><span style="color:var(--muted)">From</span> <span class="amt">£130</span></div><ul><li>2 hours of face painting</li><li>Fast, fun party designs</li></ul><a class="btn btn-ghost" href="https://wa.me/447852300125?text=Hi%20Kat!%20I'm%20interested%20in%20the%20Classic%20Party%20(%C2%A3130).%20Date%3A%20%20Town%3A%20" target="_blank" rel="noopener">Check my date</a></div>
+<div class="price hi"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h3>Ultimate Sparkle</h3><span class="tag">Most popular</span></div><div><span style="color:var(--muted)">From</span> <span class="amt">£160</span></div><ul><li>3 hours of face painting</li><li>Bio-glitter, face gems &amp; detailed designs</li></ul><a class="btn btn-gold" href="https://wa.me/447852300125?text=Hi%20Kat!%20I'm%20interested%20in%20Ultimate%20Sparkle%20(%C2%A3160).%20Date%3A%20%20Town%3A%20" target="_blank" rel="noopener">Check my date</a></div>
 <div class="price"><h3>Large Events</h3><div><span class="amt">Bespoke</span></div><ul><li>Weddings, festivals &amp; corporate days</li><li>Hourly or day rates, custom themes</li><li>Extra artists if needed</li></ul><a class="btn btn-ghost" href="https://paintingpixie.com/contact.html">Get a quote</a></div>
 </div>
 <p class="price-note">Hen dos and adult parties start from £150. A small deposit secures your date.</p>
@@ -462,7 +462,7 @@ footer .cols{grid-template-columns:1fr}
 <p class="eyebrow">Good to know</p>
 <h2>Questions parents ask.</h2>
 <details open><summary>Where do you travel to?</summary><p>Kat is based in Horsham and paints across West Sussex, East Sussex, Brighton and Surrey, including Crawley, Haywards Heath, Worthing, Guildford, Reigate and Dorking. Bigger events further afield are welcome too.</p></details>
-<details><summary>How many children can you paint?</summary><p>The Classic Party covers up to 15 children in 2 hours and the Ultimate Sparkle covers up to 25 children in 3 hours. For bigger groups and events, Kat will suggest the right length of booking or bring an extra artist.</p></details>
+<details><summary>How long should I book Kat for?</summary><p>The Classic Party is 2 hours of face painting and the Ultimate Sparkle is 3 hours. Tell Kat roughly how many guests you are expecting and she will suggest the right length of booking, or bring an extra artist for big events.</p></details>
 <details><summary>Are the paints safe for children's skin?</summary><p>Yes. Kat uses professional, cosmetic-grade face paints made for skin, and bio-glitter. If a child has sensitive skin, a small patch test on the arm is a good idea.</p></details>
 <details><summary>Do you paint adults and hen parties?</summary><p>Yes. Hen parties and adult celebrations start from £150, with glitter, gems and grown-up designs. Kat also runs a chunky <a href="https://paintingpixie.com/glitter-bar.html">glitter and jewel bar</a> for festivals and weddings.</p></details>
 <details><summary>How far ahead should I book?</summary><p>Weekend dates often book several weeks in advance, and Halloween and Christmas go first. A small deposit secures your date.</p></details>

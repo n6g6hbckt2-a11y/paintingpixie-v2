@@ -100,7 +100,7 @@ def b_prices(tone='jewel', events=False):
                  ("Festivals & Pride", "Glitter bar, body art & fast designs for a queue", "Bespoke quote"), ("Corporate & brand events", "Staff days, launches & activations", "Bespoke quote")]
         inner = ''.join(f'<div class="pcard"><h3>{a}</h3><p>{b}</p><div class="pp">{c}</div></div>' for a, b, c in cards)
         return band('prices', f'<h2>Events in Brighton &amp; Hove</h2><div class="pcards">{inner}</div><p class="small-note">In Brighton Kat focuses on events, hen dos, weddings and larger celebrations, and birthday parties are welcome too. Tell her your date, venue and guest numbers.</p>', tone, 'centred')
-    cards = [("Classic Party", "Up to 15 children, 2 hours", "From £130"), ("Ultimate Sparkle", "Up to 25 children, 3 hours, glitter & gems", "From £160"),
+    cards = [("Classic Party", "2 hours of face painting", "From £130"), ("Ultimate Sparkle", "3 hours, glitter & gems", "From £160"),
              ("Hens & grown-ups", "Glitter, gems & adult designs", "From £150"), ("Big events", "Weddings, festivals & corporate", "Bespoke quote")]
     inner = ''.join(f'<div class="pcard"><h3>{a}</h3><p>{b}</p><div class="pp">{c}</div></div>' for a, b, c in cards)
     return band('prices', f'<h2>Simple prices</h2><div class="pcards">{inner}</div><p class="small-note">Kat confirms the exact price for your date. A small deposit secures your booking.</p>', tone, 'centred')

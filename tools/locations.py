@@ -367,7 +367,7 @@ PAGES = {
  faqs=[
   ("Do you cover both Reigate and Redhill?", "Yes, plus Merstham, Earlswood and the villages around."),
   ("Can you paint at a party in Priory Park?", "Yes. Outdoor parties are lovely; I just need a table, two chairs and a bit of shade."),
-  ("Can you do a 3-hour booking?", "Yes. The Ultimate Sparkle is 3 hours for up to 25 children, with glitter and gems."),
+  ("Can you do a 3-hour booking?", "Yes. The Ultimate Sparkle is 3 hours of face painting, with glitter and gems."),
   ("How far ahead should I book?", "Weekends go weeks ahead, so message me as soon as you have a date."),
  ],
 ),
