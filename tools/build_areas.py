@@ -145,10 +145,12 @@ Tap a pin to see Kat's local page, or scroll down for the full list. Gold pins a
              '<script type="application/ld+json">\n' + json.dumps(schema, ensure_ascii=False, indent=1) + '\n</script>\n')
     css = '''<style>
 .smap{display:block;width:100%;height:100%}
-@media(max-width:800px){.areamap:has(.smap){height:auto;aspect-ratio:1000/640}}
+@media(max-width:800px){.areamap:not(.is-live){height:auto;aspect-ratio:1000/640}}
 .smap a:hover circle{stroke:#E2BE7A;stroke-width:3}
 .areamap:has(.smap){background:#231F30}
-.areamap{height:560px;border-radius:16px;margin-top:24px;border:6px solid #fff;box-shadow:0 30px 60px -30px rgba(60,30,40,.45);background:#1B1A22;z-index:0}
+#livemap{position:absolute;inset:0;opacity:0;pointer-events:none;border-radius:10px}
+.areamap.is-live #livemap{opacity:1;pointer-events:auto}
+.areamap{position:relative;overflow:hidden;height:560px;border-radius:16px;margin-top:24px;border:6px solid #fff;box-shadow:0 30px 60px -30px rgba(60,30,40,.45);background:#1B1A22;z-index:0}
 .areamap .leaflet-popup-content-wrapper{background:#1F1C25;color:#F5F1EA;border-radius:12px}
 .areamap .leaflet-popup-tip{background:#1F1C25}
 .areamap .leaflet-popup-content{margin:12px 16px;font:600 14px/1.45 Manrope,system-ui,sans-serif}
@@ -181,12 +183,15 @@ Tap a pin to see Kat's local page, or scroll down for the full list. Gold pins a
   var box = document.getElementById('areamap'), drawn = box.innerHTML;
   var pins = {json.dumps(pins, ensure_ascii=False)};
   var WIDER_PINS = {json.dumps([[n, a, b, n in recent] for n, a, b in WIDER])};
-  box.innerHTML = '';
-  var map = L.map('areamap', {{scrollWheelZoom:false}}).setView([51.03,-0.33], 9);
+  // the live map is built in a layer underneath and only shown once real map pictures have loaded
+  var live = document.createElement('div'); live.id = 'livemap'; box.appendChild(live);
+  var map = L.map('livemap', {{scrollWheelZoom:false}}).setView([51.03,-0.33], 9);
+  var shown = false;
+  function show(){{ if (shown) return; shown = true; box.classList.add('is-live'); var sv = box.querySelector('.smap'); if (sv) sv.remove(); map.invalidateSize(); map.fitBounds(bounds, {{padding:[40,40]}}); }}
   var ok = 0, bad = 0, triedOSM = false;
   function tiles(url, attr) {{
     var t = L.tileLayer(url, {{maxZoom: 14, attribution: attr}});
-    t.on('tileload', function(){{ ok++; }});
+    t.on('tileload', function(){{ ok++; if (ok >= 3) show(); }});
     t.on('tileerror', function(){{ bad++; }});
     return t.addTo(map);
   }}
@@ -197,7 +202,7 @@ Tap a pin to see Kat's local page, or scroll down for the full list. Gold pins a
     if (!triedOSM) {{ triedOSM = true; map.removeLayer(layer); ok = 0;
       layer = tiles('https://tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png', '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors');
       setTimeout(check, 4000); return; }}
-    map.remove(); box.className = 'areamap'; box.innerHTML = drawn;   // no map tiles reachable: show the drawn map
+    map.remove(); live.remove();   // no map pictures reachable: keep the drawn map
   }}, 4000);
   var home = [51.0629,-0.3259];
   L.circle(home, {{radius: 36000, color:'#FF4FA3', weight:1.5, fillColor:'#FF4FA3', fillOpacity:.08}}).addTo(map);
