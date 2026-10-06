@@ -377,21 +377,34 @@ def build():
 
 # ---------- Split hero: on wider screens the photo sits on the right, so the text card doesn't cover the face ----------
 SPLIT_CSS = r'''
-.phero>img.hbg{display:none}
+.phero>.hbg{display:none}
 @media(min-width:901px){
-.phero:not(.hero-right)>img:not(.hbg){left:40%;width:60%;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14%);mask-image:linear-gradient(90deg,transparent 0,#000 14%)}
-.phero:not(.hero-right)>img.hbg{display:block;position:fixed;inset:-40px;width:calc(100% + 80px);height:calc(100vh + 80px);object-fit:cover;filter:blur(38px) brightness(.5) saturate(1.25);z-index:-2}
+.phero:not(.hero-right)>img:not(.hbg){left:40%;width:60%;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 6%);mask-image:linear-gradient(90deg,transparent 0,#000 6%)}
+.phero:not(.hero-right)>.hbg{display:block;position:fixed;inset:0;z-index:-2;background:radial-gradient(ellipse at 15% 85%,rgba(255,79,163,.22),transparent 55%),radial-gradient(ellipse at 30% 10%,rgba(122,91,176,.28),transparent 60%),#17141C}
 .phero:not(.hero-right)::after{background:linear-gradient(180deg,rgba(21,19,26,.5) 0,rgba(21,19,26,0) 18%,rgba(21,19,26,0) 70%,rgba(21,19,26,.55) 100%)}
 .phero:not(.hero-right) .hcard{max-width:min(560px,38vw)}
+}
+@media(max-width:600px){
+.phero:not(.hero-right)>img:not(.hbg){height:54vh;height:54svh;-webkit-mask-image:linear-gradient(180deg,#000 82%,transparent);mask-image:linear-gradient(180deg,#000 82%,transparent)}
+.phero:not(.hero-right)>.hbg{display:block;position:fixed;inset:0;z-index:-2;background:radial-gradient(ellipse at 20% 90%,rgba(255,79,163,.22),transparent 60%),#17141C}
+.phero:not(.hero-right)::after{background:linear-gradient(180deg,rgba(21,19,26,.45) 0,rgba(21,19,26,0) 16%)}
+.phero:not(.hero-right) .wrap{padding-bottom:28px}
+.phero .hcard{padding:18px 18px 16px}
+.phero.hero-right .wrap{padding-bottom:96px}
+.phero .hcard h1{font-size:27px!important;line-height:1.12}
+.phero .hcard>p:not(.crumb){font-size:14.5px;line-height:1.45;margin:8px 0 12px}
+.phero .hcard .ctas{display:flex;flex-wrap:nowrap;gap:8px}
+.phero .hcard .ctas .btn{flex:1 1 0;min-width:0;padding:13px 8px;font-size:14px;margin:0;white-space:nowrap;text-align:center}
 }
 '''
 def split_heroes():
     with open(f'{OUT}/site.css', 'a') as f: f.write(SPLIT_CSS)
     for p in glob.glob(f'{OUT}/*.html'):
-        s = open(p).read()
+        s0 = s = open(p).read()
         if 'class="hbg"' in s: continue
-        n = re.sub(r'(<header class="phero"><img src="([^"]+)"[^>]*>)', r'\1<img class="hbg" src="\2" alt="" aria-hidden="true">', s, count=1)
-        if n != s: open(p, 'w').write(n)
+        s = re.sub(r'(<div class="hcard">.*?</div></div>)', lambda m: m.group(1).replace('💬 WhatsApp Enquiry', 'WhatsApp Kat').replace('💬 WhatsApp<', 'WhatsApp Kat<'), s, count=1, flags=re.S)
+        n = re.sub(r'(<header class="phero"><img src="([^"]+)"[^>]*>)', r'\1<div class="hbg" aria-hidden="true"></div>', s, count=1)
+        if n != s0: open(p, 'w').write(n)
 
 _orig_build5 = build
 def build():
