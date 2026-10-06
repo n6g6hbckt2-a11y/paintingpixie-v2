@@ -111,7 +111,7 @@ h2{font-size:clamp(32px,4.4vw,52px)}
 .links a{color:#fff;text-decoration:none;font:800 13px var(--body);letter-spacing:.1em;text-transform:uppercase}
 .links a.btn{padding:11px 18px;font-size:14px;letter-spacing:0;text-transform:none}
 /* hero */
-.hero{min-height:88vh;display:flex;align-items:flex-end;padding:150px 0 54px}
+.hero{display:flex;align-items:flex-start;padding:max(96px, calc(50vh - max(18.75vw, 30vh) - 34px)) 0 64px}
 .hero h1{font-size:clamp(46px,7.4vw,96px);max-width:900px;text-shadow:0 6px 40px rgba(0,0,0,.5)}
 .hero h1 em{font-style:italic;color:var(--orange)}
 .hero .lede{font-size:19px;margin:18px 0 26px;color:#EADDF7}
