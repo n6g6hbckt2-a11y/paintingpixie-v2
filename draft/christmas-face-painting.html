@@ -111,8 +111,22 @@ gtag('config', 'G-JMFEXJJZ1H');
 @media(max-width:900px){.svgrid{grid-template-columns:1fr 1fr}.evsplit,.wscard{grid-template-columns:1fr}.wsideas{grid-template-columns:1fr}}
 @media(max-width:600px){.svgrid{grid-template-columns:1fr}.evfacts{grid-template-columns:1fr}}
 </style>
+<style id="seasoncss">
+.seasonbar{position:relative;z-index:6;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
+  padding:11px 16px;text-decoration:none;text-align:center;color:#1A0B24;background:linear-gradient(90deg,#FF7A1A 0%,#FFB020 30%,#FF7A1A 55%,#B83CFF 100%);background-size:200% 100%;
+  font:800 15.5px/1.3 Manrope,system-ui,sans-serif;letter-spacing:.01em;box-shadow:0 4px 18px rgba(255,122,26,.45);animation:seasonslide 9s ease-in-out infinite alternate}
+.seasonbar .si{font-size:20px;line-height:1;display:inline-block;animation:seasonbob 2.4s ease-in-out infinite}
+.seasonbar .sc{display:inline-flex;align-items:center;gap:6px;background:#1A0B24;color:#FFD27A;padding:6px 14px;border-radius:999px;font-size:14px}
+.seasonbar:hover .sc{background:#000;color:#fff}
+.seasonbar:focus-visible{outline:3px solid #fff;outline-offset:-3px}
+@keyframes seasonslide{to{background-position:100% 0}}
+@keyframes seasonbob{50%{transform:translateY(-3px) rotate(-8deg)}}
+@media(max-width:600px){.seasonbar{font-size:14px;padding:9px 12px;gap:8px}.seasonbar .sc{padding:5px 11px;font-size:13px}}
+@media(prefers-reduced-motion:reduce){.seasonbar,.seasonbar .si{animation:none}}
+</style>
 </head>
 <body>
+<a class="seasonbar" href="halloween-face-painting.html"><span class="si" aria-hidden="true">🎃</span><span>Now booking Halloween parties</span><span class="sc">See the spooky designs →</span></a>
 <nav aria-label="Main" id="mainnav"><div class="wrap navbar">
 <a class="brand" href="index.html"><img src="../img/logo-lg.webp" alt="The Painting Pixie logo" width="104" height="104"><span>The Painting Pixie</span></a>
 <div class="links">
