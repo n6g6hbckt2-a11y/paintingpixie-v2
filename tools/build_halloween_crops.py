@@ -40,3 +40,13 @@ for k, p, cx, cy, f in CARD:
     x0 = min(max(cx * W - cw / 2, 0), W - cw); y0 = min(max(cy * H - ch * .48, 0), H - ch)
     im.crop((round(x0), round(y0), round(x0 + cw), round(y0 + ch))).resize((600, 750), Image.LANCZOS).save(f'hw/halloween-{k}-card.webp', 'WEBP', quality=82, method=6)
 print('card crops done')
+
+# heavily zoomed crops for the photo line at the top (3:4), the face fills the frame
+ZOOM_CY = {'devil-girl': .45, 'werewolf': .44}
+for k, p, cx, cy, f in C:
+    cy = ZOOM_CY.get(k, cy)
+    im = ImageOps.exif_transpose(Image.open(p)).convert('RGB'); W, H = im.size
+    cw = f * .55 * W; ch = cw * 4 / 3
+    x0 = min(max(cx * W - cw / 2, 0), W - cw); y0 = min(max(cy * H - ch * .47, 0), H - ch)
+    im.crop((round(x0), round(y0), round(x0 + cw), round(y0 + ch))).resize((720, 960), Image.LANCZOS).save(f'hw/halloween-{k}-zoom.webp', 'WEBP', quality=82, method=6)
+print('zoom crops done')
