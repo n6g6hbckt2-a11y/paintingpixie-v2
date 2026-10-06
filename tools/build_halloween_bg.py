@@ -59,8 +59,9 @@ def halloween(w=1600, h=1000, portrait=False):
     for _ in range(170):
         body += f'<circle cx="{rng.uniform(0, W):.0f}" cy="{rng.uniform(0, H * .75):.0f}" r="{rng.uniform(.6, 1.9):.1f}" fill="#FFF3D6" opacity="{rng.uniform(.3, .9):.2f}"/>'
     mx, my, mr = (sx(1290), 200, 120) if not portrait else (w * .72, 230, 110)
-    mo = .42 if portrait else 1
-    body += f'<g opacity="{mo}"><circle cx="{mx:.0f}" cy="{my}" r="{mr * 1.9:.0f}" fill="url(#moonglow)"/><circle cx="{mx:.0f}" cy="{my}" r="{mr}" fill="#FFE9B0"/>'
+    mo = 0 if portrait else 1   # no moon on phones: text scrolls over the whole screen there
+    if portrait: body += '<!-- no moon on phones -->'
+    body += f'<g opacity="{mo}" {"display=\"none\"" if portrait else ""}><circle cx="{mx:.0f}" cy="{my}" r="{mr * 1.9:.0f}" fill="url(#moonglow)"/><circle cx="{mx:.0f}" cy="{my}" r="{mr}" fill="#FFE9B0"/>'
     body += f'<circle cx="{mx - mr * .33:.0f}" cy="{my - mr * .25:.0f}" r="{mr * .18:.0f}" fill="#F2D28A" opacity=".6"/><circle cx="{mx + mr * .3:.0f}" cy="{my + mr * .3:.0f}" r="{mr * .12:.0f}" fill="#F2D28A" opacity=".55"/></g>'
     bats = [(1190, 260, 1.4, -10), (1350, 120, 1.0, 12), (1420, 300, .8, -6), (980, 120, .9, 8), (300, 140, 1.2, -14), (520, 80, .7, 10), (160, 330, .8, 6), (760, 220, .6, -8), (1530, 420, 1.1, 14)]
     for x, y, sc, r in bats:
