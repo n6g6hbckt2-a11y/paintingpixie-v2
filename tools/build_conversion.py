@@ -180,7 +180,7 @@ LATEST_REVIEWS += [
          text="Kat was great she arrived early and set up quickly. She is very calm and professional and happy to attempt anything the kids asked for, she is very fast which is great if you have a line of kids waiting! No hesitation in recommending and would happily book again. Also, of course, her skills are excellent, designs are beautiful!"),
     dict(name='Stuart A', occasion='“Excellent service”', date='15 Jun 2024', pages=('face-painter-surrey-villages.html', 'face-painter-guildford.html'),
          text="Kat arrived on time, was excellent both children and adults enjoyed some face painting and the tattoos. Thank you."),
-    dict(name='Sophia L', occasion='“Incredible skill”', date='6 May 2024', pages=('animal-print-face-painting.html', 'face-painter-dorking.html', 'face-painter-burgess-hill.html'),
+    dict(name='Sophia L', occasion='“Incredible skill”', date='6 May 2024', pages=('face-painter-dorking.html', 'face-painter-burgess-hill.html'),
          text="Kat was absolutely fantastic! Her skill was incredible, as she was able to paint a variety of designs based on the children's requests and clothes. The kids had a blast. Additionally, she was extremely friendly and patient, giving each child and even adult individual attention. She added a special touch to the party, and our whole family was impressed with her work. Highly recommend!"),
 ]
 
@@ -194,7 +194,7 @@ LATEST_REVIEWS += [
          text="It was a great service at my son's birthday party. All the kids fluttered to the artist and came back with amazing art. Super talented and so worth the money!!"),
     dict(name='Amaria A', occasion='“Fantastic face painting and service!”', date='13 Jan 2024', pages=('contact.html', 'about.html'),
          text="Kat was amazing! From receiving the quote to coordinating timings for the event, her communication was stellar. She showed up on time at the day of the event while other vendors ran late… She was friendly and kind with all the guests and the girls loved their beautiful designs… She also left everything so clean and was very sweet."),
-    dict(name='Martin L', occasion="Son's 4th birthday", date='2 Dec 2023', pages=('animal-print-face-painting.html', 'face-painter-lewes.html', 'face-painter-west-sussex-villages.html'),
+    dict(name='Martin L', occasion="Son's 4th birthday", date='2 Dec 2023', pages=('face-painter-lewes.html', 'face-painter-west-sussex-villages.html'),
          text="Kat provided a brilliant service for my sons 4th Birthday party. Her designs were amazing and all the children were very happy. Even my son, who doesn’t normally like his face being painted loved his dinosaur face. She was also very good value for money so would definitely recommend."),
     dict(name='Kay M', occasion='Event with staff team', date='30 Nov 2023', pages=('glitter-bar.html', 'face-painter-surrey.html', 'face-painter-sussex.html', 'about.html', 'corporate-events.html'),
          text="Kat provided an exceptional service.. She was a real highlight at our event.. Busy and popular from the get go.. Dealing with children brilliantly ..adults too..and most of our staff team!!! Professional .creative..and a bit of a genius!! Not only doing \"classic\" face paint options ..but free styling..in a hugely impressive way. Added lot of sparkle to our event!"),

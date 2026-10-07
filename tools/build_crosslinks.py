@@ -44,7 +44,6 @@ SERVICE_PAGES = {   # page: lead-in naming the service
     'childrens-face-painting.html': 'Children’s party face painting',
     'adult-face-painting.html': 'Hen and adult party face painting',
     'glitter-bar.html': 'The glitter bar',
-    'animal-print-face-painting.html': 'Animal print face painting',
     'corporate-events.html': 'Corporate and event face painting',
     'body-art.html': 'Body art',
     'christmas-face-painting.html': 'Christmas face painting',
@@ -93,7 +92,33 @@ def insert_before(s, pattern, block):
     m = re.search(pattern, s)
     return (s[:m.start()] + block + s[m.start():]) if m else None
 
+REDIRECTS = {  # retired pages -> where they now live (old address keeps working and passes on its Google standing)
+    'animal-print-face-painting.html': ('gallery.html#animal', 'gallery.html', 'Animal print designs in the gallery'),
+}
+REDIRECT_HTML = '''<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="refresh" content="0; url={go}">
+<link rel="canonical" href="https://paintingpixie.com/{canon}">
+<meta name="robots" content="noindex,follow">
+<title>Redirecting… | The Painting Pixie</title>
+<script>location.replace('{go}');</script>
+</head>
+<body>
+<p>This page has moved. Please continue to <a href="{go}">{label}</a>.</p>
+</body>
+</html>
+'''
+
 def build():
+    import glob
+    for page, (go, canon, label) in REDIRECTS.items():
+        open(f'{OUT}/{page}', 'w').write(REDIRECT_HTML.format(go=go, canon=canon, label=label))
+        for f in glob.glob(OUT + '/*.html'):   # point in-page links straight at the new place
+            if f.endswith('/' + page): continue
+            t = open(f).read()
+            if f'href="{page}"' in t: open(f, 'w').write(t.replace(f'href="{page}"', f'href="{go}"'))
     with open(f'{OUT}/site.css') as f: css = f.read()
     if '/* town <-> service links */' not in css:
         with open(f'{OUT}/site.css', 'a') as f: f.write(CSS)

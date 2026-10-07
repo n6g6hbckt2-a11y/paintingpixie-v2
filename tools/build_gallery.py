@@ -119,7 +119,7 @@ def gallery_html(sizes):
             f'<figcaption><b>{esc(title)}</b><span>{esc(setting)}</span></figcaption></figure>')
     return f'''<section class="band band-light k-gallery2"><div class="wrap">
 <p class="eyebrow">The gallery</p><h2>Real faces, real parties</h2>
-<p class="glede">Every photo here is Kat’s own work at real parties, festivals and events, not stock images. Pick a category, tap a photo to see it up close, and book the look you love.</p>
+<p class="glede">Every photo here is Kat’s own work at real parties, festivals and events, not stock images. Pick a category, tap a photo to see it up close, and book the look you love. Looking for animal print? Tigers, leopards and big cats for kids and grown-ups are under <a href="#animal" class="glink" data-go="animal">Animal print</a>.</p>
 <div class="gchips" role="toolbar" aria-label="Filter the gallery">{chips}</div>
 <div class="gmason" id="gmason">{"".join(items)}</div>
 <p class="gmore">Can’t see the design you want? Kat paints <b>almost anything</b>: football kits, favourite characters, party themes and brand colours. <a href="{wa("Hi Kat! Can you paint a design I have in mind? It's: ")}" target="_blank" rel="noopener">Ask Kat on WhatsApp</a></p>
@@ -208,6 +208,7 @@ JS = r'''<script>
   var x0=null;lb.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
   lb.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>45)show(cur+(dx<0?1:-1));x0=null});
   var h=location.hash.slice(1); if(h&&chips.some(function(c){return c.dataset.f===h}))filter(h);
+  window.addEventListener('hashchange',function(){var h=location.hash.slice(1);if(chips.some(function(c){return c.dataset.f===h}))filter(h);});
 })();
 </script>'''
 
