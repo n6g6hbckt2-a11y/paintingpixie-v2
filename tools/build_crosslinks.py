@@ -11,7 +11,7 @@ SERV = {
     'glitter':('glitter-bar.html', 'Glitter bar', 'Chunky bio-glitter and gems for festivals and parties.', 'Bespoke quote'),
     'events': ('corporate-events.html', 'Corporate &amp; events', 'Staff days, fêtes, launches and big crowds.', 'Bespoke quote'),
     'body':   ('body-art.html', 'Body art', 'Painted arm and body designs for Pride, festivals and shoots.', 'Bespoke quote'),
-    'learn':  ('workshops.html', 'Learn to face paint', 'Workshops, group lessons and one-to-one masterclasses.', 'From £15'),
+    'learn':  ('workshops.html', 'Workshop parties', 'Guests learn to face paint and paint each other, with Kat.', '£15 per child'),
 }
 DEFAULT = ['kids', 'hens', 'glitter', 'events']
 EVENTS_FIRST = ['events', 'glitter', 'hens']   # Brighton: Kat targets events; parties via get in touch
@@ -46,7 +46,7 @@ SERVICE_PAGES = {   # page: lead-in naming the service
     'glitter-bar.html': 'The glitter bar',
     'corporate-events.html': 'Corporate and event face painting',
     'christmas-face-painting.html': 'Christmas face painting',
-    'workshops.html': 'Workshops and lessons',
+    'workshops.html': 'Workshop parties',
 }
 
 CSS = '''

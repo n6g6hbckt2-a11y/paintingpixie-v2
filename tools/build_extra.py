@@ -20,7 +20,7 @@ SERVICES = [
  ("Halloween", "../img/n-pumpkin-face.webp", "50% 30%", "Pumpkins, skulls, devils and monsters, from sweet to spooky.", "From £130", "halloween-face-painting.html", "Halloween"),
  ("Christmas", "blue-shooting-stars-face-paint-for-girls.webp", "50% 35%", "Reindeer, snowflakes, elves and glitter for Christmas parties, school fairs, grottos and office parties.", "From £130", "christmas-face-painting.html", "Christmas"),
  ("Festivals, fêtes & community days", "../img/v2-hero.webp", "60% 35%", "Fast, queue-friendly designs for school fairs, village fêtes and festivals, as a stall or a set fee.", "Bespoke quote", "contact.html", "Get a quote"),
- ("Learn to face paint", "../img/kat-painting-poster.webp", "50% 40%", "Workshops for children and groups, plus one-to-one masterclasses covering painting skills and how to set up and grow a face painting business.", "Workshops £15 per child · groups £150pp · masterclass £200", "workshops.html", "Workshops & lessons"),
+ ("Face painting workshop parties", "../img/kat-painting-poster.webp", "50% 40%", "A party where the guests learn to face paint: Kat shows them how, they paint each other and go home with their designs.", "£15 per child", "workshops.html", "Workshop parties"),
 ]
 
 CSS = r'''<style>
@@ -123,8 +123,8 @@ def workshops():
     tickets = "https://www.tickettailor.com/events/goodhotellondon/2442707"
     main = f'''<main class="lg" id="content">
 <section class="band band-light"><div class="wrap">
-<p class="eyebrow">Next workshop</p><h2>Learn to face paint with Kat</h2>
-<p>Hands-on sessions where children (and grown-ups!) learn to design and paint faces, arms and hands, using the same professional paints, stencils and glitter Kat uses at parties. Kat is also a GCSE and A level teacher, so sessions are well organised, patient and fun.</p>
+<p class="eyebrow">Next workshop</p><h2>Face painting workshops with Kat</h2>
+<p>Hands-on sessions where children learn to design and paint faces, arms and hands, using the same professional paints, stencils and glitter Kat uses at parties. Kat is also a GCSE and A level teacher, so sessions are well organised, patient and fun.</p>
 <article class="wscard"><img src="../img/n-pumpkin-face.webp" alt="Halloween pumpkin face paint" loading="lazy" style="object-position:50% 30%">
 <div><span class="wsdate">Friday 30 October 2026 · 10:30am–12:30pm</span>
 <h3>Half-Term Halloween Workshop</h3>
@@ -132,37 +132,24 @@ def workshops():
 <a class="btn btn-gold" href="{tickets}" target="_blank" rel="noopener">Get tickets</a></div></article>
 </div></section>
 <section class="band band-dark"><div class="wrap">
-<p class="eyebrow">Book a workshop for your group</p><h2>Bring a workshop to you</h2>
-<p>Kat can run a learn-to-face-paint session for your group. Tell her what you have in mind and she'll suggest a format.</p>
-<div class="wsideas"><div><b>Schools &amp; clubs</b><span>A creative session for a class, club or holiday camp.</span></div>
-<div><b>Birthday parties</b><span>Older children learn to paint each other, then go home with their designs.</span></div>
-<div><b>Hen dos &amp; team days</b><span>A glittery, sociable activity for grown-ups that is great for photos.</span></div></div>
-<p style="margin-top:22px"><a class="btn btn-wa" href="{wa("Hi Kat! I'd like to ask about a face painting workshop for my group.")}" target="_blank" rel="noopener">Ask Kat about a workshop</a></p>
+<p class="eyebrow">Workshop parties</p><h2>Make the face painting the party</h2>
+<p>Instead of Kat painting everyone, the guests learn to do it themselves. Kat shows them how, they paint each other with professional, skin-safe paints, stencils and glitter, and everyone goes home with their own designs. <b>£15 per child.</b></p>
+<div class="wsideas"><div><b>Birthday parties</b><span>Perfect for older children: a creative party they run themselves, with Kat on hand.</span></div>
+<div><b>Glitter &amp; sparkle</b><span>Stencils, bio-glitter and gems so every design looks finished and photo-ready.</span></div>
+<div><b>Everything brought</b><span>Paints, brushes, stencils, mirrors and wipes. You just need a table and chairs.</span></div></div>
+<p style="margin-top:22px"><a class="btn btn-wa" href="{wa("Hi Kat! I'd like to ask about a face painting workshop party. Date: Town: Guests: Ages: ")}" target="_blank" rel="noopener">Ask Kat about a workshop party</a></p>
 </div></section>
-<section class="band band-light"><div class="wrap">
-<p class="eyebrow">For grown-ups</p><h2>One-to-one and small-group lessons</h2>
-<p>Want to learn face painting properly, or start your own face painting business? Kat teaches in person, one-to-one or in a small group, at a pace that suits you. One-to-one masterclasses and group lessons both last 3 hours and cover the painting and the business: everything you need to know to set up, build a website, market yourself, win work and keep your accounts in order.</p><p class="teachnote"><b>Taught by a real teacher.</b> Alongside The Painting Pixie, Kat is a qualified teacher of GCSE and A level students, so lessons are clear, well structured and paced for you, with plenty of hands-on practice and feedback.</p><div class="lprice"><div><b>£200</b><span>3-hour one-to-one masterclass with Kat</span></div><div><b>£150<small style="font-size:16px"> per person</small></b><span>3-hour small-group lessons, including the full business module</span></div></div>
-<p class="incl"><b>Included in every lesson, one-to-one or group:</b> 3 hours with Kat · the full business module · a certificate of completion listing what you covered, to show your insurer · follow-up support by WhatsApp or phone while you get started</p>
-<div class="fcards">
-<div class="fcard"><h3>The foundations</h3><p>Kit, brushes, loading paint, clean lines and the core strokes every design is built on.</p></div>
-<div class="fcard"><h3>Crowd-pleasing designs</h3><p>Butterflies, tigers, unicorns, superheroes and florals, step by step until you can paint them yourself.</p></div>
-<div class="fcard"><h3>Glitter, gems &amp; stencils</h3><p>Finishing touches that make designs sparkle, and how to use them safely.</p></div>
-<div class="fcard"><h3>Painting for a queue</h3><p>Working quickly and hygienically at parties and events, and keeping children happy in the chair.</p></div>
-<div class="fcard"><h3>Turning it into a business</h3><p>Setting up, insurance and DBS, pricing, a website and social media, marketing yourself, finding venues and events, and keeping records for your tax return, all from Kat's own experience of building The Painting Pixie.</p></div>
-</div><p class="small-note">The business side is practical, first-hand guidance from Kat, not formal tax or legal advice.</p>
-<p style="margin-top:22px"><a class="btn btn-gold" href="{wa("Hi Kat! I'd like to ask about face painting lessons (one-to-one or small group).")}" target="_blank" rel="noopener">Book a one-to-one masterclass</a></p>
-</div></section>
-<section class="band band-panel k-enquire centred"><div class="wrap"><h2>Questions about workshops or lessons?</h2>
+<section class="band band-panel k-enquire centred"><div class="wrap"><h2>Questions about workshop parties?</h2>
 <p>Message Kat and she'll get back to you, usually the same day.</p>
 <a class="btn btn-gold" href="contact.html">Check my date</a></div></section>
 {inner_layout.TRUST_BAND}
 </main>'''
-    page_from('services.html', 'workshops.html', 'Face Painting Workshops | Learn to Face Paint | The Painting Pixie',
-              'Learn to face paint with Kat: children\'s workshops (next: Good Hotel London, Fri 30 Oct 2026, £15 per child), group workshops £200 three-hour one-to-one masterclasses and small-group lessons at £150 per person.',
+    page_from('services.html', 'workshops.html', 'Face Painting Workshop Parties | The Painting Pixie',
+              'Face painting workshop parties with Kat: guests learn to paint each other with professional paints, stencils and glitter. £15 per child. Next public workshop: Good Hotel London, Fri 30 Oct 2026.',
               'https://paintingpixie.com/workshops.html',
               '<script type="application/ld+json">' + json.dumps(event, ensure_ascii=False) + '</script>\n',
-              hero('../img/n-pumpkin-face.webp', '50% 30%', 'Workshops', 'Face Painting Workshops',
-                   'Learn to face paint with Kat. Next up: a Half-Term Halloween Workshop at Good Hotel London.',
+              hero('../img/n-pumpkin-face.webp', '50% 30%', 'Workshops', 'Face Painting Workshop Parties',
+                   'A party where the guests learn to face paint. Next up: a Half-Term Halloween Workshop at Good Hotel London.',
                    f'<a class="btn btn-gold" href="{tickets}" target="_blank" rel="noopener">Get tickets</a>'), main)
 
 def corporate():
@@ -334,10 +321,8 @@ def prices():
       ("Events", "Weddings, festivals, school fairs, corporate and brand events.", [
         ("Weddings &amp; festivals", "Bespoke quote", ["Hourly or day rates", "Extra artists for big crowds", "Kids’ corner or glitter for all"], False),
         ("Corporate &amp; brand events", "Bespoke quote", ["Staff days, launches and activations", "Brand colours and themes", "Sussex, Surrey and London"], False)]),
-      ("Learn to face paint", "Taught by Kat, a qualified GCSE and A level teacher.", [
-        ("Children’s workshops", "£15 per child", ["Fun, hands-on sessions", "Paints, stencils and glitter", "Ask about group bookings"], False),
-        ("Small-group lessons", "£150 per person", ["3 hours with Kat", "Full business module", "Certificate and follow-up support"], False),
-        ("One-to-one masterclass", "£200", ["3 hours, just you and Kat", "Painting and the business side", "Certificate and follow-up support"], True)]),
+      ("Face painting workshop parties", "Party guests learn to face paint, taught by Kat, a qualified GCSE and A level teacher.", [
+        ("Workshop party", "£15 per child", ["Kat shows the guests how", "They paint each other and keep their designs", "Paints, stencils and glitter provided"], False)]),
     ]
     out = ''
     for title, lede, cards in groups:
@@ -371,11 +356,11 @@ def prices():
 {inner_layout.TRUST_BAND}
 </main>"""
     page_from('services.html', 'prices.html', 'Face Painting Prices | Kids’ Parties, Hens &amp; Events | The Painting Pixie',
-              'Face painting prices in Sussex and Surrey: kids’ parties from £130, hen parties from £150, workshops, masterclasses and bespoke event quotes. Insured and DBS checked.',
+              'Face painting prices in Sussex and Surrey: kids’ parties from £130, hen parties from £150, workshop parties £15 per child and bespoke event quotes. Insured and DBS checked.',
               'https://paintingpixie.com/prices.html',
               css + '<script type="application/ld+json">' + json.dumps(offers, ensure_ascii=False) + '</script>\n',
               hero('../img/g/rainbow-laughing-1600.webp', '70% 40%', 'Prices', 'Face Painting Prices',
-                   'Kids’ parties, hen dos, events and lessons. Clear prices, confirmed for your date.',
+                   'Kids’ parties, hen dos, workshop parties and events. Clear prices, confirmed for your date.',
                    '<a class="btn btn-gold" href="contact.html">Check my date</a>'), main)
 
 INCLUDED_HTML = ('<div class="incl" style="margin-top:6px"><b>Every booking includes</b><ul>'
