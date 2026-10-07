@@ -350,8 +350,8 @@ def build():
     ga = live[live.index('<!-- Google tag'):live.index('<meta charset')]
     biz = re.search(r'<script type="application/ld\+json">\s*\{\s*"@context": "https://schema.org",\s*"@type": "LocalBusiness".*?</script>', live, re.S).group(0)
     faq_schema = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQS]}
-    title = 'Halloween Face Painting in Sussex &amp; Surrey | The Painting Pixie'
-    desc = 'Halloween face painting and glitter tattoos for parties, school discos and events across Sussex and Surrey. Cute, spooky or properly scary. Insured and DBS checked.'
+    title = 'Halloween Face Painting, Sussex &amp; Surrey | Painting Pixie'
+    desc = 'Halloween face painting and glitter tattoos for parties, school discos and events in Sussex and Surrey. Cute, spooky or scary. Insured and DBS checked.'
     head = f'''<!DOCTYPE html>
 <html lang="en-GB">
 <head>
