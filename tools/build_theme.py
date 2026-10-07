@@ -40,11 +40,57 @@ def photos_on_dust():
         if s != s0: open(p, 'w').write(s); n += 1
     return n
 
+FAIRY_CSS = """
+/* fairy cursor: the logo fairy follows the mouse, brush tip = pointer (computers only) */
+html.fairy-on,html.fairy-on *{cursor:none!important}
+html.fairy-on input,html.fairy-on textarea,html.fairy-on select,html.fairy-on [contenteditable]{cursor:text!important}
+#fairy{position:fixed;left:0;top:0;width:62px;height:72px;z-index:2147483647;pointer-events:none;will-change:transform;opacity:0;transition:opacity .2s}
+#fairy img{width:100%;height:100%;display:block;transform-origin:12% 18%;transition:transform .18s ease;filter:drop-shadow(0 4px 8px rgba(0,0,0,.45))}
+#fairy.hot img{transform:scale(1.18) rotate(-6deg)}
+#fairy.down img{transform:scale(.92) rotate(4deg)}
+.fdust{position:fixed;left:0;top:0;width:6px;height:6px;border-radius:50%;pointer-events:none;z-index:2147483646;
+  background:radial-gradient(circle,#FFF6D6 0,#FFD24F 45%,rgba(255,210,79,0) 70%);animation:fdust .9s ease-out forwards}
+@keyframes fdust{to{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.2)}}
+"""
+FAIRY_JS = """
+(function(){
+  if(!window.matchMedia||!matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var HX=8,HY=13; /* brush tip inside the image */
+  var f=document.createElement('div');f.id='fairy';f.setAttribute('aria-hidden','true');
+  f.innerHTML='<img src="../img/fairy-cursor.webp" alt="">';document.body.appendChild(f);
+  document.documentElement.classList.add('fairy-on');
+  var x=-100,y=-100,lx=0,ly=0,last=0,shown=false;
+  function dust(n,spread){for(var i=0;i<n;i++){var d=document.createElement('span');d.className='fdust';
+    var a=Math.random()*6.28,r=(spread||14)*Math.random();
+    d.style.left=(x-3)+'px';d.style.top=(y-3)+'px';
+    d.style.setProperty('--dx',(Math.cos(a)*r)+'px');d.style.setProperty('--dy',(Math.sin(a)*r+18)+'px');
+    document.body.appendChild(d);setTimeout(function(e){e.remove()},950,d);}}
+  document.addEventListener('mousemove',function(e){
+    x=e.clientX;y=e.clientY;
+    if(!shown){f.style.opacity=1;shown=true;}
+    f.style.transform='translate('+(x-HX)+'px,'+(y-HY)+'px)';
+    var now=performance.now(),dist=Math.abs(x-lx)+Math.abs(y-ly);
+    if(dist>14&&now-last>30){dust(1,10);lx=x;ly=y;last=now;}
+    var hot=e.target.closest&&e.target.closest('a,button,summary,label,[role=button]');
+    f.classList.toggle('hot',!!hot);
+  },{passive:true});
+  document.addEventListener('mousedown',function(){f.classList.add('down');dust(10,34);});
+  document.addEventListener('mouseup',function(){f.classList.remove('down');});
+  document.documentElement.addEventListener('mouseleave',function(){f.style.opacity=0;shown=false;});
+  /* over a form field, show the normal text cursor instead of the fairy */
+  document.addEventListener('mouseover',function(e){var t=e.target.closest&&e.target.closest('input,textarea,select');f.style.visibility=t?'hidden':'visible';});
+})();
+"""
+
 def build():
     print('photo sections moved onto pixie dust on', photos_on_dust(), 'pages')
+    with open(f'{OUT}/site.js') as f: js = f.read()
+    if 'fairy-cursor' not in js:
+        with open(f'{OUT}/site.js', 'a') as f: f.write(FAIRY_JS)
     with open(f'{OUT}/site.css') as f: s = f.read()
     if 'Background: Pixie dust' not in s:
-        with open(f'{OUT}/site.css', 'a') as f: f.write(CSS)
+        with open(f'{OUT}/site.css', 'a') as f: f.write(CSS + FAIRY_CSS)
     print('pixie dust background on')
 
 if __name__ == '__main__':
