@@ -213,6 +213,8 @@ footer .cols{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 .mobmenu a.mtop{display:block;padding:14px 0;font-weight:800;border-bottom:1px solid var(--line)}
+footer .cols{grid-template-columns:1.3fr 1fr 1fr 1fr .8fr!important}
+@media(max-width:800px){footer .cols{grid-template-columns:1fr 1fr!important}}
 
 /* ===== Draft site: inner pages (restyles the live site's page parts in the C+ look) ===== */
 .brand img{background:none}

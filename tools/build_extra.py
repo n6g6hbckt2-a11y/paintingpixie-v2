@@ -222,7 +222,7 @@ def corporate():
               'Face painting and glitter for staff fun days, summer parties, product launches, festivals and weddings across Sussex, Surrey and London. Extra artists available.',
               'https://paintingpixie.com/corporate-events.html',
               '<script type="application/ld+json">' + json.dumps(service, ensure_ascii=False) + '</script>\n',
-              hero('../img/n-arm-art-flowers-pair.webp', '50% 50%', 'Occasions · Events', 'Corporate &amp; Brand Event Face Painting',
+              hero('../img/n-arm-art-flowers-pair.webp', '50% 50%', 'Services · Events', 'Corporate &amp; Brand Event Face Painting',
                    'Statement face painting and glitter for staff parties, launches, festivals and weddings, with extra artists for big crowds.',
                    '<a class="btn btn-gold" href="contact.html">Get a quote</a>'), main)
 
@@ -268,7 +268,7 @@ def body_art():
               'Glitter body art, arm art and body painting for festivals, Pride, hen dos, photoshoots and brand events across Sussex, Surrey and London. 5.0 rated.',
               'https://paintingpixie.com/body-art.html',
               '<script type="application/ld+json">' + json.dumps(service, ensure_ascii=False) + '</script>\n<script type="application/ld+json">' + json.dumps(faq_schema, ensure_ascii=False) + '</script>\n',
-              hero('../img/n-festival-rainbow-body-art.webp', '50% 40%', 'Occasions · Grown-ups', 'Body Art &amp; Body Painting',
+              hero('../img/n-festival-rainbow-body-art.webp', '50% 40%', 'Services · Grown-ups', 'Body Art &amp; Body Painting',
                    'Rainbows, florals and glitter, painted on arms, shoulders and chests for festivals, Pride, hen dos and events.',
                    '<a class="btn btn-gold" href="contact.html">Check my date</a>'), main)
 
@@ -321,12 +321,72 @@ def christmas():
               'Christmas face painting for parties, school fairs, Santa\'s grottos and office parties across Sussex and Surrey. Reindeer, elves, snowflakes and glitter. Book early for December.',
               'https://paintingpixie.com/christmas-face-painting.html',
               css + '<script type="application/ld+json">' + json.dumps(service, ensure_ascii=False) + '</script>\n<script type="application/ld+json">' + json.dumps(faq_schema, ensure_ascii=False) + '</script>\n',
-              hero('blue-shooting-stars-face-paint-for-girls.webp', '50% 30%', 'Occasions · Christmas', 'Christmas Face Painting',
+              hero('blue-shooting-stars-face-paint-for-girls.webp', '50% 30%', 'Services · Christmas', 'Christmas Face Painting',
                    'Reindeer, snowflakes, elves and glitter for Christmas parties, school fairs, grottos and office parties across Sussex and Surrey.',
                    '<a class="btn btn-gold" href="contact.html">Check my date</a>'), main)
 
+def prices():
+    groups = [
+      ("Children’s parties", "Birthday parties at home, in a hall or a garden.", [
+        ("Classic Party", "From £130", ["2 hours of face painting", "Fast, fun party designs", "Kids choose from Kat’s design board"], False),
+        ("Ultimate Sparkle", "From £160", ["3 hours of face painting", "Bio-glitter, face gems and more detailed designs", "Most popular for bigger parties"], True)]),
+      ("Grown-ups", "Hen dos, milestone birthdays and grown-up celebrations.", [
+        ("Hen &amp; adult parties", "From £150", ["Glitter, gems and grown-up designs", "At your house, venue or hotel", "Great for photos"], False),
+        ("Glitter tattoos", "Add-on or quote", ["Stencil tattoos in cosmetic glitter", "Quick and mess-free, last for days", "Great for queues and toddlers"], False)]),
+      ("Events", "Weddings, festivals, school fairs, corporate and brand events.", [
+        ("Weddings &amp; festivals", "Bespoke quote", ["Hourly or day rates", "Extra artists for big crowds", "Kids’ corner or glitter for all"], False),
+        ("Corporate &amp; brand events", "Bespoke quote", ["Staff days, launches and activations", "Brand colours and themes", "Sussex, Surrey and London"], False)]),
+      ("Learn to face paint", "Taught by Kat, a qualified GCSE and A level teacher.", [
+        ("Children’s workshops", "£15 per child", ["Fun, hands-on sessions", "Paints, stencils and glitter", "Ask about group bookings"], False),
+        ("Small-group lessons", "£150 per person", ["3 hours with Kat", "Full business module", "Certificate and follow-up support"], False),
+        ("One-to-one masterclass", "£200", ["3 hours, just you and Kat", "Painting and the business side", "Certificate and follow-up support"], True)]),
+    ]
+    out = ''
+    for title, lede, cards in groups:
+        cs = ''.join(f'<article class="pcard2{" hi" if hi else ""}"><h3>{n}</h3><div class="pp2">{pr}</div><ul>{"".join(f"<li>{x}</li>" for x in items)}</ul></article>' for n, pr, items, hi in cards)
+        out += f'<div class="pgroup"><h2>{title}</h2><p class="lede-s">{lede}</p><div class="pcards2">{cs}</div></div>'
+    css = """<style>
+.pgroup{margin:0 0 46px}.pgroup h2{margin-bottom:4px}
+.pcards2{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:16px}
+.pcard2{background:#fff;border:1px solid #E8DED3;border-radius:16px;padding:22px 22px 18px;box-shadow:0 14px 30px -24px rgba(60,30,40,.45)}
+.pcard2.hi{border:2px solid var(--pink,#FF4FA3)}
+.pcard2 h3{margin:0;font-family:Fraunces,serif;font-weight:400;font-size:24px;color:#1B1712}
+.pp2{font-family:Fraunces,serif;font-size:30px;color:#B8892E;margin:6px 0 10px}
+.pcard2 ul{margin:0;padding-left:18px;color:#4E463F;font-size:15px}
+.pcard2 li{margin:4px 0}
+</style>
+"""
+    offers = {"@context": "https://schema.org", "@type": "OfferCatalog", "name": "The Painting Pixie prices",
+              "itemListElement": [{"@type": "Offer", "name": re.sub("&amp;", "&", n), "description": "; ".join(items), "priceCurrency": "GBP", **({"price": re.sub(r"[^0-9]", "", pr.split()[1] if pr.startswith("From") else pr.split()[0])} if "£" in pr else {})}
+                                  for _, _, cards in groups for n, pr, items, _ in cards]}
+    main = f"""<main class="lg" id="content">
+<section class="band band-light"><div class="wrap">
+<p class="eyebrow">Prices</p><h2 style="margin-bottom:6px">Simple, clear prices</h2>
+<p class="lede-s">Every price is confirmed for your date when you enquire. There’s no obligation, and no payment to enquire.</p>
+<div style="margin-top:34px">{out}</div>
+{INCLUDED_HTML}
+<p class="small-note">A small deposit secures your date. Travel is included within about 40 minutes of Horsham.</p>
+</div></section>
+<section class="band band-panel k-enquire centred"><div class="wrap"><h2>Is Kat free on your date?</h2>
+<p>Tell Kat your date, town and roughly how many guests. She usually replies the same day.</p>
+<a class="btn btn-gold" href="contact.html">Check my date</a><a class="btn btn-wa" href="{wa("Hi Kat! I'd like a price for face painting. Date: Town: Guests: ")}" target="_blank" rel="noopener">WhatsApp Kat</a></div></section>
+{inner_layout.TRUST_BAND}
+</main>"""
+    page_from('services.html', 'prices.html', 'Face Painting Prices | Kids’ Parties, Hens &amp; Events | The Painting Pixie',
+              'Face painting prices in Sussex and Surrey: kids’ parties from £130, hen parties from £150, workshops, masterclasses and bespoke event quotes. Insured and DBS checked.',
+              'https://paintingpixie.com/prices.html',
+              css + '<script type="application/ld+json">' + json.dumps(offers, ensure_ascii=False) + '</script>\n',
+              hero('../img/g/rainbow-laughing-1600.webp', '70% 40%', 'Prices', 'Face Painting Prices',
+                   'Kids’ parties, hen dos, events and lessons. Clear prices, confirmed for your date.',
+                   '<a class="btn btn-gold" href="contact.html">Check my date</a>'), main)
+
+INCLUDED_HTML = ('<div class="incl" style="margin-top:6px"><b>Every booking includes</b><ul>'
+                 '<li>All equipment, brought by Kat</li><li>Set-up and pack-away</li>'
+                 '<li>Professional, skin-safe paints</li><li>Fully insured &amp; DBS checked</li>'
+                 '<li>A design board for children to choose from</li></ul></div>')
+
 def build():
-    services(); workshops(); corporate(); body_art(); christmas()
+    services(); workshops(); corporate(); body_art(); christmas(); prices()
     print('extra pages built: services, workshops, corporate-events, body-art')
 
 if __name__ == '__main__':

@@ -147,15 +147,15 @@ LEGACY_CSS = '''
 # ---------- per-page settings ----------
 HERO = {
  'about.html': ('v2-hero.webp', '60% 35%', 'About'),
- 'adult-face-painting.html': ('n-adult-glitter-flower-eye.webp', '45% 40%', 'Occasions · Grown-ups'),
- 'animal-print-face-painting.html': ('n-leopard-and-tiger-kids.webp', '50% 35%', 'Occasions · Kids & grown-ups'),
+ 'adult-face-painting.html': ('n-adult-glitter-flower-eye.webp', '45% 40%', 'Services · Grown-ups'),
+ 'animal-print-face-painting.html': ('n-leopard-and-tiger-kids.webp', '50% 35%', 'Services · Kids & grown-ups'),
  'areas.html': ('v2-hero.webp', '60% 35%', 'Areas'),
- 'childrens-face-painting.html': ('n-unicorn-girl-party.webp', '50% 25%', 'Occasions · Kids'),
+ 'childrens-face-painting.html': ('n-unicorn-girl-party.webp', '50% 25%', 'Services · Kids'),
  'contact.html': ('n-crown-girl-blue-sky.webp', '50% 25%', 'Book'),
  'gallery.html': ('n-blue-monster-roar.webp', '50% 30%', 'Gallery'),
- 'glitter-bar.html': ('n-lilac-flower-eye.webp', '38% 40%', 'Occasions · Grown-ups'),
- 'halloween-face-painting.html': ('n-pumpkin-face.webp', '50% 30%', 'Occasions · Seasonal'),
- 'services.html': ('v2-sisters.webp', '50% 35%', 'Occasions'),
+ 'glitter-bar.html': ('n-lilac-flower-eye.webp', '38% 40%', 'Services · Grown-ups'),
+ 'halloween-face-painting.html': ('n-pumpkin-face.webp', '50% 30%', 'Services · Seasonal'),
+ 'services.html': ('v2-sisters.webp', '50% 35%', 'Services'),
  'face-painter-sussex.html': ('v2-hero.webp', '60% 35%', 'Areas · Sussex'),
  'face-painter-surrey.html': ('v2-adult-tiger.webp', '50% 35%', 'Areas · Surrey'),
  'face-painter-brighton.html': ('LIVE:brighton-palace-pier.jpg', '50% 50%', 'Areas · Brighton & East Sussex'),
@@ -244,7 +244,7 @@ def shared_footer(page):
     return rel_links(c2_footer, page)
 
 def mbar(page, wa):
-    prices = 'index.html#prices' if page != 'index.html' else '#prices'
+    prices = 'prices.html'
     return (f'<div class="mbar" role="navigation" aria-label="Quick contact">'
             f'<a class="pr" href="{prices}">Prices</a><a href="tel:+447852300125">Call</a>'
             f'<a class="wa" href="{wa}" target="_blank" rel="noopener">WhatsApp</a></div>')
