@@ -14,7 +14,7 @@ SERV = {
     'learn':  ('workshops.html', 'Learn to face paint', 'Workshops, group lessons and one-to-one masterclasses.', 'From £15'),
 }
 DEFAULT = ['kids', 'hens', 'glitter', 'events']
-EVENTS_FIRST = ['events', 'glitter', 'hens', 'body']   # Brighton: Kat targets events; parties via get in touch
+EVENTS_FIRST = ['events', 'glitter', 'hens']   # Brighton: Kat targets events; parties via get in touch
 
 TOWNS = {   # page: (name used in headings, service order)
     'face-painter-horsham.html': ('Horsham', DEFAULT + ['learn']),
@@ -22,17 +22,17 @@ TOWNS = {   # page: (name used in headings, service order)
     'face-painter-haywards-heath.html': ('Haywards Heath', DEFAULT),
     'face-painter-burgess-hill.html': ('Burgess Hill', DEFAULT),
     'face-painter-east-grinstead.html': ('East Grinstead', DEFAULT),
-    'face-painter-worthing.html': ('Worthing', DEFAULT + ['body']),
+    'face-painter-worthing.html': ('Worthing', DEFAULT),
     'face-painter-brighton.html': ('Brighton &amp; Hove', EVENTS_FIRST),
     'face-painter-lewes.html': ('Lewes', DEFAULT),
     'face-painter-west-sussex-villages.html': ('the West Sussex villages', DEFAULT),
     'face-painter-south-downs.html': ('Midhurst &amp; Petworth', DEFAULT),
-    'face-painter-sussex.html': ('Sussex', DEFAULT + ['body', 'learn']),
+    'face-painter-sussex.html': ('Sussex', DEFAULT + ['learn']),
     'face-painter-guildford.html': ('Guildford', DEFAULT),
     'face-painter-dorking.html': ('Dorking', DEFAULT),
     'face-painter-reigate.html': ('Reigate &amp; Redhill', DEFAULT),
     'face-painter-surrey-villages.html': ('the Surrey villages', DEFAULT),
-    'face-painter-surrey.html': ('Surrey', DEFAULT + ['body', 'learn']),
+    'face-painter-surrey.html': ('Surrey', DEFAULT + ['learn']),
 }
 SUSSEX = [('face-painter-horsham.html', 'Horsham'), ('face-painter-crawley.html', 'Crawley'), ('face-painter-haywards-heath.html', 'Haywards Heath'),
           ('face-painter-burgess-hill.html', 'Burgess Hill'), ('face-painter-east-grinstead.html', 'East Grinstead'), ('face-painter-worthing.html', 'Worthing'),
@@ -45,7 +45,6 @@ SERVICE_PAGES = {   # page: lead-in naming the service
     'adult-face-painting.html': 'Hen and adult party face painting',
     'glitter-bar.html': 'The glitter bar',
     'corporate-events.html': 'Corporate and event face painting',
-    'body-art.html': 'Body art',
     'christmas-face-painting.html': 'Christmas face painting',
     'workshops.html': 'Workshops and lessons',
 }
@@ -94,6 +93,7 @@ def insert_before(s, pattern, block):
 
 REDIRECTS = {  # retired pages -> where they now live (old address keeps working and passes on its Google standing)
     'animal-print-face-painting.html': ('gallery.html#animal', 'gallery.html', 'Animal print designs in the gallery'),
+    'body-art.html': ('gallery.html#glitter', 'gallery.html', 'Glitter and body art in the gallery'),
 }
 REDIRECT_HTML = '''<!DOCTYPE html>
 <html lang="en-GB">

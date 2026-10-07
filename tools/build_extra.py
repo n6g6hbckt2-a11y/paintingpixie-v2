@@ -17,7 +17,6 @@ SERVICES = [
  ("Weddings", "../img/n-adult-glitter-flower-eye.webp", "45% 40%", "Keeps little guests happy through speeches and photos, and the grown-ups queue for glitter too.", "Bespoke quote", "contact.html", "Check my date"),
  ("Chunky glitter & jewel bar", "../img/n-lilac-flower-eye.webp", "35% 50%", "Bio-glitter, gems and sparkle for faces, hair and arms. Festival vibes for any event.", "Bespoke quote", "glitter-bar.html", "Glitter bar"),
  ("Glitter tattoos", "unicorn-crown-face-paint-girl-glitter-tattoo-horsham.webp", "50% 40%", "Temporary glitter tattoos made with stencils and cosmetic glitter: quick, mess-free and they last well beyond the party. Great for queues and for anyone who would rather not have a painted face.", "Add-on or bespoke quote", "contact.html", "Ask about tattoos"),
- ("Body art", "rainbow-chest-paint-with-glitter-clouds.webp", "50% 40%", "Painted body art and flowing arm designs with glitter, for festivals, Pride, photoshoots and themed events.", "Bespoke quote", "body-art.html", "Body art"),
  ("Halloween", "../img/n-pumpkin-face.webp", "50% 30%", "Pumpkins, skulls, devils and monsters, from sweet to spooky.", "From £130", "halloween-face-painting.html", "Halloween"),
  ("Christmas", "blue-shooting-stars-face-paint-for-girls.webp", "50% 35%", "Reindeer, snowflakes, elves and glitter for Christmas parties, school fairs, grottos and office parties.", "From £130", "christmas-face-painting.html", "Christmas"),
  ("Festivals, fêtes & community days", "../img/v2-hero.webp", "60% 35%", "Fast, queue-friendly designs for school fairs, village fêtes and festivals, as a stall or a set fee.", "Bespoke quote", "contact.html", "Get a quote"),
@@ -460,8 +459,8 @@ document.querySelectorAll('.rcard').forEach(c=>c.hidden=!(f==='all'||c.dataset.t
                    '<a class="btn btn-gold" href="contact.html">Check my date</a>'), main)
 
 def build():
-    services(); workshops(); corporate(); body_art(); christmas(); prices(); reviews()
-    print('extra pages built: services, workshops, corporate-events, body-art')
+    services(); workshops(); corporate(); christmas(); prices(); reviews()   # body art retired 7 Oct: now a gallery category
+    print('extra pages built: services, workshops, corporate-events, christmas, prices, reviews')
 
 if __name__ == '__main__':
     build()
