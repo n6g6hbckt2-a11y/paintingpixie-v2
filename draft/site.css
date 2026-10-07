@@ -637,3 +637,18 @@ main.lg,footer,.trustband{position:relative;background:var(--bg)}
 .xl-chips a{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:9px 16px;color:var(--ink);text-decoration:none;font-weight:600;font-size:15px}
 .xl-chips a:hover{border-color:var(--gold);color:var(--gold)}
 @media(max-width:700px){.xl-areas{grid-template-columns:1fr}}
+
+/* ===== Background: Pixie dust (Kat's choice, 7 Oct 2026) ===== */
+html{background:#2A0F4A}
+body{background:transparent}
+body::before{content:"";position:fixed;inset:0;z-index:-3;pointer-events:none;
+  background:linear-gradient(rgba(14,11,20,.30),rgba(14,11,20,.42)),url(../img/bg/pixie-dust.svg) center/cover no-repeat}
+main.lg,footer,.trustband,.band-dark,.igband,.cta,.grown{background:transparent!important}
+/* inner pages keep their hero photo fixed behind the header, so the page body carries its own still pixie-dust layer */
+main.lg,footer{position:relative;isolation:isolate;clip-path:inset(0)}
+main.lg::before,footer::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(rgba(14,11,20,.30),rgba(14,11,20,.42)),url(../img/bg/pixie-dust.svg) center/cover no-repeat}
+.band-panel,.lg section.alt,.lg section.contact-box{background:rgba(18,10,28,.45)!important}
+.trustband{background:rgba(12,8,18,.55)!important}
+footer::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(12,8,18,.55)}
+.phero:not(.hero-right)>.hbg{background:transparent!important}
