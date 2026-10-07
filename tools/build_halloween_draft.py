@@ -6,6 +6,9 @@ V2 = '/home/claude/paintingpixie-v2'
 HW_CSS = '''<style id="ddcss">
 .hwnav{display:flex;align-items:center;gap:22px}
 .hwnav .dd{position:relative}
+.hwnav .navhome{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border:1.5px solid rgba(255,255,255,.5);border-radius:999px}
+.hwnav .navhome:hover{color:#FFB020;border-color:#FFB020}
+.hwmenu a.mhome{display:flex;align-items:center;gap:8px;color:#FFB020}
 .hwnav .ddtop{display:inline-flex;align-items:center;gap:6px;padding:10px 0}
 .hwnav .ddtop svg{transition:transform .2s}
 .hwnav .dd:hover .ddtop,.hwnav .dd:focus-within .ddtop{color:#FFB020}

@@ -217,6 +217,10 @@ footer .cols{grid-template-columns:1.3fr 1fr 1fr 1fr .8fr!important}
 @media(max-width:800px){footer .cols{grid-template-columns:1fr 1fr!important}}
 
 /* drop-down menus: hover on computers, arrow on phones */
+.navhome{display:inline-flex;align-items:center;gap:6px;color:var(--ink);text-decoration:none;font-size:13px;letter-spacing:1.4px;text-transform:uppercase;font-weight:700;padding:7px 12px;border:1.5px solid rgba(245,241,234,.45);border-radius:999px}
+.navhome:hover{color:var(--gold);border-color:var(--gold)}
+.mobmenu a.mhome{display:flex;align-items:center;gap:8px;color:var(--gold)}
+
 .dd{position:relative}
 .ddtop{display:inline-flex;align-items:center;gap:6px;color:var(--ink);text-decoration:none;font-size:13px;letter-spacing:1.4px;text-transform:uppercase;font-weight:700;padding:10px 0}
 .ddtop svg{transition:transform .2s}
