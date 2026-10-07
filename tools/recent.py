@@ -24,8 +24,7 @@ COMING_UP = [
  ("Portslade", "10 October", "face-painter-brighton.html"),
  ("Putney, London", "18 October", "face-painter-surrey.html"),
  ("Sutton", "24 October", "face-painter-surrey.html"),
- ("Putney, London", "30 October", "face-painter-surrey.html"),
- ("Good Hotel, London", "30 October", None),
+ ("Good Hotel, London", "30 October", None),   # same booking as "Putney 30.10" in Kat's log
  ("Kingswood", "31 October", "face-painter-surrey.html"),
  ("Kingsfold, near Horsham", "31 October", "face-painter-horsham.html"),
 ]
