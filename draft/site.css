@@ -33,7 +33,7 @@ nav .navbar{display:flex;align-items:center;justify-content:space-between;gap:16
 .menu{display:none;position:relative}
 .menu summary{list-style:none;cursor:pointer;border:1.5px solid rgba(245,241,234,.6);border-radius:999px;padding:10px 18px;font-weight:700}
 .menu summary::-webkit-details-marker{display:none}
-.menu div{position:absolute;right:0;top:52px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px;display:grid;min-width:230px;box-shadow:0 20px 40px rgba(0,0,0,.5)}
+.menu>div{position:absolute;right:0;top:52px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px;display:grid;min-width:230px;box-shadow:0 20px 40px rgba(0,0,0,.5)}
 .menu a{color:var(--ink);text-decoration:none;padding:11px 12px;border-radius:8px;font-weight:600}
 .menu a:hover{background:var(--panel2)}
 
@@ -215,6 +215,32 @@ footer .cols{grid-template-columns:1fr}
 .mobmenu a.mtop{display:block;padding:14px 0;font-weight:800;border-bottom:1px solid var(--line)}
 footer .cols{grid-template-columns:1.3fr 1fr 1fr 1fr .8fr!important}
 @media(max-width:800px){footer .cols{grid-template-columns:1fr 1fr!important}}
+
+/* drop-down menus: hover on computers, arrow on phones */
+.dd{position:relative}
+.ddtop{display:inline-flex;align-items:center;gap:6px;color:var(--ink);text-decoration:none;font-size:13px;letter-spacing:1.4px;text-transform:uppercase;font-weight:700;padding:10px 0}
+.ddtop svg{transition:transform .2s}
+.dd:hover .ddtop,.dd:focus-within .ddtop{color:var(--gold)}
+.dd:hover .ddtop svg,.dd:focus-within .ddtop svg{transform:rotate(180deg)}
+.ddpanel{display:none;position:absolute;top:100%;left:-18px;min-width:240px;padding:10px;background:rgba(21,19,26,.97);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:14px;box-shadow:0 24px 50px rgba(0,0,0,.55);z-index:20}
+.ddpanel::before{content:"";position:absolute;left:0;right:0;top:-12px;height:12px}
+.dd:hover .ddpanel,.dd:focus-within .ddpanel{display:block;animation:drop .16s ease-out}
+.ddpanel a{display:block;color:var(--ink);text-decoration:none;padding:8px 12px;border-radius:8px;font-size:15px;font-weight:600;text-transform:none;letter-spacing:0;white-space:nowrap}
+.ddpanel a:hover{background:rgba(255,255,255,.08);color:var(--gold)}
+.ddpanel a.ddall{color:var(--gold);border-top:1px solid var(--line);border-radius:0 0 8px 8px;margin-top:6px;padding-top:10px}
+.dd.wide .ddpanel{left:-160px}
+.ddcols{display:grid;grid-template-columns:1fr 1fr;gap:4px 18px}
+.ddh{margin:4px 12px 4px;font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;font-weight:800;color:var(--teal)}
+.dd:last-of-type .ddpanel{left:auto;right:-18px}
+@keyframes drop{from{opacity:0;transform:translateY(-6px)}}
+.mobmenu .msec{border-bottom:1px solid var(--line)}
+.mobmenu .mrow{display:flex;align-items:center;justify-content:space-between}
+.mobmenu .mrow a.mtop{border:0;flex:1;padding:14px 4px}
+.mobmenu .marr{background:none;border:1px solid var(--line);color:var(--gold);border-radius:10px;width:42px;height:38px;display:grid;place-items:center;cursor:pointer}
+.mobmenu .marr svg{width:14px;height:14px;transition:transform .2s}
+.mobmenu .marr[aria-expanded="true"] svg{transform:rotate(180deg)}
+.mobmenu .msub{padding:0 0 10px 10px}
+.mobmenu .msub a{display:block;padding:8px 10px;font-weight:600}
 
 /* ===== Draft site: inner pages (restyles the live site's page parts in the C+ look) ===== */
 .brand img{background:none}

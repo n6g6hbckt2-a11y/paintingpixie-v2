@@ -1,10 +1,7 @@
 (function(){
-  var trigs=[].slice.call(document.querySelectorAll('.mtrig'));
-  function closeAll(except){trigs.forEach(function(t){if(t!==except){t.setAttribute('aria-expanded','false');document.getElementById(t.getAttribute('aria-controls')).hidden=true;}});}
-  trigs.forEach(function(t){t.addEventListener('click',function(e){e.stopPropagation();var open=t.getAttribute('aria-expanded')==='true';closeAll(t);t.setAttribute('aria-expanded',String(!open));document.getElementById(t.getAttribute('aria-controls')).hidden=open;});});
-  document.addEventListener('click',function(e){if(!e.target.closest('.mega'))closeAll();});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll();});
-  document.querySelectorAll('.mega a').forEach(function(a){a.addEventListener('click',function(){closeAll();});});
+  var trigs=[].slice.call(document.querySelectorAll('.marr'));
+  trigs.forEach(function(b){b.addEventListener('click',function(){var open=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!open));b.closest('.msec').querySelector('.msub').hidden=open;});});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.activeElement&&document.activeElement.closest('.dd'))document.activeElement.blur();});
 })();
 
 document.addEventListener('click', function(e) {

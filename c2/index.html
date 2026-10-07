@@ -119,7 +119,7 @@ nav .navbar{display:flex;align-items:center;justify-content:space-between;gap:16
 .menu{display:none;position:relative}
 .menu summary{list-style:none;cursor:pointer;border:1.5px solid rgba(245,241,234,.6);border-radius:999px;padding:10px 18px;font-weight:700}
 .menu summary::-webkit-details-marker{display:none}
-.menu div{position:absolute;right:0;top:52px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px;display:grid;min-width:230px;box-shadow:0 20px 40px rgba(0,0,0,.5)}
+.menu>div{position:absolute;right:0;top:52px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px;display:grid;min-width:230px;box-shadow:0 20px 40px rgba(0,0,0,.5)}
 .menu a{color:var(--ink);text-decoration:none;padding:11px 12px;border-radius:8px;font-weight:600}
 .menu a:hover{background:var(--panel2)}
 
@@ -301,6 +301,32 @@ footer .cols{grid-template-columns:1fr}
 .mobmenu a.mtop{display:block;padding:14px 0;font-weight:800;border-bottom:1px solid var(--line)}
 footer .cols{grid-template-columns:1.3fr 1fr 1fr 1fr .8fr!important}
 @media(max-width:800px){footer .cols{grid-template-columns:1fr 1fr!important}}
+
+/* drop-down menus: hover on computers, arrow on phones */
+.dd{position:relative}
+.ddtop{display:inline-flex;align-items:center;gap:6px;color:var(--ink);text-decoration:none;font-size:13px;letter-spacing:1.4px;text-transform:uppercase;font-weight:700;padding:10px 0}
+.ddtop svg{transition:transform .2s}
+.dd:hover .ddtop,.dd:focus-within .ddtop{color:var(--gold)}
+.dd:hover .ddtop svg,.dd:focus-within .ddtop svg{transform:rotate(180deg)}
+.ddpanel{display:none;position:absolute;top:100%;left:-18px;min-width:240px;padding:10px;background:rgba(21,19,26,.97);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:14px;box-shadow:0 24px 50px rgba(0,0,0,.55);z-index:20}
+.ddpanel::before{content:"";position:absolute;left:0;right:0;top:-12px;height:12px}
+.dd:hover .ddpanel,.dd:focus-within .ddpanel{display:block;animation:drop .16s ease-out}
+.ddpanel a{display:block;color:var(--ink);text-decoration:none;padding:8px 12px;border-radius:8px;font-size:15px;font-weight:600;text-transform:none;letter-spacing:0;white-space:nowrap}
+.ddpanel a:hover{background:rgba(255,255,255,.08);color:var(--gold)}
+.ddpanel a.ddall{color:var(--gold);border-top:1px solid var(--line);border-radius:0 0 8px 8px;margin-top:6px;padding-top:10px}
+.dd.wide .ddpanel{left:-160px}
+.ddcols{display:grid;grid-template-columns:1fr 1fr;gap:4px 18px}
+.ddh{margin:4px 12px 4px;font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;font-weight:800;color:var(--teal)}
+.dd:last-of-type .ddpanel{left:auto;right:-18px}
+@keyframes drop{from{opacity:0;transform:translateY(-6px)}}
+.mobmenu .msec{border-bottom:1px solid var(--line)}
+.mobmenu .mrow{display:flex;align-items:center;justify-content:space-between}
+.mobmenu .mrow a.mtop{border:0;flex:1;padding:14px 4px}
+.mobmenu .marr{background:none;border:1px solid var(--line);color:var(--gold);border-radius:10px;width:42px;height:38px;display:grid;place-items:center;cursor:pointer}
+.mobmenu .marr svg{width:14px;height:14px;transition:transform .2s}
+.mobmenu .marr[aria-expanded="true"] svg{transform:rotate(180deg)}
+.mobmenu .msub{padding:0 0 10px 10px}
+.mobmenu .msub a{display:block;padding:8px 10px;font-weight:600}
 </style>
 </head>
 <body>
@@ -310,12 +336,10 @@ footer .cols{grid-template-columns:1.3fr 1fr 1fr 1fr .8fr!important}
 <nav aria-label="Main" id="mainnav"><div class="wrap navbar">
 <a class="brand" href="https://paintingpixie.com/"><img src="../img/logo-lg.webp" alt="The Painting Pixie logo" width="104" height="104"><span>The Painting Pixie</span></a>
 <div class="links">
-<a href="https://paintingpixie.com/services.html">Services</a><a href="https://paintingpixie.com/areas.html">Areas</a><a href="https://paintingpixie.com/about.html">About</a>
-<a href="https://paintingpixie.com/gallery.html">Gallery</a>
-<a href="https://paintingpixie.com/prices.html">Prices</a>
-<a class="btn btn-gold" href="https://paintingpixie.com/contact.html" style="padding:11px 20px;font-size:15px">Check a date</a>
+<div class="dd"><a class="ddtop" href="https://paintingpixie.com/services.html">Services<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a><div class="ddpanel"><a href="https://paintingpixie.com/childrens-face-painting.html">Children’s parties</a><a href="https://paintingpixie.com/adult-face-painting.html">Hen &amp; adult parties</a><a href="https://paintingpixie.com/corporate-events.html">Corporate &amp; events</a><a href="https://paintingpixie.com/glitter-bar.html">Glitter bar</a><a href="https://paintingpixie.com/body-art.html">Body art</a><a href="https://paintingpixie.com/animal-print-face-painting.html">Animal print</a><a href="https://paintingpixie.com/halloween-face-painting.html">Halloween</a><a href="https://paintingpixie.com/christmas-face-painting.html">Christmas</a><a href="https://paintingpixie.com/workshops.html">Learn to face paint</a><a class="ddall" href="https://paintingpixie.com/services.html">All services →</a></div></div><div class="dd wide"><a class="ddtop" href="https://paintingpixie.com/areas.html">Areas<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a><div class="ddpanel"><div class="ddcols"><div><p class="ddh">Sussex</p><a href="https://paintingpixie.com/face-painter-horsham.html">Horsham</a><a href="https://paintingpixie.com/face-painter-crawley.html">Crawley</a><a href="https://paintingpixie.com/face-painter-haywards-heath.html">Haywards Heath</a><a href="https://paintingpixie.com/face-painter-burgess-hill.html">Burgess Hill</a><a href="https://paintingpixie.com/face-painter-east-grinstead.html">East Grinstead</a><a href="https://paintingpixie.com/face-painter-worthing.html">Worthing</a><a href="https://paintingpixie.com/face-painter-brighton.html">Brighton &amp; Hove</a><a href="https://paintingpixie.com/face-painter-lewes.html">Lewes</a><a href="https://paintingpixie.com/face-painter-west-sussex-villages.html">West Sussex villages</a><a href="https://paintingpixie.com/face-painter-south-downs.html">South Downs</a><a href="https://paintingpixie.com/face-painter-sussex.html">All of Sussex</a></div><div><p class="ddh">Surrey</p><a href="https://paintingpixie.com/face-painter-guildford.html">Guildford</a><a href="https://paintingpixie.com/face-painter-dorking.html">Dorking</a><a href="https://paintingpixie.com/face-painter-reigate.html">Reigate &amp; Redhill</a><a href="https://paintingpixie.com/face-painter-surrey-villages.html">Surrey villages</a><a href="https://paintingpixie.com/face-painter-surrey.html">All of Surrey</a><a class="ddall" href="https://paintingpixie.com/areas.html">Every area we cover (map) →</a></div></div></div></div><a href="https://paintingpixie.com/gallery.html">Gallery</a><a href="https://paintingpixie.com/prices.html">Prices</a><div class="dd"><a class="ddtop" href="https://paintingpixie.com/about.html">About<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a><div class="ddpanel"><a href="https://paintingpixie.com/about.html">About Kat</a><a href="https://paintingpixie.com/reviews.html">Reviews</a><a href="https://paintingpixie.com/index.html#faq">FAQs</a><a href="https://paintingpixie.com/contact.html">Book &amp; contact</a></div></div>
+<a class="btn btn-gold" href="https://paintingpixie.com/contact.html" style="padding:11px 20px;font-size:15px">Check my date</a>
 </div>
-<details class="menu"><summary>Menu</summary><div class="mobmenu"><a class="mtop" href="https://paintingpixie.com/services.html">Services</a><a class="mtop" href="https://paintingpixie.com/areas.html">Areas</a><a class="mtop" href="https://paintingpixie.com/about.html">About</a><a class="mtop" href="https://paintingpixie.com/gallery.html">Gallery</a><a class="mtop" href="https://paintingpixie.com/prices.html">Prices</a><a class="btn btn-gold" href="https://paintingpixie.com/contact.html" style="margin-top:10px">Check a date</a></div></details>
+<details class="menu"><summary>Menu</summary><div class="mobmenu"><div class="msec"><div class="mrow"><a class="mtop" href="https://paintingpixie.com/services.html">Services</a><button class="marr" type="button" aria-expanded="false" aria-label="Show the Services list"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></button></div><div class="msub" hidden><a href="https://paintingpixie.com/childrens-face-painting.html">Children’s parties</a><a href="https://paintingpixie.com/adult-face-painting.html">Hen &amp; adult parties</a><a href="https://paintingpixie.com/corporate-events.html">Corporate &amp; events</a><a href="https://paintingpixie.com/glitter-bar.html">Glitter bar</a><a href="https://paintingpixie.com/body-art.html">Body art</a><a href="https://paintingpixie.com/animal-print-face-painting.html">Animal print</a><a href="https://paintingpixie.com/halloween-face-painting.html">Halloween</a><a href="https://paintingpixie.com/christmas-face-painting.html">Christmas</a><a href="https://paintingpixie.com/workshops.html">Learn to face paint</a><a href="https://paintingpixie.com/services.html">All services</a></div></div><div class="msec"><div class="mrow"><a class="mtop" href="https://paintingpixie.com/areas.html">Areas</a><button class="marr" type="button" aria-expanded="false" aria-label="Show the Areas list"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></button></div><div class="msub" hidden><p class="mh">Sussex</p><a href="https://paintingpixie.com/face-painter-horsham.html">Horsham</a><a href="https://paintingpixie.com/face-painter-crawley.html">Crawley</a><a href="https://paintingpixie.com/face-painter-haywards-heath.html">Haywards Heath</a><a href="https://paintingpixie.com/face-painter-burgess-hill.html">Burgess Hill</a><a href="https://paintingpixie.com/face-painter-east-grinstead.html">East Grinstead</a><a href="https://paintingpixie.com/face-painter-worthing.html">Worthing</a><a href="https://paintingpixie.com/face-painter-brighton.html">Brighton &amp; Hove</a><a href="https://paintingpixie.com/face-painter-lewes.html">Lewes</a><a href="https://paintingpixie.com/face-painter-west-sussex-villages.html">West Sussex villages</a><a href="https://paintingpixie.com/face-painter-south-downs.html">South Downs</a><a href="https://paintingpixie.com/face-painter-sussex.html">All of Sussex</a><p class="mh">Surrey</p><a href="https://paintingpixie.com/face-painter-guildford.html">Guildford</a><a href="https://paintingpixie.com/face-painter-dorking.html">Dorking</a><a href="https://paintingpixie.com/face-painter-reigate.html">Reigate &amp; Redhill</a><a href="https://paintingpixie.com/face-painter-surrey-villages.html">Surrey villages</a><a href="https://paintingpixie.com/face-painter-surrey.html">All of Surrey</a><a href="https://paintingpixie.com/areas.html">Every area we cover</a></div></div><div class="msec"><div class="mrow"><a class="mtop" href="https://paintingpixie.com/gallery.html">Gallery</a></div></div><div class="msec"><div class="mrow"><a class="mtop" href="https://paintingpixie.com/prices.html">Prices</a></div></div><div class="msec"><div class="mrow"><a class="mtop" href="https://paintingpixie.com/about.html">About</a><button class="marr" type="button" aria-expanded="false" aria-label="Show the About list"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></button></div><div class="msub" hidden><a href="https://paintingpixie.com/about.html">About Kat</a><a href="https://paintingpixie.com/reviews.html">Reviews</a><a href="https://paintingpixie.com/index.html#faq">FAQs</a><a href="https://paintingpixie.com/contact.html">Book &amp; contact</a></div></div><a class="btn btn-gold" href="https://paintingpixie.com/contact.html" style="margin-top:12px">Check my date</a></div></details>
 </div>
 
 </nav>
@@ -463,7 +487,7 @@ footer .cols{grid-template-columns:1.3fr 1fr 1fr 1fr .8fr!important}
 </div>
 </div></section>
 
-<section class="faq" style="padding-top:0"><div class="wrap" style="max-width:900px">
+<section class="faq" style="padding-top:0" id="faq"><div class="wrap" style="max-width:900px">
 <p class="eyebrow">Good to know</p>
 <h2>Questions parents ask.</h2>
 <details open><summary>Where do you travel to?</summary><p>Kat is based in Horsham and paints across West Sussex, East Sussex, Brighton and Surrey, including Crawley, Haywards Heath, Worthing, Guildford, Reigate and Dorking. Bigger events further afield are welcome too.</p></details>
@@ -498,12 +522,9 @@ footer .cols{grid-template-columns:1.3fr 1fr 1fr 1fr .8fr!important}
 </div>
 <script>
 (function(){
-  var trigs=[].slice.call(document.querySelectorAll('.mtrig'));
-  function closeAll(except){trigs.forEach(function(t){if(t!==except){t.setAttribute('aria-expanded','false');document.getElementById(t.getAttribute('aria-controls')).hidden=true;}});}
-  trigs.forEach(function(t){t.addEventListener('click',function(e){e.stopPropagation();var open=t.getAttribute('aria-expanded')==='true';closeAll(t);t.setAttribute('aria-expanded',String(!open));document.getElementById(t.getAttribute('aria-controls')).hidden=open;});});
-  document.addEventListener('click',function(e){if(!e.target.closest('.mega'))closeAll();});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll();});
-  document.querySelectorAll('.mega a').forEach(function(a){a.addEventListener('click',function(){closeAll();});});
+  var trigs=[].slice.call(document.querySelectorAll('.marr'));
+  trigs.forEach(function(b){b.addEventListener('click',function(){var open=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!open));b.closest('.msec').querySelector('.msub').hidden=open;});});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.activeElement&&document.activeElement.closest('.dd'))document.activeElement.blur();});
 })();
 </script>
 </body>
