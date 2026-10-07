@@ -159,6 +159,18 @@ def pixie_dust():
     defs = glow('gl', 4) + '<linearGradient id="pg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2A0F4A"/><stop offset=".55" stop-color="#5A1A6E"/><stop offset="1" stop-color="#8A2462"/></linearGradient>'
     return svg(body, defs)
 
+# Site version of pixie dust (Kat's choice): the same trail plus dust sprinkled everywhere, so it shows in every gap between photos
+def pixie_dust_site():
+    rng = random.Random(8)
+    base = pixie_dust()
+    extra = ''
+    for _ in range(1100):
+        extra += f'<circle cx="{rng.uniform(0, W):.0f}" cy="{rng.uniform(0, H):.0f}" r="{rng.uniform(.6, 2.6):.1f}" fill="{rng.choice(["#FFE38A", "#FFD24F", "#FFF6D6", "#FFB3E0", "#D6B8FF"])}" opacity="{rng.uniform(.35, .95):.2f}"/>'
+    for _ in range(40):
+        x, y, sz = rng.uniform(0, W), rng.uniform(0, H), rng.uniform(6, 16)
+        extra += f'<path d="M{x:.0f},{y - sz:.0f} Q{x:.0f},{y:.0f} {x + sz:.0f},{y:.0f} Q{x:.0f},{y:.0f} {x:.0f},{y + sz:.0f} Q{x:.0f},{y:.0f} {x - sz:.0f},{y:.0f} Q{x:.0f},{y:.0f} {x:.0f},{y - sz:.0f}Z" fill="#FFE38A" filter="url(#gl)" opacity=".9"/>'
+    return base.replace('</svg>', extra + '</svg>')
+
 OPTIONS = [
     ('lightning', 'Electric lightning', 'Black night sky with neon lightning bolts in violet, pink, blue and gold. Bold and dramatic.', lightning),
     ('swirls-dark', 'Colour swirls', 'Deep plum with big swirls of pink, purple, teal and gold, like brush strokes on a palette.', swirls_dark),
@@ -293,6 +305,7 @@ def build():
     os.makedirs(BG, exist_ok=True)
     for slug, _, _, fn in OPTIONS:
         open(f'{BG}/{slug}.svg', 'w').write(fn())
+    open(f'{BG}/pixie-dust-site.svg', 'w').write(pixie_dust_site())
     open(V2 + '/draft/design-ideas.html', 'w').write(page())
     homepage_demo()
     print('design ideas built:', len(OPTIONS), 'options')
