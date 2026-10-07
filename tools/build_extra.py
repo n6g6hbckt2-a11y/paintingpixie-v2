@@ -385,8 +385,83 @@ INCLUDED_HTML = ('<div class="incl" style="margin-top:6px"><b>Every booking incl
                  '<li>Professional, skin-safe paints</li><li>Fully insured &amp; DBS checked</li>'
                  '<li>A design board for children to choose from</li></ul></div>')
 
+def reviews():
+    import reviews_data as R
+    from datetime import datetime
+    when = lambda d: datetime.strptime(d, '%b %Y')
+    items = [dict(src='ate', name=n, date=d, title=t, paras=p, tags=g) for n, d, t, p, g in R.ATE]
+    items += [dict(src='google', name=n, date=d, title=None, paras=p, tags=g) for n, d, p, g in R.GOOGLE]
+    items.sort(key=lambda r: when(r['date']), reverse=True)   # stable: keeps each site's own order within a month
+    n_ate, n_g = len(R.ATE), len(R.GOOGLE) + R.GOOGLE_STAR_ONLY
+    total = n_ate + n_g
+    cards = ''
+    for r in items:
+        badge = ('<span class="rsrc ate">Verified booking · Add to Event</span>' if r['src'] == 'ate'
+                 else '<span class="rsrc g">Google review</span>')
+        title = f'<h3>{esc(r["title"])}</h3>' if r['title'] else ''
+        body = ''.join(f'<p>{esc(x)}</p>' for x in r['paras'])
+        cards += (f'<figure class="rcard" data-tags="{r["tags"]}"><div class="rtop"><span class="rstars" aria-label="5 out of 5 stars">★★★★★</span>{badge}</div>'
+                  f'{title}<blockquote>{body}</blockquote><figcaption><b>{esc(r["name"])}</b> · {r["date"]}</figcaption></figure>')
+    count = lambda tag: sum(1 for r in items if tag in r['tags'].split())
+    chips = (f'<button class="rchip on" data-f="all">All ({len(items)})</button>'
+             + ''.join(f'<button class="rchip" data-f="{t}">{lbl} ({count(t)})</button>'
+                       for t, lbl in [('kids', 'Children’s parties'), ('grownups', 'Grown-ups'), ('wedding', 'Weddings'), ('events', 'Events &amp; corporate')]))
+    css = """<style>
+.rsum{display:grid;grid-template-columns:auto 1fr 1fr;gap:18px;align-items:stretch;margin:6px 0 30px}
+.rbig{background:#1B1712;color:#fff;border-radius:18px;padding:22px 30px;text-align:center}
+.rbig b{display:block;font-family:Fraunces,serif;font-weight:400;font-size:64px;line-height:1;color:#fff!important}
+.rbig span{color:#F2C14E;letter-spacing:3px;font-size:20px}.rbig small{display:block;color:#D9CFC4;font-size:14px;margin-top:4px}
+.rsite{background:#fff;border:1px solid #E8DED3;border-radius:18px;padding:20px 22px;display:flex;flex-direction:column;gap:6px;box-shadow:0 14px 30px -24px rgba(60,30,40,.45)}
+.rsite b{font-family:Fraunces,serif;font-weight:400;font-size:24px;color:#1B1712}.rsite span{color:#4E463F;font-size:15px}
+.rsite a{font-weight:700;margin-top:auto}
+.rchips{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 22px}
+.rchip{font:700 15px Manrope,system-ui,sans-serif;border:2px solid #1B1712;background:#fff;color:#1B1712;border-radius:999px;padding:8px 16px;cursor:pointer}
+.rchip.on{background:#1B1712;color:#fff}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;align-items:start}
+.rcard{margin:0;background:#fff;border-radius:16px;padding:22px 24px;border-top:5px solid var(--pink,#FF4FA3);box-shadow:0 14px 30px -24px rgba(60,30,40,.45)}
+.rcard:nth-child(4n+2){border-top-color:var(--teal,#2FD4C4)}.rcard:nth-child(4n+3){border-top-color:var(--violet,#8B5CF6)}.rcard:nth-child(4n){border-top-color:var(--gold,#E2BE7A)}
+.rtop{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+.rstars{color:#E0A100;letter-spacing:2px;font-size:17px}
+.rsrc{font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:4px 10px}
+.rsrc.ate{background:#FFF0D6;color:#7A4E00}.rsrc.g{background:#E6F0FF;color:#1A4DA8}
+.rcard h3{margin:0 0 6px;font-family:Fraunces,serif;font-weight:400;font-size:21px;color:#1B1712}
+.rcard blockquote{margin:0}.rcard blockquote p{margin:0 0 8px!important;color:#3A322C!important;font-size:16px;line-height:1.55}
+.rcard figcaption{color:#6B5F57;font-size:14.5px;margin-top:8px}.rcard figcaption b{color:#1B1712}
+.rcard[hidden]{display:none}
+.rnote{color:#6B5F57;font-size:14px;margin-top:10px}
+@media(max-width:760px){.rsum{grid-template-columns:1fr}.rbig{display:flex;align-items:center;justify-content:center;gap:14px;padding:16px}.rbig b{font-size:48px}.rbig small{margin:0}}
+</style>
+"""
+    js = """<script>document.querySelectorAll('.rchip').forEach(b=>b.addEventListener('click',()=>{const f=b.dataset.f;
+document.querySelectorAll('.rchip').forEach(x=>x.classList.toggle('on',x===b));
+document.querySelectorAll('.rcard').forEach(c=>c.hidden=!(f==='all'||c.dataset.tags.split(' ').includes(f)));}));</script>"""
+    main = f"""<main class="lg" id="content">
+<section class="band band-light"><div class="wrap">
+<p class="eyebrow">Reviews</p><h2 style="margin-bottom:6px">Every review, word for word</h2>
+<p class="lede-s">All {total} ratings Kat has received are five stars. Here is every written review from Add to Event and Google, newest first, exactly as the customers wrote them.</p>
+<div class="rsum">
+<div class="rbig"><b>5.0</b><span>★★★★★</span><small>{total} reviews</small></div>
+<div class="rsite"><b>Add to Event</b><span>{n_ate} reviews, all 5 stars. Every one is from a confirmed booking.</span><a href="{R.ATE_URL}" target="_blank" rel="noopener">See them on Add to Event →</a></div>
+<div class="rsite"><b>Google</b><span>{n_g} reviews, all 5 stars.</span><a href="{R.GOOGLE_URL}" target="_blank" rel="noopener">See them on Google →</a></div>
+</div>
+<div class="rchips" role="group" aria-label="Filter reviews">{chips}</div>
+<div class="rgrid">{cards}</div>
+<p class="rnote">{R.GOOGLE_STAR_ONLY} more Google customers left five stars without a comment. Reviews are shown as written, including any typos.</p>
+</div></section>
+<section class="band band-panel k-enquire centred"><div class="wrap"><h2>Want Kat at your party?</h2>
+<p>Tell Kat your date, town and roughly how many guests. She usually replies the same day.</p>
+<a class="btn btn-gold" href="contact.html">Check my date</a><a class="btn btn-wa" href="{wa("Hi Kat! I've read your reviews and would like to check a date. Date: Town: Guests: ")}" target="_blank" rel="noopener">WhatsApp Kat</a></div></section>
+{inner_layout.TRUST_BAND}
+</main>{js}"""
+    page_from('services.html', 'reviews.html', f'Reviews | 5.0 from {total} Reviews | The Painting Pixie Face Painting',
+              f'Read all {total} five-star reviews of Kat, The Painting Pixie: face painting for children’s parties, weddings, hen dos and events across Sussex and Surrey.',
+              'https://paintingpixie.com/reviews.html', css,
+              hero('../img/g/unicorn-party-1600.webp', '50% 30%', 'Reviews', 'Reviews',
+                   f'5.0 from {total} reviews on Add to Event and Google. Read what families and event organisers say.',
+                   '<a class="btn btn-gold" href="contact.html">Check my date</a>'), main)
+
 def build():
-    services(); workshops(); corporate(); body_art(); christmas(); prices()
+    services(); workshops(); corporate(); body_art(); christmas(); prices(); reviews()
     print('extra pages built: services, workshops, corporate-events, body-art')
 
 if __name__ == '__main__':

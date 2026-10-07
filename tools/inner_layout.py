@@ -100,7 +100,7 @@ TRUST_BAND = '''<section class="band trustband"><div class="wrap">
 <p class="eyebrow">Trusted across Sussex &amp; Surrey</p>
 <div class="trustrow">
 <a class="ate" href="https://www.addtoevent.co.uk/suppliers/the-painting-pixie-ltd" target="_blank" rel="noopener" title="Top rated on Add to Event"><img src="../img/addtoevent-top-rated.webp" alt="Top rated on Add to Event, 5 stars" width="84" height="81" loading="lazy"></a>
-<div><b>&#9733;&#9733;&#9733;&#9733;&#9733; 5.0</b><span>30+ reviews</span></div>
+<div><b>&#9733;&#9733;&#9733;&#9733;&#9733; 5.0</b><span><a href="reviews.html" style="color:inherit">40 reviews</a></span></div>
 <div><b>1,000+</b><span>faces painted</span></div>
 <div><b>Insured</b><span>&amp; DBS checked</span></div>
 </div></div></section>'''
