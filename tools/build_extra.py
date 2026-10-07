@@ -292,7 +292,7 @@ def christmas():
 <p>A few favourites. Kat will paint whatever your little elves ask for.</p>
 <ul class="xmas-designs">{chips}</ul></div></section>
 <section class="band band-light"><div class="wrap"><h2>Frosty, sparkly looks</h2><div class="gstrip">{gallery}</div>
-<p class="small-note">Draft note: Kat's Christmas photos will go here once she has them.</p></div></section>
+</div></section>
 <section class="band band-dark"><div class="wrap"><h2>Book early for December</h2>
 <p>December weekends fill up fast, especially the Saturdays before Christmas. Send Kat your date now, even if the details aren't fixed yet.</p></div></section>
 <section class="band band-light"><div class="wrap"><h2>Christmas questions</h2><div class="faqlist">{faq_html}</div></div></section>
