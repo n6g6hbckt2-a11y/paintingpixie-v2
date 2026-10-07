@@ -4,7 +4,7 @@ import re, json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from recent import RECENT, PERIOD, COMING_UP
 
-OUT = '/home/claude/paintingpixie-v2/draft'
+OUT = __import__('os').environ.get('PP_OUT', '/home/claude/paintingpixie-v2/draft')
 
 # name, lat, lon, county, page, in Google Business Profile service areas
 TOWNS = [

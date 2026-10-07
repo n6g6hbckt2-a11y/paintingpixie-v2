@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Breadcrumbs: link 'Services' and 'Areas' in the page crumb, and add BreadcrumbList data Google can read."""
 import glob, json, os, re, html
-OUT = '/home/claude/paintingpixie-v2/draft'
+OUT = __import__('os').environ.get('PP_OUT', '/home/claude/paintingpixie-v2/draft')
 SITE = 'https://paintingpixie.com/'
 LINKS = {'Services': 'services.html', 'Areas': 'areas.html'}
 

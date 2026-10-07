@@ -3,7 +3,7 @@
 each service page gets "Find your area". Runs after build_photos, before build_breadcrumbs."""
 import os, re
 
-OUT = '/home/claude/paintingpixie-v2/draft'
+OUT = __import__('os').environ.get('PP_OUT', '/home/claude/paintingpixie-v2/draft')
 
 SERV = {
     'kids':   ('childrens-face-painting.html', 'Children’s parties', 'Birthday parties at home, in a hall or a garden.', 'From £130'),

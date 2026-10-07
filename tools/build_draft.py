@@ -7,7 +7,7 @@ import inner_layout
 
 LIVE = '/home/claude/Painting-Pixie'
 V2 = '/home/claude/paintingpixie-v2'
-OUT = V2 + '/draft'
+OUT = __import__('os').environ.get('PP_OUT', V2 + '/draft')
 DOMAIN = 'https://paintingpixie.com/'
 os.makedirs(OUT, exist_ok=True)
 
@@ -31,6 +31,12 @@ if (/(^|\\.)paintingpixie\\.com$/.test(location.hostname)) {
   document.head.appendChild(s);
 }
 window.dataLayer = window.dataLayer || [];
+// Owner opt-out: open any page once with ?notrack on each phone/computer/browser to stop it being counted (?track undoes it)
+try {
+  if (/[?&]notrack(=|&|$)/.test(location.search)) localStorage.setItem('pp_notrack', '1');
+  if (/[?&]track(=|&|$)/.test(location.search)) localStorage.removeItem('pp_notrack');
+  if (localStorage.getItem('pp_notrack') === '1') window['ga-disable-G-JMFEXJJZ1H'] = true;
+} catch (e) {}
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-JMFEXJJZ1H');
@@ -146,6 +152,7 @@ LEGACY_CSS = '''
 
 # ---------- per-page settings ----------
 HERO = {
+ 'index.html': ('v2-hero.webp', '60% 35%', ''),
  'about.html': ('v2-hero.webp', '60% 35%', 'About'),
  'adult-face-painting.html': ('n-adult-glitter-flower-eye.webp', '45% 40%', 'Services · Grown-ups'),
  'animal-print-face-painting.html': ('n-leopard-and-tiger-kids.webp', '50% 35%', 'Services · Kids & grown-ups'),
@@ -235,7 +242,7 @@ def phero(header_html, page):
     alt = strip_emoji(re.sub('<[^>]+>', '', h1))
     crumbs = '<a href="index.html">Home</a>' + (' · ' + crumb if crumb else '')
     return (f'<header class="phero"><img src="{src}" alt="{html.escape(alt)}" style="object-position:{objpos}" fetchpriority="high">'
-            f'<div class="wrap"><div class="hcard"><p class="crumb">{crumbs}</p><h1>{strip_emoji(h1)}</h1>{rest}</div></div></header>\n<div class="jewel-rule"></div>')
+            f'<div class="wrap"><div class="hcard">{"" if page == "index.html" else f'<p class="crumb">{crumbs}</p>'}<h1>{strip_emoji(h1)}</h1>{rest}</div></div></header>\n<div class="jewel-rule"></div>')
 
 def shared_nav(page):
     return rel_links(c2_nav, page)
@@ -319,9 +326,10 @@ for f in pages:
         t = open(f'{OUT}/{f}').read().replace(DOMAIN, '')
         open(f'{OUT}/{f}', 'w').write(t)
         continue
-    if f == 'index.html': continue
+    if f == 'index.html' and os.environ.get('PP_MODE') != 'switch': continue
     build_page(f); built.append(f)
-build_index(); built.append('index.html')
+if os.environ.get('PP_MODE') != 'switch':   # switch mode: homepage keeps the live wording, in the new design
+    build_index(); built.append('index.html')
 
 open(f'{OUT}/site.css', 'w').write(c2_css + LEGACY_CSS + inner_layout.INNER_CSS)
 open(f'{OUT}/site.js', 'w').write(c2_menu_js + '\n' + TRACK_JS)

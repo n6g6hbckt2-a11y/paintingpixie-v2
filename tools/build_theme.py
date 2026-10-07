@@ -2,7 +2,7 @@
 """Site background chosen by Kat (7 Oct 2026): 'Pixie dust' (design idea H) instead of plain black.
 The pattern sits still behind the page (like the Halloween page) and shows through every section that used to be black.
 Light sections, the coloured price band and photo cards are unchanged. Runs after build_design_ideas (needs img/bg/pixie-dust.svg)."""
-OUT = '/home/claude/paintingpixie-v2/draft'
+OUT = __import__('os').environ.get('PP_OUT', '/home/claude/paintingpixie-v2/draft')
 CSS = '''
 /* ===== Background: Pixie dust (Kat's choice, 7 Oct 2026) ===== */
 html{background:#2A0F4A}

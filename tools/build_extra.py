@@ -5,7 +5,7 @@ import re, json, html, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import inner_layout
 
-OUT = '/home/claude/paintingpixie-v2/draft'
+OUT = __import__('os').environ.get('PP_OUT', '/home/claude/paintingpixie-v2/draft')
 WA = "https://wa.me/447852300125?text="
 def wa(t): return WA + t.replace(' ', '%20').replace("'", '%27').replace('&', 'and')
 def esc(t): return html.escape(t, quote=False)
@@ -103,7 +103,7 @@ def services():
               "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": t, "url": "https://paintingpixie.com/" + u}
                                   for i, (t, img, pos, d, pr, u, b) in enumerate(SERVICES) if u != 'contact.html']}
     page_from('services.html', 'services.html', 'Face Painting Services in Sussex &amp; Surrey | The Painting Pixie',
-              "Children's parties, hen dos, weddings, glitter bar, corporate events and learn-to-face-paint workshops across Sussex & Surrey. 5.0 rated, insured.",
+              "Children's parties, hen dos, weddings, glitter bar, corporate events and workshop parties across Sussex & Surrey. 5.0 rated, insured.",
               'https://paintingpixie.com/services.html',
               '<script type="application/ld+json">' + json.dumps(schema, ensure_ascii=False) + '</script>\n',
               hero('../img/v2-sisters.webp', '50% 30%', 'Services', 'Our Services',

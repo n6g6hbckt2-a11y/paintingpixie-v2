@@ -6,7 +6,7 @@
 7 GA4 form_start event so the full enquiry journey can be measured."""
 import re, glob, os
 
-OUT = '/home/claude/paintingpixie-v2/draft'
+OUT = __import__('os').environ.get('PP_OUT', '/home/claude/paintingpixie-v2/draft')
 
 REASSURE = ('<p class="reassure"><span aria-hidden="true">🔒</span> <b>No obligation, and no payment to enquire.</b> '
             'Kat checks her diary and replies with availability and the best option for your party, usually the same day.</p>')
@@ -120,8 +120,9 @@ def patch(path):
     open(path, 'w').write(s)
 
 def contact(s):
-    s = re.sub(r'(<header class="phero">.*?<h1>).*?(</h1>\s*)<p>.*?</p>',
-               lambda m: m.group(1) + 'Let’s make your party amazing' + m.group(2) +
+    keep_h1 = os.environ.get('PP_MODE') == 'switch'   # switch: keep the live heading (Google already knows it)
+    s = re.sub(r'(<header class="phero">.*?<h1>)(.*?)(</h1>\s*)<p>.*?</p>',
+               lambda m: m.group(1) + (m.group(2) if keep_h1 else 'Let’s make your party amazing') + m.group(3) +
                '<p>Book The Painting Pixie for parties, weddings and events across Sussex &amp; Surrey. Tell Kat a little about your event and she’ll check her diary and suggest the best option.</p>',
                s, count=1, flags=re.S)
     s = s.replace('<h2>Booking Request</h2>', '<h2>Check your date</h2>')

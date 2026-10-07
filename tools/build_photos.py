@@ -3,7 +3,7 @@
 for the cleaned, higher-resolution versions in img/g/."""
 import glob, os, re
 
-OUT = '/home/claude/paintingpixie-v2/draft'
+OUT = __import__('os').environ.get('PP_OUT', '/home/claude/paintingpixie-v2/draft')
 g = lambda slug, size=1600: f'../img/g/{slug}-{size}.webp'
 
 # page: (photo, object-position)

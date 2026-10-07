@@ -5,7 +5,7 @@ import os, re, html, json
 from PIL import Image, ImageOps, ImageStat
 
 V2 = '/home/claude/paintingpixie-v2'
-OUT = V2 + '/draft'
+OUT = __import__('os').environ.get('PP_OUT', V2 + '/draft')
 G = V2 + '/img/g'
 UP = '/mnt/user-data/uploads/Painting Pixie Photos/Recommended for website'
 WA = 'https://wa.me/447852300125?text='
