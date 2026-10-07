@@ -32,10 +32,17 @@ TOWNS = [
  ("Leatherhead", 51.2960, -0.3330, "Surrey", "face-painter-surrey-villages.html", True),
  ("Horley", 51.1740, -0.1720, "Surrey", "face-painter-surrey-villages.html", True),
  ("Reigate & Redhill", 51.2370, -0.2060, "Surrey", "face-painter-reigate.html", False),
+ # added 7 Oct 2026 from Kat's travel log (recent and coming-up places)
+ ("Kingsfold", 51.1110, -0.3330, "West Sussex", "face-painter-horsham.html", False),
+ ("Small Dole", 50.9030, -0.2650, "West Sussex", "face-painter-west-sussex-villages.html", False),
+ ("Upper Beeding", 50.8890, -0.3060, "West Sussex", "face-painter-west-sussex-villages.html", False),
+ ("Macs Farm", 50.9390, -0.1100, "West Sussex", "face-painter-burgess-hill.html", False),
+ ("Portslade", 50.8420, -0.2160, "East Sussex", "face-painter-brighton.html", False),
+ ("Kingswood", 51.2950, -0.2100, "Surrey", "face-painter-reigate.html", False),
 ]
 WIDER = [  # specialist events only (weddings, festivals, corporate): places Kat has travelled to, no local page
  ("Chichester", 50.8365, -0.7792), ("Arundel", 50.8550, -0.5550), ("Bognor Regis", 50.7830, -0.6760), ("Farnham", 51.2150, -0.7990),
- ("Woking", 51.3190, -0.5580), ("Epsom", 51.3330, -0.2670), ("Croydon", 51.3720, -0.1000), ("London", 51.5070, -0.1280),
+ ("Woking", 51.3190, -0.5580), ("Epsom", 51.3330, -0.2670), ("Croydon", 51.3720, -0.1000), ("Sutton", 51.3618, -0.1945), ("Putney", 51.4600, -0.2160), ("London", 51.5070, -0.1280),
  ("Sevenoaks", 51.2720, 0.1900), ("Tunbridge Wells", 51.1320, 0.2630), ("Uckfield", 50.9690, 0.0960), ("Eastbourne", 50.7680, 0.2900),
  ("Hastings", 50.8540, 0.5730), ("Maidstone", 51.2720, 0.5220), ("Portsmouth", 50.8050, -1.0870), ("Southampton", 50.9090, -1.4040),
 ]
@@ -63,6 +70,14 @@ def recent_places():
         for p, n in items: names.update(x.strip() for x in p.split(','))
     return names
 
+def soon_places():
+    return {p.split(',')[0].strip() for p, *_ in COMING_UP}
+
+def wider_soon(n):
+    if n == 'London':
+        return '; '.join(f'{pl.split(",")[0]}, {d}' for pl, d, *_ in COMING_UP if 'London' in pl)
+    return next((d for pl, d, *_ in COMING_UP if pl.split(',')[0].strip() == n), '')
+
 def static_map(recent):
     """Drawn map shown straight away (and kept if the live map can't load): pins at real positions, linked to town pages."""
     import math
@@ -87,16 +102,17 @@ def static_map(recent):
     for n, a, b in WIDER:
         if not (lat1 < a < lat0 and lon0 < b < lon1): continue
         x, y = xy(a, b)
-        o.append(f'<a href="contact.html"><circle cx="{x:.0f}" cy="{y:.0f}" r="6" fill="{"#E2BE7A" if n in recent else "#231F30"}" stroke="#9C83D1" stroke-width="2.4"><title>{n}: weddings, festivals and corporate events</title></circle>'
+        o.append(f'<a href="contact.html"><circle cx="{x:.0f}" cy="{y:.0f}" r="6" fill="{"#A77BFF" if wider_soon(n) and n not in recent else "#E2BE7A" if n in recent else "#231F30"}" stroke="#9C83D1" stroke-width="2.4"><title>{n}: weddings, festivals and corporate events</title></circle>'
                  f'<text x="{x + 10:.0f}" y="{y + 5:.0f}" fill="#B7A9D6" font-size="14" {font}>{n}</text></a>')
-    left = {'Billingshurst', 'Cuckfield', 'Midhurst', 'Guildford', 'Dorking', 'Henfield', 'Storrington', 'Godalming', 'Leatherhead'}
+    left = {'Billingshurst', 'Cuckfield', 'Midhurst', 'Guildford', 'Dorking', 'Henfield', 'Storrington', 'Godalming', 'Leatherhead', 'Kingsfold', 'Upper Beeding'}
+    dy = {'Steyning': 16, 'Upper Beeding': -6}
     for n, a, b, c, u, g in TOWNS:
         x, y = xy(a, b)
-        col = '#2FD4C4' if n == 'Horsham' else ('#E2BE7A' if (n.split(' ')[0] in recent or n in recent) else '#FF4FA3')
+        col = '#2FD4C4' if n == 'Horsham' else ('#E2BE7A' if (n.split(' ')[0] in recent or n in recent) else '#A77BFF' if n in soon_places() else '#FF4FA3')
         r = 11 if n == 'Horsham' else 8
         tx, anchor = (x - 13, 'end') if n in left else (x + 13, 'start')
         o.append(f'<a href="{u}"><circle cx="{x:.0f}" cy="{y:.0f}" r="{r}" fill="{col}" stroke="#fff" stroke-width="2.4"><title>Face painter in {n}</title></circle>'
-                 f'<text x="{tx:.0f}" y="{y + 5:.0f}" text-anchor="{anchor}" fill="#F5F1EA" font-size="15" font-weight="700" {font} paint-order="stroke" stroke="#231F30" stroke-width="4">{n}</text></a>')
+                 f'<text x="{tx:.0f}" y="{y + 5 + dy.get(n, 0):.0f}" text-anchor="{anchor}" fill="#F5F1EA" font-size="15" font-weight="700" {font} paint-order="stroke" stroke="#231F30" stroke-width="4">{n}</text></a>')
     o.append('</svg>')
     return ''.join(o)
 
@@ -104,9 +120,11 @@ def build():
     p = f'{OUT}/areas.html'
     s = open(p).read()
     recent = recent_places()
-    pins = [dict(n=n, lat=a, lon=b, c=c, u=u, note=NOTES.get(n, f'Parties and events in {n}.'), r=(n.split(' ')[0] in recent or n in recent)) for n, a, b, c, u, g in TOWNS]
+    pins = [dict(n=n, lat=a, lon=b, c=c, u=u, note=NOTES.get(n, f'Parties and events in {n}.'), r=(n.split(' ')[0] in recent or n in recent), s=next((d for pl, d, *_ in COMING_UP if pl.split(',')[0].strip() == n), '')) for n, a, b, c, u, g in TOWNS]
     groups = {}
-    for n, a, b, c, u, g in TOWNS: groups.setdefault(c, []).append((n, u))
+    for n, a, b, c, u, g in TOWNS:
+        if n in ("Macs Farm",): continue   # a venue, not a town: pin only
+        groups.setdefault(c, []).append((n, u))
     lists = ''.join(
         f'<div class="acol"><h3><a href="{COUNTY_PAGE[c]}">{c}</a></h3><ul>' +
         ''.join(f'<li><a href="{u}">Face painter in {n}{" (events)" if n in EVENTS_ONLY else ""}</a></li>' for n, u in items) + '</ul></div>'
@@ -118,7 +136,7 @@ def build():
 <p>The Painting Pixie brings face painting, festival glitter and party fun to events across Sussex and Surrey, from home in Horsham.
 Tap a pin to see Kat's local page, or scroll down for the full list. Gold pins are places Kat has painted recently.</p>
 <div id="areamap" class="areamap" role="region" aria-label="Map of the towns The Painting Pixie covers">{static_map(recent)}</div>
-<div class="legend"><span><i class="pin home"></i> Home: Horsham</span><span><i class="pin"></i> Regular area (within about 40 minutes), with a local page</span><span><i class="pin recent"></i> Painted here recently</span><span><i class="pin wide"></i> Wider area: specialist events</span></div>
+<div class="legend"><span><i class="pin home"></i> Home: Horsham</span><span><i class="pin"></i> Regular area (within about 40 minutes), with a local page</span><span><i class="pin recent"></i> Painted here recently</span><span><i class="pin soon"></i> Coming up</span><span><i class="pin wide"></i> Wider area: specialist events</span></div>
 <p class="recentareas"><b>Recently painted ({PERIOD}):</b> {recent_text()}.</p>
 <p class="recentareas"><b>Coming up:</b> {'; '.join(f"{p.replace(', ', ' (', 1)}{')' if ', ' in p else ''}, {d}" for p, d, *_ in COMING_UP)}.</p>
 <p class="small-note">The shaded zone is Kat's regular area: parties and local events within about 40 minutes of Horsham. Further afield, inside the dashed line, Kat travels for higher-value specialist events: weddings, festivals, corporate days and brand activations. <a href="contact.html">Ask about your event</a>.</p>
@@ -161,6 +179,7 @@ Tap a pin to see Kat's local page, or scroll down for the full list. Gold pins a
 .pin.home{background:#2FD4C4;width:24px;height:24px}
 .pin.wide.wrecent{background:#E2BE7A}
 .pin.wide{background:transparent;border:3px solid #7A5BB0;width:14px;height:14px;box-shadow:none}
+.pin.soon{background:#A77BFF}.pin.wide.wsoon{background:#A77BFF}
 .legend{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:16px;font-size:14px;font-weight:700;color:#4E463F}
 .legend span{display:inline-flex;align-items:center;gap:8px}
 .legend .pin{display:inline-block;flex:0 0 auto;margin:0;position:static;transform:none}
@@ -182,7 +201,7 @@ Tap a pin to see Kat's local page, or scroll down for the full list. Gold pins a
   if (!window.L) return;   // the drawn map stays if the live map can't load
   var box = document.getElementById('areamap'), drawn = box.innerHTML;
   var pins = {json.dumps(pins, ensure_ascii=False)};
-  var WIDER_PINS = {json.dumps([[n, a, b, n in recent] for n, a, b in WIDER])};
+  var WIDER_PINS = {json.dumps([[n, a, b, n in recent, wider_soon(n)] for n, a, b in WIDER])};
   // the live map is built in a layer underneath and only shown once real map pictures have loaded
   var live = document.createElement('div'); live.id = 'livemap'; box.appendChild(live);
   var map = L.map('livemap', {{scrollWheelZoom:false}}).setView([51.03,-0.33], 9);
@@ -202,16 +221,16 @@ Tap a pin to see Kat's local page, or scroll down for the full list. Gold pins a
   L.circle(home, {{radius: 80000, color:'#7A5BB0', weight:1.5, dashArray:'6 8', fill:false}}).addTo(map);
   var wider = WIDER_PINS;
   wider.forEach(function(p){{
-    var icon = L.divIcon({{className:'', html:'<div class="pin wide'+(p[3]?' wrecent':'')+'"></div>', iconSize:[16,16], iconAnchor:[8,8]}});
+    var icon = L.divIcon({{className:'', html:'<div class="pin wide'+(p[3]?' wrecent':(p[4]?' wsoon':''))+'"></div>', iconSize:[16,16], iconAnchor:[8,8]}});
     L.marker([p[1],p[2]], {{icon:icon, title:p[0], alt:p[0]}}).addTo(map)
-      .bindPopup('<b>'+p[0]+'</b>Further afield: Kat travels here for weddings, festivals, corporate and brand events.'+(p[3]?'<br>&#9733; Painted here recently: Baker Street<br>Coming up: Putney, 18 and 30 October; Good Hotel workshop, 30 October':'')+'<br><a href="contact.html">Ask about your event &rarr;</a>');
+      .bindPopup('<b>'+p[0]+'</b>Further afield: Kat travels here for weddings, festivals, corporate and brand events.'+(p[3]?'<br>&#9733; Painted here recently'+(p[0]==='London'?': Baker Street':''):'')+(p[4]?'<br>&#10024; Coming up: '+p[4]:'')+'<br><a href="contact.html">Ask about your event &rarr;</a>');
   }});
   var bounds = [];
   pins.forEach(function(p){{
-    var cls = 'pin' + (p.n === 'Horsham' ? ' home' : (p.r ? ' recent' : ''));
+    var cls = 'pin' + (p.n === 'Horsham' ? ' home' : (p.r ? ' recent' : (p.s ? ' soon' : '')));
     var icon = L.divIcon({{className:'', html:'<div class="'+cls+'"></div>', iconSize:[24,24], iconAnchor:[12,12]}});
     L.marker([p.lat,p.lon], {{icon:icon, title:p.n, alt:p.n}}).addTo(map)
-      .bindPopup('<b>'+p.n+'</b>'+p.note+(p.r?'<br>&#9733; Painted here recently':'')+'<br><a href="'+p.u+'">See the '+p.n+' page &rarr;</a>');
+      .bindPopup('<b>'+p.n+'</b>'+p.note+(p.r?'<br>&#9733; Painted here recently':'')+(p.s?'<br>&#10024; Coming up: '+p.s:'')+'<br><a href="'+p.u+'">See the '+p.n+' page &rarr;</a>');
     bounds.push([p.lat,p.lon]);
   }});
   map.fitBounds(bounds, {{padding:[40,40]}});
