@@ -5,8 +5,9 @@ import re, os, json, html, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from locations import PAGES
 from postcards import postcard
-from recent import RECENT, PERIOD
+from recent import RECENT, PERIOD, COMING_UP
 import inner_layout
+import venue_map
 
 OUT = '/home/claude/paintingpixie-v2/draft'
 LIVE = '/home/claude/Painting-Pixie'
@@ -45,7 +46,12 @@ def b_story(d, tone='light'):
 def b_postcard(d, slug, town, tone='dark'):
     return f'<section class="band band-{tone} loc-postcard"><div class="wrap">{postcard(slug, town, d["acc"])}</div></section>'
 
-def b_venue_map(d, tone='dark'):
+def b_venue_map(d, tone='dark', slug=''):
+    if slug == 'horsham':   # drawn map with numbered pins + booking links
+        return band('map', f'<h2>{esc(d.get("venues_title", "Favourite party spots"))}</h2>'
+                    f'<p class="lede-s">Six spots where Kat often paints. Tap “Book Kat here” to check your date, or use the venue links to book the space.</p>'
+                    + venue_map.horsham_svg() + f'<ol class="vmap">{venue_map.venue_list(d["venues"])}</ol>'
+                    + '<p class="vmapnote">Venue links go to each venue’s own website. Map not to scale.</p>', tone)
     items = ''.join(f'<li><b>{esc(n)}</b><span>{esc(t)}</span></li>' for n, t in d['venues'])
     return band('map', f'<h2>{esc(d.get("venues_title", "Favourite party spots"))}</h2><ol class="vmap">{items}</ol>', tone)
 
@@ -147,8 +153,10 @@ def b_recent(page, town, tone='dark'):
     chips = ''.join(f'<li><b>{esc(p)}</b><span>{n} event{"s" if n > 1 else ""}</span></li>' for p, n in items)
     lead = (f'{total} events across Sussex' if page == 'face-painter-sussex.html' else f'{total} events in Surrey and beyond' if page == 'face-painter-surrey.html'
             else f'{total} event{"s" if total > 1 else ""} in and around {esc(town)}')
+    soon = [(pl, d) for pl, d, pg in COMING_UP if pg == page]
+    soon_html = (f'<p class="recentareas" style="margin-top:18px"><b>Coming up:</b> ' + '; '.join(f'{esc(pl)}, {d}' for pl, d in soon) + '.</p>') if soon else ''
     return band('recent', f'<p class="eyebrow">Recently painted</p><h2>Kat\'s been busy: {lead}</h2>'
-                f'<p class="lede-s">Where Kat has painted, {PERIOD}.</p><ul class="recent">{chips}</ul>', tone)
+                f'<p class="lede-s">Where Kat has painted, {PERIOD}.</p><ul class="recent">{chips}</ul>{soon_html}', tone)
 
 # ---------- templates (each a different order and set of blocks) ----------
 def render(page, d, title):
@@ -157,7 +165,7 @@ def render(page, d, title):
     pc = lambda tone='dark': b_postcard(d, slug, d['eyebrow'].split(',')[0] if slug not in ('west-sussex-villages', 'surrey-villages', 'south-downs') else d['eyebrow'], tone)
     t = d['tpl']
     if t == 'letter':
-        blocks = [b_letter(d), pc('dark'), b_venue_map(d, 'dark'), b_gallery(d, 'light'), b_events(d, 'dark'), b_prices(), b_reviews(page, town, 'light'), b_hoods(d, town, 'dark'), b_faq(d, town, 'light')]
+        blocks = [b_letter(d)] + ([] if slug == 'horsham' else [pc('dark')]) + [b_venue_map(d, 'dark', slug), b_gallery(d, 'light'), b_events(d, 'dark'), b_prices(), b_reviews(page, town, 'light'), b_hoods(d, town, 'dark'), b_faq(d, town, 'light')]
     elif t == 'guide':
         blocks = [b_intro_quote(d, 'light'), b_tiles(d, town, 'dark'), pc('light'), b_venue_chips(d, town, 'light'), b_reviews(page, town, 'dark'), b_prices(events=d.get('events_only', False)), b_hoods(d, town, 'light'), b_faq(d, town, 'dark')]
     elif t == 'seasons':
@@ -192,7 +200,7 @@ def hero(d, h1, sub, page):
             f'<a class="scrollcue" href="#content" aria-label="Scroll down">⌄</a></header>\n<div class="jewel-rule"></div>')
 
 def build():
-    with open(f'{OUT}/site.css', 'a') as f: f.write(LOC_CSS)
+    with open(f'{OUT}/site.css', 'a') as f: f.write(LOC_CSS + venue_map.CSS)
     for page, d in PAGES.items():
         p = f'{OUT}/{page}'
         s = open(p).read()

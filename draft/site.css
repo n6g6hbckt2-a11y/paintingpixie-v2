@@ -543,6 +543,14 @@ main.lg,footer,.trustband{position:relative;background:var(--bg)}
 .postcard{border-width:4px;border-radius:12px}
 }
 
+.vmapsvg{margin-bottom:8px;aspect-ratio:1200/560}
+@media(max-width:600px){.vmapsvg{aspect-ratio:auto;height:360px}}
+.vmap li::before{grid-row:span 3}
+.vlinks{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:6px;font-size:14px!important}
+.vlinks a{font-weight:700;color:var(--gold)}
+.vlinks a.vbook{background:#25D366;color:#0B1F12;text-decoration:none;border-radius:999px;padding:4px 12px}
+.vmapnote{color:var(--muted);font-size:14px;margin-top:14px}
+
 /* ===== Conversion helpers ===== */
 .reassure{max-width:760px;margin:14px auto 0!important;padding:14px 18px;border-radius:12px;background:rgba(47,212,196,.12);border:1px solid rgba(47,212,196,.4);color:var(--ink)!important;font-size:15px!important;text-align:left}
 .reassure b{color:var(--ink)}
