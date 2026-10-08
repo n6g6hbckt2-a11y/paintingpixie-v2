@@ -74,6 +74,8 @@ def build():
         shutil.copytree(V2 + '/vendor', DST + '/vendor', dirs_exist_ok=True)
     # sitemap: live sitemap plus the new pages
     sm = open(f'{LIVE}/sitemap.xml').read()
+    if f'<loc>{SITE}</loc>' not in sm:   # the homepage was missing from the live sitemap
+        sm = sm.replace('<url>', f'<url>\n    <loc>{SITE}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>\n  <url>', 1)
     for page in NEW_PAGES:
         if os.path.exists(f'{DST}/{page}') and f'{SITE}{page}<' not in sm:
             sm = sm.replace('</urlset>', f'  <url>\n    <loc>{SITE}{page}</loc>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>\n</urlset>')
