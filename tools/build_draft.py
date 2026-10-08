@@ -276,6 +276,7 @@ def head_from_live(s):
     head = re.sub(r'<!-- Google tag \(gtag\.js\) -->\s*', '', head)
     head = re.sub(r'<script async src="https://www\.googletagmanager\.com[^>]*></script>\s*', '', head)
     head = re.sub(r'<script>\s*window\.dataLayer.*?</script>\s*', '', head, flags=re.S)
+    head = re.sub(r'<!-- Microsoft Clarity.*?</script>\s*', '', head, flags=re.S)   # added back by GA_HEAD
     head = re.sub(r'<link rel="stylesheet" href="style\.css">\s*', '', head)
     head = re.sub(r'<meta name="robots"[^>]*>\s*', '', head)
     head = re.sub(r'(<link rel="(?:icon|apple-touch-icon)"[^>]*href=")/?', r'\1', head)
