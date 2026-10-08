@@ -17,6 +17,7 @@ SERVICES = [
  ("Weddings", "../img/n-adult-glitter-flower-eye.webp", "45% 40%", "Keeps little guests happy through speeches and photos, and the grown-ups queue for glitter too.", "Bespoke quote", "contact.html", "Check my date"),
  ("Chunky glitter & jewel bar", "../img/n-lilac-flower-eye.webp", "35% 50%", "Bio-glitter, gems and sparkle for faces, hair and arms. Festival vibes for any event.", "Bespoke quote", "glitter-bar.html", "Glitter bar"),
  ("Glitter tattoos", "unicorn-crown-face-paint-girl-glitter-tattoo-horsham.webp", "50% 40%", "Temporary glitter tattoos made with stencils and cosmetic glitter: quick, mess-free and they last well beyond the party. Great for queues and for anyone who would rather not have a painted face.", "Add-on or bespoke quote", "contact.html", "Ask about tattoos"),
+ ("Hair braiding", "../img/g/rainbow-unicorn-girl-800.webp", "30% 70%", "Braids for children and grown-ups, a fun add-on to face painting and glitter at parties, festivals and events.", "Add-on or bespoke quote", "contact.html", "Ask about braiding"),
  ("Halloween", "../img/n-pumpkin-face.webp", "50% 30%", "Pumpkins, skulls, devils and monsters, from sweet to spooky.", "From £130", "halloween-face-painting.html", "Halloween"),
  ("Christmas", "blue-shooting-stars-face-paint-for-girls.webp", "50% 35%", "Reindeer, snowflakes, elves and glitter for Christmas parties, school fairs, grottos and office parties.", "From £130", "christmas-face-painting.html", "Christmas"),
  ("Festivals, fêtes & community days", "../img/v2-hero.webp", "60% 35%", "Fast, queue-friendly designs for school fairs, village fêtes and festivals, as a stall or a set fee.", "Bespoke quote", "contact.html", "Get a quote"),
@@ -361,7 +362,8 @@ def prices():
         ("Ultimate Sparkle", "From £160", ["3 hours of face painting", "Bio-glitter, face gems and more detailed designs", "Most popular for bigger parties"], True)]),
       ("Grown-ups", "Hen dos, milestone birthdays and grown-up celebrations.", [
         ("Hen &amp; adult parties", "From £150", ["Glitter, gems and grown-up designs", "At your house, venue or hotel", "Great for photos"], False),
-        ("Glitter tattoos", "Add-on or quote", ["Stencil tattoos in cosmetic glitter", "Quick and mess-free, last for days", "Great for queues and toddlers"], False)]),
+        ("Glitter tattoos", "Add-on or quote", ["Stencil tattoos in cosmetic glitter", "Quick and mess-free, last for days", "Great for queues and toddlers"], False),
+        ("Hair braiding", "Add-on or quote", ["Braids for children and grown-ups", "A fun add-on to face painting or glitter", "Great for parties and festivals"], False)]),
       ("Events", "Weddings, festivals, school fairs, corporate and brand events.", [
         ("Weddings &amp; festivals", "Bespoke quote", ["Hourly or day rates", "Extra artists for big crowds", "Kids’ corner or glitter for all"], False),
         ("Corporate &amp; brand events", "Bespoke quote", ["Staff days, launches and activations", "Brand colours and themes", "Sussex, Surrey and London"], False)]),
