@@ -31,6 +31,8 @@ LEVELS = [
     ('Properly scary', 'For teens & grown-ups', 'Full-face skulls, werewolves and dramatic creatures for Halloween parties and fancy dress.', 'werewolf', 'adult-skull', '#FF5A4F'),
 ]
 
+ALT = {k: alt for k, _, alt in STRIP}
+
 IDEAS = [
     ('Jack-o’-lantern', 'Orange stripes, glowing eyes and a toothy grin.'),
     ('Black cat', 'Whiskers, a little pink nose and glitter ears.'),
@@ -233,7 +235,7 @@ def body():
         f'<img src="halloween-{f}-zoom.webp" alt="{esc(a)}" width="619" height="1100" loading="{"eager" if i < 4 else "lazy"}">'
         f'<span class="cap"><b>{esc(c)}</b><i>Book this look</i></span></a>' for i, (f, c, a) in enumerate(STRIP))
     levels = ''.join(
-        f'<article class="level" style="--c:{col}"><div class="pics"><img src="halloween-{a}-card.webp" alt="" loading="lazy"><img src="halloween-{b}-card.webp" alt="" loading="lazy"></div>'
+        f'<article class="level" style="--c:{col}"><div class="pics"><img src="halloween-{a}-card.webp" alt="{esc(ALT[a])}, {n.lower()} Halloween face painting" loading="lazy"><img src="halloween-{b}-card.webp" alt="{esc(ALT[b])}, {n.lower()} Halloween face painting" loading="lazy"></div>'
         f'<div class="txt"><h3>{esc(n)}</h3><small>{esc(who)}</small><p>{esc(d)}</p></div></article>' for n, who, d, a, b, col in LEVELS)
     ideas = ''.join(f'<div class="idea"><b>{esc(n)}</b><span>{esc(d)}</span></div>' for n, d in IDEAS)
     events = ''.join(f'<div class="event"><b>{esc(n)}</b><span>{esc(d)}</span></div>' for n, d in EVENTS)
