@@ -56,6 +56,9 @@ CSS = r'''<style>
 .wsideas div{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
 .wsideas b{display:block;font-family:'Fraunces',serif;font-weight:400;font-size:22px;color:var(--ink)}
 .wsideas span{color:var(--muted);font-size:15px}
+.gstrip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:24px}
+.gstrip img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:12px}
+@media(max-width:700px){.gstrip{grid-template-columns:1fr 1fr}}
 @media(max-width:900px){.svgrid{grid-template-columns:1fr 1fr}.evsplit,.wscard{grid-template-columns:1fr}.wsideas{grid-template-columns:1fr}}
 @media(max-width:600px){.svgrid{grid-template-columns:1fr}.evfacts{grid-template-columns:1fr}}
 </style>'''
@@ -310,6 +313,47 @@ def christmas():
                    'Reindeer, snowflakes, elves and glitter for Christmas parties, school fairs, grottos and office parties across Sussex and Surrey.',
                    '<a class="btn btn-gold" href="contact.html">Check my date</a>'), main)
 
+def christmas_holding():
+    """Short Christmas page for the switch, using only things Kat has already approved (party prices, her photos,
+    real December reviews). Same address and a similar title to the full page, so Google can start ranking it now.
+    Replaced by christmas() once Kat has reviewed the full page."""
+    import reviews_data as R
+    revs = [r for r in R.ATE if r[0] in ('Holly F', 'Lorella S')]
+    rev_html = ''.join(f'<figure class="rcard"><span class="rstars" aria-label="5 out of 5 stars">★★★★★</span><blockquote>'
+                       + ''.join(f'<p>{esc(x)}</p>' for x in r[3]) + f'</blockquote><figcaption><b>{esc(r[0])}</b> · {r[1]} · Add to Event</figcaption></figure>' for r in revs)
+    gallery = ''.join(f'<img src="{g}" alt="{a}" loading="lazy">' for g, a in [
+        ("blue-shooting-stars-face-paint-for-girls.webp", "Icy blue shooting stars with silver glitter"),
+        ("blue-snowflake-crown-face-paint-for-girls.webp", "Snow queen crown with gems"),
+        ("fire-and-ice-dragon-eye-face-paint.webp", "Fire and ice dragon eye design"),
+        ("../img/n-lilac-flower-eye.webp", "Frosty lilac flower with rose-gold glitter")])
+    main = f"""<main class="lg" id="content">
+<section class="band band-light"><div class="wrap">
+<p class="eyebrow">Christmas</p><h2>Now booking Christmas parties</h2>
+<p>Bring some sparkle to your Christmas party. Kat paints festive designs and glitter for children's Christmas and birthday parties at home or in a hall, across Sussex and Surrey.</p>
+<div class="fcards">
+<div class="fcard"><h3>Classic Party</h3><p>2 hours of face painting, fast and fun. From £130.</p></div>
+<div class="fcard"><h3>Ultimate Sparkle</h3><p>3 hours, with bio-glitter, face gems and more detailed designs. From £160.</p></div>
+<div class="fcard"><h3>Something bigger?</h3><p>Christmas fairs and events: tell Kat what you're planning and she'll suggest the best option.</p></div>
+</div></div></section>
+<section class="band band-light"><div class="wrap"><h2>Frosty, sparkly looks</h2><div class="gstrip">{gallery}</div></div></section>
+<section class="band band-dark"><div class="wrap"><h2>Book early for December</h2>
+<p>December weekends fill up fast, especially the Saturdays before Christmas. Send Kat your date now, even if the details aren't fixed yet.</p>
+<h3 style="margin-top:26px">What families said last December</h3><div class="xrevs">{rev_html}</div></div></section>
+<section class="band band-panel k-enquire centred"><div class="wrap"><h2>Is Kat free on your Christmas date?</h2>
+<p>Tell Kat your date, town and roughly how many children. She usually replies the same day.</p>
+<a class="btn btn-gold" href="contact.html">Check my date</a><a class="btn btn-wa" href="{wa("Hi Kat! I'd like to book Christmas face painting. Date: Town: Guests: ")}" target="_blank" rel="noopener">WhatsApp Kat</a></div></section>
+{inner_layout.TRUST_BAND}
+</main>"""
+    css = ('<style>.xrevs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:14px}'
+           '.xrevs .rcard{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 22px}'
+           '.xrevs .rstars{color:#E0A100;letter-spacing:2px}.xrevs blockquote{margin:8px 0}.xrevs figcaption{color:var(--muted);font-size:14px}</style>\n')
+    page_from('services.html', 'christmas-face-painting.html', 'Christmas Face Painting in Sussex &amp; Surrey | The Painting Pixie',
+              'Christmas party face painting across Sussex and Surrey: festive designs and glitter, from £130. December weekends go fast, so book early.',
+              'https://paintingpixie.com/christmas-face-painting.html', css,
+              hero('blue-shooting-stars-face-paint-for-girls.webp', '50% 30%', 'Services · Christmas', 'Christmas Face Painting',
+                   'Festive face painting and glitter for Christmas parties across Sussex and Surrey.',
+                   '<a class="btn btn-gold" href="contact.html">Check my date</a>'), main)
+
 def prices():
     groups = [
       ("Children’s parties", "Birthday parties at home, in a hall or a garden.", [
@@ -444,7 +488,7 @@ document.querySelectorAll('.rcard').forEach(c=>c.hidden=!(f==='all'||c.dataset.t
                    '<a class="btn btn-gold" href="contact.html">Check my date</a>'), main)
 
 def build():
-    services(); workshops(); corporate(); christmas(); prices(); reviews()   # body art retired 7 Oct: now a gallery category
+    services(); workshops(); corporate(); (christmas_holding if os.environ.get('PP_XMAS') == 'holding' else christmas)(); prices(); reviews()   # body art retired 7 Oct: now a gallery category
     print('extra pages built: services, workshops, corporate-events, christmas, prices, reviews')
 
 if __name__ == '__main__':
