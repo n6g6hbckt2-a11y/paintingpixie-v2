@@ -153,10 +153,12 @@ def workshops():
     page_from('services.html', 'workshops.html', 'Face Painting Workshop Parties | The Painting Pixie',
               'Face painting workshop parties with Kat: guests learn to paint each other with professional paints, stencils and glitter. £15 per child. Next public workshop: Good Hotel London, Fri 30 Oct 2026.',
               'https://paintingpixie.com/workshops.html',
-              '<script type="application/ld+json">' + json.dumps(event, ensure_ascii=False) + '</script>\n',
-              hero('../img/n-pumpkin-face.webp', '50% 30%', 'Workshops', 'Face Painting Workshop Parties',
-                   'A party where the guests learn to face paint. Next up: a Half-Term Halloween Workshop at Good Hotel London.',
-                   f'<a class="btn btn-gold" href="{tickets}" target="_blank" rel="noopener">Get tickets</a>'), main)
+              FRAME_CSS + '<script type="application/ld+json">' + json.dumps(event, ensure_ascii=False) + '</script>\n',
+              framed_hero('Workshops', 'Face Painting Workshop Parties',
+                          'A party where the guests learn to face paint. Next up: a Half-Term Halloween Workshop at Good Hotel London.',
+                          f'<a class="btn btn-gold" href="{tickets}" target="_blank" rel="noopener">Get tickets</a>',
+                          '../img/g/kat-close-painting-1600.webp', 1600, 1067,
+                          'Kat face painting a butterfly design on a girl', '★★★★★ Kat at work'), main)
 
 def corporate():
     service = {"@context": "https://schema.org", "@type": "Service", "serviceType": "Corporate and event face painting",
