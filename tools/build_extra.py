@@ -352,10 +352,12 @@ def christmas_holding():
            '.xrevs .rstars{color:#E0A100;letter-spacing:2px}.xrevs blockquote{margin:8px 0}.xrevs figcaption{color:var(--muted);font-size:14px}</style>\n')
     page_from('services.html', 'christmas-face-painting.html', 'Christmas Face Painting in Sussex &amp; Surrey | The Painting Pixie',
               'Christmas party face painting across Sussex and Surrey: festive designs and glitter, from £130. December weekends go fast, so book early.',
-              'https://paintingpixie.com/christmas-face-painting.html', css,
-              hero('blue-shooting-stars-face-paint-for-girls.webp', '50% 30%', 'Services · Christmas', 'Christmas Face Painting',
-                   'Festive face painting and glitter for Christmas parties across Sussex and Surrey.',
-                   '<a class="btn btn-gold" href="contact.html">Check my date</a>'), main)
+              'https://paintingpixie.com/christmas-face-painting.html', FRAME_CSS + css,
+              framed_hero('Services · Christmas', 'Christmas Face Painting',
+                          'Festive face painting and glitter for Christmas parties across Sussex and Surrey.',
+                          '<a class="btn btn-gold" href="contact.html">Check my date</a>',
+                          'blue-shooting-stars-face-paint-for-girls.webp', 1205, 1600,
+                          'Icy blue shooting stars face paint with silver glitter', '★★★★★ Frosty shooting stars'), main)
 
 def prices():
     groups = [
@@ -468,15 +470,6 @@ def reviews():
 .rcard[hidden]{display:none}
 .rcard.fav{box-shadow:0 0 0 2px #E2BE7A,0 14px 30px -24px rgba(60,30,40,.45)}
 .rfav{display:inline-block;margin:-4px 0 10px;background:#1B1712;color:#F2C14E;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:4px 10px}
-.phero.rvh{min-height:0;padding-top:150px;align-items:center}
-.phero.rvh::after{background:linear-gradient(180deg,rgba(21,19,26,.55),rgba(21,19,26,.25))}
-.phero .wrap.rvh-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;padding-bottom:56px}
-.rvh .hcard{text-align:left;margin:0}.rvh .ctas{justify-content:flex-start}
-.rvh-pic{margin:0;justify-self:center;max-width:560px;width:100%;transform:rotate(2deg);background:#fff;padding:12px 12px 0;border-radius:6px;box-shadow:0 24px 60px rgba(0,0,0,.45)}
-.rvh-pic img{display:block;width:100%;height:auto;border-radius:3px}
-.rvh-pic figcaption{font-size:14px;color:#3b3442;text-align:center;padding:10px 4px 12px;font-weight:600}
-@media(max-width:860px){.phero.rvh{padding-top:150px}.phero .wrap.rvh-grid{grid-template-columns:1fr;gap:26px}.rvh-pic{order:-1;max-width:460px;transform:rotate(1.5deg)}.rvh .hcard{text-align:center}.rvh .ctas{justify-content:center}}
-@media(max-width:600px){.phero.rvh{padding:178px 0 0}.phero .wrap.rvh-grid{padding-bottom:30px}.rvh-pic{max-width:330px}}
 .rcta{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;background:#1B1712;color:#fff;border-radius:16px;padding:20px 24px;margin:6px 0}
 .rcta b{font-family:Fraunces,serif;font-weight:400;font-size:24px;color:#fff}.rcta span{color:#D9CFC4;flex:1;min-width:200px}
 .rcta .btn{margin:0!important}
@@ -507,19 +500,37 @@ document.querySelectorAll('.rcard').forEach(c=>c.hidden=!(f==='all'||c.dataset.t
 </main>{js}"""
     page_from('services.html', 'reviews.html', f'Reviews | 5.0 from {total} Reviews | The Painting Pixie Face Painting',
               f'Read all {total} five-star reviews of Kat, The Painting Pixie: face painting for children’s parties, weddings, hen dos and events across Sussex and Surrey.',
-              'https://paintingpixie.com/reviews.html', css,
-              rv_hero(total), main)
+              'https://paintingpixie.com/reviews.html', FRAME_CSS + css,
+              framed_hero('Reviews', 'Reviews', f'5.0 from {total} reviews on Add to Event and Google. Read what families and event organisers say.',
+                          '<a class="btn btn-gold" href="contact.html">Check my date</a>',
+                          '../img/g/mirror-leopard-boy.webp', 1200, 731, 'Boy grinning at his leopard face paint in Kat’s mirror',
+                          '★★★★★ The mirror moment'), main)
 
-def rv_hero(total):
-    """Reviews hero: the photo is a portrait, so it sits whole in a frame beside the text instead of being
-    stretched behind it (the old full-width version hid the unicorn face paint under the text box)."""
+FRAME_CSS = """<style>
+.phero.rvh{min-height:0;padding-top:150px;align-items:center}
+.phero.rvh::after{background:linear-gradient(180deg,rgba(21,19,26,.55),rgba(21,19,26,.25))}
+.phero .wrap.rvh-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;padding-bottom:56px}
+.rvh .hcard{text-align:left;margin:0}.rvh .ctas{justify-content:flex-start}
+.rvh-pic{margin:0;justify-self:center;max-width:560px;width:100%;transform:rotate(2deg);background:#fff;padding:12px 12px 0;border-radius:6px;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.rvh-pic img{display:block;width:100%;height:auto;border-radius:3px}
+.rvh-pic figcaption{font-size:14px;color:#3b3442;text-align:center;padding:10px 4px 12px;font-weight:600}
+@media(max-width:860px){.phero.rvh{padding-top:150px}.phero .wrap.rvh-grid{grid-template-columns:1fr;gap:26px}.rvh-pic{order:-1;max-width:460px;transform:rotate(1.5deg)}.rvh .hcard{text-align:center}.rvh .ctas{justify-content:center}}
+@media(max-width:600px){.phero.rvh{padding:178px 0 0}.phero .wrap.rvh-grid{padding-bottom:30px}.rvh-pic{max-width:330px}}
+.rvh-pic.tall{max-width:380px}
+@media(max-width:860px){.rvh-pic.tall{max-width:300px}}
+@media(max-width:600px){.rvh-pic.tall{max-width:250px}}
+</style>
+"""
+
+def framed_hero(crumb, h1, sub, ctas, img, w, h, alt, caption):
+    """Hero with the photo whole in a tilted white frame beside the text, so the text box never covers a face.
+    Portrait photos get the narrower 'tall' frame."""
+    tall = ' tall' if h > w else ''
     return ('<header class="phero rvh"><div class="wrap rvh-grid">'
-            '<div class="hcard"><p class="crumb"><a href="index.html">Home</a> · Reviews</p><h1>Reviews</h1>'
-            f'<p>5.0 from {total} reviews on Add to Event and Google. Read what families and event organisers say.</p>'
-            '<div class="ctas"><a class="btn btn-gold" href="contact.html">Check my date</a></div></div>'
-            '<figure class="rvh-pic"><img src="../img/g/mirror-leopard-boy.webp" width="1200" height="731" '
-            'alt="Boy grinning at his leopard face paint in Kat’s mirror" fetchpriority="high">'
-            '<figcaption>★★★★★ The mirror moment</figcaption></figure>'
+            f'<div class="hcard"><p class="crumb"><a href="index.html">Home</a> · {crumb}</p><h1>{h1}</h1><p>{sub}</p>'
+            f'<div class="ctas">{ctas}</div></div>'
+            f'<figure class="rvh-pic{tall}"><img src="{img}" width="{w}" height="{h}" alt="{alt}" fetchpriority="high">'
+            f'<figcaption>{caption}</figcaption></figure>'
             '</div><a class="scrollcue" href="#content" aria-label="Scroll down">⌄</a></header>\n<div class="jewel-rule"></div>')
 
 def build():

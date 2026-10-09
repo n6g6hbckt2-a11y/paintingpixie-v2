@@ -342,6 +342,7 @@ for f in pages:
         open(f'{OUT}/{f}', 'w').write(t)
         continue
     if f == 'index.html' and os.environ.get('PP_MODE') != 'switch': continue
+    if 'href="site.css"' in src: continue   # already new-design pages put live early (e.g. reviews.html): built by build_extra
     build_page(f); built.append(f)
 if os.environ.get('PP_MODE') != 'switch':   # switch mode: homepage keeps the live wording, in the new design
     build_index(); built.append('index.html')
