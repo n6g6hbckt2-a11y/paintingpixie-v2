@@ -7,15 +7,16 @@ import os, re, sys, shutil
 sys.path.insert(0, os.path.dirname(__file__))
 from package_golive import assets_in, DST as GOLIVE, LIVE
 
-def fix_links(s):
+def fix_links(s, publishing=()):
+    live = lambda page: page in publishing or os.path.exists(f'{LIVE}/{page}')
     # menu items for pages that only arrive with the switch
     for page in ('christmas-face-painting.html', 'workshops.html', 'corporate-events.html', 'prices.html'):
-        if not os.path.exists(f'{LIVE}/{page}'):
+        if not live(page):
             s = re.sub(rf'<a href="{page}">[^<]*</a>', '', s)
     # the live homepage has no FAQ section yet
     s = re.sub(r'<a href="index.html#faq">[^<]*</a>', '', s)
     # Christmas banner (shows from 1 Nov): no Christmas page on live yet, so send people to the enquiry form
-    if not os.path.exists(f'{LIVE}/christmas-face-painting.html'):
+    if not live('christmas-face-painting.html'):
         s = re.sub(r'(<a class="seasonbar" data-from="11-01"[^>]*href=")christmas-face-painting.html(")', r'\1contact.html\2', s)
         s = s.replace('See the festive designs →', 'Check my date →')
     return s
@@ -23,7 +24,7 @@ def fix_links(s):
 def main(pages):
     todo = set()
     for page in pages:
-        s = fix_links(open(f'{GOLIVE}/{page}').read())
+        s = fix_links(open(f'{GOLIVE}/{page}').read(), pages)
         left = [h for h in re.findall(r'href="([^"#:]+\.html)', s) if not os.path.exists(f'{LIVE}/{h}') and h not in pages]
         if left: sys.exit(f'{page}: still links to pages not on live: {sorted(set(left))}')
         open(f'{LIVE}/{page}', 'w').write(s)
