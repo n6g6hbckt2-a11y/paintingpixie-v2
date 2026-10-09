@@ -424,15 +424,21 @@ def reviews():
     items = [dict(src='ate', name=n, date=d, title=t, paras=p, tags=g) for n, d, t, p, g in R.ATE]
     items += [dict(src='google', name=n, date=d, title=None, paras=p, tags=g) for n, d, p, g in R.GOOGLE]
     items.sort(key=lambda r: when(r['date']), reverse=True)   # stable: keeps each site's own order within a month
+    FAVOURITES = ['Bethany S', 'Rosemarie L', 'Lisa K']   # strongest first, then newest first
+    items.sort(key=lambda r: FAVOURITES.index(r['name']) if r['name'] in FAVOURITES else len(FAVOURITES))
     n_ate, n_g = len(R.ATE), len(R.GOOGLE) + R.GOOGLE_STAR_ONLY
     total = n_ate + n_g
     cards = ''
-    for r in items:
-        badge = ('<span class="rsrc ate">Verified booking · Add to Event</span>' if r['src'] == 'ate'
+    for i, r in enumerate(items):
+        badge = ('<span class="rsrc ate">Verified · Add to Event</span>' if r['src'] == 'ate'
                  else '<span class="rsrc g">Google review</span>')
         title = f'<h3>{esc(r["title"])}</h3>' if r['title'] else ''
         body = ''.join(f'<p>{esc(x)}</p>' for x in r['paras'])
-        cards += (f'<figure class="rcard" data-tags="{r["tags"]}"><div class="rtop"><span class="rstars" aria-label="5 out of 5 stars">★★★★★</span>{badge}</div>'
+        fav = '<span class="rfav">Families’ favourite</span>' if r['name'] in FAVOURITES else ''
+        if i == 12:   # booking strip part-way down the list
+            cards += (f'<div class="rcta"><b>Want Kat at your party?</b><span>Send your date, town and roughly how many guests.</span>'
+                      f'<a class="btn btn-gold" href="contact.html">Check my date</a><a class="btn btn-wa" href="{wa("Hi Kat! I have read your reviews and would like to check a date. Date: Town: Guests: ")}" target="_blank" rel="noopener">WhatsApp Kat</a></div>')
+        cards += (f'<figure class="rcard{" fav" if fav else ""}" data-tags="{r["tags"]}">{fav}<div class="rtop"><span class="rstars" aria-label="5 out of 5 stars">★★★★★</span>{badge}</div>'
                   f'{title}<blockquote>{body}</blockquote><figcaption><b>{esc(r["name"])}</b> · {r["date"]}</figcaption></figure>')
     count = lambda tag: sum(1 for r in items if tag in r['tags'].split())
     chips = (f'<button class="rchip on" data-f="all">All ({len(items)})</button>'
@@ -460,6 +466,11 @@ def reviews():
 .rcard blockquote{margin:0}.rcard blockquote p{margin:0 0 8px!important;color:#3A322C!important;font-size:16px;line-height:1.55}
 .rcard figcaption{color:#6B5F57;font-size:14.5px;margin-top:8px}.rcard figcaption b{color:#1B1712}
 .rcard[hidden]{display:none}
+.rcard.fav{box-shadow:0 0 0 2px #E2BE7A,0 14px 30px -24px rgba(60,30,40,.45)}
+.rfav{display:inline-block;margin:-4px 0 10px;background:#1B1712;color:#F2C14E;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:4px 10px}
+.rcta{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;background:#1B1712;color:#fff;border-radius:16px;padding:20px 24px;margin:6px 0}
+.rcta b{font-family:Fraunces,serif;font-weight:400;font-size:24px;color:#fff}.rcta span{color:#D9CFC4;flex:1;min-width:200px}
+.rcta .btn{margin:0!important}
 .rnote{color:#6B5F57;font-size:14px;margin-top:10px}
 @media(max-width:760px){.rsum{grid-template-columns:1fr}.rbig{display:flex;align-items:center;justify-content:center;gap:14px;padding:16px}.rbig b{font-size:48px}.rbig small{margin:0}}
 </style>
@@ -470,7 +481,7 @@ document.querySelectorAll('.rcard').forEach(c=>c.hidden=!(f==='all'||c.dataset.t
     main = f"""<main class="lg" id="content">
 <section class="band band-light"><div class="wrap">
 <p class="eyebrow">Reviews</p><h2 style="margin-bottom:6px">Every review, word for word</h2>
-<p class="lede-s">All {total} ratings Kat has received are five stars. Here is every written review from Add to Event and Google, newest first, exactly as the customers wrote them.</p>
+<p class="lede-s">All {total} ratings Kat has received are five stars. Here is every written review from Add to Event and Google, exactly as the customers wrote them: three families’ favourites first, then the newest.</p>
 <div class="rsum">
 <div class="rbig"><b>5.0</b><span>★★★★★</span><small>{total} reviews</small></div>
 <div class="rsite"><b>Add to Event</b><span>{n_ate} reviews, all 5 stars. Every one is from a confirmed booking.</span><a href="{R.ATE_URL}" target="_blank" rel="noopener">See them on Add to Event →</a></div>
