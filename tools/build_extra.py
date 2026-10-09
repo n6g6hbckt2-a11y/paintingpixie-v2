@@ -468,6 +468,15 @@ def reviews():
 .rcard[hidden]{display:none}
 .rcard.fav{box-shadow:0 0 0 2px #E2BE7A,0 14px 30px -24px rgba(60,30,40,.45)}
 .rfav{display:inline-block;margin:-4px 0 10px;background:#1B1712;color:#F2C14E;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:4px 10px}
+.phero.rvh{min-height:0;padding-top:150px;align-items:center}
+.phero.rvh::after{background:linear-gradient(180deg,rgba(21,19,26,.55),rgba(21,19,26,.25))}
+.phero .wrap.rvh-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding-bottom:56px}
+.rvh .hcard{text-align:left;margin:0}.rvh .ctas{justify-content:flex-start}
+.rvh-pic{margin:0;justify-self:center;max-width:400px;width:100%;transform:rotate(2deg);background:#fff;padding:12px 12px 0;border-radius:6px;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.rvh-pic img{display:block;width:100%;height:auto;border-radius:3px}
+.rvh-pic figcaption{font-size:14px;color:#3b3442;text-align:center;padding:10px 4px 12px;font-weight:600}
+@media(max-width:860px){.phero.rvh{padding-top:150px}.phero .wrap.rvh-grid{grid-template-columns:1fr;gap:26px}.rvh-pic{order:-1;max-width:330px;transform:rotate(1.5deg)}.rvh .hcard{text-align:center}.rvh .ctas{justify-content:center}}
+@media(max-width:600px){.phero.rvh{padding:178px 0 0}.phero .wrap.rvh-grid{padding-bottom:30px}.rvh-pic{max-width:290px}}
 .rcta{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;background:#1B1712;color:#fff;border-radius:16px;padding:20px 24px;margin:6px 0}
 .rcta b{font-family:Fraunces,serif;font-weight:400;font-size:24px;color:#fff}.rcta span{color:#D9CFC4;flex:1;min-width:200px}
 .rcta .btn{margin:0!important}
@@ -499,9 +508,19 @@ document.querySelectorAll('.rcard').forEach(c=>c.hidden=!(f==='all'||c.dataset.t
     page_from('services.html', 'reviews.html', f'Reviews | 5.0 from {total} Reviews | The Painting Pixie Face Painting',
               f'Read all {total} five-star reviews of Kat, The Painting Pixie: face painting for children’s parties, weddings, hen dos and events across Sussex and Surrey.',
               'https://paintingpixie.com/reviews.html', css,
-              hero('../img/g/unicorn-party-1600.webp', '50% 30%', 'Reviews', 'Reviews',
-                   f'5.0 from {total} reviews on Add to Event and Google. Read what families and event organisers say.',
-                   '<a class="btn btn-gold" href="contact.html">Check my date</a>'), main)
+              rv_hero(total), main)
+
+def rv_hero(total):
+    """Reviews hero: the photo is a portrait, so it sits whole in a frame beside the text instead of being
+    stretched behind it (the old full-width version hid the unicorn face paint under the text box)."""
+    return ('<header class="phero rvh"><div class="wrap rvh-grid">'
+            '<div class="hcard"><p class="crumb"><a href="index.html">Home</a> · Reviews</p><h1>Reviews</h1>'
+            f'<p>5.0 from {total} reviews on Add to Event and Google. Read what families and event organisers say.</p>'
+            '<div class="ctas"><a class="btn btn-gold" href="contact.html">Check my date</a></div></div>'
+            '<figure class="rvh-pic"><img src="../img/g/unicorn-party-portrait.webp" width="830" height="920" '
+            'alt="Girl with rainbow unicorn face paint at a birthday party, painted by Kat" fetchpriority="high">'
+            '<figcaption>★★★★★ Rainbow unicorn at a birthday party</figcaption></figure>'
+            '</div><a class="scrollcue" href="#content" aria-label="Scroll down">⌄</a></header>\n<div class="jewel-rule"></div>')
 
 def build():
     services(); workshops(); corporate(); (christmas_holding if os.environ.get('PP_XMAS') == 'holding' else christmas)(); prices(); reviews()   # body art retired 7 Oct: now a gallery category
