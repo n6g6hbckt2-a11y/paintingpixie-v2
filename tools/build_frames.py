@@ -10,9 +10,32 @@ OUT = os.environ.get('PP_OUT', '/home/claude/paintingpixie-v2/draft')
 V2 = '/home/claude/paintingpixie-v2'
 
 # page: (photo or None to keep the current one, alt text, caption)
+g = lambda slug: f'../img/g/{slug}-1600.webp'
 FRAMES = {
     'childrens-face-painting.html': ('../img/g/unicorn-party-portrait.webp',
                                      'Girl with rainbow unicorn face paint at a birthday party', '★★★★★ Rainbow unicorn at a birthday party'),
+    'index.html': (None, 'Kat face painting a blue monster design on a smiling girl', '★★★★★ Kat at work'),
+    'about.html': (None, 'Kat face painting a design on a smiling girl', '★★★★★ Hi, I’m Kat'),
+    'services.html': (None, 'Boy having leopard face paint applied by Kat', '★★★★★ Leopard in progress'),
+    'gallery.html': (None, 'Teenager with a red dragon face paint design', '★★★★★ Red dragon'),
+    'areas.html': (None, 'Kat face painting at an event', '★★★★★ Across Sussex & Surrey'),
+    'contact.html': (None, 'Girl with rainbow unicorn face paint', '★★★★★ Rainbow unicorn'),
+    'adult-face-painting.html': (g('adult-pink-glitter'), 'Woman with pink glitter and gem face art at a party', '★★★★★ Pink glitter for the party'),
+    'glitter-bar.html': (None, 'Woman with lilac flower glitter face art', '★★★★★ Lilac flower glitter'),
+    'animal-print-face-painting.html': (None, 'Two children with leopard and tiger face paint', '★★★★★ Leopard and tiger'),
+    'face-painter-horsham.html': (g('spiderman-cat'), 'Boy in a Spider-Man costume with green cat face paint at a party', '★★★★★ Party cat'),
+    'face-painter-crawley.html': (None, 'Boy with golden tiger face paint at a birthday party', '★★★★★ Golden tiger'),
+    'face-painter-dorking.html': (None, 'Boy with tiger face paint at a festival', '★★★★★ Tiger'),
+    'face-painter-east-grinstead.html': (None, 'Girl with leopard face paint at a summer festival', '★★★★★ Leopard'),
+    'face-painter-guildford.html': (None, 'Girl with blue monster face paint roaring', '★★★★★ Blue monster'),
+    'face-painter-haywards-heath.html': (None, 'Girl with unicorn face paint at a party in a hall', '★★★★★ Unicorn party'),
+    'face-painter-lewes.html': (None, 'Girl with rainbow tiger face paint', '★★★★★ Rainbow tiger'),
+    'face-painter-reigate.html': (None, 'Girl with leopard face paint at an indoor party', '★★★★★ Leopard'),
+    'face-painter-south-downs.html': (None, 'Two sisters with matching face paint designs', '★★★★★ Sisters'),
+    'face-painter-surrey-villages.html': (None, 'Girl with unicorn face paint at a soft play party', '★★★★★ Unicorn at soft play'),
+    'face-painter-surrey.html': (None, 'Woman with tiger eye face paint at a festival', '★★★★★ Tiger eye'),
+    'face-painter-sussex.html': (None, 'Girl laughing while having rainbow face paint applied', '★★★★★ Rainbow giggles'),
+    'face-painter-west-sussex-villages.html': (None, 'Little girl with fairy face paint at a festival', '★★★★★ Fairy'),
 }
 
 FRAME_CSS = '''
