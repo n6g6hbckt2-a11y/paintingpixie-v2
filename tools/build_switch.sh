@@ -6,4 +6,4 @@
 cd "$(dirname "$0")/.." && rm -rf switch && mkdir switch && export PP_OUT="$PWD/switch" PP_MODE=switch PP_XMAS=holding PP_HOLD="prices.html corporate-events.html" && \
 python3 tools/build_draft.py && python3 tools/build_extra.py && python3 tools/build_gallery.py && python3 tools/build_conversion.py && \
 python3 tools/build_areas.py && python3 tools/build_photos.py && python3 tools/build_breadcrumbs.py && python3 tools/build_season.py && \
-python3 tools/build_theme.py && python3 tools/build_frames.py && python3 tools/build_halloween_draft.py && python3 tools/hold_pages.py
+python3 tools/build_theme.py && python3 tools/build_frames.py && python3 tools/build_reviewcap.py && python3 tools/build_minigallery.py && python3 tools/build_halloween_draft.py && python3 tools/hold_pages.py
