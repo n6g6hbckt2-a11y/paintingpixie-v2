@@ -15,7 +15,7 @@ CSS = '''
 .rv2>.testimonial,.rv2>.latest{margin:0;text-align:left;background:linear-gradient(135deg,rgba(255,79,163,.14),rgba(47,212,196,.10));border:1px solid rgba(226,190,122,.45);border-radius:18px;padding:26px 28px}
 .rv2>.testimonial p{font-size:18px}
 .rv2>:nth-child(n+7){display:none}
-.k-reviews .rv-all{margin:34px 0 0!important;text-align:center}
+.k-reviews .rv-all{margin:34px auto 0!important;text-align:center;max-width:none!important;width:100%}
 @media(max-width:1000px){.k-reviews .testimonials.rv2{grid-template-columns:repeat(2,1fr)}.rv2>:nth-child(n+5){display:none}}
 @media(max-width:640px){.k-reviews .testimonials.rv2{grid-template-columns:1fr}.rv2>:nth-child(n+3){display:none}}
 '''
@@ -37,7 +37,11 @@ def cap(page_path):
     m = re.search(r'<section[^>]*k-reviews.*?</section>', s, re.S)
     if not m or 'rv2' in m.group(): return False
     sec = m.group()
-    quotes = items(sec, 'figure', 'latest') + items(sec, 'div', 'testimonial')
+    norm = lambda h: re.sub(r'[^a-z]', '', re.sub(r'<[^>]+>', '', h).lower())
+    latest = items(sec, 'figure', 'latest')
+    seen = [norm(re.search(r'<blockquote>(.*?)</blockquote>', q, re.S).group(1))[:60] for q in latest]
+    quotes = latest + [t for t in items(sec, 'div', 'testimonial')   # skip a quote already shown as a verified review
+                       if not any(k and k[:40] in norm(t) for k in seen)]
     if not quotes: return False
     # drop the old containers, put one grid where the first one was
     start = sec.index('<div class="testimonials">')

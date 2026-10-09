@@ -18,11 +18,27 @@ PICKS = {
     ],
 }
 
+# photos whose face sits near the top edge: aim the crop and zoom higher
+FOCUS = {'pumpkin-face-paint-for-sisters.webp': '50% 6%'}
+
+# weak photo -> better one (any page)
+SWAP = {
+    # tiny boy far away in a field, and not animal print
+    'blue-monster-face-paint-for-boys-crawley.webp': (g('leopard-indoors'), 'Leopard face paint on a smiling girl at an indoor party', '50% 30%'),
+}
+# rows with fewer than 4 photos are topped up from these close-ups (skipping any already on the page)
+FILL = [
+    (g('gold-tiger-boy'), 'Golden tiger face paint on a boy at a birthday party', '50% 35%'),
+    (g('tiger-girl-closeup'), 'Rainbow tiger face paint on a girl at a village hall party', '50% 35%'),
+    (g('rainbow-unicorn-girl'), 'Rainbow unicorn face paint on a smiling girl', '50% 30%'),
+    (g('blue-monster-roar'), 'Blue monster face paint on a roaring girl', '50% 30%'),
+]
+
 CSS = '''
 /* recent designs: zoomed towards the face */
 .mini-gallery .mg{display:block;overflow:hidden;border-radius:10px;aspect-ratio:3/4}
-.mini-gallery .mg img{width:100%;height:100%;aspect-ratio:auto;border-radius:0;transform:scale(1.22);transition:transform .3s}
-.mini-gallery .mg:hover img{transform:scale(1.28)}
+.mini-gallery .mg img{width:100%;height:100%;aspect-ratio:auto;border-radius:0;transform:scale(1.12);transition:transform .3s}
+.mini-gallery .mg:hover img{transform:scale(1.16)}
 '''
 
 def build():
@@ -42,9 +58,13 @@ def build():
                 src = re.search(r'src="([^"]+)"', tag).group(1)
                 alt = (re.search(r'alt="([^"]*)"', tag) or [None, ''])[1]
                 pos = (re.search(r'object-position:\s*([^;"]+)', tag) or [None, 'center 25%'])[1].strip()
-                imgs.append((src, alt, pos))
+                pos = FOCUS.get(os.path.basename(src), pos)
+                imgs.append(SWAP.get(os.path.basename(src), (src, alt, pos)))
+            for extra in FILL:
+                if len(imgs) >= 4: break
+                if extra[0] not in s and extra[0] not in [i[0] for i in imgs]: imgs.append(extra)
         tiles = ''.join(f'<span class="mg"><img src="{src}" alt="{alt}" loading="lazy" '
-                        f'style="object-position:{pos};transform-origin:{pos}"></span>' for src, alt, pos in imgs)
+                        f'style="object-position:{pos};transform-origin:{pos.replace("center", "50%")}"></span>' for src, alt, pos in imgs)
         s = s[:m.start()] + f'<div class="mini-gallery">\n{tiles}\n</div>' + s[m.end():]
         open(p, 'w').write(s); n += 1
     print('recent designs rows updated on', n, 'pages')
