@@ -29,7 +29,7 @@ and the baseline in `baseline-2026-10-07.md`. Check results against the baseline
   adult face painting sussex 19.1, adult face painters surrey 20.1, adult face painting surrey 25.4.
 - Put "Brighton" in the title and heading (title currently Sussex/Surrey only); a short Brighton section; hen party wording.
 
-### face-painter-sussex.html / face-painter-surrey.html / face-painter-brighton.html
+### face-painter-sussex.html / face-painter-surrey.html / face-painter-brighton.html  (9 Oct: "Professional" added to titles + h1 of homepage, kids, adult and all town pages)
 - Searches: professional face painters sussex 20.5 / brighton 20.2 / surrey 27.6; face painters west sussex 20.9 / east sussex 21.9.
 - Use "professional face painters" and "West Sussex" / "East Sussex" in titles and headings.
 - Brighton page leads with events, hens, glitter (Kat's Brighton focus); children's parties via "get in touch".
