@@ -43,6 +43,7 @@ If a milestone is missed by more than 20%, review which lever is behind and move
 - [ ] **A** County pages Sussex / Surrey: "West Sussex" / "East Sussex" wording; links to glitter and adult pages.
 - [ ] **A** Homepage new wording (batch 1 of the original step 4).
 - [ ] **F** Full Christmas page (fairs, grottos, office parties, designs, FAQs) once Kat approves; before mid-November.
+- [x] (10 Oct) Venue guides on the 5 batch-1 town pages (draft; data in `tools/venues_hire.py`). 20 outreach emails in the "Venue outreach emails" doc with a tracker. When a venue replies: add its link if missing, set `'partner'` for the "Recommends Kat" badge.
 - [ ] **E** Ask 4 venues/events for a link (Phil to send; I can draft the messages). Directory listings (e.g. Yell, Hitched, local listings).
 
 ### December
