@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 """New Halloween page, designed offline in paintingpixie-v2/hw/ before it replaces the live halloween-face-painting.html.
 Self-contained: its own CSS, images in the same folder (all prefixed halloween- so they can be copied to the live site as they are)."""
-import html, json, re
+import html, json, re, os
 
 V2 = '/home/claude/paintingpixie-v2'
-LIVE = '/home/claude/Painting-Pixie/halloween-face-painting.html'
+LIVE = os.environ.get('PP_SOURCE', '/home/claude/pp-source') + '/halloween-face-painting.html'
 OUT = V2 + '/hw/halloween-face-painting.html'
 SITE = 'https://paintingpixie.com/'
 GLITTER_TATTOOS = True  # Kat confirmed 6 Oct 2026; set False to hide the glitter tattoo section and mentions

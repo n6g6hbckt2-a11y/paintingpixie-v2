@@ -39,6 +39,9 @@ FRAMES = {
 }
 
 FRAME_CSS = '''
+/* centred text bands: inline margin:0 from the old pages must not pin paragraphs to the left */
+.k-text.centred .wrap>p{margin-left:auto!important;margin-right:auto!important;text-align:center!important}
+.k-text.centred .ate-badge{display:inline-block}.k-text.centred .ate-badge img{display:inline-block;margin:0 auto}
 /* framed heading photo */
 .phero.rvh{min-height:0;padding-top:150px;align-items:center}
 .phero.rvh::after{background:linear-gradient(180deg,rgba(21,19,26,.55),rgba(21,19,26,.25))}

@@ -5,7 +5,7 @@ import re, os, glob, shutil, html, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import inner_layout
 
-LIVE = '/home/claude/Painting-Pixie'
+LIVE = os.environ.get('PP_SOURCE', '/home/claude/pp-source')   # live wording as it was just before the switch (live repo commit 7312a6f); see tools/source.sh
 V2 = '/home/claude/paintingpixie-v2'
 OUT = __import__('os').environ.get('PP_OUT', V2 + '/draft')
 DOMAIN = 'https://paintingpixie.com/'

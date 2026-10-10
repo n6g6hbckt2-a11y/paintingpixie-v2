@@ -109,7 +109,7 @@ def services():
               "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": t, "url": "https://paintingpixie.com/" + u}
                                   for i, (t, img, pos, d, pr, u, b) in enumerate(SERVICES) if u != 'contact.html']}
     page_from('services.html', 'services.html', 'Face Painting Services in Sussex &amp; Surrey | The Painting Pixie',
-              "Children's parties, hen dos, weddings, glitter bar, corporate events and workshop parties across Sussex & Surrey. 5.0 rated, insured.",
+              "Professional face painting across Sussex & Surrey: children's parties, hen dos, weddings, glitter bar, corporate events and workshop parties. 5.0 rated, insured.",
               'https://paintingpixie.com/services.html',
               '<script type="application/ld+json">' + json.dumps(schema, ensure_ascii=False) + '</script>\n',
               hero('../img/v2-sisters.webp', '50% 30%', 'Services', 'Our Services',

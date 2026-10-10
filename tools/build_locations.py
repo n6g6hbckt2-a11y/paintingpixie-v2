@@ -10,7 +10,7 @@ import inner_layout
 import venue_map
 
 OUT = '/home/claude/paintingpixie-v2/draft'
-LIVE = '/home/claude/Painting-Pixie'
+LIVE = os.environ.get('PP_SOURCE', '/home/claude/pp-source')   # live wording as it was just before the switch (live repo commit 7312a6f); see tools/source.sh
 REVIEWS = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'town_reviews.json')))
 
 def esc(t): return html.escape(t, quote=False)
