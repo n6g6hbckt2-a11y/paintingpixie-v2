@@ -551,6 +551,16 @@ main.lg,footer,.trustband{position:relative;background:var(--bg)}
 .vlinks a.vbook{background:#25D366;color:#0B1F12;text-decoration:none;border-radius:999px;padding:4px 12px}
 .vmapnote{color:var(--muted);font-size:14px;margin-top:14px}
 
+.loc-hire .hire{list-style:none;padding:0;margin:18px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.loc-hire .hire li{background:rgba(255,255,255,.06);border:1px solid rgba(201,162,77,.35);border-radius:12px;padding:16px 18px;text-align:left}
+.loc-hire.band-light .hire li{background:#fff;border-color:rgba(0,0,0,.08)}
+.loc-hire .hire b{display:block;font-family:Fraunces,serif;font-weight:400;font-size:19px}
+.loc-hire .hire i{display:block;font-style:normal;font-size:13px;opacity:.75;margin:2px 0 6px}
+.loc-hire .hire a{display:block;margin-top:6px;font-weight:800;white-space:nowrap}
+.loc-hire .tag{display:inline-block;font-size:12px;font-weight:800;padding:2px 8px;border-radius:20px;background:var(--gold,#c9a24d);color:#1a1420;margin:0 6px 6px 0}
+.loc-hire .tag.partner{background:#2f8f5b;color:#fff}
+.loc-hire .vnote{font-size:14px;opacity:.8;max-width:760px;margin:16px 0 0}
+
 .pline{margin:0 auto;max-width:860px;font-size:17px}.pline b{font-family:Fraunces,serif;font-weight:400;font-size:22px;margin-right:6px}.pline a{font-weight:800;white-space:nowrap}
 .loc-seasons .season{color:var(--ink);text-align:left;font-weight:400;font-size:inherit}.loc-seasons .season b{color:var(--c)}
 

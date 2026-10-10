@@ -9,6 +9,7 @@ from postcards import postcard
 from recent import RECENT, PERIOD, COMING_UP
 import inner_layout
 import venue_map
+import venues_hire
 
 OUT = '/home/claude/paintingpixie-v2/draft'
 LIVE = os.environ.get('PP_SOURCE', '/home/claude/pp-source')   # live wording as it was just before the switch (live repo commit 7312a6f); see tools/source.sh
@@ -31,6 +32,18 @@ def H(d, key, default):
     return HEADS.get(d['_page'], {}).get(key, default)
 
 # ---------- blocks ----------
+def b_hire(d, tone='light'):
+    g = venues_hire.HIRE.get(d['_page'])
+    if not g: return ''
+    li = []
+    for name, where, fact, url, flags in g['venues']:
+        tags = ('<span class="tag">Kat’s painted here</span>' if 'painted' in flags else '') + \
+               ('<span class="tag partner">Recommends Kat ✓</span>' if 'partner' in flags else '')
+        link = f' <a href="{url}" target="_blank" rel="noopener">Venue website →</a>' if url else ''
+        li.append(f'<li>{tags}<b>{esc(name)}</b><i>{esc(where)}</i>{esc(fact)}{link}</li>')
+    return band('hire', f'<h2>{esc(g["h"])}</h2><p class="lede-s">{esc(g["lede"])}</p><ul class="hire">{"".join(li)}</ul>'
+                f'<p class="vnote">{esc(venues_hire.NOTE)}</p>', tone)
+
 def b_letter(d):
     return band('letter', f'''<div class="letter"><p class="eyebrow">A note from Kat</p>{P(d["letter"])}<p class="sig">{d["signoff"]}</p></div>
 <blockquote class="pull">“{d["quote"]}”</blockquote>''', 'light')
@@ -183,7 +196,10 @@ def render(page, d, title):
     town = town_name(d)
     slug = page.replace('face-painter-', '').replace('.html', '')
     pc_town = d['eyebrow'].split(',')[0] if slug not in ('west-sussex-villages', 'surrey-villages', 'south-downs') else d['eyebrow']
-    order = HEADS.get(page, {}).get('order') or ORDERS[d['tpl']]
+    order = list(HEADS.get(page, {}).get('order') or ORDERS[d['tpl']])
+    if page in venues_hire.HIRE and 'hire' not in order:   # venue guide sits right after the parks/places block
+        at = next((i + 1 for i, k in enumerate(order) if k.split(':')[0] in ('venues', 'places')), None)
+        order.insert(at if at is not None else order.index('recent'), 'hire')
     # blocks styled for one background keep it; the rest alternate so neighbouring bands differ
     PREF = {'seasons': 'dark', 'venues:list': 'dark', 'tiles': 'dark', 'places': 'dark', 'towns': 'dark', 'events': 'dark', 'recent': 'dark',
             'venues:cards': 'light', 'venues:chips': 'light', 'villages': 'light', 'gallery': 'light', 'letter': 'light', 'story': 'light'}
@@ -199,6 +215,7 @@ def render(page, d, title):
         elif k == 'seasons': blk = b_seasons(d, town, tone)
         elif k == 'venues': blk = {'cards': b_venue_cards, 'chips': b_venue_chips}.get(var, lambda d, t, tn: b_venue_map(d, tn, slug))(d, town, tone)
         elif k == 'places': blk = b_polaroids(d, tone)
+        elif k == 'hire': blk = b_hire(d, tone)
         elif k == 'events': blk = b_events(d, tone)
         elif k == 'gallery': blk = b_gallery(d, tone)
         elif k == 'villages': blk = b_villages(d, tone)
@@ -232,7 +249,7 @@ def hero(d, h1, sub, page):
             f'<a class="scrollcue" href="#content" aria-label="Scroll down">⌄</a></header>\n<div class="jewel-rule"></div>')
 
 def build():
-    with open(f'{OUT}/site.css', 'a') as f: f.write(LOC_CSS + venue_map.CSS + '\n.pline{margin:0 auto;max-width:860px;font-size:17px}.pline b{font-family:Fraunces,serif;font-weight:400;font-size:22px;margin-right:6px}.pline a{font-weight:800;white-space:nowrap}\n.loc-seasons .season{color:var(--ink);text-align:left;font-weight:400;font-size:inherit}.loc-seasons .season b{color:var(--c)}\n')
+    with open(f'{OUT}/site.css', 'a') as f: f.write(LOC_CSS + venue_map.CSS + venues_hire.CSS + '\n.pline{margin:0 auto;max-width:860px;font-size:17px}.pline b{font-family:Fraunces,serif;font-weight:400;font-size:22px;margin-right:6px}.pline a{font-weight:800;white-space:nowrap}\n.loc-seasons .season{color:var(--ink);text-align:left;font-weight:400;font-size:inherit}.loc-seasons .season b{color:var(--c)}\n')
     for page, d in PAGES.items():
         d['_page'] = page
         p = f'{OUT}/{page}'
