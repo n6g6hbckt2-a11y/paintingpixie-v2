@@ -462,7 +462,7 @@ PAGES = {
  kicker="Across the border", eyebrow="Surrey",
  intro=[
   "Surrey is right on my doorstep. Horsham sits on the border, so towns like Dorking, Reigate and Guildford are an easy drive for parties, weddings and events.",
-  "I recently painted at the Eats & Beats Festival at New House Farm, right on the Surrey/Sussex border, and at the last Guildford Festival of the Arts too. Whether it's a garden party or a large-scale event, I cover towns across Surrey and I'm happy to travel further for the right booking.",
+  "I've painted at the Guildford Festival of the Arts, and lately I've been heading north too: Croydon and Baker Street recently, with Putney, Sutton and the Good Hotel in London coming up. From a garden party in Cranleigh to a big London event, longer trips are no problem for the right booking further for the right booking.",
  ],
  quote="Horsham sits right on the border, so Surrey is on my doorstep.",
  towns=[
@@ -473,9 +473,9 @@ PAGES = {
  ],
  faqs=[
   ("Which parts of Surrey do you cover?", "Mainly south and central Surrey: Guildford, Reigate, Redhill, Dorking, Cranleigh, Leatherhead and Horley."),
-  ("Do you charge for travel?", "For longer trips I may add a small travel charge, always agreed up front."),
+  ("Do you charge for travel to Surrey?", "Most of south and central Surrey is within about 40 minutes of my home in Horsham. For anything further, such as London, I may add a small travel cost, which we'll agree before you book."),
   ("Can you paint at a Surrey wedding?", "Yes. Face painting and glitter are lovely for guests of all ages."),
-  ("Can you bring more than one artist?", "Yes, for big events I can bring extra artists."),
+  ("Can you cover a big Surrey event?", "Yes. For festivals and large corporate days I can bring extra face painters so the queue keeps moving."),
  ],
 ),
 }

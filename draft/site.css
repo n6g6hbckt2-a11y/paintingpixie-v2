@@ -551,6 +551,9 @@ main.lg,footer,.trustband{position:relative;background:var(--bg)}
 .vlinks a.vbook{background:#25D366;color:#0B1F12;text-decoration:none;border-radius:999px;padding:4px 12px}
 .vmapnote{color:var(--muted);font-size:14px;margin-top:14px}
 
+.pline{margin:0 auto;max-width:860px;font-size:17px}.pline b{font-family:Fraunces,serif;font-weight:400;font-size:22px;margin-right:6px}.pline a{font-weight:800;white-space:nowrap}
+.loc-seasons .season{color:var(--ink);text-align:left;font-weight:400;font-size:inherit}.loc-seasons .season b{color:var(--c)}
+
 /* ===== Conversion helpers ===== */
 .reassure{max-width:760px;margin:14px auto 0!important;padding:14px 18px;border-radius:12px;background:rgba(47,212,196,.12);border:1px solid rgba(47,212,196,.4);color:var(--ink)!important;font-size:15px!important;text-align:left}
 .reassure b{color:var(--ink)}

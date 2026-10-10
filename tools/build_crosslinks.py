@@ -68,7 +68,7 @@ CSS = '''
 '''
 
 def town_block(page, name, order):
-    cards = ''.join(f'<a class="xl-card" href="{SERV[k][0]}"><b>{SERV[k][1]}</b><span>{SERV[k][2]}</span><em>{SERV[k][3]} →</em></a>' for k in order)
+    cards = ''.join(f'<a class="xl-card" href="{SERV[k][0]}"><b>{SERV[k][1]}</b><em>{SERV[k][3]} →</em></a>' for k in order)   # no blurb: the same blurb on every town page made them look alike
     note = ''
     if page == 'face-painter-brighton.html':
         note = ' Children’s parties in Brighton &amp; Hove are welcome too: <a href="contact.html">get in touch</a> with your date.'

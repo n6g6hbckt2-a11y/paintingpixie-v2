@@ -4,6 +4,7 @@ Run after build_draft.py (it reuses that page's head, nav, footer and mobile bar
 import re, os, json, html, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from locations import PAGES
+from town_heads import HEADS
 from postcards import postcard
 from recent import RECENT, PERIOD, COMING_UP
 import inner_layout
@@ -24,6 +25,10 @@ def town_name(d):
 
 def wa_link(town):
     return f"https://wa.me/447852300125?text=Hi%20Kat!%20I'd%20like%20to%20book%20face%20painting%20in%20{town.replace(' ', '%20').replace('&', 'and')}."
+
+def H(d, key, default):
+    """Per-town heading (tools/town_heads.py), so no two town pages share the same set of headings."""
+    return HEADS.get(d['_page'], {}).get(key, default)
 
 # ---------- blocks ----------
 def b_letter(d):
@@ -53,52 +58,58 @@ def b_venue_map(d, tone='dark', slug=''):
                     + venue_map.horsham_svg() + f'<ol class="vmap">{venue_map.venue_list(d["venues"])}</ol>'
                     + '<p class="vmapnote">Venue links go to each venue’s own website. Map not to scale.</p>', tone)
     items = ''.join(f'<li><b>{esc(n)}</b><span>{esc(t)}</span></li>' for n, t in d['venues'])
-    return band('map', f'<h2>{esc(d.get("venues_title", "Favourite party spots"))}</h2><ol class="vmap">{items}</ol>', tone)
+    return band('map', f'<h2>{H(d, "venues", esc(d.get("venues_title", "Favourite party spots")))}</h2><ol class="vmap">{items}</ol>', tone)
 
 def b_venue_cards(d, town, tone='dark'):
     items = ''.join(f'<div class="vcard"><b>{esc(n)}</b><span>{esc(t)}</span></div>' for n, t in d['venues'])
-    return band('vcards', f'<h2>Party spots I love in {esc(town)}</h2><div class="vcards">{items}</div>', tone)
+    return band('vcards', f'<h2>{H(d, "venues", "Party spots I love in " + esc(town))}</h2><div class="vcards">{items}</div>', tone)
 
 def b_venue_chips(d, town, tone='light'):
     items = ''.join(f'<details class="chip"><summary>{esc(n)}</summary><span>{esc(t)}</span></details>' for n, t in d['venues'])
-    return band('chips', f'<h2>Where {esc(town)} parties happen</h2><p class="lede-s">Tap a place to see why it works.</p><div class="chips">{items}</div>', tone)
+    return band('chips', f'<h2>{H(d, "venues", "Where " + esc(town) + " parties happen")}</h2><p class="lede-s">Tap a place to see why it works.</p><div class="chips">{items}</div>', tone)
 
 def b_events(d, tone='light'):
     items = ''.join(f'<li><span class="when">{esc(w)}</span><b>{esc(n)}</b><p>{esc(t)}</p></li>' for n, w, t in d['events'])
-    return band('events', f'<h2>{esc(d.get("events_title", "Where you will find me"))}</h2><ol class="timeline">{items}</ol>', tone)
+    return band('events', f'<h2>{H(d, "events", esc(d.get("events_title", "Where you will find me")))}</h2><ol class="timeline">{items}</ol>', tone)
 
 def b_tiles(d, town, tone='light'):
     cols = ['var(--pink)', 'var(--teal)', 'var(--violet)']
     items = ''.join(f'<div class="wtile" style="--c:{cols[i]}"><span class="wlabel">{esc(t)}</span><p>{esc(x)}</p></div>' for i, (t, x) in enumerate(d['tiles']))
-    return band('tiles', f'<h2>A Kat\'s-eye guide to a {esc(town)} party</h2><div class="wtiles">{items}</div>', tone)
+    return band('tiles', f'<h2>{H(d, "tiles", "A Kat’s-eye guide to a " + esc(town) + " party")}</h2><div class="wtiles">{items}</div>', tone)
 
 def b_seasons(d, town, tone='dark'):
     icons = {'Spring': '✿', 'Summer': '☀', 'Autumn': '❦', 'Winter': '❄'}
     cols = {'Spring': 'var(--lime)', 'Summer': 'var(--gold)', 'Autumn': 'var(--orange)', 'Winter': 'var(--sky)'}
     items = ''.join(f'<div class="season" style="--c:{cols[s]}"><span class="sicon" aria-hidden="true">{icons[s]}</span><b>{s}</b><p>{esc(t)}</p></div>' for s, t in d['seasons'])
-    return band('seasons', f'<h2>A year of faces in {esc(town)}</h2><div class="seasons">{items}</div>', tone)
+    return band('seasons', f'<h2>{H(d, "seasons", "A year of faces in " + esc(town))}</h2><div class="seasons">{items}</div>', tone)
 
 def b_polaroids(d, tone='dark'):
     items = ''.join(f'<figure class="pol"><img src="{img}" alt="" loading="lazy"><figcaption><b>{esc(n)}</b><span>{esc(t)}</span></figcaption></figure>' for n, t, img in d['places'])
-    return band('places', f'<h2>{esc(d.get("places_title", "Places I love"))}</h2><div class="pols">{items}</div>', tone)
+    return band('places', f'<h2>{H(d, "places", esc(d.get("places_title", "Places I love")))}</h2><div class="pols">{items}</div>', tone)
 
 def b_villages(d, tone='dark'):
     items = ''.join(f'<div class="vill"><b>{esc(n)}</b><p>{esc(t)}</p></div>' for n, t in d['villages'])
-    return band('villages', f'<h2>The villages I visit</h2><div class="vills">{items}</div>', tone)
+    return band('villages', f'<h2>{H(d, "villages", "The villages I visit")}</h2><div class="vills">{items}</div>', tone)
 
 def b_towns(d, tone='dark'):
     items = ''.join(f'<a class="tcard" href="{h}"><b>{esc(n)}</b><span>{esc(t)}</span><i>See the {esc(n)} page →</i></a>' for h, n, t in d['towns'])
-    return band('towns', f'<h2>Find your town</h2><div class="tcards">{items}</div>', tone)
+    return band('towns', f'<h2>{H(d, "towns", "Find your town")}</h2><div class="tcards">{items}</div>', tone)
 
 def b_gallery(d, tone='dark'):
     imgs = ''.join(f'<img src="{g}" alt="Face painting design by Kat" loading="lazy">' for g in d.get('gallery', []))
     chips = ''.join(f'<span>{esc(x)}</span>' for x in d.get('designs', []))
-    return band('gallery', f'<h2>Popular round here</h2><div class="dchips">{chips}</div><div class="gstrip">{imgs}</div>', tone)
+    return band('gallery', f'<h2>{H(d, "gallery", "Popular round here")}</h2><div class="dchips">{chips}</div><div class="gstrip">{imgs}</div>', tone)
 
 def b_hoods(d, town, tone='light'):
     items = ''.join(f'<span>{esc(h)}</span>' for h in d['hoods'])
     head = 'More villages I cover' if town.startswith('the villages') or ',' in town else f'All over {esc(town)} and nearby'
-    return band('hoods', f'<h2>{head}</h2><div class="hoods">{items}</div>', tone)
+    return band('hoods', f'<h2>{H(d, "hoods", head)}</h2><div class="hoods">{items}</div>', tone)
+
+def b_priceline(d, tone='jewel'):
+    """Town pages: one short price line with a link, instead of the full price cards repeated on every page."""
+    line = d.get('price_line') or ('Hen dos and birthdays from £150; weddings, festivals and corporate events by quote.' if d.get('events_only')
+                                   else 'Parties from £130 for 2 hours, or £160 for 3 hours with glitter and gems. Hen dos from £150; bigger events by quote.')
+    return band('prices', f'<p class="pline"><b>{H(d, "prices", "Prices")}</b> {line} <a href="prices.html">See every price →</a></p>', tone, 'centred')
 
 def b_prices(tone='jewel', events=False):
     if events:
@@ -111,17 +122,17 @@ def b_prices(tone='jewel', events=False):
     inner = ''.join(f'<div class="pcard"><h3>{a}</h3><p>{b}</p><div class="pp">{c}</div></div>' for a, b, c in cards)
     return band('prices', f'<h2>Simple prices</h2><div class="pcards">{inner}</div><p class="small-note">Kat confirms the exact price for your date. A small deposit secures your booking.</p>', tone, 'centred')
 
-def b_reviews(page, town, tone='light'):
+def b_reviews(page, town, tone='light', d=None):
     revs = REVIEWS.get(page) or []
     if not revs: return ''
     clean = lambda t: esc(t.strip().strip('"“”'))
     items = ''.join(f'<figure class="testimonial"><p>“{clean(t)}”</p><strong>{esc(n)}</strong></figure>' for t, n in revs)
-    return band('reviews', f'<h2>What families say</h2><div class="testimonials">{items}</div>', tone, 'k-reviews')
+    return band('reviews', f'<h2>{H(d, "reviews", "What families say") if d else "What families say"}</h2><div class="testimonials">{items}</div>', tone, 'k-reviews')
 
 def b_faq(d, town, tone='dark'):
     items = ''.join(f'<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q, a in d['faqs'])
     head = 'Your questions' if town.startswith('the ') or ',' in town or '&' in town else f'{esc(town)} questions'
-    return band('faq', f'<h2>{head}</h2><div class="faqlist">{items}</div>', tone)
+    return band('faq', f'<h2>{H(d, "faq", head)}</h2><div class="faqlist">{items}</div>', tone)
 
 def b_enquire(page, town, title):
     return (f'<section class="band band-panel k-enquire centred"><div class="wrap"><h2>Is Kat free in {esc(town)} on your date?</h2>'
@@ -159,30 +170,51 @@ def b_recent(page, town, tone='dark'):
                 f'<p class="lede-s">Where Kat has painted, {PERIOD}.</p><ul class="recent">{chips}</ul>{soon_html}', tone)
 
 # ---------- templates (each a different order and set of blocks) ----------
+ORDERS = {
+    'letter':   ['letter', 'postcard', 'venues:list', 'gallery', 'events', 'recent', 'prices', 'reviews', 'hoods', 'faq'],
+    'guide':    ['intro:quote', 'tiles', 'postcard', 'venues:chips', 'reviews', 'recent', 'prices', 'hoods', 'faq'],
+    'seasons':  ['intro:split', 'postcard', 'seasons', 'venues:cards', 'recent', 'prices', 'reviews', 'hoods', 'faq'],
+    'story':    ['story', 'places', 'postcard', 'reviews', 'recent', 'prices', 'hoods', 'faq'],
+    'villages': ['intro:quote', 'villages', 'postcard', 'recent', 'prices', 'reviews', 'hoods', 'faq'],
+    'county':   ['intro:quote', 'towns', 'postcard', 'recent', 'prices', 'reviews', 'faq'],
+}
+
 def render(page, d, title):
     town = town_name(d)
     slug = page.replace('face-painter-', '').replace('.html', '')
-    pc = lambda tone='dark': b_postcard(d, slug, d['eyebrow'].split(',')[0] if slug not in ('west-sussex-villages', 'surrey-villages', 'south-downs') else d['eyebrow'], tone)
-    t = d['tpl']
-    if t == 'letter':
-        blocks = [b_letter(d)] + ([] if slug == 'horsham' else [pc('dark')]) + [b_venue_map(d, 'dark', slug), b_gallery(d, 'light'), b_events(d, 'dark'), b_prices(), b_reviews(page, town, 'light'), b_hoods(d, town, 'dark'), b_faq(d, town, 'light')]
-    elif t == 'guide':
-        blocks = [b_intro_quote(d, 'light'), b_tiles(d, town, 'dark'), pc('light'), b_venue_chips(d, town, 'light'), b_reviews(page, town, 'dark'), b_prices(events=d.get('events_only', False)), b_hoods(d, town, 'light'), b_faq(d, town, 'dark')]
-    elif t == 'seasons':
-        blocks = [b_intro_split(d, 'light'), pc('dark'), b_seasons(d, town, 'dark'), b_venue_cards(d, town, 'light'), b_prices(), b_reviews(page, town, 'dark'), b_hoods(d, town, 'light'), b_faq(d, town, 'dark')]
-    elif t == 'story':
-        blocks = [b_story(d, 'light'), b_polaroids(d, 'dark'), pc('light'), b_reviews(page, town, 'light'), b_prices(), b_hoods(d, town, 'dark'), b_faq(d, town, 'light')]
-    elif t == 'villages':
-        blocks = [b_intro_quote(d, 'dark'), b_villages(d, 'light'), pc('dark'), b_prices(), b_reviews(page, town, 'light'), b_hoods(d, town, 'dark'), b_faq(d, town, 'light')]
-    elif t == 'county':
-        blocks = [b_intro_quote(d, 'light'), b_towns(d, 'dark'), pc('light'), b_prices(), b_reviews(page, town, 'light'), b_faq(d, town, 'dark')]
-    rec = b_recent(page, town, 'dark')
-    if rec:
-        idx = next((i for i, b in enumerate(blocks) if 'loc-prices' in b), len(blocks))
-        blocks.insert(idx, rec)
-    blocks.append(b_enquire(page, town, title))
-    blocks.append(inner_layout.TRUST_BAND)
-    return '\n'.join(b for b in blocks if b)
+    pc_town = d['eyebrow'].split(',')[0] if slug not in ('west-sussex-villages', 'surrey-villages', 'south-downs') else d['eyebrow']
+    order = HEADS.get(page, {}).get('order') or ORDERS[d['tpl']]
+    # blocks styled for one background keep it; the rest alternate so neighbouring bands differ
+    PREF = {'seasons': 'dark', 'venues:list': 'dark', 'tiles': 'dark', 'places': 'dark', 'towns': 'dark', 'events': 'dark', 'recent': 'dark',
+            'venues:cards': 'light', 'venues:chips': 'light', 'villages': 'light', 'gallery': 'light', 'letter': 'light', 'story': 'light'}
+    out, prev = [], 'dark'
+    for key in order:
+        tone = PREF.get(key) or ('light' if prev == 'dark' else 'dark')
+        k, _, var = key.partition(':')
+        if k == 'letter': blk = b_letter(d)
+        elif k == 'intro': blk = b_intro_split(d, tone) if var == 'split' else b_intro_quote(d, tone)
+        elif k == 'story': blk = b_story(d, tone)
+        elif k == 'postcard': blk = '' if slug == 'horsham' else b_postcard(d, slug, pc_town, tone)
+        elif k == 'tiles': blk = b_tiles(d, town, tone)
+        elif k == 'seasons': blk = b_seasons(d, town, tone)
+        elif k == 'venues': blk = {'cards': b_venue_cards, 'chips': b_venue_chips}.get(var, lambda d, t, tn: b_venue_map(d, tn, slug))(d, town, tone)
+        elif k == 'places': blk = b_polaroids(d, tone)
+        elif k == 'events': blk = b_events(d, tone)
+        elif k == 'gallery': blk = b_gallery(d, tone)
+        elif k == 'villages': blk = b_villages(d, tone)
+        elif k == 'towns': blk = b_towns(d, tone)
+        elif k == 'reviews': blk = b_reviews(page, town, tone, d)
+        elif k == 'recent': blk = b_recent(page, town, tone)
+        elif k == 'prices': blk = b_priceline(d, 'jewel')
+        elif k == 'hoods': blk = b_hoods(d, town, tone)
+        elif k == 'faq': blk = b_faq(d, town, tone)
+        else: raise SystemExit(f'unknown block {key} on {page}')
+        if blk:
+            out.append(blk)
+            if k != 'prices': prev = tone
+    out.append(b_enquire(page, town, title))
+    out.append(inner_layout.TRUST_BAND)
+    return '\n'.join(out)
 
 def faq_schema(d):
     data = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
@@ -200,8 +232,9 @@ def hero(d, h1, sub, page):
             f'<a class="scrollcue" href="#content" aria-label="Scroll down">⌄</a></header>\n<div class="jewel-rule"></div>')
 
 def build():
-    with open(f'{OUT}/site.css', 'a') as f: f.write(LOC_CSS + venue_map.CSS)
+    with open(f'{OUT}/site.css', 'a') as f: f.write(LOC_CSS + venue_map.CSS + '\n.pline{margin:0 auto;max-width:860px;font-size:17px}.pline b{font-family:Fraunces,serif;font-weight:400;font-size:22px;margin-right:6px}.pline a{font-weight:800;white-space:nowrap}\n.loc-seasons .season{color:var(--ink);text-align:left;font-weight:400;font-size:inherit}.loc-seasons .season b{color:var(--c)}\n')
     for page, d in PAGES.items():
+        d['_page'] = page
         p = f'{OUT}/{page}'
         s = open(p).read()
         title = re.search(r'<title>(.*?)</title>', s, re.S).group(1)
