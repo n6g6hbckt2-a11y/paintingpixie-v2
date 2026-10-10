@@ -28,19 +28,22 @@ document.addEventListener('focusin', function(e) {
 });
 
 (function(){
-  if(!window.matchMedia||!matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+  if(!window.matchMedia||!window.PointerEvent)return;
   if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   var HX=8,HY=13; /* brush tip inside the image */
-  var f=document.createElement('div');f.id='fairy';f.setAttribute('aria-hidden','true');
-  f.innerHTML='<img src="../img/fairy-cursor.webp" alt="">';document.body.appendChild(f);
-  document.documentElement.classList.add('fairy-on');
+  var f=null;
+  function start(){f=document.createElement('div');f.id='fairy';f.setAttribute('aria-hidden','true');
+    f.innerHTML='<img src="../img/fairy-cursor.webp" alt="">';document.body.appendChild(f);
+    document.documentElement.classList.add('fairy-on');document.dispatchEvent(new Event('fairy-mouse'));}
   var x=-100,y=-100,lx=0,ly=0,last=0,shown=false;
   function dust(n,spread){for(var i=0;i<n;i++){var d=document.createElement('span');d.className='fdust';
     var a=Math.random()*6.28,r=(spread||14)*Math.random();
     d.style.left=(x-3)+'px';d.style.top=(y-3)+'px';
     d.style.setProperty('--dx',(Math.cos(a)*r)+'px');d.style.setProperty('--dy',(Math.sin(a)*r+18)+'px');
     document.body.appendChild(d);setTimeout(function(e){e.remove()},950,d);}}
-  document.addEventListener('mousemove',function(e){
+  document.addEventListener('pointermove',function(e){
+    if(e.pointerType!=='mouse')return;   /* fingers and pencils: the flying fairy handles those */
+    if(!f)start();
     x=e.clientX;y=e.clientY;
     if(!shown){f.style.opacity=1;shown=true;}
     f.style.transform='translate('+(x-HX)+'px,'+(y-HY)+'px)';
@@ -49,19 +52,21 @@ document.addEventListener('focusin', function(e) {
     var hot=e.target.closest&&e.target.closest('a,button,summary,label,[role=button]');
     f.classList.toggle('hot',!!hot);
   },{passive:true});
-  document.addEventListener('mousedown',function(){f.classList.add('down');dust(10,34);});
-  document.addEventListener('mouseup',function(){f.classList.remove('down');});
-  document.documentElement.addEventListener('mouseleave',function(){f.style.opacity=0;shown=false;});
+  document.addEventListener('pointerdown',function(e){if(!f||e.pointerType!=='mouse')return;f.classList.add('down');dust(10,34);});
+  document.addEventListener('pointerup',function(){if(f)f.classList.remove('down');});
+  document.documentElement.addEventListener('mouseleave',function(){if(f){f.style.opacity=0;shown=false;}});
   /* over a form field, show the normal text cursor instead of the fairy */
-  document.addEventListener('mouseover',function(e){var t=e.target.closest&&e.target.closest('input,textarea,select');f.style.visibility=t?'hidden':'visible';});
+  document.addEventListener('mouseover',function(e){if(!f)return;var t=e.target.closest&&e.target.closest('input,textarea,select');f.style.visibility=t?'hidden':'visible';});
 })();
 
 (function(){
   /* phones and tablets: no mouse, so the fairy flies across the screen by herself every so often,
      and flies to wherever you tap, with a puff of pixie dust */
-  if(!window.matchMedia||matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+  if(!window.matchMedia)return;
+  var touch=(navigator.maxTouchPoints||0)>0||('ontouchstart' in window);
+  if(!touch&&matchMedia('(hover:hover) and (pointer:fine)').matches)return;
   if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  var f=document.createElement('div');f.id='fairy';f.className='fly';f.setAttribute('aria-hidden','true');
+  var f=document.createElement('div');f.id='fairyfly';f.className='fly';f.setAttribute('aria-hidden','true');
   f.innerHTML='<img src="../img/fairy-cursor.webp" alt="">';document.body.appendChild(f);
   var W=innerWidth,H=innerHeight,x=-80,y=0,path=null,t0=0,dur=0,raf=0,lastDust=0,wait=0,typing=false;
   addEventListener('resize',function(){W=innerWidth;H=innerHeight;},{passive:true});
@@ -99,5 +104,6 @@ document.addEventListener('focusin', function(e) {
   /* stay out of the way while someone fills in the form */
   document.addEventListener('focusin',function(e){if(e.target.closest&&e.target.closest('input,textarea,select')){typing=true;f.style.opacity=0;path=null;}});
   document.addEventListener('focusout',function(){typing=false;});
+  document.addEventListener('fairy-mouse',function(){clearTimeout(wait);path=null;f.remove();typing=true;});
   setTimeout(crossing,2500);
 })();
