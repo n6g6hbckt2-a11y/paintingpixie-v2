@@ -454,6 +454,7 @@ Tap a pin to see Kat's local page, or scroll down for the full list. Gold pins a
       .bindPopup('<b>'+p.n+'</b>'+p.note+(p.r?'<br>&#9733; Painted here recently':'')+(p.s?'<br>&#10024; Coming up in the next 2 months':'')+'<br><a href="'+p.u+'">See the '+p.n+' page &rarr;</a>');
     bounds.push([p.lat,p.lon]);
   });
+  
   map.fitBounds(bounds, {padding:[40,40]});
 })();
 </script>

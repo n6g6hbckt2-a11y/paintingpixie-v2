@@ -10,17 +10,17 @@ OUT = os.environ.get('PP_OUT', '/home/claude/paintingpixie-v2/draft')
 
 # page: (county name in headings, counties included, drawn-map box (lat top, lat bottom, lon left, lon right), intro)
 COUNTIES = {
-    'face-painter-sussex.html': ('Sussex', {'West Sussex', 'East Sussex'}, (51.19, 50.72, -0.92, 0.74),
+    'face-painter-sussex.html': ('Sussex', {'West Sussex', 'East Sussex'}, (51.19, 50.72, -0.92, 0.78),
         'From home in Horsham, Kat paints at parties and events across West and East Sussex.'),
-    'face-painter-surrey.html': ('Surrey', {'Surrey'}, (51.40, 51.03, -0.86, -0.04),
-        'From home in Horsham, just south of the Surrey border, Kat paints at parties and events across Surrey.'),
+    'face-painter-surrey.html': ('Surrey', {'Surrey'}, (51.55, 51.03, -1.08, 0.24),
+        'From home in Horsham, just south of the Surrey border, Kat paints at parties and events across Surrey, and travels into London for events.'),
 }
 
 def section(name, counties, box, intro):
     recent = A.recent_places()
     towns = [t for t in A.TOWNS if t[3] in counties or t[0] == 'Horsham']
     lat0, lat1, lon0, lon1 = box
-    wider = [w for w in A.WIDER if lat1 < w[1] < lat0 and lon0 < w[2] < lon1]
+    wider = [w for w in A.WIDER if lat1 < w[1] < lat0 and lon0 < w[2] < lon1 - 0.18]   # leave room for the label
     pins = [dict(n=n, lat=a, lon=b, c=c, u=u, note=A.NOTES.get(n, f'Parties and events in {n}.'),
                  r=(n.split(' ')[0] in recent or n in recent), s=any(pl.split(',')[0].strip() == n for pl, *_ in COMING_UP))
             for n, a, b, c, u, g in towns]
@@ -36,7 +36,7 @@ def section(name, counties, box, intro):
             '<p class="small-note">The shaded zone is about 40 minutes from Horsham. Kat travels further afield too, for parties, local events, '
             'weddings, festivals and corporate events. <a href="areas.html">See every area on the full map →</a></p>'
             '</div></section>\n')
-    return html, A.map_js(pins, wider_pins)
+    return html, A.map_js(pins, wider_pins, fit_wider=(name == 'Surrey'))   # Surrey map takes in the London venues
 
 def build():
     n = 0

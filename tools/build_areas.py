@@ -154,7 +154,7 @@ MAP_CSS = '''<style>
 @media(max-width:800px){.acols{grid-template-columns:1fr}.areamap{height:440px}}
 </style>'''
 
-def map_js(pins, wider_pins):
+def map_js(pins, wider_pins, fit_wider=False):
     """Live map (OpenStreetMap via Leaflet) built under the drawn map; shown once map pictures load."""
     return f'''<script src="../vendor/leaflet/leaflet.js"></script>
 <script>
@@ -194,6 +194,7 @@ def map_js(pins, wider_pins):
       .bindPopup('<b>'+p.n+'</b>'+p.note+(p.r?'<br>&#9733; Painted here recently':'')+(p.s?'<br>&#10024; Coming up in the next 2 months':'')+'<br><a href="'+p.u+'">See the '+p.n+' page &rarr;</a>');
     bounds.push([p.lat,p.lon]);
   }});
+  {'wider.forEach(function(p){ bounds.push([p[1],p[2]]); });' if fit_wider else ''}
   map.fitBounds(bounds, {{padding:[40,40]}});
 }})();
 </script>'''
