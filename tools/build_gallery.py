@@ -101,6 +101,35 @@ def prepare():
         sizes[slug] = Image.open(small).size
     return sizes
 
+# photos where the face is a small part of the picture: crop in towards it.
+# slug: (centre x, centre y, share of width/height kept), all as fractions of the photo
+ZOOM = {
+    'blue-monster-roar': (.50, .36, .75), 'unicorn-party': (.46, .42, .62), 'tiger-boy-festival': (.42, .36, .75),
+    'leopard-tiger-kids': (.50, .36, .72), 'teen-red-dragon': (.42, .36, .72), 'unicorn-hall': (.46, .32, .60),
+    'fairy-festival': (.50, .30, .66), 'rainbow-unicorn-girl': (.48, .36, .70), 'leopard-claws': (.48, .38, .75),
+    'spiderman-cat': (.42, .32, .70), 'skeleton-crown': (.40, .22, .56), 'adult-pink-glitter': (.42, .44, .75),
+    'rainbow-sisters': (.42, .32, .75), 'shooting-stars': (.54, .40, .70), 'gold-tiger-boy': (.45, .32, .70),
+    'three-kids-party': (.52, .44, .64), 'snowflake-crown': (.42, .34, .62), 'leopard-indoors': (.48, .36, .66),
+    'werewolf': (.48, .40, .56), 'unicorn-soft-play': (.50, .36, .70), 'fire-ice-dragon': (.46, .30, .56),
+    'green-dragon': (.45, .32, .62), 'blue-monster-festival': (.50, .42, .36), 'glitter-tattoo-unicorn': (.58, .42, .46),
+    'blue-monster-arsenal': (.42, .32, .62),
+}
+
+def zoomed(slug):
+    """File stem to use for this photo: the original, or a cropped-in copy (made once)."""
+    if slug not in ZOOM: return slug
+    big, small = f'{G}/{slug}-z-1600.webp', f'{G}/{slug}-z-800.webp'
+    if not (os.path.exists(big) and os.path.exists(small)):
+        cx, cy, k = ZOOM[slug]
+        im = Image.open(f'{G}/{slug}-1600.webp'); W, H = im.size
+        w, h = int(W * k), int(H * k)
+        l = min(max(int(cx * W - w / 2), 0), W - w); t = min(max(int(cy * H - h / 2), 0), H - h)
+        c = im.crop((l, t, l + w, t + h))
+        b = c.resize((int(w * 1600 / max(w, h)), int(h * 1600 / max(w, h))), Image.LANCZOS) if max(w, h) < 1600 else c
+        b.save(big, 'WEBP', quality=82, method=6)
+        sm = c.copy(); sm.thumbnail((800, 800), Image.LANCZOS); sm.save(small, 'WEBP', quality=80, method=6)
+    return slug + '-z'
+
 def wa(t): return WA + t.replace(' ', '%20').replace("'", '%27').replace('’', '%27').replace('&', 'and')
 esc = lambda t: html.escape(t, quote=True)
 
@@ -110,11 +139,13 @@ def gallery_html(sizes):
     items = []
     for i, (slug, src, title, setting, tags) in enumerate(PHOTOS):
         w, h = sizes[slug]
+        f = zoomed(slug)
+        if f != slug: w, h = Image.open(f'{G}/{f}-800.webp').size
         alt = f'{title} face painting by The Painting Pixie, {setting.lower()}' if 'kat' not in tags.split()[:1] else f'Kat from The Painting Pixie painting a {title.lower().replace(" in progress", "")}'
         items.append(
-            f'<figure class="gi" data-tags="{tags}" data-title="{esc(title)}" data-setting="{esc(setting)}" data-full="../img/g/{slug}-1600.webp">'
+            f'<figure class="gi" data-tags="{tags}" data-title="{esc(title)}" data-setting="{esc(setting)}" data-full="../img/g/{f}-1600.webp">'
             f'<button type="button" class="gopen" aria-label="View larger: {esc(title)}">'
-            f'<img src="../img/g/{slug}-800.webp" srcset="../img/g/{slug}-800.webp 800w, ../img/g/{slug}-1600.webp 1600w" sizes="(max-width:700px) 50vw, (max-width:1100px) 33vw, 25vw" '
+            f'<img src="../img/g/{f}-800.webp" srcset="../img/g/{f}-800.webp 800w, ../img/g/{f}-1600.webp 1600w" sizes="(max-width:700px) 50vw, (max-width:1100px) 33vw, 25vw" '
             f'width="{w}" height="{h}" alt="{esc(alt)}" loading="{"eager" if i < 6 else "lazy"}" decoding="async"></button>'
             f'<figcaption><b>{esc(title)}</b><span>{esc(setting)}</span></figcaption></figure>')
     return f'''<section class="band band-light k-gallery2"><div class="wrap">

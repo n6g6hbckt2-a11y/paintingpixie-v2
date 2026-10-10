@@ -136,9 +136,9 @@ def build():
 <p>The Painting Pixie brings face painting, festival glitter and party fun to events across Sussex and Surrey, from home in Horsham.
 Tap a pin to see Kat's local page, or scroll down for the full list. Gold pins are places Kat has painted recently.</p>
 <div id="areamap" class="areamap" role="region" aria-label="Map of the towns The Painting Pixie covers">{static_map(recent)}</div>
-<div class="legend"><span><i class="pin home"></i> Home: Horsham</span><span><i class="pin"></i> Regular area (within about 40 minutes), with a local page</span><span><i class="pin recent"></i> Painted here recently</span><span><i class="pin soon"></i> Coming up</span><span><i class="pin wide"></i> Wider area: specialist events</span></div>
+<div class="legend"><span><i class="pin home"></i> Home: Horsham</span><span><i class="pin"></i> Regular area (within about 40 minutes), with a local page</span><span><i class="pin recent"></i> Painted here recently</span><span><i class="pin soon"></i> Coming up in the next 2 months</span><span><i class="pin wide"></i> Wider area: specialist events</span></div>
 <p class="recentareas"><b>Recently painted ({PERIOD}):</b> {recent_text()}.</p>
-<p class="recentareas"><b>Coming up:</b> {'; '.join(f"{p.replace(', ', ' (', 1)}{')' if ', ' in p else ''}, {d}" for p, d, *_ in COMING_UP)}.</p>
+<p class="recentareas"><b>Coming up in the next 2 months:</b> {'; '.join(f"{p.replace(', ', ' (', 1)}{')' if ', ' in p else ''}" for p, d, *_ in COMING_UP)}.</p>
 <p class="small-note">The shaded zone is Kat's regular area: parties and local events within about 40 minutes of Horsham. Further afield, inside the dashed line, Kat travels for higher-value specialist events: weddings, festivals, corporate days and brand activations. <a href="contact.html">Ask about your event</a>.</p>
 </div></section>
 <section class="band band-dark"><div class="wrap">
@@ -223,14 +223,14 @@ Tap a pin to see Kat's local page, or scroll down for the full list. Gold pins a
   wider.forEach(function(p){{
     var icon = L.divIcon({{className:'', html:'<div class="pin wide'+(p[3]?' wrecent':(p[4]?' wsoon':''))+'"></div>', iconSize:[16,16], iconAnchor:[8,8]}});
     L.marker([p[1],p[2]], {{icon:icon, title:p[0], alt:p[0]}}).addTo(map)
-      .bindPopup('<b>'+p[0]+'</b>Further afield: Kat travels here for weddings, festivals, corporate and brand events.'+(p[3]?'<br>&#9733; Painted here recently'+(p[0]==='London'?': Baker Street':''):'')+(p[4]?'<br>&#10024; Coming up: '+p[4]:'')+'<br><a href="contact.html">Ask about your event &rarr;</a>');
+      .bindPopup('<b>'+p[0]+'</b>Further afield: Kat travels here for weddings, festivals, corporate and brand events.'+(p[3]?'<br>&#9733; Painted here recently'+(p[0]==='London'?': Baker Street':''):'')+(p[4]?'<br>&#10024; Coming up in the next 2 months':'')+'<br><a href="contact.html">Ask about your event &rarr;</a>');
   }});
   var bounds = [];
   pins.forEach(function(p){{
     var cls = 'pin' + (p.n === 'Horsham' ? ' home' : (p.r ? ' recent' : (p.s ? ' soon' : '')));
     var icon = L.divIcon({{className:'', html:'<div class="'+cls+'"></div>', iconSize:[24,24], iconAnchor:[12,12]}});
     L.marker([p.lat,p.lon], {{icon:icon, title:p.n, alt:p.n}}).addTo(map)
-      .bindPopup('<b>'+p.n+'</b>'+p.note+(p.r?'<br>&#9733; Painted here recently':'')+(p.s?'<br>&#10024; Coming up: '+p.s:'')+'<br><a href="'+p.u+'">See the '+p.n+' page &rarr;</a>');
+      .bindPopup('<b>'+p.n+'</b>'+p.note+(p.r?'<br>&#9733; Painted here recently':'')+(p.s?'<br>&#10024; Coming up in the next 2 months':'')+'<br><a href="'+p.u+'">See the '+p.n+' page &rarr;</a>');
     bounds.push([p.lat,p.lon]);
   }});
   map.fitBounds(bounds, {{padding:[40,40]}});

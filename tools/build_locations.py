@@ -154,7 +154,7 @@ def b_recent(page, town, tone='dark'):
     lead = (f'{total} events across Sussex' if page == 'face-painter-sussex.html' else f'{total} events in Surrey and beyond' if page == 'face-painter-surrey.html'
             else f'{total} event{"s" if total > 1 else ""} in and around {esc(town)}')
     soon = [(pl, d) for pl, d, pg in COMING_UP if pg == page]
-    soon_html = (f'<p class="recentareas" style="margin-top:18px"><b>Coming up:</b> ' + '; '.join(f'{esc(pl)}, {d}' for pl, d in soon) + '.</p>') if soon else ''
+    soon_html = (f'<p class="recentareas" style="margin-top:18px"><b>Coming up in the next 2 months:</b> ' + '; '.join(f'{esc(pl)}' for pl, d in soon) + '.</p>') if soon else ''
     return band('recent', f'<p class="eyebrow">Recently painted</p><h2>Kat\'s been busy: {lead}</h2>'
                 f'<p class="lede-s">Where Kat has painted, {PERIOD}.</p><ul class="recent">{chips}</ul>{soon_html}', tone)
 
