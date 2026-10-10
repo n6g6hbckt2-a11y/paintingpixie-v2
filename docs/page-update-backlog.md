@@ -56,6 +56,19 @@ If a milestone is missed by more than 20%, review which lever is behind and move
 - [ ] **E** More links: spring/summer event organisers, school fêtes.
 - [ ] Monthly check against the milestones; adjust.
 
+## Still to do alongside the clicks plan (agreed earlier, not dropped)
+- [ ] Prices and Corporate pages: release when Kat approves (prices, deposit amount, corporate offer).
+- [ ] Full Christmas page: before mid-November (also lever F).
+- [ ] Remove/replace the Good Hotel workshop after 30 Oct.
+- [ ] Kat: photos of hair braiding, UV glowing and Christmas designs; prices for braiding and UV.
+- [ ] Cookie consent banner (offered; awaiting Phil's yes).
+- [ ] Services page: add Kat's braiding/UV photos and prices when they arrive.
+- [ ] Phil: Clarity masking setting and link Clarity to GA4.
+- [ ] Phil: re-run the Bing Site Scan (week of 17 Oct).
+- [ ] Phil: Add to Event address Midhurst → Horsham; review link after every party.
+- [ ] Seasonal banner switches itself to Christmas on 1 Nov (automatic; check it on the day).
+- [ ] Monthly: compare against the baseline and milestones above.
+
 ## Reference: findings by page (from 8–10 Oct)
 
 ### animal-print-face-painting.html (KEEP THE PAGE: do not redirect)
