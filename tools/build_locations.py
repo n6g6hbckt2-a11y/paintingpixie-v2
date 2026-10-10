@@ -11,7 +11,8 @@ import inner_layout
 import venue_map
 import venues_hire
 
-OUT = '/home/claude/paintingpixie-v2/draft'
+OUT = os.environ.get('PP_OUT', '/home/claude/paintingpixie-v2/draft')
+ONLY = os.environ.get('PP_TOWNS', '').split()   # switch build: just these rewritten town pages go live (batches)
 LIVE = os.environ.get('PP_SOURCE', '/home/claude/pp-source')   # live wording as it was just before the switch (live repo commit 7312a6f); see tools/source.sh
 REVIEWS = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'town_reviews.json')))
 
@@ -30,6 +31,26 @@ def wa_link(town):
 def H(d, key, default):
     """Per-town heading (tools/town_heads.py), so no two town pages share the same set of headings."""
     return HEADS.get(d['_page'], {}).get(key, default)
+
+def scope(css, pre=':where(.locpage) '):
+    """Limit town-page CSS to the rebuilt town pages (body class "locpage") without changing specificity,
+    so it can't alter any other page that shares site.css."""
+    out, i, n = [], 0, len(css)
+    while i < n:
+        j = css.find('{', i)
+        if j < 0: out.append(css[i:]); break
+        sel = css[i:j]
+        if sel.strip().startswith('@'):   # @media: scope its contents; @keyframes etc.: copy as is
+            depth, k = 1, j + 1
+            while depth: depth += {'{': 1, '}': -1}.get(css[k], 0); k += 1
+            inner = css[j + 1:k - 1]
+            out.append(sel + '{' + (scope(inner, pre) if sel.strip().startswith('@media') else inner) + '}')
+            i = k; continue
+        k = css.find('}', j) + 1
+        lead = sel[:len(sel) - len(sel.lstrip())]
+        sels = ','.join(pre + x.strip() for x in re.sub(r'/\*.*?\*/', '', sel, flags=re.S).split(','))
+        out.append(lead + sels + css[j:k]); i = k
+    return ''.join(out)
 
 # ---------- blocks ----------
 def b_hire(d, tone='light'):
@@ -249,8 +270,9 @@ def hero(d, h1, sub, page):
             f'<a class="scrollcue" href="#content" aria-label="Scroll down">⌄</a></header>\n<div class="jewel-rule"></div>')
 
 def build():
-    with open(f'{OUT}/site.css', 'a') as f: f.write(LOC_CSS + venue_map.CSS + venues_hire.CSS + '\n.pline{margin:0 auto;max-width:860px;font-size:17px}.pline b{font-family:Fraunces,serif;font-weight:400;font-size:22px;margin-right:6px}.pline a{font-weight:800;white-space:nowrap}\n.loc-seasons .season{color:var(--ink);text-align:left;font-weight:400;font-size:inherit}.loc-seasons .season b{color:var(--c)}\n')
+    with open(f'{OUT}/site.css', 'a') as f: f.write(scope(LOC_CSS + venue_map.CSS + venues_hire.CSS + '\n.pline{margin:0 auto;max-width:860px;font-size:17px}.pline b{font-family:Fraunces,serif;font-weight:400;font-size:22px;margin-right:6px}.pline a{font-weight:800;white-space:nowrap}\n.loc-seasons .season{color:var(--ink);text-align:left;font-weight:400;font-size:inherit}.loc-seasons .season b{color:var(--c)}\n'))
     for page, d in PAGES.items():
+        if ONLY and page not in ONLY: continue
         d['_page'] = page
         p = f'{OUT}/{page}'
         s = open(p).read()
@@ -268,8 +290,9 @@ def build():
         # body: swap hero and main
         body = re.sub(r'<header class="phero">.*?</header>\s*<div class="jewel-rule"></div>', lambda m: hero(d, h1, sub, page), body, count=1, flags=re.S)
         body = re.sub(r'<main class="lg">.*?</main>', lambda m: f'<main class="lg loc tpl-{d["tpl"]}" id="content" style="--acc:{d["acc"]}">\n{render(page, d, title)}\n</main>', body, count=1, flags=re.S)
+        body = body.replace('<body>', '<body class="locpage">', 1)
         open(p, 'w').write(head + '</head>' + body)
-    print('location pages rebuilt:', len(PAGES))
+    print('location pages rebuilt:', len(ONLY) or len(PAGES))
 
 LOC_CSS = r'''
 .recent{list-style:none;padding:0;margin:22px 0 0;display:flex;flex-wrap:wrap;gap:12px}
@@ -290,6 +313,7 @@ LOC_CSS = r'''
 main.lg,footer,.trustband{position:relative;background:var(--bg)}
 @media(max-width:600px){.phero{height:88svh;min-height:480px;display:flex}.phero>img{height:100vh;-webkit-mask-image:none;mask-image:none}.phero .wrap{margin-top:0;padding-bottom:42px}.hcard{padding:22px 20px}}
 @media(prefers-reduced-motion:reduce){.scrollcue{animation:none}}
+.phero.rvh{height:auto}   /* framed heading photo (build_frames): size to its content, as on the other pages */
 
 /* ===== Location pages: shared parts ===== */
 .loc{--acc:var(--pink)}

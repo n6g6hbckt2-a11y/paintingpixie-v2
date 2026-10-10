@@ -111,9 +111,11 @@ REDIRECT_HTML = '''<!DOCTYPE html>
 </html>
 '''
 
+ONLY = os.environ.get('PP_TOWNS', '').split()   # switch build: town links on these town pages only, nothing else
+
 def build():
     import glob
-    for page, (go, canon, label) in REDIRECTS.items():
+    for page, (go, canon, label) in ({} if ONLY else REDIRECTS).items():
         open(f'{OUT}/{page}', 'w').write(REDIRECT_HTML.format(go=go, canon=canon, label=label))
         for f in glob.glob(OUT + '/*.html'):   # point in-page links straight at the new place
             if f.endswith('/' + page): continue
@@ -124,6 +126,7 @@ def build():
         with open(f'{OUT}/site.css', 'a') as f: f.write(CSS)
     n = 0
     for page, (name, order) in TOWNS.items():
+        if ONLY and page not in ONLY: continue
         p = f'{OUT}/{page}'; s = open(p).read()
         if 'xl-town' in s: continue
         m = re.search(r'<section class="band band-jewel loc-prices.*?</section>\s*', s, re.S)
@@ -134,7 +137,7 @@ def build():
         s2 = s[:m.end()] + block + s[m.end():]
         if not s2: print('no place on', page); continue
         open(p, 'w').write(s2); n += 1
-    for page, lead in SERVICE_PAGES.items():
+    for page, lead in ({} if ONLY else SERVICE_PAGES).items():
         p = f'{OUT}/{page}'
         if not os.path.exists(p): print('missing', page); continue
         s = open(p).read()
