@@ -1,63 +1,89 @@
-# Page update backlog (step 4: new wording in batches)
+# Clicks plan: 5 clicks a day by end of March 2027
 
-Recommendations to apply when each page gets its new wording. Based on Search Console, last 28 days to 8 Oct 2026,
-and the baseline in `baseline-2026-10-07.md`. Check results against the baseline about 2 weeks after each batch.
+Target agreed with Phil 10 Oct 2026: **5 clicks a day from Google search** (about 150 a month, measured in Search Console,
+28-day total ÷ 28). Starting point: **1.75 a day** (49 clicks in the 28 days to 6 Oct, 857 times shown, average position 15.6).
+Detail of the starting point: `baseline-2026-10-07.md` (incl. the 28-day click breakdown).
 
-## Already done on the live site
-- **glitter-bar.html** (8 Oct): title "Glitter Artist for Hens & Festivals | Sussex & Surrey", new heading and description,
-  Hen Party Glitter / Festival Glitter / Glitter Artist in Brighton sections, Anne F and Alanna B reviews.
-  To do: request indexing in Search Console; check positions for "glitter artist", "hen party glitter", "festival glitter" in 2-6 weeks.
+## Where the extra ~100 clicks a month come from (estimates)
 
-## Recommendations by page
+| Lever | How | Extra clicks/month |
+|---|---|---|
+| A. Page-2 hiring searches onto page 1 | adult/hen, glitter artist, professional face painters (Sussex, Surrey, Brighton): ~320 views/month now at 11th–40th; at ~5th place they earn ~7% | +20–25 |
+| B. Town pages: improve the 15 | unique rewritten town pages (already drafted), "Professional Face Painter in <town>" titles (done 9 Oct), local photos and reviews | +15 |
+| C. Town pages: add about 8 new ones | towns inside the 40-minute area with no page yet (shortlist: Southwater, Billingshurst, Storrington & Pulborough, Steyning & Henfield, Cuckfield, Shoreham, Cranleigh, Godalming, Leatherhead); each existing town page earns 2–6 a month | +15–20 |
+| D. Google Business Profile | weekly photos/posts, review link after every party, services tidy; more people tap "Website" from the map listing | +15 |
+| E. Links from other sites | venues and events Kat has worked (Macs Farm, Good Hotel, Guildford Festival of the Arts, Eats & Beats), local directories, wedding/hen sites; lifts every page's ranking | +10 |
+| F. Seasonal pages | Christmas page (Nov–Dec), Halloween (Sep–Oct) | +10 in season |
+| G. Animal print click rate | better title/description (ranks ~3rd, 0 clicks: mostly design-idea searches) | +5 |
+| **Total** | | **~+90–105 → about 140–155 a month (≈5 a day)** |
 
-### animal-print-face-painting.html  (KEEP THE PAGE: do not redirect)
-- Best rankings on the site: "animal print face painting" Surrey 2.7, Brighton 3.4, Sussex 4.8, London 24.8.
-- Earlier plan was to redirect it to gallery.html#animal. Changed 8 Oct: keep the page live, out of the menu, linked from the
-  gallery's Animal print category and the gallery intro. (The draft preview still has the redirect in build_crosslinks.REDIRECTS;
-  remove it before this batch.)
-- Low clicks despite position ~3: new title/description, e.g.
-  "Animal Print Face Painting | Tigers, Leopards & Cheetahs | Sussex & Surrey".
+Spring/summer is party-booking season, so March is a fair target date. Winter months will run lower outside Christmas.
 
-### Glitter (biggest opportunity) — glitter-bar.html, adult-face-painting.html, face-painter-brighton.html
-- Searches: glitter artist sussex 14.6 / brighton 18.1 / surrey 21.4; hen party glitter surrey 26.4 / brighton 34.0 / sussex 34.3;
-  festival glitter brighton 36.2 / sussex 47.2.
-- Links into the glitter page from Brighton, Sussex, Surrey and adult pages using the words "glitter artist" / "hen party glitter".
-- Add glitter photos with descriptive alt text (hen, festival, Brighton).
+## Milestones (check in Search Console, 28-day clicks)
+- **24 Oct**: positions check for the page-2 searches after the switch and the Professional titles (expect movement, not clicks yet).
+- **Mid-Nov: 2.5 a day** (70 / 28 days): switch settled, Christmas page found, first town pages rewritten.
+- **Mid-Dec: 3 a day** (85): Christmas searches, page-2 searches reaching page 1.
+- **End Jan: 3.5 a day** (100): new town pages indexed, links landing.
+- **End Feb: 4 a day** (110).
+- **End Mar: 5 a day** (140+).
+If a milestone is missed by more than 20%, review which lever is behind and move effort to it.
+
+## Work, in order
+
+### October (after the switch, 10 Oct)
+- [x] Switch to the new design (10 Oct). [x] "Professional" in titles/headings (9 Oct). [x] Glitter page sections (8 Oct).
+- [ ] Phil: request indexing for Services, Gallery, Areas, Reviews, Workshops, Christmas.
+- [ ] **G** Animal print: new title/description, e.g. "Animal Print Face Painting | Tigers, Leopards & Cheetahs | Sussex & Surrey".
+- [ ] **A** Adult page: "Brighton" in title and heading, short Brighton and hen-party sections, link to the glitter page with the words "glitter artist".
+- [ ] **D** Phil: Business Profile tidy (Glitter artist description, Theme Party Painter, duplicate Adult Face Painting, add Glitter Bar Hire); start weekly photo/post; review link after every party; Add to Event address Midhurst → Horsham.
+- [ ] Remove the Good Hotel workshop after 30 Oct.
+
+### November
+- [ ] **B** Rewritten town pages (unique content already in the draft): batch 1 = the five that already earn clicks (Crawley, Haywards Heath, Burgess Hill, Reigate, Worthing), then Horsham, Brighton, Lewes, Guildford, Dorking, East Grinstead.
+- [ ] **A** County pages Sussex / Surrey: "West Sussex" / "East Sussex" wording; links to glitter and adult pages.
+- [ ] **A** Homepage new wording (batch 1 of the original step 4).
+- [ ] **F** Full Christmas page (fairs, grottos, office parties, designs, FAQs) once Kat approves; before mid-November.
+- [ ] **E** Ask 4 venues/events for a link (Phil to send; I can draft the messages). Directory listings (e.g. Yell, Hitched, local listings).
+
+### December
+- [ ] **C** New town pages, first 4 (pick by search volume from the shortlist).
+- [ ] **A** Glitter: festival and hen photos with descriptive alt text; Brighton glitter section links.
+- [ ] Release Prices and Corporate when Kat approves (adds two more pages Google can rank for "face painter prices", "corporate face painting").
+
+### January–March
+- [ ] **C** New town pages, next 4.
+- [ ] **B** Remaining town page rewrites (villages, South Downs).
+- [ ] **E** More links: spring/summer event organisers, school fêtes.
+- [ ] Monthly check against the milestones; adjust.
+
+## Reference: findings by page (from 8–10 Oct)
+
+### animal-print-face-painting.html (KEEP THE PAGE: do not redirect)
+- "animal print face painting" Surrey 2.6, Brighton 3.4, Sussex 4.8, London 24.8. 75 views, 0 clicks in 28 days.
+- Keep the page live, out of the menu, linked from the gallery. (The draft preview still has a redirect in build_crosslinks.REDIRECTS; remove it before this batch.)
+
+### Glitter: glitter-bar.html, adult-face-painting.html, face-painter-brighton.html
+- glitter artist sussex 14.6 / brighton 18.1 / surrey 21.7; hen party glitter surrey 26.4 / brighton 34.5 / sussex 34.3; festival glitter brighton 36.2 / sussex 47.2.
+- 8 Oct done: title "Glitter Artist for Hens & Festivals | Sussex & Surrey", hen/festival/Brighton sections, Anne F and Alanna B reviews.
 
 ### adult-face-painting.html
-- Searches: adult face painters brighton 13.6, adult face painting brighton 16.1, adult face painters sussex 17.9,
-  adult face painting sussex 19.1, adult face painters surrey 20.1, adult face painting surrey 25.4.
-- Put "Brighton" in the title and heading (title currently Sussex/Surrey only); a short Brighton section; hen party wording.
+- adult face painters brighton 13.7, adult face painting brighton 16.1, adult face painters sussex 17.0, adult face painting sussex 18.7, adult face painting surrey 25.3.
 
-### face-painter-sussex.html / face-painter-surrey.html / face-painter-brighton.html  (9 Oct: "Professional" added to titles + h1 of homepage, kids, adult and all town pages)
-- Searches: professional face painters sussex 20.5 / brighton 20.2 / surrey 27.6; face painters west sussex 20.9 / east sussex 21.9.
-- Use "professional face painters" and "West Sussex" / "East Sussex" in titles and headings.
-- Brighton page leads with events, hens, glitter (Kat's Brighton focus); children's parties via "get in touch".
+### face-painter-sussex / -surrey / -brighton
+- professional face painters brighton 19.9 / sussex 20.1 / surrey 27.1; face painters west sussex ~21 / east sussex ~22.
+- Brighton page leads with events, hens, glitter; children's parties via "get in touch".
+
+### Town pages that already earn clicks (28 days to 6 Oct)
+- Crawley 6, Haywards Heath 4, Burgess Hill 3, Reigate 2, Worthing 2, West Sussex villages 1. Average positions look poor (33–65) because they also show for irrelevant searches; for "<town> face painter" they rank well.
 
 ### services.html
-- Not indexed by Google (8 Oct). New card version goes live with the switch; request indexing afterwards.
-- Cards added: Hair braiding, UV neon face painting, Eco-friendly cosmic glitter. Need Kat's photos (braiding, UV glowing) and any prices.
-
-### christmas-face-painting.html
-- Holding page goes live with the switch (approved content only). Full page (fairs, grottos, office parties, design list, FAQs)
-  once Kat reviews it. Aim before mid-November.
+- Was not indexed (8 Oct). New card version live since the switch; request indexing. Needs Kat's photos (braiding, UV) and any prices.
 
 ### prices.html / corporate-events.html
-- Held back until Kat approves. Prices: confirm all prices, deposit amount. Corporate: confirm offer (extra artists, London, brand events).
-- On release: remove from PP_HOLD in tools/build_switch.sh, rebuild, publish.
+- Held until Kat approves (prices, deposit; corporate offer). On release: remove from PP_HOLD in tools/build_switch.sh, rebuild, publish.
 
-### index.html (homepage)
-- New homepage wording (c2) is batch 1 after the switch.
-
-### workshops.html
-- Remove/replace the Good Hotel 30 Oct workshop after the date.
+### How to publish changes since the switch
+- Builds read page wording from the pre-switch live copy (`tools/source.sh`). Make wording changes in the build tools, then `tools/publish_golive.sh` and a pull request.
 
 ## Not worth targeting
-- "painter dorking / banstead / burgess hill", "female decorator", "painters lindfield": house-painter searches.
-
-## Off-site (Phil)
-- Google Business Profile: services done 8 Oct. Still: Glitter artist description ending, Theme Party Painter description,
-  remove duplicate Adult Face Painting under Children's party service, add Glitter Bar Hire under Entertainer.
-  Weekly photos/posts; Google review link after every party.
-- Add to Event address says Midhurst; website and Google say Horsham. Make them match.
-- Links from venues/events (Macs Farm, Good Hotel, Guildford Festival of the Arts, Eats & Beats); Bing Webmaster Tools import.
+- "painter dorking / banstead / burgess hill", "female decorator", "painters lindfield": house-painter searches (~47 views a month).
