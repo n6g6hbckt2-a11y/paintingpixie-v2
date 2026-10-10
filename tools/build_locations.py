@@ -124,7 +124,7 @@ def b_faq(d, town, tone='dark'):
     return band('faq', f'<h2>{head}</h2><div class="faqlist">{items}</div>', tone)
 
 def b_enquire(page, town, title):
-    return (f'<section class="band band-panel k-enquire centred"><div class="wrap"><h2>Book face painting in {esc(town)}</h2>'
+    return (f'<section class="band band-panel k-enquire centred"><div class="wrap"><h2>Is Kat free in {esc(town)} on your date?</h2>'
             f'<p>Tell me your date, where in {esc(town)} and roughly how many guests. I usually reply the same day.</p>'
             f'<a class="btn btn-gold" href="contact.html">Check my date</a><a class="btn btn-wa" href="{wa_link(town)}" target="_blank" rel="noopener">WhatsApp Kat</a>'
             f'{ENQUIRY(page, title)}</div></section>')

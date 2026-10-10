@@ -46,13 +46,14 @@ PAGES = {
  tpl="guide", acc="#2FD4C4", hero=("../img/n-tiger-boy-party.webp", "50% 22%"),
  kicker="A familiar face", eyebrow="Crawley, West Sussex",
  intro=[
-  "Crawley isn't just somewhere I cover. It's somewhere I know. I teach locally, so I've spent years getting to know Crawley families, and there's a good chance I already know someone at your party.",
+  "Crawley isn't just somewhere I cover. It's where I am four or five days every week: I teach GCSE and A level here, so I've spent years getting to know Crawley families, and there's a good chance I already know someone at your party.",
   "What I love about Crawley is how much happens in its neighbourhoods. Every area has its own parade, its own community centre and its own crowd, and the parties are big, busy and brilliant fun. A long queue of excited children is exactly my kind of afternoon.",
+  "It's only about 10 minutes from my home in Horsham, so there's no travel charge anywhere in Crawley.",
  ],
- quote="Years of teaching locally means Crawley isn't a new patch for me. It's home turf.",
+ quote="I'm in Crawley four or five days a week. It isn't a new patch for me. It's home turf.",
  tiles=[
   ("Where", "Tilgate Park on a sunny weekend, neighbourhood community centres for rain-proof birthdays, and K2 Crawley for big sports-hall parties."),
-  ("When", "Spring birthdays, summer fun days in Goffs Park, school fairs in June and July, Halloween discos and Christmas parties."),
+  ("When", "Spring birthdays, summer fun days in Goffs Park, events like Eats & Beats near Crawley, school fairs, Halloween discos and Christmas parties."),
   ("What", "Fast, bold designs for big groups: tigers, superheroes, footballs and unicorns that keep the queue moving."),
  ],
  venues=[
@@ -65,6 +66,7 @@ PAGES = {
  ],
  hoods=["Three Bridges", "Pound Hill", "Maidenbower", "Furnace Green", "Tilgate", "Broadfield", "Bewbush", "Ifield", "Langley Green", "Northgate", "Southgate", "Forge Wood", "Copthorne", "Ifield Green"],
  faqs=[
+  ("Is there a travel charge for Crawley?", "No. Crawley is about 10 minutes from my home in Horsham, so there's no travel charge anywhere in the town, from Ifield and Bewbush to Three Bridges, Pound Hill and Maidenbower."),
   ("Can you handle a big class party in Crawley?", "Yes. Whole-class parties are common in Crawley. For 25 or more children I'd suggest the 3-hour Ultimate Sparkle so nobody misses out."),
   ("Do you paint at Tilgate Park or Goffs Park?", "Yes. I paint at outdoor parties all over Crawley; I just need a table, two chairs and a little shade."),
   ("Are you DBS checked?", "Yes. I hold the same DBS clearance I need for teaching, plus full public liability insurance."),
