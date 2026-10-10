@@ -4,6 +4,7 @@ Source pages: live repo /home/claude/Painting-Pixie. Homepage: /c2/index.html.""
 import re, os, glob, shutil, html, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import inner_layout
+import wording
 
 LIVE = os.environ.get('PP_SOURCE', '/home/claude/pp-source')   # live wording as it was just before the switch (live repo commit 7312a6f); see tools/source.sh
 V2 = '/home/claude/paintingpixie-v2'
@@ -293,7 +294,7 @@ def collect_images(s):
         if not m.startswith('../'): images.add(m)
 
 def build_page(f):
-    s = open(f'{LIVE}/{f}').read()
+    s = wording.apply(f, open(f'{LIVE}/{f}').read())   # changes made since the switch (tools/wording.py)
     page = f
     body = s[s.index('<body>') + 6:s.index('</body>')]
     after_nav = body[body.index('</nav>') + 6:]

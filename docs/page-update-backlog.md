@@ -33,8 +33,8 @@ If a milestone is missed by more than 20%, review which lever is behind and move
 ### October (after the switch, 10 Oct)
 - [x] Switch to the new design (10 Oct). [x] "Professional" in titles/headings (9 Oct). [x] Glitter page sections (8 Oct).
 - [ ] Phil: request indexing for Services, Gallery, Areas, Reviews, Workshops, Christmas.
-- [ ] **G** Animal print: new title/description, e.g. "Animal Print Face Painting | Tigers, Leopards & Cheetahs | Sussex & Surrey".
-- [ ] **A** Adult page: "Brighton" in title and heading, short Brighton and hen-party sections, link to the glitter page with the words "glitter artist".
+- [x] (10 Oct) **G** Animal print: new title/description, e.g. "Animal Print Face Painting | Tigers, Leopards & Cheetahs | Sussex & Surrey".
+- [x] (10 Oct) **A** Adult page: "Brighton" in title and heading, short Brighton and hen-party sections, link to the glitter page with the words "glitter artist".
 - [ ] **D** Phil: Business Profile tidy (Glitter artist description, Theme Party Painter, duplicate Adult Face Painting, add Glitter Bar Hire); start weekly photo/post; review link after every party; Add to Event address Midhurst → Horsham.
 - [ ] Remove the Good Hotel workshop after 30 Oct.
 
@@ -96,7 +96,7 @@ If a milestone is missed by more than 20%, review which lever is behind and move
 - Held until Kat approves (prices, deposit; corporate offer). On release: remove from PP_HOLD in tools/build_switch.sh, rebuild, publish.
 
 ### How to publish changes since the switch
-- Builds read page wording from the pre-switch live copy (`tools/source.sh`). Make wording changes in the build tools, then `tools/publish_golive.sh` and a pull request.
+- Builds read page wording from the pre-switch live copy (`tools/source.sh`). Make wording changes in `tools/wording.py` (or the build tools), then `tools/publish_golive.sh` and a pull request.
 
 ## Not worth targeting
 - "painter dorking / banstead / burgess hill", "female decorator", "painters lindfield": house-painter searches (~47 views a month).
