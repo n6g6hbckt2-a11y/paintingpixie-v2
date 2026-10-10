@@ -102,7 +102,7 @@ def static_map(recent):
     for n, a, b in WIDER:
         if not (lat1 < a < lat0 and lon0 < b < lon1): continue
         x, y = xy(a, b)
-        o.append(f'<a href="contact.html"><circle cx="{x:.0f}" cy="{y:.0f}" r="6" fill="{"#A77BFF" if wider_soon(n) and n not in recent else "#E2BE7A" if n in recent else "#231F30"}" stroke="#9C83D1" stroke-width="2.4"><title>{n}: weddings, festivals and corporate events</title></circle>'
+        o.append(f'<a href="contact.html"><circle cx="{x:.0f}" cy="{y:.0f}" r="6" fill="{"#A77BFF" if wider_soon(n) and n not in recent else "#E2BE7A" if n in recent else "#231F30"}" stroke="#9C83D1" stroke-width="2.4"><title>{n}: Kat travels here for parties, local events, weddings, festivals and corporate events</title></circle>'
                  f'<text x="{x + 10:.0f}" y="{y + 5:.0f}" fill="#B7A9D6" font-size="14" {font}>{n}</text></a>')
     left = {'Billingshurst', 'Cuckfield', 'Midhurst', 'Guildford', 'Dorking', 'Henfield', 'Storrington', 'Godalming', 'Leatherhead', 'Kingsfold', 'Upper Beeding'}
     dy = {'Steyning': 16, 'Upper Beeding': -6}
@@ -120,7 +120,7 @@ def build():
     p = f'{OUT}/areas.html'
     s = open(p).read()
     recent = recent_places()
-    pins = [dict(n=n, lat=a, lon=b, c=c, u=u, note=NOTES.get(n, f'Parties and events in {n}.'), r=(n.split(' ')[0] in recent or n in recent), s=next((d for pl, d, *_ in COMING_UP if pl.split(',')[0].strip() == n), '')) for n, a, b, c, u, g in TOWNS]
+    pins = [dict(n=n, lat=a, lon=b, c=c, u=u, note=NOTES.get(n, f'Parties and events in {n}.'), r=(n.split(' ')[0] in recent or n in recent), s=any(pl.split(',')[0].strip() == n for pl, *_ in COMING_UP)) for n, a, b, c, u, g in TOWNS]
     groups = {}
     for n, a, b, c, u, g in TOWNS:
         if n in ("Macs Farm",): continue   # a venue, not a town: pin only
@@ -136,16 +136,16 @@ def build():
 <p>The Painting Pixie brings face painting, festival glitter and party fun to events across Sussex and Surrey, from home in Horsham.
 Tap a pin to see Kat's local page, or scroll down for the full list. Gold pins are places Kat has painted recently.</p>
 <div id="areamap" class="areamap" role="region" aria-label="Map of the towns The Painting Pixie covers">{static_map(recent)}</div>
-<div class="legend"><span><i class="pin home"></i> Home: Horsham</span><span><i class="pin"></i> Regular area (within about 40 minutes), with a local page</span><span><i class="pin recent"></i> Painted here recently</span><span><i class="pin soon"></i> Coming up in the next 2 months</span><span><i class="pin wide"></i> Wider area: specialist events</span></div>
+<div class="legend"><span><i class="pin home"></i> Home: Horsham</span><span><i class="pin"></i> Regular area (within about 40 minutes), with a local page</span><span><i class="pin recent"></i> Painted here recently</span><span><i class="pin soon"></i> Coming up in the next 2 months</span><span><i class="pin wide"></i> Further afield: Kat travels here too</span></div>
 <p class="recentareas"><b>Recently painted ({PERIOD}):</b> {recent_text()}.</p>
 <p class="recentareas"><b>Coming up in the next 2 months:</b> {'; '.join(f"{p.replace(', ', ' (', 1)}{')' if ', ' in p else ''}" for p, d, *_ in COMING_UP)}.</p>
-<p class="small-note">The shaded zone is Kat's regular area: parties and local events within about 40 minutes of Horsham. Further afield, inside the dashed line, Kat travels for higher-value specialist events: weddings, festivals, corporate days and brand activations. <a href="contact.html">Ask about your event</a>.</p>
+<p class="small-note">The shaded zone is Kat's regular area: parties and local events within about 40 minutes of Horsham. Kat travels further afield too, inside the dashed line: for weddings, festivals, corporate days and brand activations, and for parties and local events as well. <a href="contact.html">Ask about your date</a>.</p>
 </div></section>
 <section class="band band-dark"><div class="wrap">
 <h2>Every area, by county</h2>
 <div class="acols">{lists}</div>
-<h3 class="wide-h">Further afield: weddings, festivals &amp; corporate events</h3>
-<p class="wide-list">{', '.join(n for n, a, b in WIDER)}. <a href="contact.html">Ask about your event →</a></p>
+<h3 class="wide-h">Further afield: Kat travels here too</h3>
+<p class="wide-list">{', '.join(n for n, a, b in WIDER)}. Parties, local events, weddings, festivals and corporate events. <a href="contact.html">Ask about your date →</a></p>
 </div></section>
 <section class="band band-panel k-enquire centred"><div class="wrap"><h2>Is Kat free on your date?</h2>
 <p>Tell Kat your date, town and roughly how many guests. She usually replies the same day.</p>
@@ -201,7 +201,7 @@ Tap a pin to see Kat's local page, or scroll down for the full list. Gold pins a
   if (!window.L) return;   // the drawn map stays if the live map can't load
   var box = document.getElementById('areamap'), drawn = box.innerHTML;
   var pins = {json.dumps(pins, ensure_ascii=False)};
-  var WIDER_PINS = {json.dumps([[n, a, b, n in recent, wider_soon(n)] for n, a, b in WIDER])};
+  var WIDER_PINS = {json.dumps([[n, a, b, n in recent, bool(wider_soon(n))] for n, a, b in WIDER])};
   // the live map is built in a layer underneath and only shown once real map pictures have loaded
   var live = document.createElement('div'); live.id = 'livemap'; box.appendChild(live);
   var map = L.map('livemap', {{scrollWheelZoom:false}}).setView([51.03,-0.33], 9);
@@ -223,7 +223,7 @@ Tap a pin to see Kat's local page, or scroll down for the full list. Gold pins a
   wider.forEach(function(p){{
     var icon = L.divIcon({{className:'', html:'<div class="pin wide'+(p[3]?' wrecent':(p[4]?' wsoon':''))+'"></div>', iconSize:[16,16], iconAnchor:[8,8]}});
     L.marker([p[1],p[2]], {{icon:icon, title:p[0], alt:p[0]}}).addTo(map)
-      .bindPopup('<b>'+p[0]+'</b>Further afield: Kat travels here for weddings, festivals, corporate and brand events.'+(p[3]?'<br>&#9733; Painted here recently'+(p[0]==='London'?': Baker Street':''):'')+(p[4]?'<br>&#10024; Coming up in the next 2 months':'')+'<br><a href="contact.html">Ask about your event &rarr;</a>');
+      .bindPopup('<b>'+p[0]+'</b>Further afield: Kat travels here for parties and local events, weddings, festivals, corporate and brand events.'+(p[3]?'<br>&#9733; Painted here recently'+(p[0]==='London'?': Baker Street':''):'')+(p[4]?'<br>&#10024; Coming up in the next 2 months':'')+'<br><a href="contact.html">Ask about your event &rarr;</a>');
   }});
   var bounds = [];
   pins.forEach(function(p){{
