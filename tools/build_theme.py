@@ -135,12 +135,11 @@ FAIRY_MOBILE_JS = r"""
      hides behind photos and peeks out with a giggle, hovers to sprinkle fairy dust, and flies to wherever you tap.
      Flapping wings, banking and depth make her look 3D. Sound only after someone taps (browser rule), and quietly. */
   if(!window.matchMedia)return;
-  var touch=(navigator.maxTouchPoints||0)>0||('ontouchstart' in window);
-  if(!touch&&matchMedia('(hover:hover) and (pointer:fine)').matches)return;
   if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  var FW=66,FH=72,ang=0;
+  var big=innerWidth>=900,FW=big?84:66,FH=big?92:72,ang=0;   /* same fairy on computers (a little bigger) as on phones; normal mouse pointer */
   var f=document.createElement('div');f.id='fairyfly';f.setAttribute('aria-hidden','true');
   f.innerHTML='<div class="ff-d"><div class="ff-t"><div class="ff-b"><img class="ff-w2" src="../img/fairy-wing.webp" alt=""><img class="ff-w" src="../img/fairy-wing.webp" alt=""><img class="ff-legs" src="../img/fairy-legs.webp" alt=""><img class="ff-body" src="../img/fairy-body.webp" alt=""><img class="ff-arm" src="../img/fairy-arm.webp" alt=""></div></div></div>';
+  if(big){f.style.width=FW+'px';f.style.height=FH+'px';}
   document.body.appendChild(f);
   var d=f.querySelector('.ff-d'),tw=f.querySelector('.ff-t'),sayW=document.createElement('div'),say,lastWand=0;
   sayW.id='ffsay';sayW.setAttribute('aria-hidden','true');sayW.innerHTML='<span></span>';document.body.appendChild(sayW);say=sayW.firstChild;   /* speech bubble sits outside her so a photo never hides it */
@@ -271,9 +270,9 @@ FAIRY_MOBILE_JS = r"""
   addEventListener('scroll',function(){if(hideEl&&Math.abs(scrollY-hideY)>40){hideEl=null;f.style.clipPath='';}},{passive:true});
   document.addEventListener('touchend',unlock,{passive:true});
   document.addEventListener('click',unlock,{passive:true});
-  document.addEventListener('touchstart',function(e){
-    if(typing||!e.touches[0])return;
-    var tx=e.touches[0].clientX-FW/2,ty=e.touches[0].clientY-FH*.6;
+  document.addEventListener('pointerdown',function(e){   /* a tap or a click: she flies to it */
+    if(typing||e.button>0||e.target.closest&&e.target.closest('input,textarea,select'))return;
+    var tx=e.clientX-FW/2,ty=e.clientY-FH*.6;
     clearTimeout(wait);hideEl=null;f.style.clipPath='';busy=true;
     if(f.style.opacity!=='1'){x=edge(tx<W/2);y=ty-60;show();}
     fly(tx,ty,650,function(){var tp=tip();burst(tp[0],tp[1],26);giggle(null,true);setTimeout(function(){
@@ -290,8 +289,8 @@ FAIRY_MOBILE_JS = r"""
 def build():
     print('photo sections moved onto pixie dust on', photos_on_dust(), 'pages')
     with open(f'{OUT}/site.js') as f: js = f.read()
-    if 'fairy-cursor' not in js:
-        with open(f'{OUT}/site.js', 'a') as f: f.write(FAIRY_JS + FAIRY_MOBILE_JS)
+    if 'fairyfly' not in js:
+        with open(f'{OUT}/site.js', 'a') as f: f.write(FAIRY_MOBILE_JS)   # 11 Oct: the flying fairy everywhere; the mouse-following fairy (FAIRY_JS) retired, normal pointer back
     with open(f'{OUT}/site.css') as f: s = f.read()
     if 'Background: Pixie dust' not in s:
         with open(f'{OUT}/site.css', 'a') as f: f.write(CSS + FAIRY_CSS)

@@ -28,48 +28,15 @@ document.addEventListener('focusin', function(e) {
 });
 
 (function(){
-  if(!window.matchMedia||!window.PointerEvent)return;
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  var HX=8,HY=13; /* brush tip inside the image */
-  var f=null;
-  function start(){f=document.createElement('div');f.id='fairy';f.setAttribute('aria-hidden','true');
-    f.innerHTML='<img src="../img/fairy-cursor.webp" alt="">';document.body.appendChild(f);
-    document.documentElement.classList.add('fairy-on');document.dispatchEvent(new Event('fairy-mouse'));}
-  var x=-100,y=-100,lx=0,ly=0,last=0,shown=false;
-  function dust(n,spread){for(var i=0;i<n;i++){var d=document.createElement('span');d.className='fdust';
-    var a=Math.random()*6.28,r=(spread||14)*Math.random();
-    d.style.left=(x-3)+'px';d.style.top=(y-3)+'px';
-    d.style.setProperty('--dx',(Math.cos(a)*r)+'px');d.style.setProperty('--dy',(Math.sin(a)*r+18)+'px');
-    document.body.appendChild(d);setTimeout(function(e){e.remove()},950,d);}}
-  document.addEventListener('pointermove',function(e){
-    if(e.pointerType!=='mouse')return;   /* fingers and pencils: the flying fairy handles those */
-    if(!f)start();
-    x=e.clientX;y=e.clientY;
-    if(!shown){f.style.opacity=1;shown=true;}
-    f.style.transform='translate('+(x-HX)+'px,'+(y-HY)+'px)';
-    var now=performance.now(),dist=Math.abs(x-lx)+Math.abs(y-ly);
-    if(dist>14&&now-last>30){dust(1,10);lx=x;ly=y;last=now;}
-    var hot=e.target.closest&&e.target.closest('a,button,summary,label,[role=button]');
-    f.classList.toggle('hot',!!hot);
-  },{passive:true});
-  document.addEventListener('pointerdown',function(e){if(!f||e.pointerType!=='mouse')return;f.classList.add('down');dust(10,34);});
-  document.addEventListener('pointerup',function(){if(f)f.classList.remove('down');});
-  document.documentElement.addEventListener('mouseleave',function(){if(f){f.style.opacity=0;shown=false;}});
-  /* over a form field, show the normal text cursor instead of the fairy */
-  document.addEventListener('mouseover',function(e){if(!f)return;var t=e.target.closest&&e.target.closest('input,textarea,select');f.style.visibility=t?'hidden':'visible';});
-})();
-
-(function(){
   /* Phones and tablets (no mouse): Kat's fairy has a life of her own. She flies across now and then,
      hides behind photos and peeks out with a giggle, hovers to sprinkle fairy dust, and flies to wherever you tap.
      Flapping wings, banking and depth make her look 3D. Sound only after someone taps (browser rule), and quietly. */
   if(!window.matchMedia)return;
-  var touch=(navigator.maxTouchPoints||0)>0||('ontouchstart' in window);
-  if(!touch&&matchMedia('(hover:hover) and (pointer:fine)').matches)return;
   if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  var FW=66,FH=72,ang=0;
+  var big=innerWidth>=900,FW=big?84:66,FH=big?92:72,ang=0;   /* same fairy on computers (a little bigger) as on phones; normal mouse pointer */
   var f=document.createElement('div');f.id='fairyfly';f.setAttribute('aria-hidden','true');
   f.innerHTML='<div class="ff-d"><div class="ff-t"><div class="ff-b"><img class="ff-w2" src="../img/fairy-wing.webp" alt=""><img class="ff-w" src="../img/fairy-wing.webp" alt=""><img class="ff-legs" src="../img/fairy-legs.webp" alt=""><img class="ff-body" src="../img/fairy-body.webp" alt=""><img class="ff-arm" src="../img/fairy-arm.webp" alt=""></div></div></div>';
+  if(big){f.style.width=FW+'px';f.style.height=FH+'px';}
   document.body.appendChild(f);
   var d=f.querySelector('.ff-d'),tw=f.querySelector('.ff-t'),sayW=document.createElement('div'),say,lastWand=0;
   sayW.id='ffsay';sayW.setAttribute('aria-hidden','true');sayW.innerHTML='<span></span>';document.body.appendChild(sayW);say=sayW.firstChild;   /* speech bubble sits outside her so a photo never hides it */
@@ -200,9 +167,9 @@ document.addEventListener('focusin', function(e) {
   addEventListener('scroll',function(){if(hideEl&&Math.abs(scrollY-hideY)>40){hideEl=null;f.style.clipPath='';}},{passive:true});
   document.addEventListener('touchend',unlock,{passive:true});
   document.addEventListener('click',unlock,{passive:true});
-  document.addEventListener('touchstart',function(e){
-    if(typing||!e.touches[0])return;
-    var tx=e.touches[0].clientX-FW/2,ty=e.touches[0].clientY-FH*.6;
+  document.addEventListener('pointerdown',function(e){   /* a tap or a click: she flies to it */
+    if(typing||e.button>0||e.target.closest&&e.target.closest('input,textarea,select'))return;
+    var tx=e.clientX-FW/2,ty=e.clientY-FH*.6;
     clearTimeout(wait);hideEl=null;f.style.clipPath='';busy=true;
     if(f.style.opacity!=='1'){x=edge(tx<W/2);y=ty-60;show();}
     fly(tx,ty,650,function(){var tp=tip();burst(tp[0],tp[1],26);giggle(null,true);setTimeout(function(){
