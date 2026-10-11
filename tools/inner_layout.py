@@ -177,7 +177,8 @@ INNER_CSS = '''
 .trustrow span{color:var(--muted);font-size:14px}
 
 .lg section.booking-grid,.lg section.about-container,.lg section.about{display:block}
-.lg section.about-container .wrap{display:flex;gap:56px;align-items:flex-start}.lg section.about-container .about-image{position:static}   /* photo scrolls with the page (Phil, 11 Oct) */
+.lg section.about-container .wrap{display:flex;gap:56px;align-items:flex-start}.lg section.about-container .about-image{position:static}
+@media(min-width:861px){.lg section.about-container .about-image{position:sticky;top:30px}}   /* computers: photo glides down beside the text; phones: scrolls normally (Phil, 11 Oct) */
 .band-light li strong,.band-light p strong,.band-light b{color:#1B1712}
 .band-light .testimonial>strong{color:#6B5F57}
 .band-light .testimonial::before{color:#C9962E}
