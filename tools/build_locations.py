@@ -58,10 +58,12 @@ def b_hire(d, tone='light'):
     if not g: return ''
     li = []
     for name, where, fact, url, flags in g['venues']:
+        if 'listed' not in flags: continue   # only venues that have said yes
         tags = ('<span class="tag">Kat’s painted here</span>' if 'painted' in flags else '') + \
                ('<span class="tag partner">Recommends Kat ✓</span>' if 'partner' in flags else '')
         link = f' <a href="{url}" target="_blank" rel="noopener">Venue website →</a>' if url else ''
         li.append(f'<li>{tags}<b>{esc(name)}</b><i>{esc(where)}</i>{esc(fact)}{link}</li>')
+    if not li: return ''
     return band('hire', f'<h2>{esc(g["h"])}</h2><p class="lede-s">{esc(g["lede"])}</p><ul class="hire">{"".join(li)}</ul>'
                 f'<p class="vnote">{esc(venues_hire.NOTE)}</p>', tone)
 

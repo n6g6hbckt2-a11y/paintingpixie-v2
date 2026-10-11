@@ -6,6 +6,8 @@ painting is welcome and to recommend Kat back.
 Each venue: (name, where, one practical fact, link or None, flags)
   flags: 'painted' = Kat has painted here (only when Kat has said so)
          'partner' = the venue recommends Kat / links back (set when they reply; shows a badge)
+         'listed'  = the venue has replied and is happy to be listed. ONLY listed venues appear on the page;
+                     a town with none listed shows no venue section (11 Oct: hidden until venues reply to the outreach emails)
 Only add a link we have seen on the venue's or council's own site. Facts must come from the venue's own pages."""
 
 HIRE = {
