@@ -25,6 +25,11 @@ CHANGES = {
          "Tiger, leopard and butterfly face painting for parties, festivals and events in Sussex, Surrey & Brighton. See the designs and check your date. 5.0 rated."),
         ('<h1>Animal Print Face Painting in Sussex & Surrey ✨', '<h1>Animal Print Face Painting in Sussex, Surrey & Brighton ✨'),
     ],
+    # 11 Oct: the Google reviews widget has dark text, so it sits on a light band instead of the dark pixie-dust background
+    'index.html': [
+        ('<div class="elfsight-app-407943df-9174-4398-bc46-40f1499ff351" data-elfsight-app-lazy></div>',
+         '<div class="k-greviews" style="background:#FBF5EF;border-radius:18px;padding:26px 18px;max-width:1140px;margin:44px auto;width:calc(100% - 32px);box-sizing:border-box;color:#1B1712"><div class="elfsight-app-407943df-9174-4398-bc46-40f1499ff351" data-elfsight-app-lazy></div></div>'),
+    ],
     # 10 Oct: "adult face painters/painting brighton" 13.7-16.1, the adult page's title did not say Brighton
     'adult-face-painting.html': [
         ('Professional Hen Party & Adult Face Painting in Sussex & Surrey', 'Adult & Hen Party Face Painting | Brighton, Sussex & Surrey'),
