@@ -49,16 +49,22 @@ html.fairy-on input,html.fairy-on textarea,html.fairy-on select,html.fairy-on [c
 #fairy.hot img{transform:scale(1.18) rotate(-6deg)}
 #fairy.down img{transform:scale(.92) rotate(4deg)}
 /* flying fairy on phones and tablets: flapping wings, depth, banking, hiding behind photos, giggles and fairy dust */
-#fairyfly{position:fixed;left:0;top:0;width:66px;height:72px;z-index:2147483647;pointer-events:none;opacity:0;transition:opacity .35s;will-change:transform}
-#fairyfly .ff-d{position:absolute;inset:0;will-change:transform}
-#fairyfly .ff-b{position:absolute;inset:0;perspective:160px;filter:drop-shadow(0 7px 6px rgba(0,0,0,.45)) drop-shadow(0 0 9px rgba(255,214,120,.55))}
-#fairyfly img{position:absolute;inset:0;width:100%;height:100%;display:block}
+#fairyfly{position:fixed;left:0;top:0;width:66px;height:72px;perspective:260px;z-index:2147483647;pointer-events:none;opacity:0;transition:opacity .35s;will-change:transform}
+#fairyfly .ff-d{position:absolute;inset:0;will-change:transform;transform-style:preserve-3d}
+#fairyfly .ff-b{position:absolute;inset:0;transform-style:preserve-3d}
+#fairyfly img{position:absolute;inset:0;width:100%;height:100%;display:block;filter:brightness(var(--sh,1)) drop-shadow(0 6px 5px rgba(0,0,0,.35))}
+/* layers sit at different depths, so when she turns round the wings, body and wand arm move past each other (3D) */
+#fairyfly .ff-body{translate:0 0 0;filter:brightness(var(--sh,1)) drop-shadow(0 6px 5px rgba(0,0,0,.4)) drop-shadow(0 0 8px rgba(255,214,120,.5))}
+#fairyfly .ff-w{translate:0 0 -6px}
+#fairyfly .ff-w2{translate:0 0 -12px}
+#fairyfly .ff-legs{translate:0 0 -2px}
+#fairyfly .ff-arm{translate:0 0 8px}
 #fairyfly .ff-w{transform-origin:60% 38.7%;animation:ffflap .15s ease-in-out infinite alternate}
-#fairyfly .ff-w2{transform-origin:60% 38.7%;filter:brightness(.5) saturate(1.3);opacity:.85;animation:ffflap2 .15s ease-in-out infinite alternate}
+#fairyfly .ff-w2{transform-origin:60% 38.7%;filter:brightness(calc(var(--sh,1)*.5)) saturate(1.3);opacity:.85;animation:ffflap2 .15s ease-in-out infinite alternate}
 #fairyfly.rest .ff-w,#fairyfly.rest .ff-w2{animation-duration:.45s}
 @keyframes ffflap{from{transform:rotateY(0)}to{transform:rotateY(68deg)}}
 @keyframes ffflap2{from{transform:translate(-3px,-3px) rotateY(-25deg)}to{transform:translate(-3px,-3px) rotateY(-80deg)}}
-#fairyfly .ff-t{position:absolute;inset:0;perspective:200px}
+#fairyfly .ff-t{position:absolute;inset:0;transform-style:preserve-3d}
 #fairyfly .ff-t.twirl{animation:fftwirl .7s ease-in-out}
 #fairyfly .ff-t.loop{animation:ffloop .9s ease-in-out}
 @keyframes fftwirl{to{transform:rotateY(360deg)}}
@@ -132,7 +138,7 @@ FAIRY_MOBILE_JS = r"""
   var touch=(navigator.maxTouchPoints||0)>0||('ontouchstart' in window);
   if(!touch&&matchMedia('(hover:hover) and (pointer:fine)').matches)return;
   if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  var FW=66,FH=72;
+  var FW=66,FH=72,ang=0;
   var f=document.createElement('div');f.id='fairyfly';f.setAttribute('aria-hidden','true');
   f.innerHTML='<div class="ff-d"><div class="ff-t"><div class="ff-b"><img class="ff-w2" src="../img/fairy-wing.webp" alt=""><img class="ff-w" src="../img/fairy-wing.webp" alt=""><img class="ff-legs" src="../img/fairy-legs.webp" alt=""><img class="ff-body" src="../img/fairy-body.webp" alt=""><img class="ff-arm" src="../img/fairy-arm.webp" alt=""></div></div></div>';
   document.body.appendChild(f);
@@ -175,7 +181,7 @@ FAIRY_MOBILE_JS = r"""
   function fly(x1,y1,ms,after,opts){
     opts=opts||{};var x0=x,y0=y,lift=(opts.arc==null?(Math.random()*.5+.2)*H*.35*(Math.random()<.5?-1:1):opts.arc);
     path={x:[x0,x0+(x1-x0)*.33,x0+(x1-x0)*.66,x1],y:[y0,y0+lift,y1-lift,y1],after:after,depth:opts.depth==null?(Math.random()-.5)*.6:opts.depth,dust:opts.dust!==false};
-    t0=performance.now();dur=ms;if(Math.abs(x1-x0)>4)face=x1>x0?-1:1;
+    t0=performance.now();dur=ms;if(Math.abs(x1-x0)>4){var nf=x1>x0?-1:1;if(nf!==face&&f.style.opacity==='1')burst(x+FW/2,y+FH/2,8);face=nf;}   /* a swirl of dust as she turns */
     if(!raf)raf=requestAnimationFrame(step);}
   function hover(ms,after){var cx=x,cy=y;path={hover:1,cx:cx,cy:cy,after:after};t0=performance.now();dur=ms;if(!raf)raf=requestAnimationFrame(step);}
   function clip(){   /* hide whatever part of her is behind the photo */
@@ -191,8 +197,10 @@ FAIRY_MOBILE_JS = r"""
   function render(now){
     f.style.transform='translate('+x.toFixed(1)+'px,'+y.toFixed(1)+'px)';
     sayW.style.transform='translate('+Math.max(56,Math.min(W-56,x+FW/2)).toFixed(1)+'px,'+(y-2).toFixed(1)+'px)';
-    d.style.transform='scale('+(z*face).toFixed(3)+','+z.toFixed(3)+') rotate('+(bank*face).toFixed(1)+'deg)';
-    d.style.filter=z<.85?'blur(.6px) brightness(.9)':'';clip();}
+    var tgt=face>0?0:180;ang+=(tgt-ang)*.13;if(Math.abs(tgt-ang)<.5)ang=tgt;   /* turns round in 3D rather than flipping flat */
+    var rad=ang*Math.PI/180,side=Math.abs(Math.sin(rad));
+    d.style.transform='scale('+z.toFixed(3)+') rotateY('+ang.toFixed(1)+'deg) rotateX('+(side*10).toFixed(1)+'deg) rotate('+(bank*Math.cos(rad)).toFixed(1)+'deg)';
+    f.style.setProperty('--sh',(1-.35*side-(z<.85?.12:0)).toFixed(2));clip();}
   function step(now){
     raf=0;if(!path||!alive)return;
     var t=Math.min(1,(now-t0)/dur),px=x,py=y;
@@ -274,7 +282,7 @@ FAIRY_MOBILE_JS = r"""
   document.addEventListener('focusin',function(e){if(e.target.closest&&e.target.closest('input,textarea,select')){typing=true;path=null;hide();}});
   document.addEventListener('focusout',function(){typing=false;busy=false;later();});
   document.addEventListener('fairy-mouse',function(){alive=false;clearTimeout(wait);path=null;f.remove();});
-  if(location.hash==='#fairytest')window.__ff={peekaboo:peekaboo,crossing:crossing,sprinkle:sprinkle,pos:function(){return [x,y]}};   /* for testing only */
+  if(location.hash==='#fairytest')window.__ff={peekaboo:peekaboo,crossing:crossing,sprinkle:sprinkle,pos:function(){return [x,y]},fly:fly,go:function(a,b){x=a;y=b;show();}};   /* for testing only */
   setTimeout(next,2500);
 })();
 """

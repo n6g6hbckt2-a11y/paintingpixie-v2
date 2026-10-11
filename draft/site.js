@@ -67,7 +67,7 @@ document.addEventListener('focusin', function(e) {
   var touch=(navigator.maxTouchPoints||0)>0||('ontouchstart' in window);
   if(!touch&&matchMedia('(hover:hover) and (pointer:fine)').matches)return;
   if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  var FW=66,FH=72;
+  var FW=66,FH=72,ang=0;
   var f=document.createElement('div');f.id='fairyfly';f.setAttribute('aria-hidden','true');
   f.innerHTML='<div class="ff-d"><div class="ff-t"><div class="ff-b"><img class="ff-w2" src="../img/fairy-wing.webp" alt=""><img class="ff-w" src="../img/fairy-wing.webp" alt=""><img class="ff-legs" src="../img/fairy-legs.webp" alt=""><img class="ff-body" src="../img/fairy-body.webp" alt=""><img class="ff-arm" src="../img/fairy-arm.webp" alt=""></div></div></div>';
   document.body.appendChild(f);
@@ -110,7 +110,7 @@ document.addEventListener('focusin', function(e) {
   function fly(x1,y1,ms,after,opts){
     opts=opts||{};var x0=x,y0=y,lift=(opts.arc==null?(Math.random()*.5+.2)*H*.35*(Math.random()<.5?-1:1):opts.arc);
     path={x:[x0,x0+(x1-x0)*.33,x0+(x1-x0)*.66,x1],y:[y0,y0+lift,y1-lift,y1],after:after,depth:opts.depth==null?(Math.random()-.5)*.6:opts.depth,dust:opts.dust!==false};
-    t0=performance.now();dur=ms;if(Math.abs(x1-x0)>4)face=x1>x0?-1:1;
+    t0=performance.now();dur=ms;if(Math.abs(x1-x0)>4){var nf=x1>x0?-1:1;if(nf!==face&&f.style.opacity==='1')burst(x+FW/2,y+FH/2,8);face=nf;}   /* a swirl of dust as she turns */
     if(!raf)raf=requestAnimationFrame(step);}
   function hover(ms,after){var cx=x,cy=y;path={hover:1,cx:cx,cy:cy,after:after};t0=performance.now();dur=ms;if(!raf)raf=requestAnimationFrame(step);}
   function clip(){   /* hide whatever part of her is behind the photo */
@@ -126,8 +126,10 @@ document.addEventListener('focusin', function(e) {
   function render(now){
     f.style.transform='translate('+x.toFixed(1)+'px,'+y.toFixed(1)+'px)';
     sayW.style.transform='translate('+Math.max(56,Math.min(W-56,x+FW/2)).toFixed(1)+'px,'+(y-2).toFixed(1)+'px)';
-    d.style.transform='scale('+(z*face).toFixed(3)+','+z.toFixed(3)+') rotate('+(bank*face).toFixed(1)+'deg)';
-    d.style.filter=z<.85?'blur(.6px) brightness(.9)':'';clip();}
+    var tgt=face>0?0:180;ang+=(tgt-ang)*.13;if(Math.abs(tgt-ang)<.5)ang=tgt;   /* turns round in 3D rather than flipping flat */
+    var rad=ang*Math.PI/180,side=Math.abs(Math.sin(rad));
+    d.style.transform='scale('+z.toFixed(3)+') rotateY('+ang.toFixed(1)+'deg) rotateX('+(side*10).toFixed(1)+'deg) rotate('+(bank*Math.cos(rad)).toFixed(1)+'deg)';
+    f.style.setProperty('--sh',(1-.35*side-(z<.85?.12:0)).toFixed(2));clip();}
   function step(now){
     raf=0;if(!path||!alive)return;
     var t=Math.min(1,(now-t0)/dur),px=x,py=y;
@@ -209,6 +211,6 @@ document.addEventListener('focusin', function(e) {
   document.addEventListener('focusin',function(e){if(e.target.closest&&e.target.closest('input,textarea,select')){typing=true;path=null;hide();}});
   document.addEventListener('focusout',function(){typing=false;busy=false;later();});
   document.addEventListener('fairy-mouse',function(){alive=false;clearTimeout(wait);path=null;f.remove();});
-  if(location.hash==='#fairytest')window.__ff={peekaboo:peekaboo,crossing:crossing,sprinkle:sprinkle,pos:function(){return [x,y]}};   /* for testing only */
+  if(location.hash==='#fairytest')window.__ff={peekaboo:peekaboo,crossing:crossing,sprinkle:sprinkle,pos:function(){return [x,y]},fly:fly,go:function(a,b){x=a;y=b;show();}};   /* for testing only */
   setTimeout(next,2500);
 })();

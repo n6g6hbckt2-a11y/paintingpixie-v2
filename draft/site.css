@@ -675,16 +675,22 @@ html.fairy-on input,html.fairy-on textarea,html.fairy-on select,html.fairy-on [c
 #fairy.hot img{transform:scale(1.18) rotate(-6deg)}
 #fairy.down img{transform:scale(.92) rotate(4deg)}
 /* flying fairy on phones and tablets: flapping wings, depth, banking, hiding behind photos, giggles and fairy dust */
-#fairyfly{position:fixed;left:0;top:0;width:66px;height:72px;z-index:2147483647;pointer-events:none;opacity:0;transition:opacity .35s;will-change:transform}
-#fairyfly .ff-d{position:absolute;inset:0;will-change:transform}
-#fairyfly .ff-b{position:absolute;inset:0;perspective:160px;filter:drop-shadow(0 7px 6px rgba(0,0,0,.45)) drop-shadow(0 0 9px rgba(255,214,120,.55))}
-#fairyfly img{position:absolute;inset:0;width:100%;height:100%;display:block}
+#fairyfly{position:fixed;left:0;top:0;width:66px;height:72px;perspective:260px;z-index:2147483647;pointer-events:none;opacity:0;transition:opacity .35s;will-change:transform}
+#fairyfly .ff-d{position:absolute;inset:0;will-change:transform;transform-style:preserve-3d}
+#fairyfly .ff-b{position:absolute;inset:0;transform-style:preserve-3d}
+#fairyfly img{position:absolute;inset:0;width:100%;height:100%;display:block;filter:brightness(var(--sh,1)) drop-shadow(0 6px 5px rgba(0,0,0,.35))}
+/* layers sit at different depths, so when she turns round the wings, body and wand arm move past each other (3D) */
+#fairyfly .ff-body{translate:0 0 0;filter:brightness(var(--sh,1)) drop-shadow(0 6px 5px rgba(0,0,0,.4)) drop-shadow(0 0 8px rgba(255,214,120,.5))}
+#fairyfly .ff-w{translate:0 0 -6px}
+#fairyfly .ff-w2{translate:0 0 -12px}
+#fairyfly .ff-legs{translate:0 0 -2px}
+#fairyfly .ff-arm{translate:0 0 8px}
 #fairyfly .ff-w{transform-origin:60% 38.7%;animation:ffflap .15s ease-in-out infinite alternate}
-#fairyfly .ff-w2{transform-origin:60% 38.7%;filter:brightness(.5) saturate(1.3);opacity:.85;animation:ffflap2 .15s ease-in-out infinite alternate}
+#fairyfly .ff-w2{transform-origin:60% 38.7%;filter:brightness(calc(var(--sh,1)*.5)) saturate(1.3);opacity:.85;animation:ffflap2 .15s ease-in-out infinite alternate}
 #fairyfly.rest .ff-w,#fairyfly.rest .ff-w2{animation-duration:.45s}
 @keyframes ffflap{from{transform:rotateY(0)}to{transform:rotateY(68deg)}}
 @keyframes ffflap2{from{transform:translate(-3px,-3px) rotateY(-25deg)}to{transform:translate(-3px,-3px) rotateY(-80deg)}}
-#fairyfly .ff-t{position:absolute;inset:0;perspective:200px}
+#fairyfly .ff-t{position:absolute;inset:0;transform-style:preserve-3d}
 #fairyfly .ff-t.twirl{animation:fftwirl .7s ease-in-out}
 #fairyfly .ff-t.loop{animation:ffloop .9s ease-in-out}
 @keyframes fftwirl{to{transform:rotateY(360deg)}}
