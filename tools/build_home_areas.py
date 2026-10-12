@@ -28,7 +28,7 @@ def build():
             '<h2 style="text-align:center;">Areas We Cover</h2>'
             '<p>From home in Horsham, Kat paints across Sussex and Surrey, and travels further for weddings, festivals and corporate events. '
             'Tap a town on the map to see its page.</p>'
-            f'<div class="hmap">{A.static_map(A.recent_places(), box=(51.40, 50.72, -1.12, 0.44), roads=True)}</div>'
+            f'<div class="hmap">{A.static_map(A.recent_places(), box=(51.40, 50.72, -1.12, 0.50), roads=True)}</div>'
             '<p class="hkey"><span><i style="background:#FF4FA3"></i>Regular area</span><span><i style="background:#E2BE7A"></i>Painted here recently</span>'
             '<span><i style="background:#A77BFF"></i>Coming up</span><span><i style="background:transparent;border:2px solid #9C83D1"></i>Further afield</span></p>'
             '<div class="hbtns"><a href="areas.html" class="btn btn-gold">See the full map &amp; every area →</a>'
