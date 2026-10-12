@@ -18,6 +18,7 @@ CSS = '''<style>
 </style>'''
 
 def build():
+    if os.environ.get('PP_NO_HOMEMAP'): return print('home areas: held back (PP_NO_HOMEMAP)')
     p = f'{OUT}/index.html'
     s = open(p).read()
     if 'k-homeareas' in s: return print('home areas: already done')

@@ -97,16 +97,16 @@ def static_map(recent, towns=None, wider=None, box=(51.42, 50.70, -0.98, 0.30)):
     pts = [xy(a, b) for a, b in coast]
     d = f'M{pts[0][0]:.0f},{pts[0][1]:.0f} ' + ' '.join(f'L{x:.0f},{y:.0f}' for x, y in pts[1:]) + f' L{pts[-1][0]:.0f},{H + 50} L{pts[0][0]:.0f},{H + 50}Z'
     o = [f'<svg viewBox="0 0 {W} {H}" style="aspect-ratio:{W}/{H}" class="smap" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Map of the towns The Painting Pixie covers">',
-         f'<rect x="-200" y="-200" width="{W + 400}" height="{H + 400}" fill="#231F30"/>',
-         f'<path d="{d}" fill="#173149"/>',
-         f'<text x="{xy(50.745, -0.62)[0]:.0f}" y="{xy(50.745, -0.62)[1]:.0f}" fill="#5D87AA" font-size="16" font-style="italic" {font}>English Channel</text>',
+         f'<rect x="-200" y="-200" width="{W + 400}" height="{H + 400}" fill="#F6F0E6"/>',
+         f'<path d="{d}" fill="#C9E0EE"/>',
+         f'<text x="{xy(50.745, -0.62)[0]:.0f}" y="{xy(50.745, -0.62)[1]:.0f}" fill="#4C7899" font-size="16" font-style="italic" {font}>English Channel</text>',
          f'<circle cx="{hx:.0f}" cy="{hy:.0f}" r="{80 * km:.0f}" fill="none" stroke="#9C83D1" stroke-width="2" stroke-dasharray="7 9"/>',
          f'<circle cx="{hx:.0f}" cy="{hy:.0f}" r="{36 * km:.0f}" fill="#FF4FA3" fill-opacity=".12" stroke="#FF4FA3" stroke-width="2"/>']
     for n, a, b in wider:
         if not (lat1 < a < lat0 and lon0 < b < lon1): continue
         x, y = xy(a, b)
-        o.append(f'<a href="contact.html"><circle cx="{x:.0f}" cy="{y:.0f}" r="6" fill="{"#A77BFF" if wider_soon(n) and n not in recent else "#E2BE7A" if n in recent else "#231F30"}" stroke="#9C83D1" stroke-width="2.4"><title>{n}: Kat travels here for parties, local events, weddings, festivals and corporate events</title></circle>'
-                 f'<text x="{x + 10:.0f}" y="{y + 5:.0f}" fill="#B7A9D6" font-size="14" {font}>{n}</text></a>')
+        o.append(f'<a href="contact.html"><circle cx="{x:.0f}" cy="{y:.0f}" r="6" fill="{"#A77BFF" if wider_soon(n) and n not in recent else "#E2BE7A" if n in recent else "#FFFFFF"}" stroke="#8A6FC4" stroke-width="2.4"><title>{n}: Kat travels here for parties, local events, weddings, festivals and corporate events</title></circle>'
+                 f'<text x="{x + 10:.0f}" y="{y + 5:.0f}" fill="#5E5178" font-size="14" {font}>{n}</text></a>')
     left = {'Billingshurst', 'Cuckfield', 'Midhurst', 'Guildford', 'Dorking', 'Henfield', 'Storrington', 'Godalming', 'Leatherhead', 'Kingsfold', 'Upper Beeding'}
     dy = {'Steyning': 16, 'Upper Beeding': -6}
     for n, a, b, c, u, g in towns:
@@ -115,7 +115,7 @@ def static_map(recent, towns=None, wider=None, box=(51.42, 50.70, -0.98, 0.30)):
         r = 11 if n == 'Horsham' else 8
         tx, anchor = (x - 13, 'end') if n in left else (x + 13, 'start')
         o.append(f'<a href="{u}"><circle cx="{x:.0f}" cy="{y:.0f}" r="{r}" fill="{col}" stroke="#fff" stroke-width="2.4"><title>Face painter in {n}</title></circle>'
-                 f'<text x="{tx:.0f}" y="{y + 5 + dy.get(n, 0):.0f}" text-anchor="{anchor}" fill="#F5F1EA" font-size="15" font-weight="700" {font} paint-order="stroke" stroke="#231F30" stroke-width="4">{n}</text></a>')
+                 f'<text x="{tx:.0f}" y="{y + 5 + dy.get(n, 0):.0f}" text-anchor="{anchor}" fill="#2A2235" font-size="15" font-weight="700" {font} paint-order="stroke" stroke="#F6F0E6" stroke-width="4">{n}</text></a>')
     o.append('</svg>')
     return ''.join(o)
 
@@ -123,7 +123,7 @@ MAP_CSS = '''<style>
 .smap{display:block;width:100%;height:100%}
 @media(max-width:800px){.areamap:not(.is-live){height:auto;aspect-ratio:1000/640}}
 .smap a:hover circle{stroke:#E2BE7A;stroke-width:3}
-.areamap:has(.smap){background:#231F30}
+.areamap:has(.smap){background:#F6F0E6}
 #livemap{position:absolute;inset:0;opacity:0;pointer-events:none;border-radius:10px}
 .areamap.is-live #livemap{opacity:1;pointer-events:auto}
 .areamap{position:relative;overflow:hidden;height:560px;border-radius:16px;margin-top:24px;border:6px solid #fff;box-shadow:0 30px 60px -30px rgba(60,30,40,.45);background:#1B1A22;z-index:0}
