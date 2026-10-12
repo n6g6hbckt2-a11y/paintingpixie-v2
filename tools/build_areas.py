@@ -78,7 +78,28 @@ def wider_soon(n):
         return '; '.join(f'{pl.split(",")[0]}, {d}' for pl, d, *_ in COMING_UP if 'London' in pl)
     return next((d for pl, d, *_ in COMING_UP if pl.split(',')[0].strip() == n), '')
 
-def static_map(recent, towns=None, wider=None, box=(51.42, 50.70, -0.98, 0.30)):
+# major roads, drawn schematically through junction/town waypoints (lat, lon): ('M'|'A', number, points)
+ROADS = [
+ ('M', 'M25', [(51.385, -0.55), (51.31, -0.45), (51.30, -0.33), (51.27, -0.20), (51.27, -0.14), (51.25, -0.06), (51.26, 0.05), (51.29, 0.17), (51.33, 0.24)]),
+ ('M', 'M23', [(51.27, -0.14), (51.20, -0.15), (51.15, -0.17), (51.12, -0.16), (51.08, -0.20)]),
+ ('M', 'M27', [(50.86, -1.00), (50.87, -1.12)]),
+ ('A', 'A23', [(51.08, -0.20), (51.05, -0.20), (50.99, -0.20), (50.93, -0.17), (50.90, -0.16), (50.86, -0.15), (50.83, -0.14)]),
+ ('A', 'A24', [(51.30, -0.33), (51.23, -0.33), (51.15, -0.32), (51.07, -0.33), (51.02, -0.35), (50.93, -0.39), (50.87, -0.41), (50.82, -0.37)]),
+ ('A', 'A27', [(50.86, -1.00), (50.84, -0.88), (50.83, -0.78), (50.85, -0.55), (50.84, -0.40), (50.84, -0.27), (50.86, -0.13), (50.86, -0.08), (50.87, 0.00), (50.83, 0.24)]),
+ ('A', 'A3', [(51.31, -0.47), (51.24, -0.58), (51.17, -0.65), (51.11, -0.73), (51.00, -0.94), (50.92, -1.02), (50.85, -1.07)]),
+ ('A', 'A22', [(51.25, -0.06), (51.12, -0.01), (51.10, 0.03), (50.97, 0.10), (50.86, 0.26), (50.78, 0.28)]),
+ ('A', 'A264', [(51.07, -0.33), (51.11, -0.19), (51.12, -0.01)]),
+ ('A', 'A272', [(51.00, -0.94), (50.99, -0.74), (50.99, -0.61), (51.02, -0.45), (50.99, -0.27), (50.99, -0.20), (51.00, -0.10), (50.97, 0.01), (50.97, 0.10)]),
+ ('A', 'A29', [(51.15, -0.32), (51.15, -0.36), (51.02, -0.45), (50.96, -0.51), (50.84, -0.62), (50.79, -0.67)]),
+]
+SHIELD = {'M25': (51.285, 0.09), 'M23': (51.21, -0.15), 'M27': (50.86, -1.05), 'A23': (50.95, -0.185), 'A24': (51.19, -0.325), 'A27': (50.845, -0.415),
+          'A3': (51.06, -0.835), 'A22': (51.04, 0.065), 'A264': (51.092, -0.26), 'A272': (50.995, -0.36), 'A29': (50.89, -0.575)}   # shield spots clear of pins and labels
+# other towns shown for orientation only (no pin link)
+LANDMARKS = [("Havant", 50.856, -0.980), ("Petersfield", 51.003, -0.937), ("Haslemere", 51.090, -0.712),
+             ("Littlehampton", 50.811, -0.540), ("Newhaven", 50.795, 0.055), ("Seaford", 50.772, 0.102),
+             ("Crowborough", 51.060, 0.163), ("Hailsham", 50.863, 0.258), ("Aldershot", 51.248, -0.763), ("Gatwick ✈", 51.153, -0.182)]
+
+def static_map(recent, towns=None, wider=None, box=(51.42, 50.70, -0.98, 0.30), roads=False):
     """Drawn map shown straight away (and kept if the live map can't load): pins at real positions, linked to town pages."""
     import math
     towns = TOWNS if towns is None else towns
@@ -102,6 +123,21 @@ def static_map(recent, towns=None, wider=None, box=(51.42, 50.70, -0.98, 0.30)):
          f'<text x="{xy(50.745, -0.62)[0]:.0f}" y="{xy(50.745, -0.62)[1]:.0f}" fill="#4C7899" font-size="16" font-style="italic" {font}>English Channel</text>',
          f'<circle cx="{hx:.0f}" cy="{hy:.0f}" r="{80 * km:.0f}" fill="none" stroke="#9C83D1" stroke-width="2" stroke-dasharray="7 9"/>',
          f'<circle cx="{hx:.0f}" cy="{hy:.0f}" r="{36 * km:.0f}" fill="#FF4FA3" fill-opacity=".12" stroke="#FF4FA3" stroke-width="2"/>']
+    if roads:
+        for kind, num, ptsr in ROADS:
+            pp = [xy(la, lo) for la, lo in ptsr]
+            dd = 'M' + ' L'.join(f'{x:.0f},{y:.0f}' for x, y in pp)
+            o.append(f'<path d="{dd}" fill="none" stroke="{"#5B86C9" if kind == "M" else "#7FB38D"}" stroke-width="{4 if kind == "M" else 2.6}" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/>')
+        for kind, num, ptsr in ROADS:   # road number shields, at a waypoint near the middle
+            la, lo = SHIELD.get(num) or ptsr[len(ptsr) // 2]
+            x, y = xy(la, lo); w = 9 * len(num) + 8
+            if not (0 < x < W and 0 < y < H): continue
+            o.append(f'<g><rect x="{x - w / 2:.0f}" y="{y - 9:.0f}" width="{w}" height="18" rx="3" fill="{"#2F5DA8" if kind == "M" else "#2F7A4A"}"/>'
+                     f'<text x="{x:.0f}" y="{y + 4:.0f}" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="800" {font}>{num}</text></g>')
+        for n, a, b in LANDMARKS:
+            if not (lat1 < a < lat0 and lon0 < b < lon1): continue
+            x, y = xy(a, b)
+            o.append(f'<circle cx="{x:.0f}" cy="{y:.0f}" r="3" fill="#8C8496"/><text x="{x + 7:.0f}" y="{y + 4:.0f}" fill="#7A7286" font-size="12.5" font-style="italic" {font}>{n}</text>')
     for n, a, b in wider:
         if not (lat1 < a < lat0 and lon0 < b < lon1): continue
         x, y = xy(a, b)
