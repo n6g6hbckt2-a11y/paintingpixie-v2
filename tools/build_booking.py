@@ -10,7 +10,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import build_extra as X, inner_layout
 
 CAL = {   # Cal.com booking links, filled in once Kat's account is set up
-    '2h': os.environ.get('PP_CAL_2H', ''),
+    '2h': os.environ.get('PP_CAL_2H', 'https://cal.com/thepaintingpixie/2hour'),
     '3h': os.environ.get('PP_CAL_3H', 'https://cal.com/thepaintingpixie/3hours'),
 }
 PACKAGES = [
