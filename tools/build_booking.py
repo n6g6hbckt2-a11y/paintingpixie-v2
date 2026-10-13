@@ -11,7 +11,7 @@ import build_extra as X, inner_layout
 
 CAL = {   # Cal.com booking links, filled in once Kat's account is set up
     '2h': os.environ.get('PP_CAL_2H', ''),
-    '3h': os.environ.get('PP_CAL_3H', ''),
+    '3h': os.environ.get('PP_CAL_3H', 'https://cal.com/thepaintingpixie/3hours'),
 }
 PACKAGES = [
     ('2h', 'Classic Party', '2-hour', 130, ['2 hours of face painting', 'High-quality, skin-safe paints', 'Fast, fun party designs']),
