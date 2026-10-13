@@ -16,7 +16,7 @@ HIRE = {
         lede='Need somewhere to hold it? These are places Crawley families book for birthdays.',
         venues=[
             ('Neighbourhood community centres', 'Across Crawley', 'Every neighbourhood has one, run by the council and booked online.',
-             'https://crawley.gov.uk/culture/sport-and-leisure/community-centres/community-centre-information', ''),
+             'https://crawley.gov.uk/culture/sport-and-leisure/community-centres/community-centre-information', 'listed'),   # 13 Oct: council confirmed face painting is allowed
             ('Friary Hall', 'Town centre', 'Church hall hire right in the middle of town.',
              'https://www.crawleycatholic.church/church-and-hall-hire-1', ''),
             ("Clip 'n Climb Crawley", 'Climbing centre', 'Climbing parties, with exclusive hire of the whole centre for bigger groups.',
