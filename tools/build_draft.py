@@ -184,7 +184,7 @@ HERO = {
  'face-painter-worthing.html': ('LIVE:worthing-beach.jpg', '50% 50%', 'Areas · West Sussex'),
  'face-painter-burgess-hill.html': ('LIVE:burgess-hill.png', '50% 50%', 'Areas · West Sussex'),
  'face-painter-horsham.html': ('v2-hero.webp', '60% 35%', 'Areas · West Sussex'),
- 'face-painter-crawley.html': ('n-tiger-boy-party.webp', '50% 25%', 'Areas · West Sussex'),
+ 'face-painter-crawley.html': ('n-tiger-boy-face.webp', '50% 40%', 'Areas · West Sussex'),
  'face-painter-haywards-heath.html': ('n-unicorn-girl-party-hall.webp', '50% 25%', 'Areas · West Sussex'),
  'face-painter-east-grinstead.html': ('v2-leopard-girl.webp', '50% 35%', 'Areas · West Sussex'),
  'face-painter-west-sussex-villages.html': ('v2-fairy.webp', '50% 30%', 'Areas · West Sussex'),

@@ -43,7 +43,7 @@ PAGES = {
 ),
 
 "face-painter-crawley.html": dict(
- tpl="guide", acc="#2FD4C4", hero=("../img/n-tiger-boy-party.webp", "50% 22%"),
+ tpl="guide", acc="#2FD4C4", hero=("../img/n-tiger-boy-face.webp", "50% 40%"),
  kicker="A familiar face", eyebrow="Crawley, West Sussex",
  intro=[
   "Crawley isn't just somewhere I cover. It's where I am four or five days every week: I teach GCSE and A level here, so I've spent years getting to know Crawley families, and there's a good chance I already know someone at your party.",
