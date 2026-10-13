@@ -144,7 +144,7 @@ def b_hoods(d, town, tone='light'):
 def b_priceline(d, tone='jewel'):
     """Town pages: one short price line with a link, instead of the full price cards repeated on every page."""
     line = d.get('price_line') or ('Hen dos and birthdays from £150; weddings, festivals and corporate events by quote.' if d.get('events_only')
-                                   else 'Parties from £130 for 2 hours, or £160 for 3 hours with glitter and gems. Hen dos from £150; bigger events by quote.')
+                                   else 'Parties from £130 for 2 hours, or £160 for 3 hours with glitter and gems. <a href="adult-face-painting.html">Hen do and adult face painting</a> from £150; bigger events by quote.')
     return band('prices', f'<p class="pline"><b>{H(d, "prices", "Prices")}</b> {line} <a href="prices.html">See every price →</a></p>', tone, 'centred')
 
 def b_prices(tone='jewel', events=False):
