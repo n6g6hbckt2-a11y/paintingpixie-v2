@@ -29,9 +29,9 @@ HIRE = {
         lede='Mid Sussex is full of good halls. A few within easy reach of town:',
         venues=[
             ("Queen's Hall, Cuckfield", 'Cuckfield', 'A council hall with a children’s party rate.',
-             'https://cuckfield.gov.uk/hall-hire/queens-hall', ''),
+             'https://cuckfield.gov.uk/hall-hire/queens-hall', 'listed partner'),   # 13 Oct: Jodie added Kat to the suppliers list
             ('Cuckfield Village Hall', 'Cuckfield', 'Has a secure garden, handy for outdoor games in summer.',
-             'https://www.cuckfield.gov.uk/hall-hire/cuckfield-village-hall', ''),
+             'https://www.cuckfield.gov.uk/hall-hire/cuckfield-village-hall', 'listed partner'),   # 13 Oct: as above
             ('King Edward Hall', 'Lindfield', 'The village hall in the middle of Lindfield.', None, ''),
             ('Scaynes Hill Millennium Village Centre', 'Scaynes Hill', 'A village centre a few minutes east of town.', None, ''),
             ('Haywards Heath Town Hall', 'Town centre', 'Rooms for hire in the middle of town.',
@@ -42,9 +42,9 @@ HIRE = {
         lede='The Town Council runs several halls, and there are good options in the villages too.',
         venues=[
             ('Cyprus Hall', 'Town centre', 'Room for 150, so whole-class parties fit easily.',
-             'https://www.burgesshill.gov.uk/leisure-tourism/leisure-facilities/halls-for-hire/', ''),
-            ("St Andrew's Community Centre", 'Burgess Hill', 'Two halls, the Rider Hall and the Youth Centre Hall, so you can pick the size.',
-             'https://www.burgesshill.gov.uk/leisure-tourism/leisure-facilities/halls-for-hire/', ''),
+             'https://www.burgesshill.gov.uk/leisure-tourism/leisure-facilities/halls-for-hire/', 'listed'),   # 13 Oct: replied yes
+            ("St Andrew's Community Centre", 'Burgess Hill', 'Two halls: the Rider Hall (up to 230, high ceiling for bouncy castles) and the Youth Centre (up to 150). Book by emailing bookings@standrewsbh.org.uk.',
+             'https://www.burgesshill.gov.uk/leisure-tourism/leisure-facilities/halls-for-hire/', 'listed partner'),   # 13 Oct: Kim replied yes and will recommend Kat
             ('Sidney West Sports & Community Centre', 'Burgess Hill', 'A Town Council sports and community centre.',
              'https://www.burgesshill.gov.uk/leisure-tourism/leisure-facilities/halls-for-hire/', ''),
             ('Adastra Hall', 'Hassocks', 'The village hall in Hassocks, just south of town.', None, ''),
@@ -78,7 +78,7 @@ NOTE = ('Links go to each venue’s own website. When you book, check the venue�
         'table and skin-safe paints and packs everything away within your hire time.')
 
 CSS = '''
-.loc-hire .hire{list-style:none;padding:0;margin:18px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.loc-hire .hire{list-style:none;padding:0;margin:18px 0 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
 .loc-hire .hire li{background:rgba(255,255,255,.06);border:1px solid rgba(201,162,77,.35);border-radius:12px;padding:16px 18px;text-align:left}
 .loc-hire.band-light .hire li{background:#fff;border-color:rgba(0,0,0,.08)}
 .loc-hire .hire b{display:block;font-family:Fraunces,serif;font-weight:400;font-size:19px}
