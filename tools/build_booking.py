@@ -2,7 +2,7 @@
 """Book a party page (13 Oct 2026): standard children's parties booked online with a deposit (Cal.com + Stripe),
 everything else by quote. Includes a travel-cost checker (postcode -> estimated road miles from Horsham).
 Kat's rules: prices £130 (2h) / £160 (3h); deposit 1/3, max £60; travel 55p a mile, return trip, for the miles beyond 15
-from home; weekends and weekdays from 5:30pm; at least 7 days' notice; deposit refundable to 14 days, 50% to 7 days,
+from home; weekends from 9am and weekdays from 5:30pm, no finish limit; balance paid on the day; at least 7 days' notice; deposit refundable to 14 days, 50% to 7 days,
 then not refundable but can move to a new date.
 Held back from the live site (PP_HOLD) until Kat approves and the Cal.com links exist."""
 import os, sys
@@ -74,7 +74,7 @@ def card(key, name, length, price, feats):
            f'<a class="btn btn-gold" href="{X.wa(f"Hi Kat! I would like to book a {length} party. Date: Time: Postcode: ")}" target="_blank" rel="noopener">Book the {length} party →</a>')
     lis = ''.join(f'<li>{X.esc(f)}</li>' for f in feats)
     return (f'<article><h3>{X.esc(name)}</h3><div class="pr">£{price}</div>'
-            f'<div class="dp">£{dep:.2f} deposit to secure your date · balance plus any travel later</div><ul>{lis}</ul>{btn}</article>')
+            f'<div class="dp">£{dep:.2f} deposit to secure your date · balance plus any travel on the day</div><ul>{lis}</ul>{btn}</article>')
 
 def build():
     cards = ''.join(card(*p) for p in PACKAGES)
@@ -83,7 +83,7 @@ def build():
 <p class="eyebrow">Children's parties</p><h2>Book your party online</h2>
 <p>Pick a package, choose a date and time Kat is free, and pay a deposit to secure it. You'll get a confirmation straight away.</p>
 <div class="bkpk">{cards}</div>
-<p class="small-note">Parties at weekends, and on weekdays from 5:30pm. Book at least 7 days ahead. Planning a wedding, festival, corporate or hen event? <a href="contact.html">Ask Kat for a quote</a> instead.</p>
+<p class="small-note">Parties at weekends from 9am, and on weekdays from 5:30pm. Book at least 7 days ahead. Planning a wedding, festival, corporate or hen event? <a href="contact.html">Ask Kat for a quote</a> instead.</p>
 </div></section>
 <section class="band band-dark"><div class="wrap">
 <p class="eyebrow">Travel</p><h2>Is there a travel charge?</h2>
@@ -95,11 +95,12 @@ def build():
 <section class="band band-light"><div class="wrap">
 <p class="eyebrow">How it works</p><h2>From booking to party day</h2>
 <ol class="bksteps"><li><b>Choose</b><br>Pick the 2-hour or 3-hour party.</li><li><b>Pick a date</b><br>Only dates and times Kat is free are shown.</li>
-<li><b>Pay the deposit</b><br>One third of the price, by card.</li><li><b>Party day</b><br>Kat arrives, sets up and paints. The balance and any travel are due as Kat confirms.</li></ol>
+<li><b>Pay the deposit</b><br>One third of the price, by card.</li><li><b>Party day</b><br>Kat arrives, sets up and paints. The balance and any travel are paid on the day.</li></ol>
 </div></section>
 <section class="band band-dark"><div class="wrap">
 <p class="eyebrow">Booking terms</p><h2>Deposits and changes</h2>
 <ul class="bkterms"><li>The deposit is one third of the party price (a maximum of £60).</li>
+<li>The balance, plus any travel, is paid on the day.</li>
 <li>Cancel 14 days or more before the party: full refund of the deposit.</li>
 <li>Cancel 7 to 13 days before: 50% of the deposit is refunded.</li>
 <li>Less than 7 days before: the deposit isn't refunded, but it can be used to rearrange to a new date.</li></ul>
@@ -113,7 +114,7 @@ def build():
                 "Book Kat for your child's party online: 2-hour party £130, 3-hour party £160. Secure your date with a deposit. Sussex & Surrey, 5.0 rated, insured, DBS checked.",
                 'https://paintingpixie.com/book.html', X.FRAME_CSS + CSS,
                 X.framed_hero('Book a party', 'Book Your Party',
-                              'Choose a package, pick a free date and secure it with a deposit. Weekends, and weekdays from 5:30pm.',
+                              'Choose a package, pick a free date and secure it with a deposit. Weekends from 9am, and weekdays from 5:30pm.',
                               '<a class="btn btn-gold" href="#content">See packages</a>',
                               '../img/g/kat-close-painting-1600.webp', 1600, 1067, 'Kat face painting a butterfly design on a girl', '★★★★★ Kat at work'),
                 main + TRAVEL_JS)
