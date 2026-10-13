@@ -33,7 +33,7 @@ HIRE = {
             ('Cuckfield Village Hall', 'Cuckfield', 'Has a secure garden, handy for outdoor games in summer.',
              'https://www.cuckfield.gov.uk/hall-hire/cuckfield-village-hall', 'listed partner'),   # 13 Oct: as above
             ('King Edward Hall', 'Lindfield', 'The village hall in the middle of Lindfield.', None, ''),
-            ('Scaynes Hill Millennium Village Centre', 'Scaynes Hill', 'A village centre a few minutes east of town.', None, ''),
+            ('Scaynes Hill Millennium Village Centre', 'Scaynes Hill', 'A village centre a few minutes east of town that hosts many children’s parties. Book on 01444 831511 or book@scayneshillcentre.org.', None, 'listed'),   # 13 Oct: Steve replied yes
             ('Haywards Heath Town Hall', 'Town centre', 'Rooms for hire in the middle of town.',
              'https://www.haywardsheath.gov.uk/town-hall', ''),
         ]),
