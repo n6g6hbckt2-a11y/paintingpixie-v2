@@ -26,8 +26,15 @@ def fix(s, page):
 
 ASSET = re.compile(r'''(?:src|href|data-full|poster)="([^"#?:]+?\.(?:webp|jpe?g|png|svg|gif|ico|mp4|css|js))"|url\(["']?([^"')#?:]+?\.(?:webp|jpe?g|png|svg|gif))["']?\)''', re.I)
 
+SRCSET = re.compile(r'srcset="([^"]+)"')
+
 def assets_in(text):
-    return {a or b for a, b in ASSET.findall(text)}
+    found = {a or b for a, b in ASSET.findall(text)}
+    for ss in SRCSET.findall(text):   # srcset candidates too (14 Oct: the 800px animal photos were missed)
+        for part in ss.split(','):
+            u = part.strip().split(' ')[0]
+            if u and ':' not in u and re.search(r'\.(webp|jpe?g|png)$', u, re.I): found.add(u)
+    return found
 
 def find_source(rel):
     """Where to copy an asset from: the switch build, the preview repo, or the live repo."""
