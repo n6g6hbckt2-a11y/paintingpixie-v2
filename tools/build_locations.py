@@ -202,8 +202,13 @@ def b_recent(page, town, tone='dark'):
             else f'{total} event{"s" if total > 1 else ""} in and around {esc(town)}')
     soon = [(pl, d) for pl, d, pg in COMING_UP if pg == page]
     soon_html = (f'<p class="recentareas" style="margin-top:18px"><b>Coming up in the next 2 months:</b> ' + '; '.join(f'{esc(pl)}' for pl, d in soon) + '.</p>') if soon else ''
-    return band('recent', f'<p class="eyebrow">Recently painted</p><h2>Kat\'s been busy: {lead}</h2>'
-                f'<p class="lede-s">Where Kat has painted, {PERIOD}.</p><ul class="recent">{chips}</ul>{soon_html}', tone)
+    if len(items) == 1:   # 14 Oct: a single box looked like a button with nothing behind it, so one place is a plain sentence
+        (pl, n), = items
+        period = PERIOD.replace(' to ', ' and ')
+        body = f'<p class="lede-s">Kat painted at {n} event{"s" if n > 1 else ""} in {esc(pl)} between {period}.</p>'
+    else:
+        body = f'<p class="lede-s">Where Kat has painted, {PERIOD}.</p><ul class="recent">{chips}</ul>'
+    return band('recent', f'<p class="eyebrow">Recently painted</p><h2>Kat\'s been busy: {lead}</h2>{body}{soon_html}', tone)
 
 # ---------- templates (each a different order and set of blocks) ----------
 ORDERS = {
