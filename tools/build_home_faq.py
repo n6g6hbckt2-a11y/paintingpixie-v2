@@ -32,7 +32,7 @@ FAQS = [
      'Let Kat know as soon as you can and she will move your booking to a new date if she is free, with your deposit carried over. '
      'If you need to cancel instead: 14 days or more before the party, the deposit is refunded in full; 7 to 13 days before, half is refunded; '
      'less than 7 days before, it isn’t refunded but can still be used to rearrange.'),
-    ("Are you insured and DBS checked?", 'Yes. Kat is fully insured and DBS checked.'),
+    ("Are you insured and DBS checked?", 'Yes. Kat is fully insured, with £6 million cover, and DBS checked.'),
 ]
 def build():
     p = f'{OUT}/index.html'
