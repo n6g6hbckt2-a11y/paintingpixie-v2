@@ -7,22 +7,22 @@ OUT = os.environ.get('PP_OUT', '/home/claude/paintingpixie-v2/draft')
 G = '/home/claude/paintingpixie-v2/img/g'
 DST = '/home/claude/paintingpixie-v2/img/kids'
 PAGE = 'childrens-face-painting.html'
-# card heading -> (gallery photo, crop box on the 1600px photo or None, new file name, alt)
+# card heading -> (gallery photo, crop box as fractions of the photo (face filling the frame), new file name, alt)
 PICS = {
-    'Unicorns & princesses': ('unicorn-party-z', None, 'rainbow-unicorn-face-paint-girl', 'Rainbow unicorn face paint on a girl at a party in a village hall'),
-    'Dragons & monsters': ('blue-monster-roar-z', None, 'blue-monster-face-paint-roar', 'Blue monster face paint on a child roaring at a birthday party'),
-    'Superheroes': ('three-kids-party', (40, 360, 540, 960), 'spider-man-face-paint-boy', 'Spider-Man face paint on a boy at a party'),
-    'Halloween & seasonal designs': ('pumpkin-face', None, 'pumpkin-face-paint-halloween', 'Jack-o’-lantern pumpkin face paint at a Halloween event'),
+    'Unicorns & princesses': ('unicorn-party-z', (125/599, 250/800, 565/599, 1.0), 'rainbow-unicorn-face-paint-girl', 'Rainbow unicorn face paint on a girl at a party in a village hall'),
+    'Dragons & monsters': ('blue-monster-roar-z', (92/602, 210/800, 508/602, 730/800), 'blue-monster-face-paint-roar', 'Blue monster face paint on a child roaring at a birthday party'),
+    'Superheroes': ('three-kids-party', (68/800, 168/602, 228/800, 368/602), 'spider-man-face-paint-boy', 'Spider-Man face paint on a boy at a party'),
+    'Halloween & seasonal designs': ('pumpkin-face', (97/603, 200/800, 433/603, 620/800), 'pumpkin-face-paint-halloween', 'Jack-o’-lantern pumpkin face paint at a Halloween event'),
 }
 CSS = ('<style>.fcard:has(.fpic){display:flex;flex-direction:column}.fcard:has(.fpic) p{margin-bottom:14px}'
-       '.fcard .fpic{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 35%;border-radius:12px;margin-top:auto}'
+       '.fcard .fpic{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 50%;border-radius:12px;margin-top:auto}'
        '</style>')
 def prep(src, box, name):
     os.makedirs(DST, exist_ok=True)
     im = Image.open(f'{G}/{src}-1600.webp')
     if box:
-        x0, y0, x1, y1 = box; W, H = im.size; k = W / 1600
-        im = im.crop((int(x0 * k), int(y0 * k), int(x1 * k), int(y1 * k)))
+        x0, y0, x1, y1 = box; W, H = im.size   # box as fractions of the photo, framed tight on the face
+        im = im.crop((int(x0 * W), int(y0 * H), int(x1 * W), int(y1 * H)))
     im.save(f'{DST}/{name}.webp', 'WEBP', quality=82)
     s = im.copy(); s.thumbnail((640, 800)); s.save(f'{DST}/{name}-640.webp', 'WEBP', quality=82)
 def build():
