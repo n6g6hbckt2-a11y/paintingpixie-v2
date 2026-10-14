@@ -67,7 +67,7 @@ HIRE = {
         venues=[
             ('Field Place Manor House & Barns', 'Durrington', 'Barns, gardens, a children’s play area and free parking.',
              'https://www.southdownsleisure.co.uk/?p=536', ''),
-            ('Durrington Community Centre', 'Romany Road', 'The community centre for Durrington.', 'https://durringtoncc.wordpress.com/', ''),
+            # 14 Oct: Durrington Community Centre replied that it doesn't hire out for parties, so it's not listed
             ('Findon Village Hall', 'Findon', 'The village hall just north of Worthing, booked through the parish council.',
              'https://findonparishcouncil.gov.uk/i-want-to/book-the-village-hall/', ''),
             ("West Tarring Young People's Club", 'Tarring High Street', 'A community building in the old village of Tarring.', 'https://wtyphub.org/', ''),
