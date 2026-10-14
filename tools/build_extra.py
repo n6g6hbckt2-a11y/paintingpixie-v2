@@ -109,7 +109,7 @@ def services():
               "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": t, "url": "https://paintingpixie.com/" + u}
                                   for i, (t, img, pos, d, pr, u, b) in enumerate(SERVICES) if u != 'contact.html']}
     page_from('services.html', 'services.html', 'Face Painting Services in Sussex &amp; Surrey | The Painting Pixie',
-              "Professional face painting across Sussex & Surrey: children's parties, hen dos, weddings, glitter bar, corporate events and workshop parties. 5.0 rated, insured.",
+              "Face painting across Sussex & Surrey: children's parties, hen dos, weddings, glitter bar, corporate events and workshops. 5.0 rated, insured.",   # 14 Oct: was 161 characters
               'https://paintingpixie.com/services.html',
               '<script type="application/ld+json">' + json.dumps(schema, ensure_ascii=False) + '</script>\n',
               hero('../img/v2-sisters.webp', '50% 30%', 'Services', 'Our Services',
@@ -151,7 +151,7 @@ def workshops():
 {inner_layout.TRUST_BAND}
 </main>'''
     page_from('services.html', 'workshops.html', 'Face Painting Workshop Parties | The Painting Pixie',
-              'Face painting workshop parties with Kat: guests learn to paint each other with professional paints, stencils and glitter. £15 per child. Next public workshop: Good Hotel London, Fri 30 Oct 2026.',
+              'Face painting workshop parties with Kat: guests learn to paint each other with professional paints, stencils and glitter. £15 per child.',   # 14 Oct: was 194 characters
               'https://paintingpixie.com/workshops.html',
               FRAME_CSS + '<script type="application/ld+json">' + json.dumps(event, ensure_ascii=False) + '</script>\n',
               framed_hero('Workshops', 'Face Painting Workshop Parties',
