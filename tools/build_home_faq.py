@@ -13,6 +13,14 @@ FAQS = [
      'Hen parties and adult celebrations start at £150. Weddings, festivals and corporate events are quoted individually.'),
     ("How long should I book Kat for?",
      'Tell Kat roughly how many guests you are expecting and she will suggest the right length: the Classic Party is 2 hours and the Ultimate Sparkle is 3 hours.'),
+    ("What do I need to provide?",
+     'Nothing special. Kat brings all her own equipment, including her table and paints, and sets up and packs away within your booking. '
+     'Just let her know where you’d like her to set up.'),
+    ("How long does the face paint take to dry?",
+     'Only a minute or so. The paints are water-based, so they dry quickly. Ask children not to touch or rub their face for the first minute while it sets.'),
+    ("How do I remove the face paint afterwards?",
+     'Warm water and a little soap or gentle face wash, or baby wipes, will take it off. Rub gently rather than scrubbing. '
+     'For glitter, wipe it away first, then wash.'),
     ("Are the paints safe for children’s skin?",
      'Yes. Kat uses professional, skin-safe face paints and bio-glitter. If a child has sensitive skin, a small patch test on the arm is a good idea.'),
     ("Do you paint adults and hen parties?",
