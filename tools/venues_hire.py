@@ -47,7 +47,7 @@ HIRE = {
              'https://www.burgesshill.gov.uk/leisure-tourism/leisure-facilities/halls-for-hire/', 'listed partner'),   # 13 Oct: Kim replied yes and will recommend Kat
             ('Sidney West Sports & Community Centre', 'Burgess Hill', 'A Town Council sports and community centre.',
              'https://www.burgesshill.gov.uk/leisure-tourism/leisure-facilities/halls-for-hire/', ''),
-            ('Adastra Hall', 'Hassocks', 'The village hall in Hassocks, just south of town. Hosts lots of children’s parties.', None, 'listed'),   # 13 Oct: replied yes; booking link asked for
+            ('Adastra Hall', 'Hassocks', 'The village hall in Hassocks, just south of town. Hosts lots of children’s parties.', 'https://adastrahall.com/making-a-booking', 'listed'),   # 13 Oct: replied yes; 14 Oct: Emily sent the booking page (no flyers at the hall)
             ('The Macs Farm', 'Ditchling', 'A farm with open days and family events below the Downs.', None, 'painted'),
         ]),
     'face-painter-reigate.html': dict(
