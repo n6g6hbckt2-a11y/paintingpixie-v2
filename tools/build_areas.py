@@ -121,14 +121,14 @@ ROADS = [
  ('A', 'A233', [(51.267, 0.074), (51.313, 0.035), (51.37, 0.01), (51.41, 0.00)]),
 ]
 SHIELD = {'M25': (51.285, 0.09), 'M23': (51.21, -0.15), 'M27': (50.86, -1.05), 'A23': (50.95, -0.185), 'A24': (51.19, -0.325), 'A27': (50.845, -0.415),
-          'A3': (51.06, -0.835), 'A22': (51.04, 0.065), 'A264': (51.092, -0.26), 'A272': (50.995, -0.36), 'A29': (50.89, -0.575), 'A25': (51.232, -0.50), 'A26': (50.92, 0.058), 'A286': (50.90, -0.757), 'A281': (51.175, -0.556), 'A259': (50.807, -0.605), 'A283': (51.06, -0.625), 'A21': (51.235, 0.225), 'M3': (51.383, -0.585), 'M20': (51.31, 0.35), 'M26': (51.295, 0.26), 'A31': (51.18, -0.89), 'A32': (51.03, -1.05), 'A246': (51.265, -0.42), 'A320': (51.275, -0.565), 'A229': (51.225, 0.545), 'A28': (51.035, 0.645), 'A268': (51.025, 0.555), 'A259 ': (50.90, 0.66), 'A287': (51.222, -0.86), 'A233': (51.335, 0.025), 'M4': (51.495, -0.70), 'M25 ': (51.505, -0.495), 'A30': (51.44, -0.61)}   # shield spots clear of pins and labels
+          'A3': (51.06, -0.835), 'A22': (51.04, 0.065), 'A264': (51.092, -0.26), 'A272': (50.995, -0.36), 'A29': (50.89, -0.575), 'A25': (51.232, -0.50), 'A26': (50.92, 0.058), 'A286': (50.90, -0.757), 'A281': (51.175, -0.556), 'A259': (50.807, -0.605), 'A283': (51.06, -0.625), 'A21': (51.235, 0.225), 'M3': (51.383, -0.585), 'M20': (51.31, 0.35), 'M26': (51.295, 0.26), 'A31': (51.18, -0.89), 'A32': (51.03, -1.05), 'A246': (51.265, -0.42), 'A320': (51.275, -0.565), 'A229': (51.225, 0.545), 'A28': (51.035, 0.645), 'A268': (51.025, 0.555), 'A259 ': (50.90, 0.66), 'A287': (51.222, -0.86), 'A233': (51.335, 0.025), 'M4': (51.495, -0.70), 'M25 ': (51.535, -0.487), 'A30': (51.44, -0.61)}   # shield spots clear of pins and labels
 # other towns shown for orientation only (no pin link)
 LANDMARKS = [("Hook", 51.280, -0.960), ("Odiham", 51.253, -0.940), ("Borough Green", 51.291, 0.306), ("Bexhill", 50.840, 0.470), ("Battle", 50.917, 0.484), ("Ticehurst", 51.045, 0.410), ("Orpington", 51.374, 0.098), ("Bordon", 51.113, -0.862), ("Waterlooville", 50.880, -1.030), ("Hayling Island", 50.785, -0.975), ("Camberley", 51.336, -0.742), ("Fleet", 51.283, -0.840), ("Chertsey", 51.390, -0.505), ("Bagshot", 51.361, -0.690), ("Ashtead", 51.309, -0.299), ("Warlingham", 51.309, -0.058), ("Wadhurst", 51.063, 0.341), ("Mayfield", 51.021, 0.262), ("Burwash", 50.997, 0.385), ("Herstmonceux", 50.889, 0.323), ("Pevensey", 50.819, 0.338), ("Ringmer", 50.893, 0.054), ("Selsey", 50.735, -0.790), ("Liphook", 51.077, -0.800), ("Alton", 51.150, -0.975), ("Farnborough", 51.290, -0.755), ("Weybridge", 51.372, -0.457), ("Cobham", 51.329, -0.411), ("Caterham", 51.282, -0.079), ("Oxted", 51.257, -0.006), ("Edenbridge", 51.197, 0.065), ("Tonbridge", 51.195, 0.274), ("Heathfield", 50.967, 0.253), ("Forest Row", 51.098, 0.033), ("Rudgwick", 51.091, -0.448), ("Cowfold", 50.988, -0.272), ("Lindfield", 51.013, -0.080), ("Havant", 50.856, -0.980), ("Petersfield", 51.003, -0.937), ("Haslemere", 51.090, -0.712),
              ("Littlehampton", 50.811, -0.540), ("Newhaven", 50.795, 0.055), ("Seaford", 50.772, 0.102),
              ("Crowborough", 51.060, 0.163), ("Hailsham", 50.863, 0.258), ("Aldershot", 51.248, -0.763), ("Gatwick ✈", 51.153, -0.182),
              ("Hartley Wintney", 51.305, -0.904), ("Yateley", 51.343, -0.829), ("Four Marks", 51.107, -1.050), ("Liss", 51.043, -0.893, 'L'), ("Horndean", 50.915, -1.001),("Banstead", 51.322, -0.205), ("Paddock Wood", 51.182, 0.391), ("Staplehurst", 51.162, 0.551), ("Cranbrook", 51.097, 0.535),
              ("Tenterden", 51.069, 0.687, 'L'),
-             ("Kingston", 51.410, -0.300), ("Wimbledon", 51.421, -0.206), ("Staines", 51.433, -0.511), ("Windsor", 51.483, -0.604),
+             ("Kingston", 51.410, -0.300), ("Staines", 51.433, -0.511), ("Windsor", 51.483, -0.604),
              ("Bracknell", 51.413, -0.751), ("Wokingham", 51.411, -0.834, 'L'), ("Reading", 51.454, -0.973), ("Heathrow ✈", 51.470, -0.454), ("Slough", 51.511, -0.595),
              ("Bromley", 51.406, 0.015), ("Dartford", 51.446, 0.219), ("Northiam", 50.993, 0.601), ("Winchelsea", 50.925, 0.709, 'L')]
 
@@ -164,6 +164,12 @@ def static_map(recent, towns=None, wider=None, box=(51.42, 50.70, -0.98, 0.30), 
             pp = [xy(la, lo) for la, lo in ptsr]
             dd = 'M' + ' L'.join(f'{x:.0f},{y:.0f}' for x, y in pp)
             o.append(f'<path d="{dd}" fill="none" stroke="{"#5B86C9" if kind == "M" else "#7FB38D"}" stroke-width="{4 if kind == "M" else 2.6}" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/>')
+        # 15 Oct: Kat takes the train from Horsham into central London (Crawley, Gatwick, East Croydon, Clapham Junction, Victoria)
+        rail = [(51.066, -0.319), (51.112, -0.187), (51.117, -0.162), (51.156, -0.161), (51.240, -0.166), (51.33, -0.11), (51.375, -0.093), (51.43, -0.12), (51.495, -0.140)]
+        rp = [xy(la, lo) for la, lo in rail]
+        rd = 'M' + ' L'.join(f'{x:.0f},{y:.0f}' for x, y in rp)
+        o.append(f'<path d="{rd}" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>'
+                 f'<path d="{rd}" fill="none" stroke="#2A1840" stroke-width="3" stroke-dasharray="7 5" stroke-linecap="round" stroke-linejoin="round"/>')
         for kind, num, ptsr in ROADS:   # road number shields, at a waypoint near the middle
             if num.endswith(' ') and num not in SHIELD: continue   # extra sections of a road already labelled elsewhere
             la, lo = SHIELD.get(num) or ptsr[len(ptsr) // 2]
@@ -180,6 +186,17 @@ def static_map(recent, towns=None, wider=None, box=(51.42, 50.70, -0.98, 0.30), 
             if anc == 'end' and tx - est < 0: tx, anc = x + 7, 'start'
             elif anc == 'start' and tx + est > W: tx, anc = x - 7, 'end'
             o.append(f'<circle cx="{x:.0f}" cy="{y:.0f}" r="3" fill="#8C8496"/><text class="lm" x="{tx:.0f}" y="{y + 4:.0f}" text-anchor="{anc}" fill="#7A7286" font-size="12.5" font-style="italic" {font}>{n}</text>')
+    # 15 Oct: Kat works in central London too. Inside the map: a shaded zone; London off the top of the map: a marker on the top edge
+    LA, LO = 51.507, -0.128
+    if lat1 < LA < lat0 and lon0 < LO < lon1:
+        cx, cy = xy(LA, LO); r = 8 * km
+        o.append(f'<ellipse cx="{cx:.0f}" cy="{cy:.0f}" rx="{r:.0f}" ry="{r * 0.8:.0f}" fill="#FF4FA3" fill-opacity=".14" stroke="#FF4FA3" stroke-width="2"/>'
+                 f'<text x="{cx + r + 8:.0f}" y="{cy + 5:.0f}" text-anchor="start" fill="#C2186B" font-size="13" font-weight="800" {font} paint-order="stroke" stroke="#F6F0E6" stroke-width="4">Central London</text>')
+    elif LA >= lat0 and lat0 > 51.3 and lon0 < LO < lon1:   # (not on the Sussex map, which stops well south of London)
+        x, _ = xy(LA, LO); label = '▲ Central London too'; w = len(label) * 7.6 + 24
+        x = min(max(x, w / 2 + 6), W - w / 2 - 6)
+        o.append(f'<g><rect x="{x - w / 2:.0f}" y="8" width="{w:.0f}" height="26" rx="13" fill="#FFFFFF" stroke="#FF4FA3" stroke-width="2"/>'
+                 f'<text x="{x:.0f}" y="26" text-anchor="middle" fill="#C2186B" font-size="13.5" font-weight="800" {font}>{label}</text></g>')
     for n, a, b in wider:
         if not (lat1 < a < lat0 and lon0 < b < lon1): continue
         x, y = xy(a, b)

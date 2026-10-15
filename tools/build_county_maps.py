@@ -32,7 +32,8 @@ def section(name, counties, box, intro):
             f'{A.static_map(recent, towns, wider, box, roads=True)}</div>'
             '<div class="legend"><span><i class="pin home"></i> Home: Horsham</span><span><i class="pin"></i> Regular area, with a local page</span>'
             '<span><i class="pin recent"></i> Painted here recently</span><span><i class="pin soon"></i> Coming up in the next 2 months</span>'
-            '<span><i class="pin wide"></i> Further afield: Kat travels here too</span></div>'
+            '<span><i class="pin wide"></i> Further afield: Kat travels here too</span>'
+            '<span><b style="display:inline-block;width:22px;border-top:3px dashed #2A1840;vertical-align:middle"></b> Train from Horsham to London</span></div>'
             '<p class="small-note">The shaded zone is about 40 minutes from Horsham. Kat travels further afield too, for parties, local events, '
             'weddings, festivals and corporate events. <a href="areas.html">See every area on the full map →</a></p>'
             '</div></section>\n')
