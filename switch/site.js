@@ -53,11 +53,13 @@ document.addEventListener('focusin', function(e) {
     var s=document.createElement('i');s.className='ffs'+(Math.random()<.35?' dot':'');
     var a=Math.random()*6.283,r=spread*(.3+Math.random()*.7),sz=(big?7:4)+Math.random()*(big?7:4),t=.8+Math.random()*.7;
     s.style.cssText='--x0:'+px+'px;--y0:'+py+'px;--dx:'+(Math.cos(a)*r)+'px;--dy:'+(Math.sin(a)*r-(up||0))+'px;--s:'+sz+'px;--c:'+COLS[Math.random()*COLS.length|0]+';--t:'+t+'s';
-    document.body.appendChild(s);setTimeout(function(){s.remove();sparks--;},t*1000+50);}
+    dust().appendChild(s);setTimeout(function(){s.remove();sparks--;},t*1000+50);}
+  /* 15 Oct (speed): sparkles live in their own fixed layer, so adding one doesn't make the browser restyle the whole page */
+  var dl=null;function dust(){if(!dl){dl=document.createElement('div');dl.id='ffdust';dl.setAttribute('aria-hidden','true');document.body.appendChild(dl);}return dl;}
   function burst(px,py,n){for(var i=0;i<n;i++)spark(px,py,30+Math.random()*40,10,i%3==0);}
   /* sound: a tiny synthesised giggle, only once someone has tapped */
   var ac=null,lastLaugh=0;
-  function unlock(){if(ac)return;try{ac=new (window.AudioContext||window.webkitAudioContext)();}catch(e){}}
+  function unlock(){if(ac||unlock.p)return;unlock.p=1;setTimeout(function(){try{ac=new (window.AudioContext||window.webkitAudioContext)();}catch(e){}},0);}   /* set up just after the tap, not during it */
   function laugh(){
     if(!ac)return;if(ac.state==='suspended'&&ac.resume)ac.resume();
     var now=performance.now();if(now-lastLaugh<3000)return;lastLaugh=now;
@@ -170,10 +172,12 @@ document.addEventListener('focusin', function(e) {
   document.addEventListener('pointerdown',function(e){   /* a tap or a click: she flies to it */
     if(typing||e.button>0||e.target.closest&&e.target.closest('input,textarea,select'))return;
     var tx=e.clientX-FW/2,ty=e.clientY-FH*.6;
+    requestAnimationFrame(function(){setTimeout(function(){   /* 15 Oct (speed): let the page answer the tap first, then she flies */
     clearTimeout(wait);hideEl=null;f.style.clipPath='';busy=true;
     if(f.style.opacity!=='1'){x=edge(tx<W/2);y=ty-60;show();}
     fly(tx,ty,650,function(){var tp=tip();burst(tp[0],tp[1],26);giggle(null,true);setTimeout(function(){
       fly(edge(x<W/2),y-H*.2,1700,done,{depth:.3});},800);},{depth:.3});
+    },0);});
   },{passive:true});
   document.addEventListener('focusin',function(e){if(e.target.closest&&e.target.closest('input,textarea,select')){typing=true;path=null;hide();}});
   document.addEventListener('focusout',function(){typing=false;busy=false;later();});
