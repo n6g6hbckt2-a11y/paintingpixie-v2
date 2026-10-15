@@ -29,7 +29,7 @@ def section(name, counties, box, intro):
             f'<p class="eyebrow">Map</p><h2>Where Kat paints in {name}</h2>'
             f'<p>{intro} Tap a pin to see the local page. Gold pins are places Kat has painted recently.</p>'
             f'<div id="areamap" class="areamap" role="region" aria-label="Map of the {name} towns The Painting Pixie covers">'
-            f'{A.static_map(recent, towns, wider, box)}</div>'
+            f'{A.static_map(recent, towns, wider, box, roads=True)}</div>'
             '<div class="legend"><span><i class="pin home"></i> Home: Horsham</span><span><i class="pin"></i> Regular area, with a local page</span>'
             '<span><i class="pin recent"></i> Painted here recently</span><span><i class="pin soon"></i> Coming up in the next 2 months</span>'
             '<span><i class="pin wide"></i> Further afield: Kat travels here too</span></div>'
