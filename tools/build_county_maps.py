@@ -46,7 +46,8 @@ def build():
         s = open(p).read()
         if 'k-map' in s: continue
         html, js = section(name, counties, box, intro)
-        m = re.search(r'<section class="band [^"]*k-text[^"]*">.*?</section>\s*', s, re.S)   # after the opening text
+        m = (re.search(r'<section class="band [^"]*k-text[^"]*">.*?</section>\s*', s, re.S)   # after the opening text
+             or re.search(r'<section class="band [^"]*loc-towns[^"]*">.*?</section>\s*', s, re.S))   # 15 Oct: rewritten county pages: after the town list
         if not m: print('  no place for the map on', page); continue
         s = s[:m.end()] + html + s[m.end():]
         s = s.replace('</head>', '<link rel="stylesheet" href="../vendor/leaflet/leaflet.css">\n</head>', 1)

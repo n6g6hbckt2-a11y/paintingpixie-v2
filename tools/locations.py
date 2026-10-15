@@ -433,8 +433,8 @@ PAGES = {
  tpl="county", acc="#FF4FA3", hero=("../img/v2-hero.webp", "60% 30%"),
  kicker="All of Sussex", eyebrow="Sussex",
  intro=[
-  "I'm Kat, I live in Horsham, and Sussex is where I paint most. From Horsham and Haywards Heath to the coast at Brighton and Worthing, I work with families, schools and event organisers right across the county.",
-  "I recently painted at the Eats & Beats Festival at New House Farm near Horsham, and I was out at Macs Farm near Ditchling too. Whether you need a children's entertainer for a garden party or professional face painters for a big event, I cover towns across Sussex and I'm happy to travel further for the right booking.",
+  "I'm Kat, I live in Horsham, and Sussex is where I paint most. From Horsham, Crawley and Haywards Heath in West Sussex to Brighton, Lewes and the East Sussex coast, I paint at children's parties, hen dos, festivals and events right across the county.",
+  "I recently painted at the Eats & Beats Festival at New House Farm near Horsham, and I was out at Macs Farm near Ditchling too. Whether it's a birthday party in the garden, <a href=\"adult-face-painting.html\">adult face painting</a> for a hen do, or a <a href=\"glitter-bar.html\">glitter bar</a> at a festival, I cover towns across West and East Sussex and I'm happy to travel further for the right booking.",
  ],
  quote="From the Weald to the coast, Sussex is where I paint most.",
  towns=[
@@ -444,16 +444,16 @@ PAGES = {
   ("face-painter-burgess-hill.html", "Burgess Hill", "Down the road from Ditchling."),
   ("face-painter-east-grinstead.html", "East Grinstead", "A town I fell for."),
   ("face-painter-worthing.html", "Worthing", "Parties by the sea."),
-  ("face-painter-brighton.html", "Brighton & Hove", "Hens, weddings, Pride and festivals."),
+  ("face-painter-brighton.html", "Brighton & Hove", "Hen dos, birthdays and festivals."),
   ("face-painter-lewes.html", "Lewes", "Bonfire town."),
   ("face-painter-south-downs.html", "Midhurst & Petworth", "Worth the drive."),
   ("face-painter-west-sussex-villages.html", "Villages around Horsham", "Billingshurst, Henfield, Steyning and more."),
  ],
  faqs=[
-  ("Which parts of Sussex do you cover?", "West Sussex, Brighton & Hove and much of East Sussex, from Horsham and Crawley to Worthing, Brighton and Lewes."),
-  ("Do you charge for travel?", "Not in and around Horsham. For longer trips I may add a small travel charge, always agreed up front."),
-  ("Can you bring more than one artist?", "Yes, for big events and festivals I can bring extra artists."),
-  ("Do you do corporate and festival events in Sussex?", "Yes. I've painted at festivals and corporate family days across the county."),
+  ("Which parts of Sussex do you cover?", "All of West Sussex, Brighton & Hove and much of East Sussex, from Horsham and Crawley to Worthing, Brighton and Lewes."),
+  ("Do you charge for travel?", "Not within 15 miles of my home in Horsham. Further away, travel is 55p a mile for the extra miles, there and back, and I always confirm it before you book."),
+    ("Do you paint adults and hen parties in Sussex?", "Yes. Hen dos and adult parties start from £150, with glitter, gems and grown-up designs, including in Brighton."),
+  ("Do you do festivals and events in Sussex?", "Yes. Festivals, school fairs and corporate events are all welcome: ask Kat for a quote."),
  ],
 ),
 
@@ -462,7 +462,7 @@ PAGES = {
  kicker="Across the border", eyebrow="Surrey",
  intro=[
   "Surrey is right on my doorstep. Horsham sits on the border, so towns like Dorking, Reigate and Guildford are an easy drive for parties, weddings and events.",
-  "I've painted at the Guildford Festival of the Arts, and lately I've been heading north too: Croydon and Baker Street recently, with Putney, Sutton and the Good Hotel in London coming up. From a garden party in Cranleigh to a big London event, longer trips are no problem for the right booking further for the right booking.",
+  "I've painted at the Guildford Festival of the Arts, and lately I've been heading north too, to Croydon, Sutton, Putney and London. From a garden party in Cranleigh to a hen do in Guildford, I'm happy to travel for the right booking.",
  ],
  quote="Horsham sits right on the border, so Surrey is on my doorstep.",
  towns=[
@@ -473,9 +473,9 @@ PAGES = {
  ],
  faqs=[
   ("Which parts of Surrey do you cover?", "Mainly south and central Surrey: Guildford, Reigate, Redhill, Dorking, Cranleigh, Leatherhead and Horley."),
-  ("Do you charge for travel to Surrey?", "Most of south and central Surrey is within about 40 minutes of my home in Horsham. For anything further, such as London, I may add a small travel cost, which we'll agree before you book."),
+  ("Do you charge for travel to Surrey?", "Not within 15 miles of my home in Horsham. Further away, travel is 55p a mile for the extra miles, there and back, and I always confirm it before you book."),
   ("Can you paint at a Surrey wedding?", "Yes. Face painting and glitter are lovely for guests of all ages."),
-  ("Can you cover a big Surrey event?", "Yes. For festivals and large corporate days I can bring extra face painters so the queue keeps moving."),
+  ("Do you paint adults and hen parties in Surrey?", "Yes. Hen dos and adult parties start from £150, with glitter, gems and grown-up designs."),
  ],
 ),
 }
