@@ -476,7 +476,7 @@ PAGES = {
   ("Do you charge for travel to Surrey?", "Not within 15 miles of my home in Horsham. Further away, travel is 55p a mile for the extra miles, there and back, and I always confirm it before you book."),
   ("Can you paint at a Surrey wedding?", "Yes. Face painting and glitter are lovely for guests of all ages."),
   ("Do you paint adults and hen parties in Surrey?", "Yes. Hen dos and adult parties start from £150, with glitter, gems and grown-up designs."),
-  ("Do you work in London?", "Yes, including central London. I take the train straight from Horsham, so London parties and events are easy to reach. London bookings are priced separately: ask me for a quote."),
+  ("Do you work in London?", "Yes, including central London. I take the train straight from Horsham, so it's easy to reach, and most of my London work is special events. Every London booking is quoted individually, so just ask."),
  ],
 ),
 }
