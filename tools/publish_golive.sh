@@ -10,4 +10,5 @@ sh tools/build_switch.sh
 python3 tools/package_golive.py
 cd "$LIVE" && git checkout -q main && git pull -q && git checkout -q -B new-design
 cp -R /home/claude/paintingpixie-v2/golive/. "$LIVE"/
+# before committing a go-live (after trimming the change set): python3 tools/sitemap_dates.py "$LIVE" && git add sitemap.xml   (15 Oct)
 git add -A && git status --short | head -40 && echo "files changed: $(git status --short | wc -l)"
