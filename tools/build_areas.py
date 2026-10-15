@@ -159,6 +159,16 @@ def static_map(recent, towns=None, wider=None, box=(51.42, 50.70, -0.98, 0.30), 
          f'<text x="{xy(50.745, -0.62)[0]:.0f}" y="{xy(50.745, -0.62)[1]:.0f}" fill="#4C7899" font-size="16" font-style="italic" {font}>English Channel</text>',
          f'<circle cx="{hx:.0f}" cy="{hy:.0f}" r="{80 * km:.0f}" fill="none" stroke="#9C83D1" stroke-width="2" stroke-dasharray="7 9"/>',
          f'<circle cx="{hx:.0f}" cy="{hy:.0f}" r="{36 * km:.0f}" fill="#FF4FA3" fill-opacity=".12" stroke="#FF4FA3" stroke-width="2"/>']
+    LA, LO = 51.507, -0.128
+    london_on_map = lat1 < LA < lat0 and lon0 < LO < lon1
+    if london_on_map:   # 15 Oct: one red oval from the 40-minute area around Horsham up to central London (Kat takes the train in)
+        cx, cy = xy(LA, LO); lr = 8 * km
+        sx, sy = xy(51.0629 - 36 / 111, -0.3259); nx, ny = xy(LA + 7 / 111, LO)
+        mx, my = (sx + nx) / 2, (sy + ny) / 2
+        ry = math.hypot(nx - sx, ny - sy) / 2; rx = 36 * km
+        ang = math.degrees(math.atan2(nx - sx, sy - ny))
+        o[-1] = (f'<ellipse cx="{mx:.0f}" cy="{my:.0f}" rx="{rx:.0f}" ry="{ry:.0f}" transform="rotate({ang:.1f} {mx:.0f} {my:.0f})" '
+                 f'fill="#FF4FA3" fill-opacity=".12" stroke="#FF4FA3" stroke-width="2"/>')
     if roads:
         for kind, num, ptsr in ROADS:
             pp = [xy(la, lo) for la, lo in ptsr]
@@ -187,11 +197,9 @@ def static_map(recent, towns=None, wider=None, box=(51.42, 50.70, -0.98, 0.30), 
             elif anc == 'start' and tx + est > W: tx, anc = x - 7, 'end'
             o.append(f'<circle cx="{x:.0f}" cy="{y:.0f}" r="3" fill="#8C8496"/><text class="lm" x="{tx:.0f}" y="{y + 4:.0f}" text-anchor="{anc}" fill="#7A7286" font-size="12.5" font-style="italic" {font}>{n}</text>')
     # 15 Oct: Kat works in central London too. Inside the map: a shaded zone; London off the top of the map: a marker on the top edge
-    LA, LO = 51.507, -0.128
-    if lat1 < LA < lat0 and lon0 < LO < lon1:
-        cx, cy = xy(LA, LO); r = 8 * km
-        o.append(f'<ellipse cx="{cx:.0f}" cy="{cy:.0f}" rx="{r:.0f}" ry="{r * 0.8:.0f}" fill="#FF4FA3" fill-opacity=".14" stroke="#FF4FA3" stroke-width="2"/>'
-                 f'<text x="{cx + r + 8:.0f}" y="{cy + 5:.0f}" text-anchor="start" fill="#C2186B" font-size="13" font-weight="800" {font} paint-order="stroke" stroke="#F6F0E6" stroke-width="4">Central London</text>')
+    if london_on_map:
+        r = lr
+        o.append(f'<text x="{cx + r + 8:.0f}" y="{cy + 5:.0f}" text-anchor="start" fill="#C2186B" font-size="13" font-weight="800" {font} paint-order="stroke" stroke="#F6F0E6" stroke-width="4">Central London</text>')
     elif LA >= lat0 and lat0 > 51.3 and lon0 < LO < lon1:   # (not on the Sussex map, which stops well south of London)
         x, _ = xy(LA, LO); label = '▲ Central London too'; w = len(label) * 7.6 + 24
         x = min(max(x, w / 2 + 6), W - w / 2 - 6)
