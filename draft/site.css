@@ -710,6 +710,7 @@ html.fairy-on input,html.fairy-on textarea,html.fairy-on select,html.fairy-on [c
 #ffsay span{position:absolute;left:0;bottom:0;transform:translate(-50%,4px) scale(0);transform-origin:50% 100%;background:#fff;color:#6A2C91;font:800 13px/1 Manrope,system-ui,sans-serif;padding:6px 10px;border-radius:14px;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.3);transition:transform .28s cubic-bezier(.3,1.7,.5,1)}
 #ffsay span::after{content:"";position:absolute;left:50%;top:100%;margin-left:-5px;border:5px solid transparent;border-top-color:#fff}
 #ffsay span.on{transform:translate(-50%,-6px) scale(1)}
+#ffdust{position:fixed;inset:0;z-index:2147483646;pointer-events:none;contain:strict}
 .ffs{position:fixed;left:0;top:0;width:var(--s);height:var(--s);margin:calc(var(--s)/-2) 0 0 calc(var(--s)/-2);pointer-events:none;z-index:2147483646;background:var(--c);
   clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);animation:ffs var(--t) ease-out forwards}
 .ffs.dot{clip-path:none;border-radius:50%;box-shadow:0 0 6px var(--c)}

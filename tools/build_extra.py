@@ -319,31 +319,75 @@ def christmas():
                    '<a class="btn btn-gold" href="contact.html">Check my date</a>'), main)
 
 def christmas_holding():
-    """Short Christmas page for the switch, using only things Kat has already approved (party prices, her photos,
-    real December reviews). Same address and a similar title to the full page, so Google can start ranking it now.
-    Replaced by christmas() once Kat has reviewed the full page."""
+    """Christmas page for the switch (16 Oct rebuild): only facts already on the site or given by Kat/Phil
+    (prices, hours, rearranging rules, insurance, her photos, real December reviews). Unconfirmed ideas
+    (fair stalls per face, grottos, NYE, a design list) stay in christmas() until Kat confirms them."""
     import reviews_data as R
     revs = [r for r in R.ATE if r[0] in ('Holly F', 'Lorella S')]
     rev_html = ''.join(f'<figure class="rcard"><span class="rstars" aria-label="5 out of 5 stars">★★★★★</span><blockquote>'
                        + ''.join(f'<p>{esc(x)}</p>' for x in r[3]) + f'</blockquote><figcaption><b>{esc(r[0])}</b> · {r[1]} · Add to Event</figcaption></figure>' for r in revs)
-    gallery = ''.join(f'<img src="{g}" alt="{a}" loading="lazy">' for g, a in [
+    gallery = ''.join(f'<figure><img src="{g}" alt="{a}" loading="lazy"><figcaption>{a}</figcaption></figure>' for g, a in [
         ("blue-shooting-stars-face-paint-for-girls.webp", "Icy blue shooting stars with silver glitter"),
         ("blue-snowflake-crown-face-paint-for-girls.webp", "Snow queen crown with gems"),
-        ("fire-and-ice-dragon-eye-face-paint.webp", "Fire and ice dragon eye design"),
+        ("fire-and-ice-dragon-eye-face-paint.webp", "Fire and ice dragon eye"),
         ("../img/n-lilac-flower-eye.webp", "Frosty lilac flower with rose-gold glitter")])
+    faqs = [
+        ("When should I book Christmas face painting?",
+         "As early as you can. December weekends go first, especially the Saturdays before Christmas. Send Kat your date now, even if the details aren’t fixed yet."),
+        ("Can you come on a weekday evening?",
+         "Yes. Weekend parties can start from 9am and weekday parties from 5:30pm, so an after-school Christmas party is a good option if your weekend is taken."),
+        ("How much does a Christmas party cost?",
+         "The same as the rest of the year: the Classic Party is from £130 for 2 hours and the Ultimate Sparkle is from £160 for 3 hours with glitter and gems. Grown-up Christmas parties start from £150."),
+        ("What do I need to provide?",
+         "Nothing special. Kat brings all her own equipment, including her table and paints, and sets up and packs away within your booking. Just let her know where you’d like her to set up."),
+        ("Do you paint grown-ups too?",
+         'Yes. Glitter, gems and grown-up designs for Christmas get-togethers and hen dos, from £150. See <a href="adult-face-painting.html">adult face painting</a> and the <a href="glitter-bar.html">glitter bar</a>.'),
+        ("Can you do a Christmas fair or bigger event?",
+         'Yes. Tell Kat roughly how many people and how long the event runs, and she will quote for it.'),
+        ("What happens if I need to rearrange?",
+         "Let Kat know as soon as you can and she will move your booking to a new date if she is free, with your deposit carried over. "
+         "If you need to cancel instead: 14 days or more before the party, the deposit is refunded in full; 7 to 13 days before, half is refunded; "
+         "less than 7 days before, it isn’t refunded but can still be used to rearrange."),
+        ("Are you insured and DBS checked?", "Yes. Kat is fully insured, with £6 million cover, and DBS checked."),
+    ]
+    faq_schema = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": re.sub('<[^>]+>', '', a)}} for q, a in faqs]}
+    faq_html = ''.join(f'<details{" open" if i == 0 else ""}><summary>{q}</summary><p>{a}</p></details>' for i, (q, a) in enumerate(faqs))
+    service = {"@context": "https://schema.org", "@type": "Service", "serviceType": "Christmas face painting",
+               "name": "Christmas party face painting in Sussex and Surrey",
+               "provider": {"@type": "LocalBusiness", "@id": "https://paintingpixie.com/#business", "name": "The Painting Pixie"},
+               "areaServed": ["Sussex", "Surrey"],
+               "offers": [{"@type": "Offer", "name": "Classic Party", "price": "130", "priceCurrency": "GBP"},
+                          {"@type": "Offer", "name": "Ultimate Sparkle", "price": "160", "priceCurrency": "GBP"}]}
     main = f"""<main class="lg" id="content">
 <section class="band band-light"><div class="wrap">
 <p class="eyebrow">Christmas</p><h2>Now booking Christmas parties</h2>
-<p>Bring some sparkle to your Christmas party. Kat paints festive designs and glitter for children's Christmas and birthday parties at home or in a hall, across Sussex and Surrey.</p>
-<div class="fcards">
-<div class="fcard"><h3>Classic Party</h3><p>2 hours of face painting, fast and fun. From £130.</p></div>
-<div class="fcard"><h3>Ultimate Sparkle</h3><p>3 hours, with bio-glitter, face gems and more detailed designs. From £160.</p></div>
-<div class="fcard"><h3>Something bigger?</h3><p>Christmas fairs and events: tell Kat what you're planning and she'll suggest the best option.</p></div>
+<p>Bring some sparkle to your Christmas party. Kat paints festive designs and glitter at Christmas and birthday parties, at home or in a hall, across Sussex and Surrey. She brings everything, and the price is the same as the rest of the year.</p>
+<div class="fcards xprices">
+<div class="fcard"><h3>Classic Party</h3><p class="xp">From £130</p><p>2 hours of face painting, fast and fun.</p></div>
+<div class="fcard xhi"><h3>Ultimate Sparkle</h3><p class="xp">From £160</p><p>3 hours, with bio-glitter, face gems and more detailed designs.</p></div>
+<div class="fcard"><h3>Grown-up parties</h3><p class="xp">From £150</p><p>Glitter, gems and grown-up designs for Christmas get-togethers and hen dos.</p></div>
+<div class="fcard"><h3>Fairs &amp; events</h3><p class="xp">Ask for a quote</p><p>Christmas fairs and bigger events: tell Kat what you’re planning.</p></div>
 </div></div></section>
-<section class="band band-light"><div class="wrap"><h2>Frosty, sparkly looks</h2><div class="gstrip">{gallery}</div></div></section>
-<section class="band band-dark"><div class="wrap"><h2>Book early for December</h2>
-<p>December weekends fill up fast, especially the Saturdays before Christmas. Send Kat your date now, even if the details aren't fixed yet.</p>
-<h3 style="margin-top:26px">What families said last December</h3><div class="xrevs">{rev_html}</div></div></section>
+<section class="band band-dark"><div class="wrap"><h2>Frosty, sparkly looks</h2>
+<p>A few of Kat’s icy, glittery designs. Children choose their favourite on the day.</p>
+<div class="gstrip xgal">{gallery}</div>
+<p class="xl-more"><a href="gallery.html">See the full gallery →</a></p></div></section>
+<section class="band band-light"><div class="wrap"><h2>Book early for December</h2>
+<div class="xwhen">
+<div><b>Weekends</b><span>From 9am. The Saturdays before Christmas go first.</span></div>
+<div><b>Weekday evenings</b><span>From 5:30pm. Great for an after-school Christmas party.</span></div>
+<div><b>Your deposit</b><span>Secures your date. The balance is paid on the day.</span></div>
+</div>
+<h3 style="margin-top:34px">What families said last December</h3><div class="xrevs">{rev_html}</div>
+<p class="xl-more"><a href="reviews.html">Read every review →</a></p></div></section>
+<section class="band band-dark"><div class="wrap"><h2>How it works</h2>
+<ol class="xsteps">
+<li><b>Send your date</b><span>WhatsApp or the form: your date, town and roughly how many children.</span></li>
+<li><b>Kat confirms</b><span>She usually replies the same day. A deposit secures your date.</span></li>
+<li><b>Party day</b><span>Kat arrives with everything, sets up, paints and packs away.</span></li>
+</ol></div></section>
+<section class="band band-light"><div class="wrap"><h2>Christmas questions</h2><div class="faqlist">{faq_html}</div></div></section>
 <section class="band band-panel k-enquire centred"><div class="wrap"><h2>Is Kat free on your Christmas date?</h2>
 <p>Tell Kat your date, town and roughly how many children. She usually replies the same day.</p>
 <a class="btn btn-gold" href="contact.html">Check my date</a><a class="btn btn-wa" href="{wa("Hi Kat! I'd like to book Christmas face painting. Date: Town: Guests: ")}" target="_blank" rel="noopener">WhatsApp Kat</a></div></section>
@@ -351,12 +395,24 @@ def christmas_holding():
 </main>"""
     css = ('<style>.xrevs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:14px}'
            '.xrevs .rcard{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 22px}'
-           '.xrevs .rstars{color:#E0A100;letter-spacing:2px}.xrevs blockquote{margin:8px 0}.xrevs figcaption{color:var(--muted);font-size:14px}</style>\n')
-    page_from('services.html', 'christmas-face-painting.html', 'Christmas Face Painting in Sussex &amp; Surrey | The Painting Pixie',
-              'Christmas party face painting across Sussex and Surrey: festive designs and glitter, from £130. December weekends go fast, so book early.',
-              'https://paintingpixie.com/christmas-face-painting.html', FRAME_CSS + css,
+           '.xrevs .rstars{color:#E0A100;letter-spacing:2px}.xrevs blockquote{margin:8px 0}.xrevs figcaption{color:var(--muted);font-size:14px}'
+           '.xprices .xp{font-family:Fraunces,serif;font-size:28px;color:#B8892E;margin:4px 0 6px}.xprices .xhi{outline:2px solid var(--pink,#FF4FA3);outline-offset:-2px}'
+           '.xgal figure{margin:0}.xgal figcaption{font-size:14px;color:var(--muted);margin-top:6px}'
+           '.xwhen{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:20px}'
+           '.xwhen div{background:var(--panel);border:1px solid var(--line);border-top:5px solid var(--gold);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:4px}'
+           '.xwhen b{font-family:Fraunces,serif;font-weight:400;font-size:22px}.xwhen span{color:var(--muted)}'
+           '.xsteps{list-style:none;counter-reset:x;padding:0;margin:20px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}'
+           '.xsteps li{counter-increment:x;display:flex;flex-direction:column;gap:4px;padding-left:52px;position:relative}'
+           '.xsteps li::before{content:counter(x);position:absolute;left:0;top:0;width:38px;height:38px;border-radius:50%;background:var(--gold);color:#1B1712;font-weight:800;display:grid;place-items:center}'
+           '.xsteps b{font-size:19px}.xsteps span{color:var(--muted)}'
+           '.band-light .xwhen div,.band-light .xrevs .rcard{background:#fff;border-color:#E8DED3;color:#1B1712;box-shadow:0 14px 30px -24px rgba(60,30,40,.45)}'
+           '.band-light .xwhen span,.band-light .xrevs blockquote,.band-light .xrevs figcaption{color:#4E463F}.band-light .xwhen div{border-top:5px solid #E2BE7A}</style>\n')
+    page_from('services.html', 'christmas-face-painting.html', 'Christmas Face Painting in Sussex &amp; Surrey | Parties from £130 | The Painting Pixie',
+              '5.0-rated Christmas party face painting across Sussex and Surrey: festive designs and glitter, from £130. December weekends go fast, so book early.',
+              'https://paintingpixie.com/christmas-face-painting.html', FRAME_CSS + css
+              + '<script type="application/ld+json">' + json.dumps(service, ensure_ascii=False) + '</script>\n<script type="application/ld+json">' + json.dumps(faq_schema, ensure_ascii=False) + '</script>\n',
               framed_hero('Services · Christmas', 'Christmas Face Painting',
-                          'Festive face painting and glitter for Christmas parties across Sussex and Surrey.',
+                          'Festive face painting and glitter for Christmas parties across Sussex and Surrey. Parties from £130.',
                           '<a class="btn btn-gold" href="contact.html">Check my date</a>',
                           'blue-shooting-stars-face-paint-for-girls.webp', 1205, 1600,
                           'Icy blue shooting stars face paint with silver glitter', '★★★★★ Frosty shooting stars'), main)
