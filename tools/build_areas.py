@@ -259,6 +259,25 @@ MAP_CSS = '''<style>
 @media(max-width:800px){.acols{grid-template-columns:1fr}.areamap{height:440px}}
 </style>'''
 
+def london_oval(n=72):
+    """15/16 Oct: Kat's regular area as one oval from the south of the 36 km zone round Horsham up to just north of
+    central London (she takes the train in). Same shape as the drawn maps, as lat/lon points for the live map."""
+    import math
+    kx = math.cos(math.radians(51.28))
+    s_lat, s_lon = 51.0629 - 36 / 111, -0.3259
+    n_lat, n_lon = 51.507 + 7 / 111, -0.128
+    sx, sy = s_lon * 111 * kx, s_lat * 111; nx, ny = n_lon * 111 * kx, n_lat * 111
+    cx, cy = (sx + nx) / 2, (sy + ny) / 2
+    a = math.hypot(nx - sx, ny - sy) / 2; b = 36.0
+    th = math.atan2(ny - sy, nx - sx)
+    pts = []
+    for i in range(n):
+        t = 2 * math.pi * i / n
+        x = cx + a * math.cos(t) * math.cos(th) - b * math.sin(t) * math.sin(th)
+        y = cy + a * math.cos(t) * math.sin(th) + b * math.sin(t) * math.cos(th)
+        pts.append([round(y / 111, 4), round(x / (111 * kx), 4)])
+    return pts
+
 def map_js(pins, wider_pins, fit_wider=False):
     """Live map (OpenStreetMap via Leaflet) built under the drawn map; shown once map pictures load."""
     return f'''<script src="../vendor/leaflet/leaflet.js"></script>
@@ -283,7 +302,7 @@ def map_js(pins, wider_pins, fit_wider=False):
   var layer = tiles('https://tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png', '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors');
   setTimeout(function(){{ if (ok === 0) {{ map.remove(); live.remove(); }} }}, 8000);   // no map pictures reachable: keep the drawn map
   var home = [51.0629,-0.3259];
-  L.circle(home, {{radius: 36000, color:'#FF4FA3', weight:1.5, fillColor:'#FF4FA3', fillOpacity:.08}}).addTo(map);
+  var zone = L.polygon({json.dumps(london_oval())}, {{color:'#FF4FA3', weight:1.5, fillColor:'#FF4FA3', fillOpacity:.08}}).addTo(map);   // regular area: Horsham up to central London
   L.circle(home, {{radius: 80000, color:'#7A5BB0', weight:1.5, dashArray:'6 8', fill:false}}).addTo(map);
   var wider = WIDER_PINS;
   wider.forEach(function(p){{
@@ -300,6 +319,7 @@ def map_js(pins, wider_pins, fit_wider=False):
     bounds.push([p.lat,p.lon]);
   }});
   {'wider.forEach(function(p){ bounds.push([p[1],p[2]]); });' if fit_wider else ''}
+  zone.getLatLngs()[0].forEach(function(ll){{ bounds.push([ll.lat, ll.lng]); }});
   map.fitBounds(bounds, {{padding:[40,40]}});
 }})();
 </script>'''
@@ -327,7 +347,7 @@ Tap a pin to see Kat's local page, or scroll down for the full list. Gold pins a
 <div class="legend"><span><i class="pin home"></i> Home: Horsham</span><span><i class="pin"></i> Regular area (within about 40 minutes), with a local page</span><span><i class="pin recent"></i> Painted here recently</span><span><i class="pin soon"></i> Coming up in the next 2 months</span><span><i class="pin wide"></i> Further afield: Kat travels here too</span></div>
 <p class="recentareas"><b>Recently painted ({PERIOD}):</b> {recent_text()}.</p>
 <p class="recentareas"><b>Coming up in the next 2 months:</b> {'; '.join(f"{p.replace(', ', ' (', 1)}{')' if ', ' in p else ''}" for p, d, *_ in COMING_UP)}.</p>
-<p class="small-note">The shaded zone is Kat's regular area: parties and local events within about 40 minutes of Horsham. Kat travels further afield too, inside the dashed line: for weddings, festivals, corporate days and brand activations, and for parties and local events as well. <a href="contact.html">Ask about your date</a>.</p>
+<p class="small-note">The shaded zone is Kat's regular area: parties and local events within about 40 minutes of Horsham, and up to central London, which she reaches by train straight from Horsham. Kat travels further afield too, inside the dashed line: for weddings, festivals, corporate days and brand activations, and for parties and local events as well. <a href="contact.html">Ask about your date</a>.</p>
 </div></section>
 <section class="band band-dark"><div class="wrap">
 <h2>Every area, by county</h2>
