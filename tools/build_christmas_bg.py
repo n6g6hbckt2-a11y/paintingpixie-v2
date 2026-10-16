@@ -113,10 +113,16 @@ def christmas(w=1600, h=1000, portrait=False):
     rng = random.Random(25)
     body = '<rect width="100%" height="100%" fill="url(#sky)"/>'
     body += f'<ellipse cx="{w * .5:.0f}" cy="{h * .35:.0f}" rx="{w * .55:.0f}" ry="{h * .35:.0f}" fill="url(#aur)"/>'
+    for k, (yy, amp) in enumerate([(.22, 60), (.36, 45)] if not portrait else [(.3, 70)]):
+        body += (f'<path d="M-50,{h * yy:.0f} C{w * .25:.0f},{h * yy - amp:.0f} {w * .45:.0f},{h * yy + amp:.0f} {w * .7:.0f},{h * yy - amp * .5:.0f} S{w + 50:.0f},{h * yy + amp * .3:.0f} {w + 50:.0f},{h * yy:.0f}" '
+                 f'stroke="url(#aurband)" stroke-width="{90 - k * 25}" fill="none" filter="url(#blur)"/>')
+    for _ in range(int(60 * w / 1600) + 20):
+        x, y, r = rng.uniform(0, w), rng.uniform(h * .05, h * .85), rng.uniform(2, 4.5)
+        c = rng.choice(['#FF5FC8', '#FFD24F', '#4FE0FF', '#7CFF9E', '#FF6A5A', '#C79BFF'])
+        body += f'<path d="M{x:.0f},{y - r * 1.6:.0f} L{x + r * .4:.0f},{y:.0f} L{x:.0f},{y + r * 1.6:.0f} L{x - r * .4:.0f},{y:.0f}Z M{x - r * 1.6:.0f},{y:.0f} L{x:.0f},{y - r * .4:.0f} L{x + r * 1.6:.0f},{y:.0f} L{x:.0f},{y + r * .4:.0f}Z" fill="{c}" opacity="{rng.uniform(.5, .95):.2f}"/>'
     mx, my, mr = (w * .8, h * .3, 95) if not portrait else (w * .7, h * .2, 85)
     body += f'<circle cx="{mx:.0f}" cy="{my:.0f}" r="{mr * 2:.0f}" fill="url(#moonglow)"/><circle cx="{mx:.0f}" cy="{my:.0f}" r="{mr}" fill="#FFF1C9"/>'
     body += f'<circle cx="{mx - mr * .3:.0f}" cy="{my - mr * .2:.0f}" r="{mr * .15:.0f}" fill="#F2DFA8" opacity=".6"/><circle cx="{mx + mr * .35:.0f}" cy="{my + mr * .3:.0f}" r="{mr * .1:.0f}" fill="#F2DFA8" opacity=".55"/>'
-    body += sleigh(mx + mr * .45, my + mr * .15, mr * .55)
     for _ in range(int(160 * w / 1600) + 40):
         body += f'<circle cx="{rng.uniform(0, w):.0f}" cy="{rng.uniform(0, h * .8):.0f}" r="{rng.uniform(.6, 1.8):.1f}" fill="#FFF6D6" opacity="{rng.uniform(.3, .9):.2f}"/>'
     # a few bright gold stars
@@ -143,14 +149,14 @@ def christmas(w=1600, h=1000, portrait=False):
             bx = (1 - t) ** 2 * x0 + 2 * (1 - t) * t * (x0 + x1) / 2 + t * t * x1
             by = (1 - t) ** 2 * y0 + 2 * (1 - t) * t * (y0 + sag * 2) + t * t * y0
             c = cols[(k + int(x0)) % len(cols)]
-            body += (f'<circle cx="{bx:.0f}" cy="{by + 10:.0f}" r="20" fill="{c}" opacity=".22"/>'
+            body += (f'<circle cx="{bx:.0f}" cy="{by + 10:.0f}" r="26" fill="url(#lg{cols.index(c)})"/>'
                      f'<rect x="{bx - 3:.0f}" y="{by - 1:.0f}" width="6" height="5" fill="#2B2B2B"/>'
                      f'<ellipse cx="{bx:.0f}" cy="{by + 10:.0f}" rx="5.5" ry="8" fill="{c}"/>'
                      f'<ellipse cx="{bx - 1.5:.0f}" cy="{by + 7:.0f}" rx="1.6" ry="2.6" fill="#FFFFFF" opacity=".7"/>')
     # snowy ground and fir trees
     gy = h - (110 if not portrait else 140)
-    body += f'<path d="M0,{h} L0,{gy + 20} Q{w * .2:.0f},{gy - 30} {w * .45:.0f},{gy + 10} T{w * .8:.0f},{gy} T{w},{gy + 10} L{w},{h}Z" fill="#DCEBFA"/>'
-    body += f'<path d="M0,{h} L0,{gy + 50} Q{w * .3:.0f},{gy + 20} {w * .6:.0f},{gy + 45} T{w},{gy + 35} L{w},{h}Z" fill="#BFD6EE"/>'
+    body += f'<path d="M0,{h} L0,{gy + 20} Q{w * .2:.0f},{gy - 30} {w * .45:.0f},{gy + 10} T{w * .8:.0f},{gy} T{w},{gy + 10} L{w},{h}Z" fill="#E8F1FF"/>'
+    body += f'<path d="M0,{h} L0,{gy + 50} Q{w * .3:.0f},{gy + 20} {w * .6:.0f},{gy + 45} T{w},{gy + 35} L{w},{h}Z" fill="#CFC8F2"/>'
     trees = ([(.03, 260), (.08, 190), (.86, 170), (.92, 250), (.98, 200), (.6, 120)] if not portrait
              else [(.94, 320), (.5, 160)])
     for fx, th in trees:
@@ -161,17 +167,20 @@ def christmas(w=1600, h=1000, portrait=False):
             body += present(w * fx, gy + 44, pw, ph, c, r)
         body += snowman(w * .73, gy + 42, 62)
         body += holly(40, 150, 110, 20) + holly(w - 40, h * .55, 90, 200)
-        for bx, by, br, bc in [(w * .06, 210, 24, '#E3243B'), (w * .38, 140, 16, '#FFC93C'), (w * .62, 120, 18, '#1F9E5B'), (w * .95, 240, 22, '#E3243B')]:
+        for bx, by, br, bc in [(w * .06, 210, 24, '#E3243B'), (w * .2, 150, 15, '#4FB6FF'), (w * .38, 140, 16, '#FFC93C'), (w * .5, 190, 14, '#FF5FC8'), (w * .62, 120, 18, '#1F9E5B'), (w * .7, 170, 13, '#C79BFF'), (w * .95, 240, 22, '#E3243B')]:
             body += bauble(bx, by, br, bc, 0)
     else:
         body += xtree(w * .22, gy + 40, 360)
         body += present(w * .38, gy + 46, 80, 60, '#E3243B', '#FFD24F') + present(w * .05, gy + 46, 70, 70, '#1F7A45', '#E3243B')
         body += snowman(w * .7, gy + 46, 70)
         body += holly(30, 170, 110, 20)
-        for bx, by, br, bc in [(w * .1, 260, 26, '#E3243B'), (w * .9, 300, 24, '#FFC93C')]:
+        for bx, by, br, bc in [(w * .1, 260, 26, '#E3243B'), (w * .4, 200, 16, '#4FB6FF'), (w * .62, 240, 15, '#FF5FC8'), (w * .9, 300, 24, '#FFC93C')]:
             body += bauble(bx, by, br, bc, 0)
-    defs = ('<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#07142A"/><stop offset=".55" stop-color="#0E2A44"/><stop offset="1" stop-color="#163C4E"/></linearGradient>'
-            '<radialGradient id="aur"><stop offset="0" stop-color="#2FD4A0" stop-opacity=".16"/><stop offset=".6" stop-color="#3A6BD8" stop-opacity=".08"/><stop offset="1" stop-color="#3A6BD8" stop-opacity="0"/></radialGradient>'
+    defs = ('<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0A1A4F"/><stop offset=".45" stop-color="#2B2380"/><stop offset=".78" stop-color="#6A2A8A"/><stop offset="1" stop-color="#B0337A"/></linearGradient>'
+            '<radialGradient id="aur"><stop offset="0" stop-color="#2FE0A8" stop-opacity=".30"/><stop offset=".6" stop-color="#3A8BFF" stop-opacity=".14"/><stop offset="1" stop-color="#3A8BFF" stop-opacity="0"/></radialGradient>'
+            '<linearGradient id="aurband" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2FE0A8" stop-opacity="0"/><stop offset=".3" stop-color="#2FE0A8" stop-opacity=".35"/><stop offset=".6" stop-color="#FF5FC8" stop-opacity=".28"/><stop offset="1" stop-color="#FF5FC8" stop-opacity="0"/></linearGradient>'
+            f'<filter id="blur" filterUnits="userSpaceOnUse" x="-300" y="-300" width="{w + 600}" height="{h + 600}"><feGaussianBlur stdDeviation="28"/></filter>'
+            + ''.join(f'<radialGradient id="lg{i}"><stop offset="0" stop-color="{c}" stop-opacity=".75"/><stop offset="1" stop-color="{c}" stop-opacity="0"/></radialGradient>' for i, c in enumerate(['#FF3B4E', '#FFC93C', '#2FE08A', '#4FB6FF', '#FF7AD9'])) +
             '<radialGradient id="moonglow"><stop offset=".45" stop-color="#FFF1C9" stop-opacity=".45"/><stop offset="1" stop-color="#FFF1C9" stop-opacity="0"/></radialGradient>'
             '<radialGradient id="tglow"><stop offset="0" stop-color="#FFD24F" stop-opacity=".25"/><stop offset="1" stop-color="#FFD24F" stop-opacity="0"/></radialGradient>'
             '<radialGradient id="sglow"><stop offset="0" stop-color="#FFE7A3" stop-opacity=".55"/><stop offset="1" stop-color="#FFE7A3" stop-opacity="0"/></radialGradient>')

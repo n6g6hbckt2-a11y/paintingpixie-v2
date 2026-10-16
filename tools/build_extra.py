@@ -359,7 +359,8 @@ def christmas_holding():
                "areaServed": ["Sussex", "Surrey"],
                "offers": [{"@type": "Offer", "name": "Classic Party", "price": "130", "priceCurrency": "GBP"},
                           {"@type": "Offer", "name": "Ultimate Sparkle", "price": "160", "priceCurrency": "GBP"}]}
-    main = f"""<main class="lg" id="content">
+    import xmas_extras as X
+    main = f"""<main class="lg" id="content">{X.santa_html()}<div class="xsnow"></div><div class="xsnow s2"></div>
 <section class="band band-light"><div class="wrap">
 <p class="eyebrow">Christmas</p><h2>Now booking Christmas parties</h2>
 <p>Bring some sparkle to your Christmas party. Kat paints festive designs and glitter at Christmas and birthday parties, at home or in a hall, across Sussex and Surrey. She brings everything, and the price is the same as the rest of the year.</p>
@@ -369,7 +370,7 @@ def christmas_holding():
 <div class="fcard"><h3>Grown-up parties</h3><p class="xp">From £150</p><p>Glitter, gems and grown-up designs for Christmas get-togethers and hen dos.</p></div>
 <div class="fcard"><h3>Fairs &amp; events</h3><p class="xp">Ask for a quote</p><p>Christmas fairs and bigger events: tell Kat what you’re planning.</p></div>
 </div></div></section>
-<section class="band band-dark"><div class="wrap"><h2>Frosty, sparkly looks</h2>
+<section class="band band-dark"><div class="wrap">{X.KAT_NOTE}<h2>Frosty, sparkly looks</h2>
 <p>A few of Kat’s icy, glittery designs. Children choose their favourite on the day.</p>
 <div class="gstrip xgal">{gallery}</div>
 <p class="xl-more"><a href="gallery.html">See the full gallery →</a></p></div></section>
@@ -413,13 +414,13 @@ def christmas_holding():
            '.band-light .xwhen span,.band-light .xrevs blockquote,.band-light .xrevs figcaption{color:#4E463F}.band-light .xwhen div{border-top:5px solid #E2BE7A}</style>\n')
     page_from('services.html', 'christmas-face-painting.html', 'Christmas Face Painting in Sussex &amp; Surrey | Parties from £130 | The Painting Pixie',
               '5.0-rated Christmas party face painting across Sussex and Surrey: festive designs and glitter, from £130. December weekends go fast, so book early.',
-              'https://paintingpixie.com/christmas-face-painting.html', FRAME_CSS + css
+              'https://paintingpixie.com/christmas-face-painting.html', FRAME_CSS + css + X.FONT + X.CSS
               + '<script type="application/ld+json">' + json.dumps(service, ensure_ascii=False) + '</script>\n<script type="application/ld+json">' + json.dumps(faq_schema, ensure_ascii=False) + '</script>\n',
               framed_hero('Services · Christmas', 'Christmas Face Painting',
                           'Festive face painting and glitter for Christmas parties across Sussex and Surrey. Parties from £130.',
                           '<a class="btn btn-gold" href="contact.html">Check my date</a>',
                           'blue-shooting-stars-face-paint-for-girls.webp', 1205, 1600,
-                          'Icy blue shooting stars face paint with silver glitter', '★★★★★ Frosty shooting stars'), main)
+                          'Icy blue shooting stars face paint with silver glitter', '★★★★★ Frosty shooting stars').replace('<header class="phero rvh">', '<header class="phero rvh">' + X.santa_html(), 1), main)
 
 def prices():
     groups = [
