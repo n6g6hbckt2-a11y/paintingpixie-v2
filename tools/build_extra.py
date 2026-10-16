@@ -360,6 +360,7 @@ def christmas_holding():
                "offers": [{"@type": "Offer", "name": "Classic Party", "price": "130", "priceCurrency": "GBP"},
                           {"@type": "Offer", "name": "Ultimate Sparkle", "price": "160", "priceCurrency": "GBP"}]}
     import xmas_extras as X
+    XBG = os.environ.get('PP_XBG', 'winter-wonderland')   # or christmas-night (the Santa/snowman version)
     main = f"""<main class="lg" id="content">{X.santa_html()}<div class="xsnow"></div><div class="xsnow s2"></div>
 <section class="band band-light"><div class="wrap">
 {X.KAT_CHECK if not os.environ.get('PP_GOLIVE') else ''}<p class="eyebrow">Christmas</p><h2>Now booking Christmas parties</h2>
@@ -408,8 +409,8 @@ def christmas_holding():
            '.xsteps b{font-size:19px}.xsteps span{color:var(--muted)}'
            '.band-light .xwhen div,.band-light .xrevs .rcard{background:#fff;border-color:#E8DED3;color:#1B1712;box-shadow:0 14px 30px -24px rgba(60,30,40,.45)}'
            'html{background:#07142A}'
-           'body::before,main.lg::before,footer::before{background:linear-gradient(rgba(7,20,42,.10),rgba(7,20,42,.22)),url(../img/bg/christmas-night.svg) center/cover no-repeat!important}'
-           '@media(max-aspect-ratio:3/4){body::before,main.lg::before,footer::before{background-image:linear-gradient(rgba(7,20,42,.10),rgba(7,20,42,.22)),url(../img/bg/christmas-night-tall.svg)!important}}'
+           'body::before,main.lg::before,footer::before{background:url(../img/bg/' + XBG + '.svg) center/cover no-repeat!important}'
+           '@media(max-aspect-ratio:3/4){body::before,main.lg::before,footer::before{background-image:url(../img/bg/' + XBG + '-tall.svg)!important}}'
            '.band-panel{background:rgba(7,20,42,.55)!important}'
            '.band-light .xwhen span,.band-light .xrevs blockquote,.band-light .xrevs figcaption{color:#4E463F}.band-light .xwhen div{border-top:5px solid #E2BE7A}</style>\n')
     page_from('services.html', 'christmas-face-painting.html', 'Christmas Face Painting in Sussex &amp; Surrey | Parties from £130 | The Painting Pixie',

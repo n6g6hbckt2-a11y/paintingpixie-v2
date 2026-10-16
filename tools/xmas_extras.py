@@ -110,6 +110,8 @@ header.phero .santa-fly{z-index:1}
 .xkat-tag .xkat-sign{font-family:'Mountains of Christmas',cursive;font-size:34px;font-weight:700;color:#B3122E!important;margin:6px 0 0}
 @media(max-width:760px){.xkat{grid-template-columns:1fr;gap:26px}.xkat-pic{max-width:280px;justify-self:center}.xkat-tag{padding:24px 22px}}
 .k-enquire h2{color:#FFE7A3}
+.band-dark{background:linear-gradient(rgba(8,26,64,.10),rgba(8,26,64,.20))!important}
+.phero.rvh::after{background:none!important}
 </style>
 '''
 
