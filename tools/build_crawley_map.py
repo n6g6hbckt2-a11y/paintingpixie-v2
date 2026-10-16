@@ -105,11 +105,19 @@ LIVE_JS = """<script src="../vendor/leaflet/leaflet.js"></script>
   map.fitBounds(bounds, {padding:[50,50]});
   var ok = 0, shown = false;
   function show(){ if (shown) return; shown = true; box.classList.add('is-live'); var sv = box.querySelector('.cmap'); if (sv) sv.style.visibility = 'hidden'; map.invalidateSize(); map.fitBounds(bounds, {padding:[50,50]}); }
-  var t = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-    {maxZoom: 18, subdomains: 'abcd', attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'});
-  t.on('tileload', function(){ ok++; if (ok >= 3) show(); });
-  t.addTo(map);
-  setTimeout(function(){ if (ok === 0) { map.remove(); live.remove(); } }, 8000);   // no map pictures reachable: keep the drawn map
+  var OSM = ['https://tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 18, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}];
+  var CARTO = ['https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {maxZoom: 18, subdomains: 'abcd', attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'}];
+  var layer = null, bad = 0, switched = false;
+  function use(src){
+    if (layer) map.removeLayer(layer);
+    layer = L.tileLayer(src[0], src[1]);
+    layer.on('tileload', function(){ ok++; if (ok >= 3) show(); });
+    layer.on('tileerror', function(){ bad++; if (!switched && ok === 0 && bad >= 2) { switched = true; use(OSM); } });   // CARTO blocked: fall back to OpenStreetMap, as on the areas page
+    layer.addTo(map);
+  }
+  use(CARTO);
+  setTimeout(function(){ if (!switched && ok === 0) { switched = true; use(OSM); } }, 4000);
+  setTimeout(function(){ if (ok === 0) { map.remove(); live.remove(); } }, 10000);   // no map pictures reachable at all: keep the drawn map
   pins.forEach(function(p, i){
     var icon = L.divIcon({className:'', html:'<div class="cnum"><b>'+(i+1)+'</b></div>', iconSize:[30,30], iconAnchor:[15,34], popupAnchor:[0,-30]});
     L.marker([p.lat, p.lon], {icon:icon, title:p.n, alt:p.n}).addTo(map).bindPopup('<b>'+(i+1)+'. '+p.n+'</b>'+p.t);
