@@ -759,6 +759,14 @@ html.fairy-on input,html.fairy-on textarea,html.fairy-on select,html.fairy-on [c
 .loc-where ol.cplaces a{font-weight:700;font-size:14px;color:#B0337A}
 .loc-where .vnote{margin-top:16px;color:var(--muted);font-size:14px}
 @media(max-width:860px){.loc-where .cwgrid{grid-template-columns:1fr}}
+.loc-where .cmapbox{position:relative;border-radius:18px;overflow:hidden;box-shadow:0 18px 40px -28px rgba(40,20,40,.5);aspect-ratio:760/628;background:#F6F0E6}
+.loc-where .cmapbox .cmap{border:0;border-radius:0;box-shadow:none;position:absolute;inset:0}
+.loc-where .cmapbox #cmaplive{position:absolute;inset:0;opacity:0;transition:opacity .4s}
+.loc-where .cmapbox.is-live #cmaplive{opacity:1}
+.loc-where .cnum{width:30px;height:30px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#FF4FA3;border:3px solid #fff;box-shadow:0 4px 10px rgba(0,0,0,.35);display:grid;place-items:center}
+.loc-where .cnum b{transform:rotate(45deg);color:#fff;font:800 14px/1 Manrope,system-ui,sans-serif}
+.loc-where .leaflet-popup-content{font:600 14px/1.45 Manrope,system-ui,sans-serif;margin:10px 14px}
+.loc-where .leaflet-popup-content b{display:block;font-size:16px;color:#1B1712}
 
 /* recent designs: zoomed towards the face */
 .mini-gallery .mg{display:block;overflow:hidden;border-radius:10px;aspect-ratio:3/4}

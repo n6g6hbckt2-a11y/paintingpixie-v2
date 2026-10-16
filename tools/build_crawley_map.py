@@ -3,20 +3,20 @@
 "Halls and party venues" into one section, with a drawn town map showing where each place is.
 Reads the place blurbs and venue links from the page that build_locations / build_venue_insert made, so the
 wording stays theirs. Runs after build_venue_insert."""
-import os, re, math, html
+import os, re, math, html, json
 
 OUT = os.environ.get('PP_OUT', '/home/claude/paintingpixie-v2/draft')
 PAGE = 'face-painter-crawley.html'
 
-# approximate positions (lat, lon)
+# positions (lat, lon), checked 16 Oct: Wikipedia (K2, Tilgate Lake), Great Britain Guide (Goffs Park), Historic England listing (Worth Park fountain)
 PLACES = {
-    'Tilgate Park': (51.0955, -0.1740),
-    'Goffs Park': (51.1075, -0.2000),
-    'K2 Crawley': (51.0975, -0.1930),
-    'Worth Park': (51.1215, -0.1560),
-    'Memorial Gardens': (51.1130, -0.1875),
+    'Tilgate Park': (51.0950, -0.1750),
+    'Goffs Park': (51.1135, -0.1990),
+    'K2 Crawley': (51.0972, -0.1914),
+    'Worth Park': (51.1274, -0.1502),
+    'Memorial Gardens': (51.1132, -0.1852),
 }
-HOODS = [('Ifield', 51.126, -0.216), ('Langley Green', 51.134, -0.208), ('Northgate', 51.124, -0.181), ('West Green', 51.116, -0.200),
+HOODS = [('Ifield', 51.126, -0.216), ('Langley Green', 51.134, -0.208), ('Northgate', 51.124, -0.181), ('West Green', 51.1195, -0.205),
          ('Gossops Green', 51.110, -0.219), ('Bewbush', 51.0965, -0.228), ('Broadfield', 51.090, -0.206), ('Southgate', 51.104, -0.188),
          ('Tilgate', 51.0995, -0.184), ('Furnace Green', 51.1050, -0.170), ('Three Bridges', 51.1110, -0.163), ('Pound Hill', 51.1165, -0.148),
          ('Maidenbower', 51.1015, -0.158), ('Forge Wood', 51.1360, -0.153)]
@@ -40,7 +40,7 @@ def town_map(pins):
     # parks as soft green blobs
     for nm in ('Tilgate Park', 'Goffs Park', 'Worth Park'):
         x, y = xy(*PLACES[nm]); o.append(f'<ellipse cx="{x:.0f}" cy="{y:.0f}" rx="34" ry="24" fill="#C9E2A8" opacity=".9"/>')
-    x, y = xy(51.0965, -0.1700); o.append(f'<ellipse cx="{x:.0f}" cy="{y:.0f}" rx="22" ry="10" fill="#9CCBEA"/>')   # Tilgate lake
+    x, y = xy(51.0950, -0.1720); o.append(f'<ellipse cx="{x:.0f}" cy="{y:.0f}" rx="22" ry="10" fill="#9CCBEA"/>')   # Tilgate lake
     for pts in RAIL:
         d = 'M' + ' L'.join('%.0f,%.0f' % xy(*p) for p in pts)
         o.append(f'<path d="{d}" stroke="#7A6F80" stroke-width="3" fill="none"/><path d="{d}" stroke="#F6F0E6" stroke-width="1.6" fill="none" stroke-dasharray="6 6"/>')
@@ -83,7 +83,39 @@ CSS = '''
 .loc-where ol.cplaces a{font-weight:700;font-size:14px;color:#B0337A}
 .loc-where .vnote{margin-top:16px;color:var(--muted);font-size:14px}
 @media(max-width:860px){.loc-where .cwgrid{grid-template-columns:1fr}}
+.loc-where .cmapbox{position:relative;border-radius:18px;overflow:hidden;box-shadow:0 18px 40px -28px rgba(40,20,40,.5);aspect-ratio:760/628;background:#F6F0E6}
+.loc-where .cmapbox .cmap{border:0;border-radius:0;box-shadow:none;position:absolute;inset:0}
+.loc-where .cmapbox #cmaplive{position:absolute;inset:0;opacity:0;transition:opacity .4s}
+.loc-where .cmapbox.is-live #cmaplive{opacity:1}
+.loc-where .cnum{width:30px;height:30px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#FF4FA3;border:3px solid #fff;box-shadow:0 4px 10px rgba(0,0,0,.35);display:grid;place-items:center}
+.loc-where .cnum b{transform:rotate(45deg);color:#fff;font:800 14px/1 Manrope,system-ui,sans-serif}
+.loc-where .leaflet-popup-content{font:600 14px/1.45 Manrope,system-ui,sans-serif;margin:10px 14px}
+.loc-where .leaflet-popup-content b{display:block;font-size:16px;color:#1B1712}
 '''
+
+LIVE_JS = """<script src="../vendor/leaflet/leaflet.js"></script>
+<script>
+(function(){
+  if (!window.L) return;   // the drawn map stays if the live map can't load
+  var box = document.getElementById('cmapbox'); if (!box) return;
+  var pins = __PINS__;
+  var live = document.createElement('div'); live.id = 'cmaplive'; box.appendChild(live);
+  var map = L.map('cmaplive', {scrollWheelZoom:false, zoomControl:true});
+  var bounds = pins.map(function(p){ return [p.lat, p.lon]; });
+  map.fitBounds(bounds, {padding:[50,50]});
+  var ok = 0, shown = false;
+  function show(){ if (shown) return; shown = true; box.classList.add('is-live'); var sv = box.querySelector('.cmap'); if (sv) sv.style.visibility = 'hidden'; map.invalidateSize(); map.fitBounds(bounds, {padding:[50,50]}); }
+  var t = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+    {maxZoom: 18, subdomains: 'abcd', attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'});
+  t.on('tileload', function(){ ok++; if (ok >= 3) show(); });
+  t.addTo(map);
+  setTimeout(function(){ if (ok === 0) { map.remove(); live.remove(); } }, 8000);   // no map pictures reachable: keep the drawn map
+  pins.forEach(function(p, i){
+    var icon = L.divIcon({className:'', html:'<div class="cnum"><b>'+(i+1)+'</b></div>', iconSize:[30,30], iconAnchor:[15,34], popupAnchor:[0,-30]});
+    L.marker([p.lat, p.lon], {icon:icon, title:p.n, alt:p.n}).addTo(map).bindPopup('<b>'+(i+1)+'. '+p.n+'</b>'+p.t);
+  });
+})();
+</script>"""
 
 def build():
     p = f'{OUT}/{PAGE}'
@@ -114,12 +146,15 @@ def build():
             items += f'<li class="nopin"><b>{nm}</b><span>{txt}</span></li>'
     sec = ('<section class="band band-dark loc-where"><div class="wrap"><h2>Where Crawley parties happen</h2>'
            '<p class="lede-s">Parks for summer parties, and halls to hire when it’s cold or wet. The numbers match the map.</p>'
-           f'<div class="cwgrid">{town_map(pins)}<div><ol class="cplaces">{items}</ol>{vnote.group(0) if vnote else ""}</div></div></div></section>\n')
+           f'<div class="cwgrid"><div class="cmapbox" id="cmapbox">{town_map(pins)}</div><div><ol class="cplaces">{items}</ol>{vnote.group(0) if vnote else ""}</div></div></div></section>\n')
     # replace: postcard (if any) + chips + hire  ->  one section where the chips were
     s = s.replace(hire.group(0), '', 1)
     if card: s = s.replace(card.group(0), '', 1)
     s = s.replace(chips.group(0), sec, 1)
     s = re.sub(r'\n\s*\n\s*\n', '\n\n', s)
+    js = LIVE_JS.replace('__PINS__', json.dumps([dict(n=nm, lat=PLACES[nm][0], lon=PLACES[nm][1], t=dict(places).get(nm, '')) for nm in pins], ensure_ascii=False))
+    s = s.replace('</head>', '<link rel="stylesheet" href="../vendor/leaflet/leaflet.css">\n</head>', 1)
+    s = s.replace('<script src="site.js"></script>', js + '\n<script src="site.js"></script>', 1)
     open(p, 'w').write(s)
     cp = f'{OUT}/site.css'; c = open(cp).read()
     if '.loc-where' not in c: open(cp, 'a').write(CSS)
