@@ -221,11 +221,10 @@ gtag('config', 'G-JMFEXJJZ1H');
     if (layer) map.removeLayer(layer);
     layer = L.tileLayer(src[0], src[1]);
     layer.on('tileload', function(){ ok++; if (ok >= 3) show(); });
-    layer.on('tileerror', function(){ bad++; if (!switched && ok === 0 && bad >= 2) { switched = true; use(OSM); } });   // CARTO blocked: fall back to OpenStreetMap, as on the areas page
+    layer.on('tileerror', function(){ bad++; });
     layer.addTo(map);
   }
-  use(CARTO);
-  setTimeout(function(){ if (!switched && ok === 0) { switched = true; use(OSM); } }, 4000);
+  use(OSM);   // 16 Oct: CARTO now shows 'API key required' tiles, so OpenStreetMap only (as on the areas page)
   setTimeout(function(){ if (ok === 0) { map.remove(); live.remove(); } }, 10000);   // no map pictures reachable at all: keep the drawn map
   pins.forEach(function(p, i){
     var icon = L.divIcon({className:'', html:'<div class="cnum"><b>'+(i+1)+'</b></div>', iconSize:[30,30], iconAnchor:[15,34], popupAnchor:[0,-30]});
