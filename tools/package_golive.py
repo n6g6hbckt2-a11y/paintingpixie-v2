@@ -90,5 +90,10 @@ def build():
     print(f'golive: {len(pages)} pages, {copied} assets copied, {len(missing)} missing')
     for m in missing: print('  missing asset:', m)
 
+def no_preview_notes():
+    import glob
+    bad = [f for f in glob.glob(DST + '/*.html') if 'kat-check' in open(f).read()]
+    if bad: raise SystemExit('preview-only notes found in go-live files: ' + ', '.join(bad))
+
 if __name__ == '__main__':
-    build()
+    build(); no_preview_notes()

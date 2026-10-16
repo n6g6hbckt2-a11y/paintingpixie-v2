@@ -362,7 +362,7 @@ def christmas_holding():
     import xmas_extras as X
     main = f"""<main class="lg" id="content">{X.santa_html()}<div class="xsnow"></div><div class="xsnow s2"></div>
 <section class="band band-light"><div class="wrap">
-<p class="eyebrow">Christmas</p><h2>Now booking Christmas parties</h2>
+{X.KAT_CHECK if not os.environ.get('PP_GOLIVE') else ''}<p class="eyebrow">Christmas</p><h2>Now booking Christmas parties</h2>
 <p>Bring some sparkle to your Christmas party. Kat paints festive designs and glitter at Christmas and birthday parties, at home or in a hall, across Sussex and Surrey. She brings everything, and the price is the same as the rest of the year.</p>
 <div class="fcards xprices">
 <div class="fcard"><h3>Classic Party</h3><p class="xp">From £130</p><p>2 hours of face painting, fast and fun.</p></div>

@@ -112,3 +112,18 @@ header.phero .santa-fly{z-index:1}
 .k-enquire h2{color:#FFE7A3}
 </style>
 '''
+
+KAT_CHECK = ('<style>'+'''.kat-check{background:#FFF6C9;color:#2A2416;border:3px dashed #E0A100;border-radius:16px;padding:22px 26px;margin:0 0 34px;box-shadow:0 10px 26px -18px rgba(0,0,0,.4)}
+.kat-check .kc-h{font-weight:800;font-size:20px;margin:0 0 8px;color:#2A2416}.kat-check .kc-h span{display:inline-block;margin-left:10px;font-size:13px;font-weight:700;background:#E0A100;color:#fff;border-radius:999px;padding:3px 10px;vertical-align:middle}
+.kat-check ol{margin:0;padding-left:22px}.kat-check li{margin:6px 0;color:#3E352E}
+'''+'</style><div class="kat-check" role="note"><p class="kc-h">For Kat to check <span>Preview only: this box never goes on the live site</span></p>'
+             '<ol>'
+             '<li><b>Your note</b> (“Why I love Christmas”, below): is it how you’d say it? Change any words you like.</li>'
+             '<li><b>Christmas fairs:</b> do you run a stall where families pay per face, or only a set fee?</li>'
+             '<li><b>Santa’s grottos:</b> would you paint alongside a grotto at garden centres, farms or community events?</li>'
+             '<li><b>New Year’s Eve:</b> do you take NYE bookings?</li>'
+             '<li><b>Office Christmas parties:</b> would you offer a kids’ corner at family work events?</li>'
+             '<li><b>Your Christmas designs:</b> which do you actually paint? For example reindeer, Rudolph, elves, snowmen, gingerbread, Christmas puddings, candy canes, Christmas trees, snow queens. Then I can list them on the page.</li>'
+             '<li><b>Photos:</b> any festive photos from last December you’re happy to use?</li>'
+             '</ol></div>')
+
