@@ -20,9 +20,9 @@ and festivals across Brighton, Sussex and Surrey.
 CHANGES = {
     # 10 Oct: ranks ~3rd for "animal print face painting" Surrey/Brighton/Sussex but gets no clicks
     'animal-print-face-painting.html': [
-        ('Tiger & Leopard Face Painting in Sussex & Surrey | Painting Pixie', 'Animal Print Face Painting in Sussex, Surrey & Brighton'),
+        ('Tiger & Leopard Face Painting in Sussex & Surrey | Painting Pixie', 'Animal Print Face Paint Ideas: 10 Photos | Sussex &amp; Surrey'),   # 17 Oct: was 'Animal Print Face Painting in Sussex, Surrey & Brighton' - top 5 in Google but 0 clicks; searchers want ideas/photos
         ("Tiger, leopard and butterfly face paint for kids' parties, festivals and grown-ups across Sussex & Surrey. 5.0 rated, insured. Parties from £130.",
-         "Tiger, leopard and butterfly face painting for parties, festivals and events in Sussex, Surrey & Brighton. See the designs and check your date. 5.0 rated."),
+         "10 animal print face paint ideas with photos: tigers, leopards and a glitter cat. Book any look for parties in Sussex, Surrey & Brighton. 5.0 rated."),
         ('<h1>Animal Print Face Painting in Sussex & Surrey ✨', '<h1>Animal Print Face Painting in Sussex, Surrey & Brighton ✨'),
     ],
     # 11 Oct: the Google reviews widget has dark text, so it sits on a light band instead of the dark pixie-dust background
