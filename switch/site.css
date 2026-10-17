@@ -768,6 +768,19 @@ html.fairy-on input,html.fairy-on textarea,html.fairy-on select,html.fairy-on [c
 .loc-where .leaflet-popup-content{font:600 14px/1.45 Manrope,system-ui,sans-serif;margin:10px 14px}
 .loc-where .leaflet-popup-content b{display:block;font-size:16px;color:#1B1712}
 
+/* town maps (17 Oct): light-band version and Horsham's live map */
+.loc-where.band-light .vnote{color:#4E463F}
+.loc-where.band-light .cmapbox{border:1px solid rgba(0,0,0,.08)}
+.loc-map .cmapbox{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:1200/560;margin-bottom:8px}
+.loc-map .cmapbox .vmapsvg{position:absolute;inset:0;width:100%;height:100%;margin:0}
+.loc-map .cmapbox #cmaplive{position:absolute;inset:0;opacity:0;transition:opacity .4s}
+.loc-map .cmapbox.is-live #cmaplive{opacity:1}
+.loc-map .cnum{width:30px;height:30px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#FF4FA3;border:3px solid #fff;box-shadow:0 4px 10px rgba(0,0,0,.35);display:grid;place-items:center}
+.loc-map .cnum b{transform:rotate(45deg);color:#fff;font:800 14px/1 Manrope,system-ui,sans-serif}
+.loc-map .leaflet-popup-content{font:600 14px/1.45 Manrope,system-ui,sans-serif;margin:10px 14px}
+.loc-map .leaflet-popup-content b{display:block;font-size:16px;color:#1B1712}
+@media(max-width:700px){.loc-map .cmapbox{aspect-ratio:4/3}}
+
 /* recent designs: zoomed towards the face */
 .mini-gallery .mg{display:block;overflow:hidden;border-radius:10px;aspect-ratio:3/4}
 .mini-gallery .mg img{width:100%;height:100%;aspect-ratio:auto;border-radius:0;transform:scale(1.12);transition:transform .3s}

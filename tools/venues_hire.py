@@ -55,7 +55,7 @@ HIRE = {
         lede='Booking a room is usually the first job. Three to start with:',
         venues=[
             ('Woodhatch Community Centre', 'Woodhatch, Reigate', 'Rooms for up to 100, with a kitchen for self-catering.',
-             'https://surreyca.org.uk/community-halls/woodhatch-community-centre/', ''),
+             'https://surreyca.org.uk/community-halls/woodhatch-community-centre/', 'listed'),   # 16 Oct: Eleanor (centre manager) confirmed face painting is allowed and asked for a flyer
             ('Reigate & Redhill YMCA Sport & Community Centre', 'Princes Road, Redhill', 'Halls and an activity room with plenty of space.',
              'https://surreyca.org.uk/community-halls/reigate-and-redhill-ymca-sport-and-community-centre/', ''),
             ('Reigate Hill Golf Club', 'Reigate Hill', 'Function suites and a terrace for family parties and christenings.',
