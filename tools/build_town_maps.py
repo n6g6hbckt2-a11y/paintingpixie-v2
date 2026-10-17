@@ -17,11 +17,16 @@ POS = {
     'Priory Park': (51.2313, -0.2123), 'Memorial Park, Redhill': (51.2433, -0.1672), 'Earlswood Lakes': (51.2206, -0.1857),
     'Reigate Hill &amp; Colley Hill': (51.2558, -0.2176), 'The Harlequin, Redhill': (51.2406, -0.1676),
     'Woodhatch Community Centre': (51.2250, -0.1970),
+    # Brighton & Hove
+    'The seafront hotels': (50.8213, -0.1470), 'Preston Park': (50.8460, -0.1553), 'Stanmer Park': (50.8665, -0.0970),
+    'Hove Lawns': (50.8235, -0.1644), 'Brighton Pride': None, 'Wedding venues on the Downs': None,
     # Horsham
     'Horsham Park': (51.0674, -0.3265), 'Denne Park &amp; Hills Farm': (51.0486, -0.3330), 'Broadbridge Heath': (51.0642, -0.3584),
     'Southwater Country Park': (51.0197, -0.3497), 'Chesworth Farm': (51.0530, -0.3231), 'The Carfax': (51.0625, -0.3282),
 }
 MERGE = {   # page: (heading, lede, tone)
+    'face-painter-brighton.html': ('Where Brighton &amp; Hove events happen',
+                                   'Seafront hotels, parks and festival fields where Kat paints. The numbers match the map.', 'light'),
     'face-painter-burgess-hill.html': ('Where Burgess Hill parties happen',
                                        'Favourite spots for summer parties, and halls to hire when it’s cold or wet. The numbers match the map.', 'dark'),
     'face-painter-reigate.html': ('Where Reigate and Redhill parties happen',

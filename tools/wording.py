@@ -35,9 +35,10 @@ CHANGES = {
     ],
     # 10 Oct: "adult face painters/painting brighton" 13.7-16.1, the adult page's title did not say Brighton
     'adult-face-painting.html': [
-        ('Professional Hen Party & Adult Face Painting in Sussex & Surrey', 'Adult & Hen Party Face Painting | Brighton, Sussex & Surrey'),
-        ('for hen dos, birthdays, festivals and corporate events across Sussex, Surrey & Brighton. 5.0 rated. From £150.',
-         'for hen dos, birthdays, festivals and corporate events in Brighton, Sussex & Surrey. 5.0 rated. From £150.'),
+        # 17 Oct: seen ~147 times a month with no clicks while hen searches climb (hen party glitter sussex 2.7): lead with hens + glitter
+        ('Professional Hen Party & Adult Face Painting in Sussex & Surrey', 'Hen &amp; Adult Face Painting, Glitter | Sussex, Surrey, Brighton'),
+        ('Glitter, gems and grown-up face painting for hen dos, birthdays, festivals and corporate events across Sussex, Surrey & Brighton. 5.0 rated. From £150.',
+         'Hen party glitter, gems and grown-up face painting made for photos. Kat comes to your house, hotel or venue in Sussex, Surrey &amp; Brighton. From £150.'),
         ('<section class="about">\n<img src="kat-parker-professional-01.jpeg"', BRIGHTON_HENS.lstrip('\n') + '\n<section class="about">\n<img src="kat-parker-professional-01.jpeg"'),
     ],
 }
