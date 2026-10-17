@@ -144,7 +144,7 @@ def b_hoods(d, town, tone='light'):
 def b_priceline(d, tone='jewel'):
     """Town pages: one short price line with a link, instead of the full price cards repeated on every page."""
     line = d.get('price_line') or ('Hen dos and birthdays from £150; weddings, festivals and corporate events by quote.' if d.get('events_only')
-                                   else 'Parties from £130 for 2 hours, or £160 for 3 hours with glitter and gems. <a href="adult-face-painting.html">Hen do and adult face painting</a> from £150; bigger events by quote.')
+                                   else 'Parties from £160 for 3 hours with glitter and gems (most popular, and best for more than 15 children), or £130 for 2 hours. <a href="adult-face-painting.html">Hen do and adult face painting</a> from £150; bigger events by quote.')
     return band('prices', f'<p class="pline"><b>{H(d, "prices", "Prices")}</b> {line} <a href="prices.html">See every price →</a></p>', tone, 'centred')
 
 def b_prices(tone='jewel', events=False):
@@ -153,10 +153,10 @@ def b_prices(tone='jewel', events=False):
                  ("Festivals & Pride", "Glitter bar, body art & fast designs for a queue", "Bespoke quote"), ("Corporate & brand events", "Staff days, launches & activations", "Bespoke quote")]
         inner = ''.join(f'<div class="pcard"><h3>{a}</h3><p>{b}</p><div class="pp">{c}</div></div>' for a, b, c in cards)
         return band('prices', f'<h2>Events in Brighton &amp; Hove</h2><div class="pcards">{inner}</div><p class="small-note">In Brighton Kat focuses on events, hen dos, weddings and larger celebrations, and birthday parties are welcome too. Tell her your date, venue and guest numbers.</p>', tone, 'centred')
-    cards = [("Classic Party", "2 hours of face painting", "From £130"), ("Ultimate Sparkle", "3 hours, glitter & gems", "From £160"),
+    cards = [("Ultimate Sparkle", "3 hours, glitter & gems", "From £160"), ("Classic Party", "2 hours of face painting", "From £130"),   # 17 Oct: 3 hours first
              ("Hens & grown-ups", "Glitter, gems & adult designs", "From £150"), ("Big events", "Weddings, festivals & corporate", "Bespoke quote")]
-    inner = ''.join(f'<div class="pcard"><h3>{a}</h3><p>{b}</p><div class="pp">{c}</div></div>' for a, b, c in cards)
-    return band('prices', f'<h2>Simple prices</h2><div class="pcards">{inner}</div><p class="small-note">Kat confirms the exact price for your date. A small deposit secures your booking.</p>', tone, 'centred')
+    inner = ''.join(f'<div class="pcard{" hi" if a == "Ultimate Sparkle" else ""}">{"<span class=\"pbadge\">Most popular</span>" if a == "Ultimate Sparkle" else ""}<h3>{a}</h3><p>{b}</p><div class="pp">{c}</div></div>' for a, b, c in cards)
+    return band('prices', f'<h2>Simple prices</h2><div class="pcards">{inner}</div><p class="small-note">More than 15 children? Choose 3 hours: it covers up to 25, so every child gets their turn without rushing. Kat confirms the exact price for your date, and a small deposit secures your booking.</p>', tone, 'centred')
 
 def b_reviews(page, town, tone='light', d=None):
     revs = REVIEWS.get(page) or []

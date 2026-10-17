@@ -14,8 +14,8 @@ CAL = {   # Cal.com booking links, filled in once Kat's account is set up
     '3h': os.environ.get('PP_CAL_3H', 'https://cal.com/thepaintingpixie/3hours'),
 }
 PACKAGES = [
-    ('2h', 'Classic Party', '2-hour', 130, ['2 hours of face painting', 'High-quality, skin-safe paints', 'Fast, fun party designs']),
     ('3h', 'Ultimate Sparkle', '3-hour', 160, ['3 hours of face painting', 'Premium paints + bio-glitter', 'Face gems & detailed designs']),
+    ('2h', 'Classic Party', '2-hour', 130, ['2 hours of face painting', 'High-quality, skin-safe paints', 'Fast, fun party designs']),
 ]
 def deposit(price): return min(round(price / 3, 2), 60)
 

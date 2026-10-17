@@ -366,8 +366,8 @@ def christmas_holding():
 {X.KAT_CHECK if not os.environ.get('PP_GOLIVE') else ''}<p class="eyebrow">Christmas</p><h2>Now booking Christmas parties</h2>
 <p>Bring some sparkle to your Christmas party. Kat paints festive designs and glitter at Christmas and birthday parties, at home or in a hall, across Sussex and Surrey. She brings everything, and the price is the same as the rest of the year.</p>
 <div class="fcards xprices">
+<div class="fcard xhi"><h3>Ultimate Sparkle</h3><p class="xbadge">Most popular</p><p class="xp">From £160</p><p>3 hours, with bio-glitter, face gems and more detailed designs.</p></div>
 <div class="fcard"><h3>Classic Party</h3><p class="xp">From £130</p><p>2 hours of face painting, fast and fun.</p></div>
-<div class="fcard xhi"><h3>Ultimate Sparkle</h3><p class="xp">From £160</p><p>3 hours, with bio-glitter, face gems and more detailed designs.</p></div>
 <div class="fcard"><h3>Grown-up parties</h3><p class="xp">From £150</p><p>Glitter, gems and grown-up designs for Christmas get-togethers and hen dos.</p></div>
 <div class="fcard"><h3>Fairs &amp; events</h3><p class="xp">Ask for a quote</p><p>Christmas fairs and bigger events: tell Kat what you’re planning.</p></div>
 </div></div></section>
@@ -398,7 +398,7 @@ def christmas_holding():
     css = ('<style>.xrevs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:14px}'
            '.xrevs .rcard{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 22px}'
            '.xrevs .rstars{color:#E0A100;letter-spacing:2px}.xrevs blockquote{margin:8px 0}.xrevs figcaption{color:var(--muted);font-size:14px}'
-           '.xprices .xp{font-family:Fraunces,serif;font-size:28px;color:#B8892E;margin:4px 0 6px}.xprices .xhi{outline:2px solid var(--pink,#FF4FA3);outline-offset:-2px}'
+           '.xprices .xbadge{margin:0;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#B0337A}.xprices .xp{font-family:Fraunces,serif;font-size:28px;color:#B8892E;margin:4px 0 6px}.xprices .xhi{outline:2px solid var(--pink,#FF4FA3);outline-offset:-2px}'
            '.xgal figure{margin:0}.xgal figcaption{font-size:14px;color:var(--muted);margin-top:6px}'
            '.xwhen{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:20px}'
            '.xwhen div{background:var(--panel);border:1px solid var(--line);border-top:5px solid var(--gold);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:4px}'
@@ -426,8 +426,8 @@ def christmas_holding():
 def prices():
     groups = [
       ("Children’s parties", "Birthday parties at home, in a hall or a garden.", [
-        ("Classic Party", "From £130", ["2 hours of face painting", "Fast, fun party designs", "Kids choose from Kat’s design board"], False),
-        ("Ultimate Sparkle", "From £160", ["3 hours of face painting", "Bio-glitter, face gems and more detailed designs", "Most popular for bigger parties"], True)]),
+        ("Ultimate Sparkle", "From £160", ["3 hours of face painting", "Bio-glitter, face gems and more detailed designs", "Most popular for bigger parties"], True),
+        ("Classic Party", "From £130", ["2 hours of face painting", "Fast, fun party designs", "Kids choose from Kat’s design board"], False)]),
       ("Grown-ups", "Hen dos, milestone birthdays and grown-up celebrations.", [
         ("Hen &amp; adult parties", "From £150", ["Glitter, gems and grown-up designs", "At your house, venue or hotel", "Great for photos"], False),
         ("Glitter tattoos", "Add-on or quote", ["Stencil tattoos in cosmetic glitter", "Quick and mess-free, last for days", "Great for queues and toddlers"], False),
