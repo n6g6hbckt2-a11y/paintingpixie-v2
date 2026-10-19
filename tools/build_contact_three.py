@@ -32,7 +32,7 @@ BLOCK = f'''<section class="band band-light b3 centred"><div class="wrap">
 <p>See the dates and times Kat is free, choose your party and secure it with a deposit. You’re confirmed straight away.</p>
 <a class="btn btn-gold" href="#book-online" data-b3="online">See Kat’s free dates ↓</a></article>
 <article class="b3card"><p class="b3tag">Quickest reply</p><h3>WhatsApp Kat</h3>
-<p>Send your date, town and roughly how many children. Kat usually replies the same day.</p>
+<p>Send your date, town and roughly how many children. Kat will try to reply within 4 hours.</p>
 <a class="btn btn-wa" href="{WA}" target="_blank" rel="noopener">{WA_SVG}WhatsApp Kat</a></article>
 <article class="b3card"><p class="b3tag">Weddings, festivals, corporate, hens</p><h3>Ask for a quote</h3>
 <p>For bigger or longer events, or anything that isn’t a standard party, tell Kat what you have in mind.</p>
