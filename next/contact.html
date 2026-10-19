@@ -116,6 +116,7 @@ gtag('config', 'G-JMFEXJJZ1H');
 .b3tab:focus-visible{outline:3px solid #B0006A;outline-offset:2px}
 .b3cal{min-height:520px;border-radius:14px;overflow:hidden}
 .b3load{padding:40px 0;text-align:center;color:#5A4E60}
+.b3cal:has(cal-inline) .b3load{display:none}
 .b3 .cwa-alt{margin-top:24px}
 .b3terms{font-size:14px;color:#5A4E60;margin:14px 0 4px}.b3fall{font-size:14px;margin:0;color:#5A4E60}
 .b3fall a,.b3terms a{color:#B0006A}
@@ -342,6 +343,7 @@ range? Just ask — I'm happy to travel further for larger bookings.</p>
     var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ loadCal(); io.disconnect(); } }); }, {rootMargin: '300px'});
     io.observe(document.getElementById('book-online'));
   } else loadCal();
+  window.addEventListener('load', function(){ setTimeout(loadCal, 2500); });
 })();
 </script>
 </body>
