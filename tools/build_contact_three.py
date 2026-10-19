@@ -7,7 +7,7 @@ The live calendar sits under the three cards, with a switch between the 3-hour a
 Runs after build_contact_wa (replaces its WhatsApp-first block). Only applied when PP_BOOK3=1."""
 import os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from build_booking import CAL, PACKAGES, deposit
+from build_booking import CAL, PACKAGES, deposit, money
 from build_contact_wa import WA
 
 OUT = os.environ.get('PP_OUT', '/home/claude/paintingpixie-v2/draft')
@@ -21,7 +21,7 @@ def tabs():
         badge = '<em>Most popular</em>' if i == 0 else ''
         out.append(f'<button type="button" role="tab" class="b3tab" id="b3tab-{key}" aria-selected="{"true" if i == 0 else "false"}" '
                    f'aria-controls="b3cal" data-key="{key}" data-link="{SLUG[key]}" data-url="{CAL[key]}">'
-                   f'<b>{name}</b><span>{length} party · £{price} · £{deposit(price):.2f} deposit</span>{badge}</button>')
+                   f'<b>{name}</b><span>{length} party · £{price} · {money(deposit(price))} deposit</span>{badge}</button>')
     return ''.join(out)
 
 BLOCK = f'''<section class="band band-light b3 centred"><div class="wrap">
@@ -42,7 +42,7 @@ BLOCK = f'''<section class="band band-light b3 centred"><div class="wrap">
 <h3 class="b3cal-h">Kat’s free dates</h3>
 <div class="b3tabs" role="tablist" aria-label="Choose your party">{tabs()}</div>
 <div id="b3cal" class="b3cal" role="tabpanel" aria-live="polite"><p class="b3load">Loading Kat’s calendar…</p></div>
-<p class="b3terms">Deposit is a third of the price (up to £60); the balance and any travel are paid on the day. Book at least 7 days ahead.
+<p class="b3terms">The deposit is £60 for the 3-hour party and £50 for the 2-hour party; the balance and any travel are paid on the day. Book at least 7 days ahead.
 Cancel 14 days or more before for a full deposit refund, or 7 to 13 days before for half; after that the deposit can move to a new date.</p>
 <p class="b3fall">Calendar not showing? <a id="b3open" href="{CAL[PACKAGES[0][0]]}" target="_blank" rel="noopener">Open it in a new tab</a> or <a href="{WA}" target="_blank" rel="noopener">WhatsApp Kat</a>.</p>
 </div>

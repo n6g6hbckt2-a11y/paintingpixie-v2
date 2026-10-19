@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Book a party page (13 Oct 2026): standard children's parties booked online with a deposit (Cal.com + Stripe),
 everything else by quote. Includes a travel-cost checker (postcode -> estimated road miles from Horsham).
-Kat's rules: prices £130 (2h) / £160 (3h); deposit 1/3, max £60; travel 55p a mile, return trip, for the miles beyond 15
+Kat's rules: prices £130 (2h) / £160 (3h); deposit £50 (2h) / £60 (3h), set by Phil 19 Oct; travel 55p a mile, return trip, for the miles beyond 15
 from home; weekends from 9am and weekdays from 5:30pm, no finish limit; balance paid on the day; at least 7 days' notice; deposit refundable to 14 days, 50% to 7 days,
 then not refundable but can move to a new date.
 Held back from the live site (PP_HOLD) until Kat approves and the Cal.com links exist."""
@@ -17,7 +17,9 @@ PACKAGES = [
     ('3h', 'Ultimate Sparkle', '3-hour', 160, ['3 hours of face painting', 'Premium paints + bio-glitter', 'Face gems & detailed designs']),
     ('2h', 'Classic Party', '2-hour', 130, ['2 hours of face painting', 'High-quality, skin-safe paints', 'Fast, fun party designs']),
 ]
-def deposit(price): return min(round(price / 3, 2), 60)
+DEPOSIT = {130: 50, 160: 60}   # 19 Oct (Phil): £50 for the 2-hour party, £60 for the 3-hour party
+def deposit(price): return DEPOSIT[price]
+def money(x): return f'£{x:.0f}' if x == int(x) else f'£{x:.2f}'
 
 CSS = '''<style>
 .bkpk{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
@@ -74,7 +76,7 @@ def card(key, name, length, price, feats):
            f'<a class="btn btn-gold" href="{X.wa(f"Hi Kat! I would like to book a {length} party. Date: Time: Postcode: ")}" target="_blank" rel="noopener">Book the {length} party →</a>')
     lis = ''.join(f'<li>{X.esc(f)}</li>' for f in feats)
     return (f'<article><h3>{X.esc(name)}</h3><div class="pr">£{price}</div>'
-            f'<div class="dp">£{dep:.2f} deposit to secure your date · balance plus any travel on the day</div><ul>{lis}</ul>{btn}</article>')
+            f'<div class="dp">{money(dep)} deposit to secure your date · balance plus any travel on the day</div><ul>{lis}</ul>{btn}</article>')
 
 def build():
     cards = ''.join(card(*p) for p in PACKAGES)
@@ -95,11 +97,11 @@ def build():
 <section class="band band-light"><div class="wrap">
 <p class="eyebrow">How it works</p><h2>From booking to party day</h2>
 <ol class="bksteps"><li><b>Choose</b><br>Pick the 2-hour or 3-hour party.</li><li><b>Pick a date</b><br>Only dates and times Kat is free are shown.</li>
-<li><b>Pay the deposit</b><br>One third of the price, by card.</li><li><b>Party day</b><br>Kat arrives, sets up and paints. The balance and any travel are paid on the day.</li></ol>
+<li><b>Pay the deposit</b><br>£50 or £60, by card.</li><li><b>Party day</b><br>Kat arrives, sets up and paints. The balance and any travel are paid on the day.</li></ol>
 </div></section>
 <section class="band band-dark"><div class="wrap">
 <p class="eyebrow">Booking terms</p><h2>Deposits and changes</h2>
-<ul class="bkterms"><li>The deposit is one third of the party price (a maximum of £60).</li>
+<ul class="bkterms"><li>The deposit is £60 for the 3-hour party and £50 for the 2-hour party.</li>
 <li>The balance, plus any travel, is paid on the day.</li>
 <li>Cancel 14 days or more before the party: full refund of the deposit.</li>
 <li>Cancel 7 to 13 days before: 50% of the deposit is refunded.</li>
