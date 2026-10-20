@@ -345,7 +345,7 @@ def build():
 Tap a pin to see Kat's local page, or scroll down for the full list. Gold pins are places Kat has painted recently.</p>
 <div id="areamap" class="areamap" role="region" aria-label="Map of the towns The Painting Pixie covers">{static_map(recent)}</div>
 <div class="legend"><span><i class="pin home"></i> Home: Horsham</span><span><i class="pin"></i> Regular area (within about 40 minutes), with a local page</span><span><i class="pin recent"></i> Painted here recently</span><span><i class="pin soon"></i> Coming up in the next 2 months</span><span><i class="pin wide"></i> Further afield: Kat travels here too</span></div>
-<p class="recentareas"><b>Recently painted ({PERIOD}):</b> {recent_text()}.</p>
+<p class="recentareas"><b>Recently painted:</b> {recent_text()}.</p>
 <p class="recentareas"><b>Coming up in the next 2 months:</b> {'; '.join(f"{p.replace(', ', ' (', 1)}{')' if ', ' in p else ''}" for p, d, *_ in COMING_UP)}.</p>
 <p class="small-note">The shaded zone is Kat's regular area: parties and local events within about 40 minutes of Horsham, and up to central London, which she reaches by train straight from Horsham. Kat travels further afield too, inside the dashed line: for weddings, festivals, corporate days and brand activations, and for parties and local events as well. <a href="contact.html">Ask about your date</a>.</p>
 </div></section>
