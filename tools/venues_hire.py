@@ -68,8 +68,8 @@ HIRE = {
             ('Field Place Manor House & Barns', 'Durrington', 'Barns, gardens, a children’s play area and free parking.',
              'https://www.southdownsleisure.co.uk/?p=536', ''),
             # 14 Oct: Durrington Community Centre replied that it doesn't hire out for parties, so it's not listed
-            ('Findon Village Hall', 'Findon', 'The village hall just north of Worthing. It welcomes children’s parties, and face painting is fine. Booked through the parish council.',
-             'https://findonparishcouncil.gov.uk/i-want-to/book-the-village-hall/', 'listed'),   # 20 Oct: Elaine (booking secretary) replied yes; they don't recommend entertainers
+            ('Findon Village Hall', 'Findon', 'The village hall just north of Worthing. It welcomes children’s parties, and face painting is fine. Book through the hall’s own website.',
+             'https://findonvillagehall.net/', 'listed'),   # 20 Oct: Elaine (booking secretary) replied yes; they don't recommend entertainers
             ("West Tarring Young People's Club", 'Tarring High Street', 'A community building in the old village of Tarring.', 'https://wtyphub.org/', ''),
         ]),
 }
