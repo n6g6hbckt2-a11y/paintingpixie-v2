@@ -780,6 +780,7 @@ html.fairy-on input,html.fairy-on textarea,html.fairy-on select,html.fairy-on [c
 .loc-map .leaflet-popup-content{font:600 14px/1.45 Manrope,system-ui,sans-serif;margin:10px 14px}
 .loc-map .leaflet-popup-content b{display:block;font-size:16px;color:#1B1712}
 @media(max-width:700px){.loc-map .cmapbox{aspect-ratio:4/3}}
+.cplaces .ptag{font-style:normal;display:inline-block;font-size:12px;font-weight:800;padding:2px 8px;border-radius:20px;background:#2f8f5b;color:#fff;margin-left:6px;vertical-align:2px}
 
 /* 3-hour first (17 Oct) */
 .pcard.hi{border:2px solid var(--gold,#E2BE7A);position:relative}

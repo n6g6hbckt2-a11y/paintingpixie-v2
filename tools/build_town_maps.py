@@ -20,6 +20,11 @@ POS = {
     # Brighton & Hove
     'The seafront hotels': (50.8213, -0.1470), 'Preston Park': (50.8460, -0.1553), 'Stanmer Park': (50.8665, -0.0970),
     'Hove Lawns': (50.8235, -0.1644), 'Brighton Pride': None, 'Wedding venues on the Downs': None,
+    # Haywards Heath (20 Oct; Nominatim)
+    'Victoria Park': (50.9971, -0.1060), 'Beech Hurst Gardens': (50.9984, -0.1154), 'Lindfield Common': (51.0088, -0.0805),
+    'Cuckfield': None, 'Borde Hill Garden': (51.0196, -0.1178), 'The Dolphin Leisure Centre': (51.0056, -0.1104),
+    "Queen's Hall, Cuckfield": (51.0073, -0.1421), 'Cuckfield Village Hall': None,
+    'Scaynes Hill Millennium Village Centre': (50.9926, -0.0536),
     # Horsham
     'Horsham Park': (51.0674, -0.3265), 'Denne Park &amp; Hills Farm': (51.0486, -0.3330), 'Broadbridge Heath': (51.0642, -0.3584),
     'Southwater Country Park': (51.0197, -0.3497), 'Chesworth Farm': (51.0530, -0.3231), 'The Carfax': (51.0625, -0.3282),
@@ -29,6 +34,8 @@ MERGE = {   # page: (heading, lede, tone)
                                    'Seafront hotels, parks and festival fields where Kat paints. The numbers match the map.', 'light'),
     'face-painter-burgess-hill.html': ('Where Burgess Hill parties happen',
                                        'Favourite spots for summer parties, and halls to hire when it’s cold or wet. The numbers match the map.', 'dark'),
+    'face-painter-haywards-heath.html': ('Where Haywards Heath parties happen',
+                                         'Parks and gardens for summer parties, and village halls to hire when it’s cold or wet. The numbers match the map.', 'light'),
     'face-painter-reigate.html': ('Where Reigate and Redhill parties happen',
                                   'Parks and hills for summer parties, and halls to hire when it’s cold or wet. The numbers match the map.', 'light'),
 }
@@ -46,6 +53,7 @@ CSS = '''
 .loc-map .leaflet-popup-content{font:600 14px/1.45 Manrope,system-ui,sans-serif;margin:10px 14px}
 .loc-map .leaflet-popup-content b{display:block;font-size:16px;color:#1B1712}
 @media(max-width:700px){.loc-map .cmapbox{aspect-ratio:4/3}}
+.cplaces .ptag{font-style:normal;display:inline-block;font-size:12px;font-weight:800;padding:2px 8px;border-radius:20px;background:#2f8f5b;color:#fff;margin-left:6px;vertical-align:2px}
 '''
 
 def plain_map(pins):
@@ -79,13 +87,14 @@ def merge(page, heading, lede, tone):
     p = f'{OUT}/{page}'
     s = open(p).read()
     if 'loc-where' in s: return
-    places_sec = re.search(r'<section class="band [^"]*loc-(?:chips|places)[^"]*">.*?</section>\s*', s, re.S)
+    places_sec = re.search(r'<section class="band [^"]*loc-(?:chips|places|vcards)[^"]*">.*?</section>\s*', s, re.S)
     hire_sec = re.search(r'<section class="band [^"]*loc-hire[^"]*">.*?</section>\s*', s, re.S)
     card = re.search(r'<section class="band [^"]*loc-postcard">.*?</section>\s*', s, re.S)
     if not places_sec: print('town maps: no places on', page); return
     t = places_sec.group(0)
-    places = re.findall(r'<summary>(.*?)</summary><span>(.*?)</span>', t) or re.findall(r'<figcaption><b>(.*?)</b><span>(.*?)</span></figcaption>', t)
-    venues = re.findall(r'<li>(?:<span class="tag[^"]*">.*?</span>)?<b>(.*?)</b><i>(.*?)</i>(.*?)</li>', hire_sec.group(0), re.S) if hire_sec else []
+    places = re.findall(r'<summary>(.*?)</summary><span>(.*?)</span>', t) or re.findall(r'<figcaption><b>(.*?)</b><span>(.*?)</span></figcaption>', t) \
+             or re.findall(r'<div class="vcard"><b>(.*?)</b><span>(.*?)</span></div>', t)
+    venues = re.findall(r'<li>(?:<span class="tag[^"]*">(.*?)</span>)?<b>(.*?)</b><i>(.*?)</i>(.*?)</li>', hire_sec.group(0), re.S) if hire_sec else []
     vnote = re.search(r'<p class="vnote">.*?</p>', hire_sec.group(0), re.S) if hire_sec else None
     pins, items, extra = [], '', ''
     for nm, txt in places:
@@ -93,9 +102,10 @@ def merge(page, heading, lede, tone):
             pins.append((nm, *POS[nm], txt)); items += f'<li><b>{nm}</b><span>{txt}</span></li>'
         else:
             extra += f'<li class="nopin"><b>{nm}</b><span>{txt}</span></li>'
-    for nm, where, rest in venues:
+    for tag, nm, where, rest in venues:
         txt = re.sub(r'\s*<a [^>]*>.*?</a>', '', rest).strip(); link = re.search(r'<a [^>]*>.*?</a>', rest)
-        line = f'<b>{nm}</b><span>{where}. {txt}</span>{link.group(0) if link else ""}'
+        badge = f' <em class="ptag">{tag}</em>' if tag else ''   # e.g. "Recommends Kat ✓" (20 Oct: was being dropped)
+        line = f'<b>{nm}{badge}</b><span>{where}. {txt}</span>{link.group(0) if link else ""}'
         if POS.get(nm):
             pins.append((nm, *POS[nm], f'{where}. {txt}')); items += f'<li>{line}</li>'
         else:
