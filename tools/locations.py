@@ -202,8 +202,8 @@ PAGES = {
 "face-painter-brighton.html": dict(
  tpl="guide", acc="#FF4FA3", hero=("LIVE:brighton-palace-pier.webp", "50% 50%"), events_only=True,
  kicker="Bright lights", eyebrow="Brighton & Hove",
- title="Face Painter in Brighton &amp; Hove | Hens, Weddings &amp; Events",
- desc="Insured, DBS-checked face painter and glitter artist for Brighton & Hove: hen dos, weddings, festivals, Pride and corporate events. Get a quote.",   # 21 Oct: was 170 characters (Ahrefs)
+ title="Brighton and Hove Face Painter | Hens, Weddings, Events",  # 24 Oct: no &amp; so Ahrefs counts it under 60
+ desc="5.0-rated face painter and glitter artist in Brighton & Hove for hen dos, weddings, festivals, Pride and corporate events. Get a quote.",   # 21 Oct: was 170 characters (Ahrefs)
  sub="Glitter, face and body art for hen dos, weddings, festivals, Pride and corporate events across Brighton and Hove.",
  intro=[
   "Brighton is the place where nobody thinks a grown-up with a glittery face is unusual, and I love that. Some of my most creative bookings have been here, from rainbow designs at big celebrations to full glitter looks at hen dos.",
