@@ -122,7 +122,7 @@ KAT_CHECK = ('<style>'+'''.kat-check{background:#FFF6C9;color:#2A2416;border:3px
              ''
              ''
              ''
-             '<li><b>Your Christmas designs:</b> which do you actually paint? For example reindeer, Rudolph, elves, snowmen, gingerbread, Christmas puddings, candy canes, Christmas trees, snow queens. Then I can list them on the page.</li>'
+             ''
              '<li><b>Photos:</b> any festive photos from last December you’re happy to use?</li>'
              '</ol></div>')
 
