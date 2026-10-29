@@ -344,6 +344,12 @@ def christmas_holding():
          'Yes. Glitter, gems and grown-up designs for Christmas get-togethers and hen dos, from £150. See <a href="adult-face-painting.html">adult face painting</a> and the <a href="glitter-bar.html">glitter bar</a>.'),
         ("Can you do a Christmas fair or bigger event?",
          'Yes. For Christmas fairs, Kat can run a face painting stall where families pay per face, or come for a set fee, whichever suits your fair. For bigger events, tell Kat roughly how many people and how long it runs, and she will quote for it.'),
+        ('Can you work alongside Santa’s grotto?',
+         'Yes. Face painting is a lovely way to keep children happy while they queue for Santa at garden centres, farms and community events. Ask Kat for a quote.'),
+        ('Can you come to an office Christmas party?',
+         'Yes. Glitter, gems and grown-up designs for staff parties, or a kids’ corner at family work events. Ask Kat for a quote.'),
+        ('Do you take New Year’s Eve bookings?',
+         'Yes. Glitter, gems and sparkly party looks for New Year’s Eve, for grown-ups and children. Send Kat your plans for a quote.'),
         ("What happens if I need to rearrange?",
          "Let Kat know as soon as you can and she will move your booking to a new date if she is free, with your deposit carried over. "
          "If you need to cancel instead: 14 days or more before the party, the deposit is refunded in full; 7 to 13 days before, half is refunded; "
@@ -370,6 +376,13 @@ def christmas_holding():
 <div class="fcard"><h3>Classic Party</h3><p class="xp">From £130</p><p>2 hours of face painting, fast and fun.</p></div>
 <div class="fcard"><h3>Grown-up parties</h3><p class="xp">From £150</p><p>Glitter, gems and grown-up designs for Christmas get-togethers and hen dos.</p></div>
 <div class="fcard"><h3>Fairs &amp; events</h3><p class="xp">Ask for a quote</p><p>Christmas fairs: a stall where families pay per face, or a set fee. Bigger events: tell Kat what you’re planning.</p></div>
+</div>
+<h3 style="margin-top:34px">Christmas events</h3>
+<p>Beyond parties, Kat paints at festive events across Sussex and Surrey.</p>
+<div class="fcards xprices">
+<div class="fcard"><h3>Santa’s grottos</h3><p class="xp">Ask for a quote</p><p>Garden centres, farms and community events: face painting keeps children happy while they queue to see Santa.</p></div>
+<div class="fcard"><h3>Office Christmas parties</h3><p class="xp">Ask for a quote</p><p>Glitter and gems for grown-ups, or a kids’ corner at family work events.</p></div>
+<div class="fcard"><h3>New Year’s Eve</h3><p class="xp">Ask for a quote</p><p>Glitter and gems for party looks that sparkle at midnight.</p></div>
 </div></div></section>
 <section class="band band-dark"><div class="wrap">{X.KAT_NOTE}<h2>Frosty, sparkly looks</h2>
 <p>A few of Kat’s icy, glittery designs. Children choose their favourite on the day.</p>

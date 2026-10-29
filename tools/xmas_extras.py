@@ -119,9 +119,9 @@ KAT_CHECK = ('<style>'+'''.kat-check{background:#FFF6C9;color:#2A2416;border:3px
              '<ol>'
              ''
              ''
-             '<li><b>Santa’s grottos:</b> would you paint alongside a grotto at garden centres, farms or community events?</li>'
-             '<li><b>New Year’s Eve:</b> do you take NYE bookings?</li>'
-             '<li><b>Office Christmas parties:</b> would you offer a kids’ corner at family work events?</li>'
+             ''
+             ''
+             ''
              '<li><b>Your Christmas designs:</b> which do you actually paint? For example reindeer, Rudolph, elves, snowmen, gingerbread, Christmas puddings, candy canes, Christmas trees, snow queens. Then I can list them on the page.</li>'
              '<li><b>Photos:</b> any festive photos from last December you’re happy to use?</li>'
              '</ol></div>')
