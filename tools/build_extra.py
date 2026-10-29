@@ -371,6 +371,7 @@ def christmas_holding():
 <section class="band band-light"><div class="wrap">
 {X.KAT_CHECK if not os.environ.get('PP_GOLIVE') else ''}<p class="eyebrow">Christmas</p><h2>Now booking Christmas parties</h2>
 <p>Bring some sparkle to your Christmas party. Kat paints festive designs and glitter at Christmas and birthday parties, at home or in a hall, across Sussex and Surrey. She brings everything, and the price is the same as the rest of the year.</p>
+<p class="xsoon" data-until="2026-11-03" style="margin:18px 0 0;padding:14px 18px;border-radius:14px;background:#FFF1F1;border:2px solid #C8102E;color:#1B1712;font-weight:600">🎄 Christmas starts early! Kat’s first festive event this year is at <b>Hillier Garden Centre, Horsham</b>, on <b>Tuesday 3 November</b>. Come and say hello.</p><script>(function(){{var e=document.querySelector(".xsoon[data-until]");if(!e)return;var d=new Date(e.getAttribute("data-until")+"T23:59:59");if(new Date()>d)e.remove();}})();</script>
 <div class="fcards xprices">
 <div class="fcard xhi"><h3>Ultimate Sparkle</h3><p class="xbadge">Most popular</p><p class="xp">From £160</p><p>3 hours, with bio-glitter, face gems and more detailed designs.</p></div>
 <div class="fcard"><h3>Classic Party</h3><p class="xp">From £130</p><p>2 hours of face painting, fast and fun.</p></div>
