@@ -57,10 +57,7 @@ def santa_html():
 
 KAT_NOTE = ('<div class="xkat"><figure class="xkat-pic"><img src="../img/g/kat-painting-smile-800.webp" alt="Kat face painting at a party" loading="lazy" width="800" height="533"></figure>'
             '<div class="xkat-tag"><p class="eyebrow">A note from Kat</p><h2>Why I love Christmas</h2>'
-            '<p>Christmas is my favourite time of year to paint. I love the excitement: children who can’t sit still because Santa’s on his way, '
-            'friends and family getting together, and everyone up for a bit of sparkle.</p>'
-            '<p>A little face paint adds to that magic, and seeing a child run off to show their friends their new design never gets old. '
-            'I can’t wait to be part of your Christmas celebrations.</p>'
+            '<p>Christmas is my favourite time of year, and a lot of that is down to my daughter. Every morning in November and December we ask Alexa how many days it is until Christmas. She tells us, then shares a Christmas joke, usually a terrible one, which makes it even better!</p><p>Watching my daughter get giddy about advent calendars, the tree going up and Santa’s visit reminds me how magical Christmas feels when you’re little. That’s the feeling I want to bring to your party. A sparkly snowflake or a cheeky Rudolph is a small thing, but seeing a child run off to show their friends never gets old. I can’t wait to be part of your celebrations.</p>'  # 29 Oct: Phil's wording (daughter, Alexa countdown); no age
             '<p class="xkat-sign">Kat x</p></div></div>')
 
 FONT = '<link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&display=swap" rel="stylesheet">\n'
