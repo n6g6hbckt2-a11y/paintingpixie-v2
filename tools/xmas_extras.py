@@ -117,8 +117,8 @@ KAT_CHECK = ('<style>'+'''.kat-check{background:#FFF6C9;color:#2A2416;border:3px
 .kat-check ol{margin:0;padding-left:22px}.kat-check li{margin:6px 0;color:#3E352E}
 '''+'</style><div class="kat-check" role="note"><p class="kc-h">For Kat to check <span>Preview only: this box never goes on the live site</span></p>'
              '<ol>'
-             '<li><b>Your note</b> (“Why I love Christmas”, below): is it how you’d say it? Change any words you like.</li>'
-             '<li><b>Christmas fairs:</b> do you run a stall where families pay per face, or only a set fee?</li>'
+             ''
+             ''
              '<li><b>Santa’s grottos:</b> would you paint alongside a grotto at garden centres, farms or community events?</li>'
              '<li><b>New Year’s Eve:</b> do you take NYE bookings?</li>'
              '<li><b>Office Christmas parties:</b> would you offer a kids’ corner at family work events?</li>'

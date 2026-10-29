@@ -343,7 +343,7 @@ def christmas_holding():
         ("Do you paint grown-ups too?",
          'Yes. Glitter, gems and grown-up designs for Christmas get-togethers and hen dos, from £150. See <a href="adult-face-painting.html">adult face painting</a> and the <a href="glitter-bar.html">glitter bar</a>.'),
         ("Can you do a Christmas fair or bigger event?",
-         'Yes. Tell Kat roughly how many people and how long the event runs, and she will quote for it.'),
+         'Yes. For Christmas fairs, Kat can run a face painting stall where families pay per face, or come for a set fee, whichever suits your fair. For bigger events, tell Kat roughly how many people and how long it runs, and she will quote for it.'),
         ("What happens if I need to rearrange?",
          "Let Kat know as soon as you can and she will move your booking to a new date if she is free, with your deposit carried over. "
          "If you need to cancel instead: 14 days or more before the party, the deposit is refunded in full; 7 to 13 days before, half is refunded; "
@@ -369,7 +369,7 @@ def christmas_holding():
 <div class="fcard xhi"><h3>Ultimate Sparkle</h3><p class="xbadge">Most popular</p><p class="xp">From £160</p><p>3 hours, with bio-glitter, face gems and more detailed designs.</p></div>
 <div class="fcard"><h3>Classic Party</h3><p class="xp">From £130</p><p>2 hours of face painting, fast and fun.</p></div>
 <div class="fcard"><h3>Grown-up parties</h3><p class="xp">From £150</p><p>Glitter, gems and grown-up designs for Christmas get-togethers and hen dos.</p></div>
-<div class="fcard"><h3>Fairs &amp; events</h3><p class="xp">Ask for a quote</p><p>Christmas fairs and bigger events: tell Kat what you’re planning.</p></div>
+<div class="fcard"><h3>Fairs &amp; events</h3><p class="xp">Ask for a quote</p><p>Christmas fairs: a stall where families pay per face, or a set fee. Bigger events: tell Kat what you’re planning.</p></div>
 </div></div></section>
 <section class="band band-dark"><div class="wrap">{X.KAT_NOTE}<h2>Frosty, sparkly looks</h2>
 <p>A few of Kat’s icy, glittery designs. Children choose their favourite on the day.</p>
