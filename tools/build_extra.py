@@ -435,7 +435,7 @@ def christmas_holding():
               framed_hero('Services · Christmas', 'Christmas Face Painting',
                           'Festive face painting and glitter for Christmas parties across Sussex and Surrey. Parties from £130.',
                           '<a class="btn btn-gold" href="contact.html">Check my date</a>',
-                          '../img/g/christmas-holly-wreath-face-paint-for-girls-1200.webp', 1226, 1286,   # 21 Oct: Kat's own Christmas photo (folder 9 Christmas)
+                          '../img/g/christmas-holly-wreath-face-paint-girl-1073.webp', 1073, 1209,   # 21 Oct: Kat's own Christmas photo (folder 9 Christmas)
                           'Girl with a festive wreath face paint of holly, berries and gold glitter around her eye', '★★★★★ Festive wreath with gold glitter').replace('<header class="phero rvh">', '<header class="phero rvh">' + X.santa_html(), 1), main)
 
 def prices():
