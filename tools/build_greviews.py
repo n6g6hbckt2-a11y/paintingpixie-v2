@@ -12,7 +12,7 @@ OUT = os.environ.get('PP_OUT', '/home/claude/paintingpixie-v2/draft')
 PLACE = 'ChIJ9RzrvqH2gYcR35xDxwANJEE'
 WRITE = f'https://search.google.com/local/writereview?placeid={PLACE}'
 READ = f'https://search.google.com/local/reviews?placeid={PLACE}'
-RATING, TOTAL = '5.0', 10
+RATING, TOTAL = '5.0', 15
 
 REVIEWS = [   # (name as shown: first name + initial, month, words exactly as written on Google)
     ('James W.', 'August 2026', "Kat came to our son's birthday party and she was great, the kids loved her and her designs were fantastic. Thanks Kat, we'll be booking you again next year ⭐"),
