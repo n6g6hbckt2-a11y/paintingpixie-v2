@@ -433,6 +433,7 @@ def christmas_holding():
               '5.0-rated Christmas party face painting across Sussex and Surrey: festive designs and glitter, from £130. December weekends go fast, so book early.',
               'https://paintingpixie.com/christmas-face-painting.html', FRAME_CSS + css + X.FONT + X.CSS
               + '<script type="application/ld+json">' + json.dumps(service, ensure_ascii=False) + '</script>\n<script type="application/ld+json">' + json.dumps(faq_schema, ensure_ascii=False) + '</script>\n',
+    # NOTE 4 Nov 2026: the live christmas-face-painting.html was reordered by hand (Painting-Pixie PR #95: prices, reviews, book early, photos, events, Kat's note, designs). Edit the live file; don't regenerate this page from this template.
               framed_hero('Services · Christmas', 'Christmas Face Painting',
                           'Festive face painting and glitter for Christmas parties across Sussex and Surrey. Parties from £130.',
                           '<a class="btn btn-gold" href="contact.html">Check my date</a>',
