@@ -1,3 +1,4 @@
+# NOTE 4 Nov 2026: ten Christmas photos (Hillier, Liss + holly wreath) and a Christmas filter were added to the live gallery.html by hand (Painting-Pixie PR 'Gallery: Christmas'). Add them here before regenerating the gallery.
 # -*- coding: utf-8 -*-
 """Gallery page: curated photos, filters, masonry layout, lightbox with 'Book this look'.
 Photos are prepared once into img/g/ (800px and 1600px WebP). Runs after build_extra, before build_conversion."""
