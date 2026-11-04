@@ -394,6 +394,7 @@ def christmas_holding():
 <div class="xwhen">
 <div><b>Weekends</b><span>From 9am. The Saturdays before Christmas go first.</span></div>
 <div><b>Weekday evenings</b><span>From 5:30pm. Great for an after-school Christmas party.</span></div>
+<div><b>Weekdays in the school holidays</b><span>Kat is a teacher, so she’s free Monday to Friday in the school holidays. Perfect for a Christmas holiday party.</span></div>
 <div><b>Your deposit</b><span>Secures your date. The balance is paid on the day.</span></div>
 </div>
 <h3 style="margin-top:34px">What families said last December</h3><div class="xrevs">{rev_html}</div>
