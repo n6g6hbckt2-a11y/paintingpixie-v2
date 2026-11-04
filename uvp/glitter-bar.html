@@ -41,7 +41,23 @@
 "priceRange": "££"
 }
 </script>
-
+<script>
+if (/(^|\.)paintingpixie\.com$/.test(location.hostname)) {
+  var s = document.createElement('script'); s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-JMFEXJJZ1H';
+  document.head.appendChild(s);
+}
+window.dataLayer = window.dataLayer || [];
+// Owner opt-out: open any page once with ?notrack on each phone/computer/browser to stop it being counted (?track undoes it)
+try {
+  if (/[?&]notrack(=|&|$)/.test(location.search)) localStorage.setItem('pp_notrack', '1');
+  if (/[?&]track(=|&|$)/.test(location.search)) localStorage.removeItem('pp_notrack');
+  if (localStorage.getItem('pp_notrack') === '1') window['ga-disable-G-JMFEXJJZ1H'] = true;
+} catch (e) {}
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-JMFEXJJZ1H');
+</script>
 <!-- Microsoft Clarity (heatmaps and session replays): only on the real site, and never for the owner (?notrack) -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -155,7 +171,7 @@ across Sussex and Surrey from my base in Horsham. <a href="face-painter-brighton
 <section class="band band-dark photo-dust k-gallery centred "><div class="wrap">
 <h2 style="text-align:center;">Recent Designs</h2>
 <div class="mini-gallery">
-<span class="mg"><img src="img/g/arm-glitter-swirl-800.webp" alt="Glitter swirl with a blue flower and gems down the arm, from the Chunky Glitter and Jewel Bar" loading="lazy" style="object-position:center 40%;transform-origin:50% 35%"></span><span class="mg"><img src="img/g/rainbow-glitter-forehead-face-paint-woman-800.webp" alt="Rainbow glitter and stars across the forehead at a party in Sussex" loading="lazy" style="object-position:center 30%;transform-origin:50% 35%"></span><span class="mg"><img src="gold-leopard-print-half-face-paint-for-women.webp" alt="Gold glitter leopard print design from the Chunky Glitter and Jewel Bar in Sussex" loading="lazy" style="object-position:center 25%;transform-origin:50% 35%"></span><span class="mg"><img src="img/g/arm-flowers-pair-portrait-800.webp" alt="Lilac flowers and glitter painted on a forearm" loading="lazy" style="object-position:center 50%;transform-origin:50% 35%"></span><span class="mg"><img src="img/g/adult-pink-glitter-800.webp" alt="Pink and gold glitter tiara design from the Chunky Glitter and Jewel Bar in Surrey" loading="lazy" style="object-position:center 25%;transform-origin:50% 35%"></span><span class="mg"><img src="rainbow-chest-paint-with-glitter-clouds.webp" alt="Rainbow glitter chest paint design from the Chunky Glitter and Jewel Bar" loading="lazy" style="object-position:center 25%;transform-origin:50% 35%"></span><span class="mg"><img src="img/g/rainbow-glitter-leopard-spots-face-paint-800.webp" alt="Rainbow glitter with leopard spots for an evening party" loading="lazy" style="object-position:center 35%;transform-origin:50% 35%"></span><span class="mg"><img src="img/g/adult-flower-closeup-800.webp" alt="Blue and purple flower face art with glitter on a woman" loading="lazy" style="object-position:center 35%;transform-origin:50% 35%"></span>
+<span class="mg"><img src="img/g/arm-glitter-swirl-800.webp" alt="Glitter swirl with a blue flower and gems down the arm, from the Chunky Glitter and Jewel Bar" loading="lazy" style="object-position:center 40%;transform-origin:50% 35%"></span><span class="mg"><img src="img/g/rainbow-glitter-forehead-face-paint-woman-800.webp" alt="Rainbow glitter and stars across the forehead at a party in Sussex" loading="lazy" style="object-position:center 30%;transform-origin:50% 35%"></span><span class="mg"><img src="https://n6g6hbckt2-a11y.github.io/paintingpixie-v2/uvp/img/p/rainbow-glitter-woman-smiling-800.webp" alt="Rainbow glitter and stars on a smiling woman at a party" loading="lazy" style="object-position:center 25%;transform-origin:50% 35%"></span><span class="mg"><img src="img/g/arm-flowers-pair-portrait-800.webp" alt="Lilac flowers and glitter painted on a forearm" loading="lazy" style="object-position:center 50%;transform-origin:50% 35%"></span><span class="mg"><img src="img/g/adult-pink-glitter-800.webp" alt="Pink and gold glitter tiara design from the Chunky Glitter and Jewel Bar in Surrey" loading="lazy" style="object-position:center 25%;transform-origin:50% 35%"></span><span class="mg"><img src="rainbow-chest-paint-with-glitter-clouds.webp" alt="Rainbow glitter chest paint design from the Chunky Glitter and Jewel Bar" loading="lazy" style="object-position:center 25%;transform-origin:50% 35%"></span><span class="mg"><img src="img/g/rainbow-glitter-leopard-spots-face-paint-800.webp" alt="Rainbow glitter with leopard spots for an evening party" loading="lazy" style="object-position:center 35%;transform-origin:50% 35%"></span><span class="mg"><img src="img/g/adult-flower-closeup-800.webp" alt="Blue and purple flower face art with glitter on a woman" loading="lazy" style="object-position:center 35%;transform-origin:50% 35%"></span>
 </div>
 <p style="text-align:center; margin-top:30px;">Evening party or disco? <a href="uv-neon-face-painting.html">See UV neon face painting that glows under blacklight ✨</a></p>
 </div></section>
@@ -174,7 +190,7 @@ the tattoos. Thank you."</p>
 </div><div class="testimonial">
 <p>"Kat was an fantastic addition to our event. Our festival themed party was brought to life with the addition of festival face paints. The Painting Pixie is an incredible artist and swiftly adapted their style to accommodate young butterflies and spidermen and grown-up glamour with some sparkling festival pieces."</p>
 <strong>Alanna B, verified review on Add to Event</strong>
-</div></div><p class="rv-all"><a class="btn btn-gold" href="reviews.html">Read all 40 reviews →</a></p>
+</div></div><p class="rv-all"><a class="btn btn-gold" href="reviews.html">Read all 45 reviews →</a></p>
 </div></section>
 
 <section class="band band-panel k-enquire centred contact-box"><div class="wrap">
@@ -200,7 +216,7 @@ the tattoos. Thank you."</p>
 <p class="eyebrow">Trusted across Sussex &amp; Surrey</p>
 <div class="trustrow">
 <a class="ate" href="https://www.addtoevent.co.uk/suppliers/the-painting-pixie-ltd" target="_blank" rel="noopener" title="Top rated on Add to Event"><img src="img/addtoevent-top-rated.webp" alt="Top rated on Add to Event, 5 stars" width="84" height="81" loading="lazy"></a>
-<div><b>&#9733;&#9733;&#9733;&#9733;&#9733; 5.0</b><span><a href="reviews.html" style="color:inherit">40 reviews</a></span></div>
+<div><b>&#9733;&#9733;&#9733;&#9733;&#9733; 5.0</b><span><a href="reviews.html" style="color:inherit">45 reviews</a></span></div>
 <div><b>1,000+</b><span>faces painted</span></div>
 <div><b>Insured</b><span>&amp; DBS checked</span></div>
 </div><span class="tlabel">Kat has painted at</span><div class="trustedat"><span><b>Eats &amp; Beats Festival</b><small>New House Farm, Horsham</small></span><span><b>Guildford Festival of the Arts</b><small>North Street, Guildford</small></span><span><b>Good Hotel</b><small>London</small></span><span><b>Macs Farm</b><small>near Ditchling</small></span></div></div></section>
