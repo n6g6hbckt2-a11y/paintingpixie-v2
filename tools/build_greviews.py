@@ -15,6 +15,10 @@ READ = f'https://search.google.com/local/reviews?placeid={PLACE}'
 RATING, TOTAL = '5.0', 15
 
 REVIEWS = [   # (name as shown: first name + initial, month, words exactly as written on Google)
+    ('Horsham CrossFit', 'November 2026', "A huge thank you to Kat at Pixie painting. She is so talented and efficient with everything she does. Would absolutely use again for any further events that we have. Xx"),
+    ('N S.', 'October 2026', "We had a fantastic experience with the neon face painting party at a friends house in Horsham. 🌈✨ The face painting was so professional, with amazing neon colours and gorgeous glitter that really made everything stand out. The designs were brilliant, and the whole experience added something really special to the party. Everyone looked fabulous, and it was such a hit! Would highly recommend to anyone looking for something fun, colourful and a little bit different! 💖🎨 Thanks Kat, you were great x"),
+    ('Chloe H.', 'November 2026', "Had such a wonderful evening, Kat was amazing, would definitely book again 🤩"),
+    ('Kate Y.', 'October 2026', "Amazing face painting!!!! The kids absolutely loved it! ❤️"),
     ('James W.', 'August 2026', "Kat came to our son's birthday party and she was great, the kids loved her and her designs were fantastic. Thanks Kat, we'll be booking you again next year ⭐"),
     ('Rosemarie L.', 'August 2026', "My son had he’s face painted at a party and this lady was very good! He is deaf & she was polite and pointing for him to turn he’s head rather than some would just shove hes face into a direction upsetting him so this was a big brownie point! Very artistic and finished of with lovely little details"),
     ('Daniel C.', 'August 2026', "So amazing. Hired for our daughter’s 4th and was phenomenal. Non stop and everyone was so complimentary of the amazing face paints! Thank you Kat!!!"),
@@ -27,7 +31,7 @@ REVIEWS = [   # (name as shown: first name + initial, month, words exactly as wr
 SUMMARY = ['Great with children, from small parties to 30 at once',
            'Detailed, artistic designs with lovely finishing touches',
            'Patient and considerate with every child']
-COLOURS = ['#B0006A', '#2F8F5B', '#6A4BC4', '#C8641E', '#1F7FB8', '#A0376E', '#4E7D2E', '#8A4FB0']
+COLOURS = ['#B0006A', '#2F8F5B', '#6A4BC4', '#C8641E', '#1F7FB8', '#A0376E', '#4E7D2E', '#8A4FB0', '#B0006A', '#2F8F5B', '#6A4BC4', '#C8641E']
 
 STAR = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg>'
 STARS = f'<span class="gr-stars" role="img" aria-label="5 out of 5 stars">{STAR * 5}</span>'
